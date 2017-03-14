@@ -6,34 +6,36 @@ poengstatistikk ifm. et større idrettsarrangement (f.eks. vinter-OL).
 
 ##Kontaktinformasjon
 
-###Utvikler 0<br/>
-Navn: 	    Jonas Johan Solsvik,<br/> 
-Telefon:    45200864,<br/>
-Studentnr: 	473193,<br/>
-E-post1:    jonasjso@stud.ntnu.no,<br/>
-E-post2:    jonas.solsvik@gmail.com,<br/>
-Klasse:     16HBPROGA,<br/>
-Bitbucket:  jonasjso,<br/>
---------------------------------------------------- <br/>
-Steam:    Arxcis<br/>
-Discord:  Arxcis<br/>
-Github :   Arxcis<br/>
-Kjønn:     Mann<br/>
+###Utvikler 0
+<p>
+Navn: 	    Jonas Johan Solsvik, 
+Telefon:    45200864,
+Studentnr: 	473193,
+E-post1:    jonasjso@stud.ntnu.no,
+E-post2:    jonas.solsvik@gmail.com,
+Klasse:     16HBPROGA,
+Bitbucket:  jonasjso,
+--------------------------------------------------- 
+Steam:    Arxcis
+Discord:  Arxcis
+Github :   Arxcis
+Kjønn:     Mann</p>
 
 =====================================================================
 
-###Utvikler 1<br/>
-Navn: 		Halvor Bakken Smedås,<br/>
-Telefon: 	45429655, <br/>
-Studentnr: 	473196, <br/>
-Ansattnr: 	143739,<br/>
-E-post 1: 	halvorbs@stud.ntnu.no,<br/>
-E-post 2: 	halvorbs@ntnu.no, <br/>
-Klasse: 	16HBPROGA,<br/>
-Bitbucket:	Halvorbs<br/>
---------------------------------------------------- <br/>
-Steam: 			stektpotet,<br/>
-Discord: 		stektpotet,<br/>
-Github:			stektpotet,<br/>
-UnityConnect: 	Halvor B. Smedås - https://connect.unity.com/u/584741020909150024701023, <br/>
-Kjønn: 			Mann<br/>
+###Utvikler 1
+<p>
+Navn: 		Halvor Bakken Smedås,
+Telefon: 	45429655, 
+Studentnr: 	473196, 
+Ansattnr: 	143739,
+E-post 1: 	halvorbs@stud.ntnu.no,
+E-post 2: 	halvorbs@ntnu.no, 
+Klasse: 	16HBPROGA,
+Bitbucket:	Halvorbs
+--------------------------------------------------- 
+Steam: 			stektpotet,
+Discord: 		stektpotet,
+Github:			stektpotet,
+UnityConnect: 	Halvor B. Smedås - https://connect.unity.com/u/584741020909150024701023, 
+Kjønn: 			Mann<\p>
