@@ -4,3 +4,7 @@
 [Vv]isual_studio/
 [Xx]code/
 *.pdf
+
+# Mac specific stuff
+*.DS_Store
+*.dSYM*
