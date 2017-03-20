@@ -1,8 +1,10 @@
 [Bb]uild/
 [Oo]bject/
-[Dd]ata/
 [Vv]isual_studio/
 [Xx]code/
+
+*.dta
+*.res
 *.pdf
 
 # Mac specific stuff
