@@ -1,0 +1,30 @@
+
+
+
+// myclass.cpp
+
+class MyClass {
+  
+  method1
+  method2
+  osv.
+};
+
+
+
+
+namespace test 
+{
+  myclass() 
+  {
+
+  }
+}
+
+
+
+//   test.cpp
+
+test::myclass()
+test::yourclass()
+osv..
