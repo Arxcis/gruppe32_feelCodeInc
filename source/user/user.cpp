@@ -6,8 +6,16 @@
 //          components of the user-module.
 //
 
-int main()
+#include <stdio.h>  
+
+namespace app 
 {
 
+};
+
+
+int main()
+{
+  printf("Hei\n");
   return 0;
 }
