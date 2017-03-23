@@ -10,8 +10,8 @@
 #   '$<' - First argument to the right of ':'
 #   '$^' - All arguments to the right of ':'
 
-CC=g++
-CFLAGS=-Wall -g -I.
+CC=g++ 
+CFLAGS=-std=c++11 -Wall -g -I.
 
 BDIR=../../compile/build
 ODIR=../../compile/object

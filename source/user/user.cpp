@@ -6,8 +6,14 @@
 //          components of the user-module.
 //
 
+#include <tuple>
+#include <vector>
+#include <string>
 #include <stdio.h>  
 #include <stdlib.h>
+#include <ctime>
+
+#include "testdata.h"
 
 enum Entity
 { 
@@ -17,40 +23,99 @@ enum Entity
   EVENT,
 };
 
-// @namespace app
+
+// @namespace API - Application Layer Interface
 // @brief     API that the user-level code can use to communicate with,
 //              application layer.
 // 
-namespace app 
+namespace API 
 { 
-  template<class T, class S>
-  bool post(
-    Entity entity, 
-    const T id, 
-    const S field);
-
-  template<class T, class S>
-  bool add(
-    Entity entity,
-    const T id,
-    const S tuple);
-
-  template<class T>
-  bool remove(
-    Entity entity,
-    const T id);
-
-  template<class T, class S>
-  const S get(
-    Entity entity,
-    const T id);
+  bool edit   (Entity entity, std::vector<std::string> container);
+  bool add    (Entity entity, std::vector<std::string> container);
+  bool remove (Entity entity, std::string id);
+  auto get    (Entity entity, std::string id) -> std::vector<std::string>*;
+  auto getAll (Entity entity)                 -> std::vector<std::vector<std::string>>*;
 
   void quit();
 };
 
-
+//
+// @namespace test - testdata
+//
 int main()
-{
+{ 
+  srand(time(NULL));
   printf("Hei\n");
   return 0;
 }
+
+
+namespace API 
+{
+  //
+  // @function edit()
+  //
+  bool edit(Entity entity, std::vector<std::string> container)
+  {  return 1;  }
+
+  //
+  // @function add()
+  //
+  bool add(Entity entity, std::vector<std::string> container)
+  {  return 1;  }
+
+  //
+  // @function remove()
+  //
+  bool remove(Entity entity, std::string id)
+  {  return 1;  }
+
+  //
+  // @function get()
+  //
+  auto get(Entity entity, std::string id) -> std::vector<std::string>*
+  {
+    switch(entity)
+    {
+      case NATION: 
+        return &test::nation;
+      case ATHLETE:
+        return &test::athlete;
+      case SPORT:
+        return &test::sport;
+      case EVENT:
+        return &test::event;
+      default:
+        return test::nulldata;
+    }
+  }
+
+  //
+  // @function getAll()
+  //
+  auto getAll(Entity entity) ->  std::vector<std::vector<std::string>>*
+  {
+    switch(entity)
+    {
+      case NATION: 
+        return &test::nations;
+      case ATHLETE:
+        return &test::athletes;
+      case SPORT:
+        return &test::sports;
+      case EVENT: 
+        return &test::events;
+      default: 
+        return test::nulldatas;
+    }
+  }
+
+  //
+  // @function quit()
+  //
+  void quit()
+  {
+    
+  }
+}
+
