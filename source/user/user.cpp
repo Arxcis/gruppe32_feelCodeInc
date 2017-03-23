@@ -6,3 +6,8 @@
 //          components of the user-module.
 //
 
+int main()
+{
+
+  return 0;
+}

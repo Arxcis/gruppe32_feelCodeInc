@@ -6,3 +6,8 @@
 //           Core-module with the User-module
 //
 
+int main()
+{
+
+  return 0;
+}

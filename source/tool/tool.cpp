@@ -5,3 +5,9 @@
 // @brief   Main hub of the tool-module. Used for testing
 //          components of the tool-module.
 //
+
+int main()
+{
+
+  return 0;
+}
