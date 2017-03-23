@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <ctime>
 
-#include "testdata.h"
+#include "testData.h"
 
 enum Entity
 { 
