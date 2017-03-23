@@ -7,10 +7,45 @@
 //
 
 #include <stdio.h>  
+#include <stdlib.h>
 
+enum Entity
+{ 
+  NATION,
+  ATHLETE,
+  SPORT,
+  EVENT,
+};
+
+// @namespace app
+// @brief     API that the user-level code can use to communicate with,
+//              application layer.
+// 
 namespace app 
-{
+{ 
+  template<class T, class S>
+  bool post(
+    Entity entity, 
+    const T id, 
+    const S field);
 
+  template<class T, class S>
+  bool add(
+    Entity entity,
+    const T id,
+    const S tuple);
+
+  template<class T>
+  bool remove(
+    Entity entity,
+    const T id);
+
+  template<class T, class S>
+  const S get(
+    Entity entity,
+    const T id);
+
+  void quit();
 };
 
 
