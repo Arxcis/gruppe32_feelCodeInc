@@ -19,6 +19,7 @@ namespace test {
   std::vector<std::string> 
   nation 
   {
+      "nation",                   // Type of object
       "NOR",                      // Code
       "Norge",                    // Name
       "150",                      // Number of athletes
@@ -30,6 +31,7 @@ namespace test {
   std::vector<std::string>
   athlete 
   {
+      "athlete",                 // Type of object
       "1002",                    // ID
       "Jonas",                   // Name
       "452000864",               // Phone
@@ -40,7 +42,8 @@ namespace test {
 
   std::vector<std::string>
   sport 
-  {
+  {   
+      "sport",                // Type of object
       "Fotball",                // Sport name
       "Points",                 // Score type
       "3",                      // Number of events
@@ -52,6 +55,7 @@ namespace test {
   std::vector<std::string>
   event 
   {
+      "event",                  // Type of object
       "Finale - Golden Goal",   // Name of event
       "19:00",                  // Time of event
       "29.03.18",               // Date of event
