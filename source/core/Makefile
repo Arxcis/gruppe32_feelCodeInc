@@ -1,5 +1,5 @@
 #
-# @file    user/Makefile
+# @file    core/Makefile
 # @repo    gruppe32
 # @created 23.03.17 by Jonas
 # @brief - this Makefile was inspired by this tutorial
@@ -16,14 +16,14 @@ CFLAGS=-Wall -g -I.
 BDIR=../../compile/build
 ODIR=../../compile/object
 
-_OBJ=user.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+_OBJ=core.o
+OBJ=$(patsubst %, $(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(%.h)
 		$(CC) -c -o $@ $< $(CFLAGS)
 
-user: $(OBJ)
+core: $(OBJ)
 		$(CC) -o $(BDIR)/$@ $< $(CFLAGS)
 
 run:
-	./$(BDIR)/user
+	./$(BDIR)/core
