@@ -16,11 +16,12 @@ namespace dat
     int silver;
     int bronze;
 
-    Medals():Measure(){};
-    virtual ~Medals() {};
+    Medals(int gold_, int silver_, int bronze_);
+    virtual ~Medals();
+
     virtual void display() override;
     virtual int castToInt() override;
   };
-};
+}
 
 

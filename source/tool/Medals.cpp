@@ -1,13 +1,16 @@
-//
-// @file    tool/Medals.cpp
-// @repo    gruppe32
-// @created 24.03.17 by Jonas
-// @brief   A struct that holds Medals statistics
-//
+
 
 #include "Medals.h"
-
 using namespace dat;
+
+Medals::Medals(int gold_, int silver_, int bronze_)
+:Measure(),
+gold(gold_),
+silver(silver_),
+bronze(bronze_)
+{}
+
+Medals::~Medals(){}
 
 void Medals::display(){}
 int  Medals::castToInt()
