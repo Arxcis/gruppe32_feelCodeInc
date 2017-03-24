@@ -10,8 +10,7 @@
 #include "../tool/char3.h"
 #include "ListTool2B.h"
 
-
-class Nation : TextElement
+class Nation : public TextElement
 {
 private:
 	char3 shortName_;			//Primary key
@@ -23,7 +22,7 @@ public:
 	//	GETTERS
 
 	char3 getShortName();
-	auto getName();
+	auto getName() -> std::string;
 	//Contact getContact();
 	int getParticipantCount();
 };
