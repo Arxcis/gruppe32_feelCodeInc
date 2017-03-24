@@ -6,11 +6,16 @@
 //          components of the tool-module.
 //
 
+// @foreign
 #include <iostream>
+#include <assert.h>
+
+// @local files
 #include "Contact.h"
 #include "Medals.h"
 #include "Date.h"
 #include "Time.h"
+
 
 void testContact()
 {
@@ -21,8 +26,17 @@ void testContact()
 
 void testMeasureClasses()
 {
-  dat::Medals medals = { 1,2,3 };
-  std::cout << "Medal-int:" << medals.castToInt() << std::endl;
+  dat::Medals medal1 { 1,2,3 };
+  dat::Medals medal2 { 2,1,0 };
+  dat::Medals medal3 { 0,0,100 };
+  dat::Medals medal4 { 1,2,3 };
+
+  assert(medal1.castToInt() >= medal3.castToInt());
+  assert(medal1.castToInt() <= medal2.castToInt() );
+  assert(medal1.castToInt() >= medal3.castToInt() );
+  assert(medal1.castToInt() == medal4.castToInt() );
+
+  std::cout << "Medal-int:" << medal1.castToInt() << std::endl;
 
   dat::Date date = {1,2,3};
   std::cout << "Date-int:" << date.castToInt() << std::endl;
