@@ -1,7 +1,7 @@
 #
-# @file    user/Makefile
+# @file    Makefile
 # @repo    gruppe32
-# @created 23.03.17 by Jonas
+# @created 24.03.17 by Jonas
 # @brief - this Makefile was inspired by this tutorial
 #           http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
 # 

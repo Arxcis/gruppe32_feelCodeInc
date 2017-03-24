@@ -1,5 +1,5 @@
 //
-// @file    user/testdata.h
+// @file    testdata.h
 // @repo    gruppe32
 // @created 23.03.17 by Jonas
 // @brief     a collection of test data that simulate data
