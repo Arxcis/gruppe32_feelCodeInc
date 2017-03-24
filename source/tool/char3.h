@@ -1,3 +1,4 @@
+#pragma once
 //
 // @file    tool/char3.h
 // @repo    gruppe32
