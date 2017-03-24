@@ -18,8 +18,8 @@ namespace dat
 
     Medals():Measure(){};
     virtual ~Medals() {};
-    void display();
-    int castToInt();
+    virtual void display() override;
+    virtual int castToInt() override;
   };
 };
 
