@@ -16,7 +16,7 @@ CFLAGS=-Wall -g -I.
 BDIR=../../compile/build
 ODIR=../../compile/object
 
-_OBJ=tool.o
+_OBJ=testingTool.o Contact.o
 OBJ=$(patsubst %, $(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(%.h)

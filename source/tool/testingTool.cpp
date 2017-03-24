@@ -6,8 +6,19 @@
 //          components of the tool-module.
 //
 
+#include <iostream>
+#include <Contact.h>
+
+void testContact()
+{
+  Contact contact;
+
+  contact.name = "Jonas";
+  std::cout << contact.name << std::endl;
+}
+
 int main()
 {
-
-  return 0;
+  testContact();
+  return 0; 
 }
