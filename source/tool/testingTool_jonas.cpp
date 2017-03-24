@@ -19,8 +19,11 @@
 
 void testContact()
 {
-  dat::Contact contact;
-  contact.name = "Jonas";
+  dat::Contact contact(
+    "Jonas Solsvik",
+    "Snorres Veg 2a",
+    "+47 45200864");
+
   std::cout << contact.name << std::endl;
 }
 
@@ -48,6 +51,7 @@ void testMeasureClasses()
 
 int main()
 {
+  testContact();
   testMeasureClasses();
   return 0; 
 }
