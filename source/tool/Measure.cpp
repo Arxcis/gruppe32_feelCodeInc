@@ -8,8 +8,8 @@
 #include "Measure.h"
 using namespace dat;
 
-Measure::Measure(){}
-Measure::~Measure(){}
+void Measure::display(){};
+int  Measure::castToInt(){return 0;};
 
 bool Measure::operator <  (Measure* other)
 {

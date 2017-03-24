@@ -11,10 +11,10 @@ namespace dat
 {
   struct Measure 
   { 
-    Measure();
-    ~Measure();
-    void display(){};
-    int castToInt(){return 0;};
+    Measure(){}
+    virtual ~Measure(){};
+    void display();
+    int castToInt();
   
     bool operator <  (Measure* other);
     bool operator >  (Measure* other);
