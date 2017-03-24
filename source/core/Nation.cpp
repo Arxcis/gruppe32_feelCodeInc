@@ -5,7 +5,7 @@ char3 Nation::getShortName()
 	return shortName_;
 }
 
-std::string Nation::getName()
+auto Nation::getName()
 {
 	return name_;
 }
