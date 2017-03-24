@@ -1,4 +1,7 @@
 #pragma once
+
+#include <stddef.h>
+
 namespace dat
 {
 	template<typename T, size_t arr_size>
