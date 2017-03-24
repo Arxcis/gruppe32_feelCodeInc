@@ -8,8 +8,9 @@
 
 #include <iostream>
 #include "Contact.h"
-#include "Measure.h"
 #include "Medals.h"
+#include "Date.h"
+#include "Time.h"
 
 void testContact()
 {
@@ -18,25 +19,21 @@ void testContact()
   std::cout << contact.name << std::endl;
 }
 
-void testMeasure()
+void testMeasureClasses()
 {
+  dat::Medals medals = { 1,2,3 };
+  std::cout << "Medal-int:" << medals.castToInt() << std::endl;
 
+  dat::Date date = {1,2,3};
+  std::cout << "Date-int:" << date.castToInt() << std::endl;
+  
+  dat::Time time = {1,2,3};
+  std::cout << "Time-int:" << time.castToInt() << std::endl;
 }
 
-void testMedals()
-{
-  dat::Medals medals;
-}
-
-void testTime(){}
-void testDate(){}
 
 int main()
 {
-  testContact();
-  testMeasure();
-  testMedals();
-  testTime();
-  testDate();
+  testMeasureClasses();
   return 0; 
 }
