@@ -4,12 +4,11 @@
 // @repo    gruppe32
 // @created 24.03.17 by Halvor
 // @brief   All data relevant to a Participant is stored within.
-
 #include "ListTool2B.h"
 #include "../tool/Contact.h"
 #include "../tool/char3.h"
 
-class Participant : NumElement
+class Participant : public NumElement
 {
 private:
 	int ID_;

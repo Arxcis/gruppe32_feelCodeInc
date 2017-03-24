@@ -14,9 +14,3 @@ char3 Participant::getNation()
 {
 	return nation_;
 }
-/*
-Gender Participant::getGender()
-{
-	return gender_;
-}
-*/
