@@ -11,9 +11,8 @@
 #include <string>
 #include <stdio.h>  
 #include <stdlib.h>
-#include <ctime>
 
-#include "testData.h"
+#include "../testData.h"
 
 
 enum Entity 
@@ -45,9 +44,7 @@ namespace API
 //
 int main()
 { 
-  srand(time(NULL));
-  printf("Hei\n");
-  printf("Hei\n");
+  printf("Hei testinguser.cpp\n");
   return 0;
 }
 
