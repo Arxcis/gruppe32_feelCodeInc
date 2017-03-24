@@ -8,6 +8,7 @@
 
 int main()
 {
-
+    
+  printf("Hello from core module\n");
   return 0;
 }

@@ -6,8 +6,9 @@
 //          components of the user-module.
 //
 
+#include <stdio.h>
 
 int main()
 {
-
+    printf("Hello from user module\n");
 }
