@@ -20,8 +20,10 @@ private:
 	int participantCount_;		//how many are registered for this nation
 
 public:
+	//	GETTERS
+
 	char3 getShortName();
-	std::string getName();
+	auto getName();
 	//Contact getContact();
 	int getParticipantCount();
 };
