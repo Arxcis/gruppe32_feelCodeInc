@@ -1,9 +1,9 @@
 #pragma once
 
-// @file    core/Nation.h
+// @file    core/Sport.h
 // @repo    gruppe32
 // @created 24.03.17 by Halvor
-// @brief   All data relevant to a Nation is stored within, shortName is PK
+// @brief   All data relevant to a Sport is stored within.
 //
 
 #include <string>
