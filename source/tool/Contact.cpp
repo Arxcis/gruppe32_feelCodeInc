@@ -7,5 +7,8 @@
 
 #include "Contact.h"
 
+using namespace dat;
+
 Contact::Contact(){}
+
 

@@ -8,12 +8,14 @@
 
 #include <string>
 
-struct Contact 
+namespace dat 
 {
-  std::string name;
-  std::string address;
-  std::string phone;
+  struct Contact 
+  {
+    std::string name;
+    std::string address;
+    std::string phone;
 
-  Contact();
-
-};
+    Contact();
+  };
+}
