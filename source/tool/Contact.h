@@ -14,6 +14,6 @@ struct Contact
   std::string address;
   std::string phone;
 
-  Contact(){};
+  Contact();
 
 };
