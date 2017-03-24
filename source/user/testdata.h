@@ -17,7 +17,7 @@
 //
 namespace test {
   std::vector<std::string> 
-  nation 
+  nation
   {
       "nation",                   // Type of object
       "NOR",                      // Code
