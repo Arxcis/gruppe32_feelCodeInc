@@ -12,12 +12,12 @@ class Participant : public NumElement
 {
 private:
 	int ID_;
-	Contact contact_;
+    dat::Contact contact_;
 	char3 nation_;
 	//Gender gender;
 public:
 	int getID();
-	Contact getContact();
+    dat::Contact getContact();
 	char3 getNation();
 	//Gender getGender();
 };

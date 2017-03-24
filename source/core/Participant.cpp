@@ -5,7 +5,7 @@ int Participant::getID()
 	return ID_;
 }
 
-Contact Participant::getContact()
+dat::Contact Participant::getContact()
 {
 	return contact_;
 }
