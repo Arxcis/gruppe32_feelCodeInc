@@ -1,5 +1,5 @@
 //
-// @file    tool/testingTool.cpp
+// @file    tool/testingTool_jonas.cpp
 // @repo    gruppe32
 // @created 23.03.17 by Jonas
 // @brief   Main hub of the tool-module. Used for testing
