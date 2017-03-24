@@ -1,6 +1,6 @@
 #include "Sport.h"
 
-auto Sport::getName()
+auto Sport::getName() -> std::string
 {
 	return name_;
 }

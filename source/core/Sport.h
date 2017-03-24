@@ -20,7 +20,7 @@ private:
 public:
 	//	GETTERS
 
-	auto getName();
+    auto getName() -> std::string;
 	//ScoreType getScoreType();
 	//BetterArray getEvents();
 };
