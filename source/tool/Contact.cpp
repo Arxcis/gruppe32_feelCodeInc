@@ -1,4 +1,3 @@
-#pragma once
 //
 // @file    tool/Contact.cpp
 // @repo    gruppe32
@@ -6,13 +5,7 @@
 // @brief   A struct that holds Contact data to Participants
 //
 
-#include <string>
+#include "Contact.h"
 
-struct Contact 
-{
-  
-private:
-  std::string name;
+Contact::Contact(){}
 
-
-};
