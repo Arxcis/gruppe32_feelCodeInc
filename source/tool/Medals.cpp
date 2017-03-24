@@ -9,9 +9,6 @@
 
 using namespace dat;
 
-Medals::Medals(){}
-Medals::~Medals(){}
-
 void Medals::display(){}
 int  Medals::castToInt()
 {

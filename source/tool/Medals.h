@@ -16,8 +16,8 @@ namespace dat
     int silver;
     int bronze;
 
-    Medals();
-    ~Medals();
+    Medals():Measure(){};
+    virtual ~Medals() {};
     void display();
     int castToInt();
   };
