@@ -16,7 +16,7 @@ CFLAGS=-std=c++11 -Wall -g -I.
 BDIR=../../compile/build
 ODIR=../../compile/object
 
-_OBJ=user.o
+_OBJ=testingUser.o menu.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(%.h)
