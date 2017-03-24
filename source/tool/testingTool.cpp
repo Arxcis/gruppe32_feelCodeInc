@@ -1,5 +1,5 @@
 //
-// @file    tool/tool.cpp
+// @file    tool/testingTool.cpp
 // @repo    gruppe32
 // @created 23.03.17 by Jonas
 // @brief   Main hub of the tool-module. Used for testing
@@ -7,18 +7,36 @@
 //
 
 #include <iostream>
-#include <Contact.h>
+#include "Contact.h"
+#include "Measure.h"
+#include "Medals.h"
 
 void testContact()
 {
-  Contact contact;
-
+  dat::Contact contact;
   contact.name = "Jonas";
   std::cout << contact.name << std::endl;
 }
 
+void testMeasure()
+{
+
+}
+
+void testMedals()
+{
+  dat::Medals medals;
+}
+
+void testTime(){}
+void testDate(){}
+
 int main()
 {
   testContact();
+  testMeasure();
+  testMedals();
+  testTime();
+  testDate();
   return 0; 
 }
