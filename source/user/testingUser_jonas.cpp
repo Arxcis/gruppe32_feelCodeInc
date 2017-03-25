@@ -8,7 +8,21 @@
 
 #include <stdio.h>
 
+
+// @local files
+#include "Console.h"
+
 int main()
 {
-    printf("Hello from user module\n");
+  Console console;
+
+  if(console.run())
+  {
+    printf("Program exited normally...\n");
+  }
+  else {
+    printf("Program exited in an unexpected manner..\n");
+  }
+
+  printf("Hello from user module\n");
 }
