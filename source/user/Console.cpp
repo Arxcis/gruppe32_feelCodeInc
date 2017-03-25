@@ -21,6 +21,7 @@ Console::~Console()
 int Console::run()
 { 
   int retval=1;
+  std::vector<std::string>* container;
   menuState = menu::begin();
   while(menuState) 
   { 
@@ -36,20 +37,41 @@ int Console::run()
 
       case NATION_BASE:
         retval = menu::nationBase();
-        if (!retval) 
-          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;  }
+        else if (retval >= 2) {  menuState = NATION_SELECT;  } 
+        else {}
+        break;
+
+      case NATION_SELECT:
+        container = API::get(NATION, retval);
+        view::nation(container);
+        menuState = NATION_BASE;
         break;
 
       case PARTICIPANT_BASE:
         retval = menu::participantBase();
-        if (!retval) 
-          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;  }
+        else if (retval >= 2) {  menuState = PARTICIPANT_SELECT;  } 
+        else {}
+        break;
+
+      case PARTICIPANT_SELECT:
+        container = API::get(PARTICIPANT, retval);
+        view::participant(container);
+        menuState = PARTICIPANT_BASE;
         break;
 
       case SPORT_BASE:
         retval = menu::sportBase();
-        if (!retval) 
-          {  menuState = BASE;  }
+        if (!retval) {  menuState = BASE;  }
+        else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
+        else {}
+        break;
+
+      case SPORT_SELECT:
+        container = API::get(SPORT, retval);
+        view::sport( container );
+        menuState = SPORT_BASE;
         break;
 
       default:

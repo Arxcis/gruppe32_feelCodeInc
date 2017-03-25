@@ -10,7 +10,9 @@
 
 // @local files
 #include "consoleMenu.h"
+#include "consoleObjectview.h"
 #include "MenuState.h"
+#include "../API.h"
 
 //
 // @class Console
