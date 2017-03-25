@@ -9,10 +9,11 @@
 #include <iostream>
 
 // @local files
+#include "../enum.h"  // @global dependency fysh og fy
+#include "../API.h"   // @global dependency
 #include "consoleMenu.h"
 #include "consoleObjectview.h"
 #include "MenuState.h"
-#include "../API.h"
 
 //
 // @class Console
@@ -23,9 +24,10 @@ class Console
 public:
   Console();
   ~Console();
-  int run();  
+  int run();
 
 private:
+  API api_;
   static bool instantiated_;
   MenuState menuState = BASE;     // The most recent command from the user
 };

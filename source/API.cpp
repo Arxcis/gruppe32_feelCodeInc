@@ -1,21 +1,6 @@
 #include "API.h"
 
 
-#pragma once
-//
-// @file    testdata.h
-// @repo    gruppe32
-// @created 23.03.17 by Jonas
-// @brief     a collection of test data that simulate data
-//            which controller recieves from the database.
-//            This could also serves as a standard for the dataformat,
-//            on different containers throughout the program.
-//
-
-
-#include <vector>
-#include <string>
-
 //
 // @namespace test - testdata
 //
@@ -107,76 +92,75 @@ namespace test {
   std::vector<std::vector<std::string>>* nulldatas = nullptr;
 }
 
+//
+// @class function add()
+//
+bool API::add( std::vector<std::string>* container)
+{  return 1;  }
 
-namespace API 
+//
+// @class function addAll()
+//
+bool API::addAll (std::vector<std::vector<std::string>>* containers) 
+{ return 1; }
+
+//
+// @class function update()
+//
+bool API::update (std::vector<std::string>* container)
+{  return 1;  }
+
+//
+// @class function remove()
+//
+bool API::remove(Entity entity, int id)
+{  return 1;  }
+
+//
+// @class function get()
+//
+auto API::get(Entity entity, int id) -> std::vector<std::string>*
 {
-  //
-  // @function add()
-  //
-  bool add( std::vector<std::string>* container)
-  {  return 1;  }
-
-
-  bool addAll (std::vector<std::vector<std::string>>* containers) 
-  { return 1; }
-
-  //
-  // @function edit()
-  //
-  bool update (std::vector<std::string>* container)
-  {  return 1;  }
-
-  //
-  // @function remove()
-  //
-  bool remove(Entity entity, int id)
-  {  return 1;  }
-
-  //
-  // @function get()
-  //
-  auto get(Entity entity, int id) -> std::vector<std::string>*
+  switch(entity)
   {
-    switch(entity)
-    {
-      case NATION: 
-        return &test::nation;
-      case PARTICIPANT:
-        return &test::participant;
-      case SPORT:
-        return &test::sport;
-      case EVENT:
-        return &test::event;
-      default:
-        return test::nulldata;
-    }
-  }
-
-  //
-  // @function getAll()
-  //
-  auto getAll(Entity entity)  -> std::vector<std::vector<std::string>>*
-  {
-    switch(entity)
-    {
-      case NATION: 
-        return &test::nations;
-      case PARTICIPANT:
-        return &test::participants;
-      case SPORT:
-        return &test::sports;
-      case EVENT: 
-        return &test::events;
-      default: 
-        return test::nulldatas;
-    }
-  }
-
-  //
-  // @function quit()
-  //
-  void quit()
-  {
-    
+    case NATION: 
+      return &test::nation;
+    case PARTICIPANT:
+      return &test::participant;
+    case SPORT:
+      return &test::sport;
+    case EVENT:
+      return &test::event;
+    default:
+      return test::nulldata;
   }
 }
+
+//
+// @class function getAll()
+//
+auto API::getAll(Entity entity)  -> std::vector<std::vector<std::string>>*
+{
+  switch(entity)
+  {
+    case NATION: 
+      return &test::nations;
+    case PARTICIPANT:
+      return &test::participants;
+    case SPORT:
+      return &test::sports;
+    case EVENT: 
+      return &test::events;
+    default: 
+      return test::nulldatas;
+  }
+}
+
+//
+// @class function quit()
+//
+void API::quit()
+{
+  
+}
+

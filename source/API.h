@@ -13,22 +13,16 @@
 #include <stdlib.h>
 
 //#include "data/testData.h"
+#include "enum.h"
 
 
-enum Entity 
-{
-  NATION,
-  PARTICIPANT, 
-  SPORT,
-  EVENT,
-};
-
-// @namespace API - Application Layer Interface
+// @class API - Application Layer Interface
 // @brief     API that the user-level code can use to communicate with,
-//              application layer.
+//              database.
 // 
-namespace API 
+class API 
 { 
+public:
   bool add    (std::vector<std::string>* container);
   bool addAll (std::vector<std::vector<std::string>>* containers);
   bool update (std::vector<std::string>* container);
@@ -36,4 +30,6 @@ namespace API
   auto get    (Entity entity, int id) -> std::vector<std::string>*;
   auto getAll (Entity entity)  -> std::vector<std::vector<std::string>>*;
   void quit();
+  API(){};
+private:
 };

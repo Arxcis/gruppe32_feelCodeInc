@@ -8,13 +8,12 @@
 
 #include <stdio.h>
 
-
 // @local files
 #include "Console.h"
 
 int main()
 {
-  Console console;
+    Console console;
 
   if(console.run())
   {

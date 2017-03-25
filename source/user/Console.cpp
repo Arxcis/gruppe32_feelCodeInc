@@ -2,11 +2,14 @@
 
 bool Console::instantiated_ = false;
 
+
 Console::Console()
-{
+{ 
+  api_=API();
   assert(!instantiated_);
   instantiated_ = true;
 }
+
 
 Console::~Console() 
 {
@@ -18,6 +21,7 @@ Console::~Console()
 //  @brief the entry-point function for presenting the menu system
 //   to the user.
 //
+
 int Console::run()
 { 
   int retval=1;
@@ -48,7 +52,7 @@ int Console::run()
         break;
 
       case NATION_SELECT:
-        container = API::get(NATION, retval);
+        container = api_.get(NATION, retval);
         view::nation(container);
         retval = menu::nation();
 
@@ -73,7 +77,7 @@ int Console::run()
         break;
 
       case PARTICIPANT_SELECT:
-        container = API::get(PARTICIPANT, retval);
+        container = api_.get(PARTICIPANT, retval);
         view::participant(container);
 
         retval = menu::participant();
@@ -99,7 +103,7 @@ int Console::run()
         break;
 
       case SPORT_SELECT:
-        container = API::get(SPORT, retval);
+        container = api_.get(SPORT, retval);
         view::sport( container );
 
         retval = menu::sport();
