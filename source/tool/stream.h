@@ -10,6 +10,7 @@
 
 // @foreign
 #include <string>
+#include <sstream>
 
 // @local files
 #include "Date.h"
@@ -18,20 +19,31 @@
 #include "valid.h"
 
 namespace stream
-{
-  template<class T> std::string readString(T stream& ss);
-  template<class T> std::string readPhone(T stream& ss);
-  template<class T> std::string readEmail(T stream& ss);
-  template<class T> int         readInt(T stream& ss);
-  template<class T> double      readDouble(T stream& ss);
-  template<class T> dat::Time   readTime(T stream& ss);
-  template<class T> dat::Date   readDate(T stream& ss);
-  template<class T> dat::Medals readMedals(T stream& ss);
+{ 
+  // Reading from std::stingstream (preferably a file) 
+  bool readString(std::string& value, std::stringstream& ss);
+  bool readPhone(std::string& value, std::stringstream& ss);
+  bool readEmail(std::string& value, std::stringstream& ss);
+  bool readInt(int& value, std::stringstream& ss);
+  bool readDouble(double& value, std::stringstream& ss);
+  bool readTime(dat::Time& value, std::stringstream& ss);
+  bool readDate(dat::Date& value, std::stringstream& ss);
+  bool readMedals(dat::Medals& value, std::stringstream& ss);
 
-  template<class T> void writeString(T stream& ss, const std::string& value);
-  template<class T> void writeInt(T stream& ss, const int value);
-  template<class T> void writeDouble(T stream& ss, const double value);
-  template<class T> void writeTime(T stream& ss, const dat::Time& value);
-  template<class T> void writeDate(T stream& ss, const dat::Date& value);
-  template<class T> void writeMedals(T stream& ss, const dat::Medals& value);
+  // Reading from cin
+  bool readString(std::string& value);
+  bool readPhone(std::string& value);
+  bool readEmail(std::string& value);
+  bool readInt(std::string& value);
+  bool readDouble(std::string&value);
+  bool readTime(std::string& value);
+  bool readDate(std::string& value);
+  bool readMedals(std::string& value);
+
+  template<class T> void writeString(T& stream, const std::string& value);
+  template<class T> void writeInt(T& stream, const int value);
+  template<class T> void writeDouble(T& stream, const double value);
+  template<class T> void writeTime(T& stream, const dat::Time& value);
+  template<class T> void writeDate(T& stream, const dat::Date& value);
+  template<class T> void writeMedals(T& stream, const dat::Medals& value);
 }
