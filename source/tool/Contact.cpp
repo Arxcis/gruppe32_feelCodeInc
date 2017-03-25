@@ -15,6 +15,7 @@ Contact::Contact(
   std::string phone_)
 :name(name_)
 ,address(address_)
-,phone(phone_){}
+,phone(phone_)
+{}
 
 

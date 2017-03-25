@@ -8,6 +8,9 @@
 
 // @foreign
 #include <iostream>
+
+// uncomment to disable assert()
+// #define NDEBUG
 #include <assert.h>
 
 // @local files
