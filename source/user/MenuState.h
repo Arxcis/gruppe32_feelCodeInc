@@ -1,4 +1,10 @@
 #pragma once
+//
+// @file    user/MenuState.h
+// @repo    gruppe32
+// @created 25.03.17 by Jonas
+// @brief   All different states the menu system can be in
+//
 enum MenuState
 {
   EXIT = 0,

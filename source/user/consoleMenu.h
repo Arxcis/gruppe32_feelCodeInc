@@ -1,3 +1,4 @@
+#pragma once
 //
 // @file    user/consoleMenu.h
 // @repo    gruppe32
