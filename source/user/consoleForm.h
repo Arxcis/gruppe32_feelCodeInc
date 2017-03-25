@@ -23,5 +23,8 @@ namespace form
   void nationField(std::vector<std::string>*, const int index);     
   void participantField(std::vector<std::string>*, const int index);
   void sportField(std::vector<std::string>*, const int index);      
-  void diciplineField(std::vector<std::string>*, const int index);      
+  void diciplineField(std::vector<std::string>*, const int index);  
+
+  void listAdd();
+  void listResult();    
 }

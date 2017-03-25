@@ -195,11 +195,11 @@ int Console::run()
         break;
 
       case LIST_ADD: 
-        form::diciplineAdd();
+        form::listAdd();
         menuState = LIST_BASE;
         break;
       case LIST_RESULT:
-        form::diciplineResult();
+        form::listResult();
         menuState = LIST_BASE;
         break;
 

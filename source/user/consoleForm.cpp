@@ -110,3 +110,15 @@ void form::diciplineField(std::vector<std::string>* container, const int index)
   stream::readString("edit: ", buffer);
   (*container)[index-1] = buffer;
 } 
+
+void form::listAdd()
+{
+  std::string buffer = "";
+  stream::readString("ParticipantID: ", buffer);
+}
+
+void form::listResult()
+{
+  std::string buffer = "";
+  stream::readString("Result: ", buffer);
+}
