@@ -10,6 +10,7 @@
 
 #include <iostream>   // stringstream
 #include "MenuState.h"
+#include <string>
 
 //
 // @namespace menu
@@ -18,15 +19,20 @@
 //        This command chould be processed by the Console object.
 //
 namespace menu
-{ 
-  void newPage();
+{  
+  // Helper functions
+  inline void header(std::string);
+  inline void footer();
+  inline void newPage();
+
+  // Menu functions
   MenuState begin();
   int nationBase();
   int participantBase();
   int sportBase();
-  //int eventBase();
+  int sport();
+  int eventBase();
   //int nation();
   //int participant();
-  //int sport();
   //int event();
 }
