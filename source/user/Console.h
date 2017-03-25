@@ -6,6 +6,11 @@
 //
 
 #include <assert.h>
+#include <iostream>
+
+// @local files
+#include "consoleMenu.h"
+#include "MenuState.h"
 
 //
 // @class Console
@@ -16,7 +21,10 @@ class Console
 public:
   Console();
   ~Console();
+  int run();  
 
 private:
   static bool instantiated_;
+
+
 };
