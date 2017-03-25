@@ -21,9 +21,9 @@ namespace menu
 { 
   void newPage();
   MenuState begin();
-  //int nationBase();
-  //int participantBase();
-  //int sportBase();
+  int nationBase();
+  int participantBase();
+  int sportBase();
   //int eventBase();
   //int nation();
   //int participant();

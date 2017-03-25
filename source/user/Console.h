@@ -25,6 +25,5 @@ public:
 
 private:
   static bool instantiated_;
-
-
+  MenuState menuState = BASE;     // The most recent command from the user
 };
