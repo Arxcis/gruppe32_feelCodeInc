@@ -1,3 +1,6 @@
+#include "API.h"
+
+
 #pragma once
 //
 // @file    testdata.h
@@ -24,7 +27,7 @@ namespace test {
       "NOR",                      // Code
       "Norge",                    // Name
       "150",                      // Number of athletes
-      "Jonas"                     // Name of contact
+      "Jonas",                     // Name of contact
       "452000864",                // Phone
       "jonas.solsvik@gmail.com",  // Email
   };
@@ -102,4 +105,78 @@ namespace test {
 
   std::vector<std::string>* nulldata = nullptr;
   std::vector<std::vector<std::string>>* nulldatas = nullptr;
+}
+
+
+namespace API 
+{
+  //
+  // @function add()
+  //
+  bool add( std::vector<std::string>* container)
+  {  return 1;  }
+
+
+  bool addAll (std::vector<std::vector<std::string>>* containers) 
+  { return 1; }
+
+  //
+  // @function edit()
+  //
+  bool update (std::vector<std::string>* container)
+  {  return 1;  }
+
+  //
+  // @function remove()
+  //
+  bool remove(Entity entity, int id)
+  {  return 1;  }
+
+  //
+  // @function get()
+  //
+  auto get(Entity entity, int id) -> std::vector<std::string>*
+  {
+    switch(entity)
+    {
+      case NATION: 
+        return &test::nation;
+      case PARTICIPANT:
+        return &test::athlete;
+      case SPORT:
+        return &test::sport;
+      case EVENT:
+        return &test::event;
+      default:
+        return test::nulldata;
+    }
+  }
+
+  //
+  // @function getAll()
+  //
+  auto getAll(Entity entity)  -> std::vector<std::vector<std::string>>*
+  {
+    switch(entity)
+    {
+      case NATION: 
+        return &test::nations;
+      case PARTICIPANT:
+        return &test::athletes;
+      case SPORT:
+        return &test::sports;
+      case EVENT: 
+        return &test::events;
+      default: 
+        return test::nulldatas;
+    }
+  }
+
+  //
+  // @function quit()
+  //
+  void quit()
+  {
+    
+  }
 }
