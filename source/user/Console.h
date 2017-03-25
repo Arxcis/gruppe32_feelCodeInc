@@ -1,3 +1,4 @@
+#pragma once
 //
 // @file    user/Console.h
 // @repo    gruppe32
@@ -13,6 +14,7 @@
 #include "../API.h"   // @global dependency
 #include "consoleMenu.h"
 #include "consoleObjectview.h"
+#include "consoleForm.h"
 #include "MenuState.h"
 
 //

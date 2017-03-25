@@ -61,7 +61,11 @@ int Console::run()
         else                  {  menuState = NATION_NEW; }
         break;
 
-      case NATION_NEW:  menuState = BASE;break;
+      case NATION_NEW: 
+        container = form::nation(); 
+        menuState = NATION_SELECT;
+        break;
+
       case NATION_EDIT: menuState = BASE;break;
 
 
@@ -86,7 +90,11 @@ int Console::run()
         else                  {  menuState = PARTICIPANT_NEW; }
         break;
 
-      case PARTICIPANT_NEW:  menuState = BASE;break;
+      case PARTICIPANT_NEW:  
+        container = form::nation(); 
+        menuState = PARTICIPANT_SELECT;
+        break;
+
       case PARTICIPANT_EDIT: menuState = BASE;break;
 
 
@@ -112,7 +120,11 @@ int Console::run()
         else                  {  menuState = SPORT_NEW; }
         break;
 
-      case SPORT_NEW: menuState = BASE;break;
+      case SPORT_NEW:         
+        container = form::nation(); 
+        menuState = SPORT_SELECT;
+        break;
+        
       case SPORT_EDIT: menuState = BASE;break;
 
 
