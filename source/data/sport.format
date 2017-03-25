@@ -4,9 +4,9 @@ sport,            // Type of object
 Fotball,          // Sport name
 0,                // Score type, medals=0, Points=1
 3,                // Number of diciplines
-dicipline1,           // dicipline 1
-dicipline2,           // dicipline 2
-dicipline3,           // dicipline 3
+dicipline1,       // dicipline 1
+dicipline2,       // dicipline 2
+dicipline3,       // dicipline 3
 
 sport,            // Type of object
 Fotball,          // Sport name
