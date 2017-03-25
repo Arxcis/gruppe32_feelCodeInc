@@ -26,7 +26,9 @@ int Console::run()
 { 
   int retval=1;
   std::vector<std::string>* container;
-  menuState = menu::begin();
+
+  menuState = BASE;
+
   while(menuState) 
   { 
     switch(menuState)
@@ -36,7 +38,13 @@ int Console::run()
         break;
 
       case BASE:
-        menuState = menu::begin();
+        retval = menu::begin();
+        if (!retval)          {  menuState = EXIT;             }
+        else if (retval == 1) {  menuState = NATION_BASE;      } 
+        else if (retval == 2) {  menuState = PARTICIPANT_BASE; } 
+        else if (retval == 3) {  menuState = SPORT_BASE;       }  
+        else                  {  menuState = BASE;             }
+
         break;
 
 
@@ -48,7 +56,7 @@ int Console::run()
         retval = menu::nationBase();
         if (!retval)          {  menuState = BASE;           }
         else if (retval >= 2) {  menuState = NATION_SELECT;  } 
-        else                  {  menuState = SPORT_NEW;      }
+        else                  {  menuState = NATION_NEW;      }
         break;
 
       case NATION_SELECT:
@@ -58,7 +66,7 @@ int Console::run()
 
         if (!retval)          {  menuState = NATION_BASE;  }
         else if (retval >= 2) {  menuState = NATION_EDIT;  } 
-        else                  {  menuState = NATION_NEW; }
+        else                  {  menuState = NATION_NEW;   }
         break;
 
       case NATION_NEW: 
@@ -66,7 +74,10 @@ int Console::run()
         menuState = NATION_SELECT;
         break;
 
-      case NATION_EDIT: menuState = BASE;break;
+      case NATION_EDIT: 
+        form::nationField(container, retval);
+        menuState = NATION_SELECT;
+        break;
 
 
 
@@ -75,9 +86,9 @@ int Console::run()
       //
       case PARTICIPANT_BASE:
         retval = menu::participantBase();
-        if (!retval)          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;                }
         else if (retval >= 2) {  menuState = PARTICIPANT_SELECT;  } 
-        else                  {  menuState = PARTICIPANT_NEW; }
+        else                  {  menuState = PARTICIPANT_NEW;     }
         break;
 
       case PARTICIPANT_SELECT:
@@ -87,15 +98,18 @@ int Console::run()
         retval = menu::participant();
         if (!retval)          {  menuState = PARTICIPANT_BASE;  }
         else if (retval >= 2) {  menuState = PARTICIPANT_EDIT;  } 
-        else                  {  menuState = PARTICIPANT_NEW; }
+        else                  {  menuState = PARTICIPANT_NEW;   }
         break;
 
       case PARTICIPANT_NEW:  
-        container = form::nation(); 
+        container = form::participant(); 
         menuState = PARTICIPANT_SELECT;
         break;
 
-      case PARTICIPANT_EDIT: menuState = BASE;break;
+      case PARTICIPANT_EDIT: 
+        form::participantField(container, retval);
+        menuState = PARTICIPANT_SELECT;
+        break;
 
 
 
@@ -105,7 +119,7 @@ int Console::run()
       case SPORT_BASE:
 
         retval = menu::sportBase();
-        if (!retval)          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;          }
         else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
         else                  {  menuState = SPORT_NEW;     }
         break;
@@ -115,17 +129,20 @@ int Console::run()
         view::sport( container );
 
         retval = menu::sport();
-        if (!retval)          {  menuState = SPORT_BASE;  }
-        else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
-        else                  {  menuState = SPORT_NEW; }
+        if (!retval)          {  menuState = SPORT_BASE;   }
+        else if (retval >= 2) {  menuState = SPORT_EDIT;   } 
+        else                  {  menuState = SPORT_NEW;    }
         break;
 
       case SPORT_NEW:         
-        container = form::nation(); 
+        container = form::sport(); 
         menuState = SPORT_SELECT;
         break;
         
-      case SPORT_EDIT: menuState = BASE;break;
+      case SPORT_EDIT:
+        form::sportField(container, retval);
+        menuState = SPORT_SELECT; 
+        break;
 
 
       default:

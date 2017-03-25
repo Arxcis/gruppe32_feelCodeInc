@@ -32,14 +32,14 @@ namespace stream
   bool readMedals(dat::Medals& value, std::stringstream& ss);
 
   // Reading from cin
-  bool readString(const std::string& message, std::string& value);
-  bool readPhone(const std::string& message, std::string& value);
-  bool readEmail(const std::string& message, std::string& value);
-  bool readInt(const std::string& message, std::string& value);
-  bool readDouble(const std::string& message, std::string& value);
-  bool readTime(const std::string& message, std::string& value);
-  bool readDate(const std::string& message, std::string& value);
-  bool readMedals(const std::string& message, std::string& value);
+  void readString(const std::string& message, std::string& value);
+  void readPhone(const std::string& message, std::string& value);
+  void readEmail(const std::string& message, std::string& value);
+  void readInt(const std::string& message, std::string& value);
+  void readDouble(const std::string& message, std::string& value);
+  void readTime(const std::string& message, std::string& value);
+  void readDate(const std::string& message, std::string& value);
+  void readMedals(const std::string& message, std::string& value);
 
   template<class T> void writeString(T& stream, const std::string& value);
   template<class T> void writeInt(T& stream, const int value);

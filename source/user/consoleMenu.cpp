@@ -3,7 +3,8 @@
 
 inline void menu::header(std::string name)
 { 
-  std::cout << "-------------------------------\n" 
+  std::cout << "\n"
+            << "-------------------------------\n" 
             << "| " << name << "               \n"
             << "-------------------------------\n"
             << "\n";
@@ -24,7 +25,7 @@ inline void menu::newPage()
   }
 }
 
-MenuState menu::begin()
+int menu::begin()
 {
   int command;
   menu::newPage();
@@ -39,13 +40,14 @@ MenuState menu::begin()
 
   std::cin >> command; 
   std::cin.ignore(1);
-  return (MenuState)command;
+  return command;
 }
 
 
 int menu::nationBase()
 {
   int command;
+  menu::newPage();
   menu::header("Nation Base");
   std::cout << "   1: New          \n"
             << "2-10: Pick nation  \n"
@@ -60,6 +62,7 @@ int menu::nationBase()
 int menu::participantBase()
 {
   int command;
+  menu::newPage();
   menu::header("Participant Base");
   std::cout << "   1: New              \n"
             << "2-50: Pick Participant \n"
@@ -74,6 +77,7 @@ int menu::participantBase()
 int menu::sportBase()
 {
   int command;
+  menu::newPage();
   menu::header("Sport Base");
   std::cout << "   1: New          \n"
             << "2-20: Pick Sport   \n"
@@ -88,7 +92,7 @@ int menu::sportBase()
 int menu::sport()
 {
   int command;
-  menu::header("Sport");
+  menu::footer();
   std::cout << "    1: New          \n"
             << " 2-11: Edit field   \n"
             << "    0: Back         \n";
@@ -102,7 +106,7 @@ int menu::sport()
 int menu::nation()
 {
   int command;
-  menu::header("Nation");
+  menu::footer();
   std::cout << "   1: New          \n"
             << " 2-7: Edit field   \n"
             << "   0: Back         \n";
@@ -116,7 +120,7 @@ int menu::nation()
 int menu::participant()
 {
   int command;
-  menu::header("Participant");
+  menu::footer();
   std::cout << "   1: New          \n"
             << " 2-7: Edit field   \n"
             << "   0: Back         \n";

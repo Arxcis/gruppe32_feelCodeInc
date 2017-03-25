@@ -10,6 +10,8 @@
 #include <vector>
 #include <iostream>
 
+#include "consoleMenu.h"
+
 namespace view
 {
   inline 

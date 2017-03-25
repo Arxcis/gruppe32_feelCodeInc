@@ -1,58 +1,78 @@
 #include "stream.h"
 
 
-bool stream::readString(const std::string& message, std::string& value)
+void stream::readString(const std::string& message, std::string& value)
 {
   std::cout << message << " :  "; 
-  getline(std::cin, value, ',');
-  return 1;
+  getline(std::cin, value, '\n');
 }
 
-bool stream::readPhone(const std::string& message, std::string& value)
+void stream::readPhone(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isPhone(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isPhone(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readEmail(const std::string& message, std::string& value)
+void stream::readEmail(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isEmail(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isEmail(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readInt(const std::string& message, std::string& value)
+void stream::readInt(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isInt(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isInt(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readDouble(const std::string& message, std::string&value)
+void stream::readDouble(const std::string& message, std::string&value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isDouble(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isDouble(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readTime(const std::string& message, std::string& value)
+void stream::readTime(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isTime(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isTime(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readDate(const std::string& message, std::string& value)
+void stream::readDate(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isDate(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isDate(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }
 
-bool stream::readMedals(const std::string& message, std::string& value)
+void stream::readMedals(const std::string& message, std::string& value)
 {
-  std::cout << message << " :  ";
-  getline(std::cin, value, ',');
-  return valid::isMedals(value);
+  std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  while(!valid::isMedals(value)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, value, '\n');
+  }
 }

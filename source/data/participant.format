@@ -14,7 +14,7 @@ Jonas,                   // Name
 452000864,               // Phone
 jonas.solsvik@gmail.com, // Email
 NOR,                     // Nation Code 
-0,                       // Sex: female=0, male=1 
+1,                       // Sex: female=0, male=1 
 
 participant,             // Type of object
 1002,                    // ID
