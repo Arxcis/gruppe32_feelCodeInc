@@ -35,4 +35,6 @@ enum MenuState
   LIST_RESULT = 20,
   LIST_DELETE = 21, 
 
+  POINT_STATS = 22,
+  MEDAL_STATS = 23,
   };

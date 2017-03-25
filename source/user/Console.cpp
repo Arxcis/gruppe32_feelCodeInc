@@ -144,6 +144,18 @@ int Console::run()
         menuState = SPORT_SELECT; 
         break;
 
+      case DICIPLINE_SELECT : break;
+      case DICIPLINE_EDIT   : break;
+      case DICIPLINE_NEW    : break;
+      case DICIPLINE_DELETE : break;
+
+      case LIST_BASE  : break;
+      case LIST_ADD   : break;
+      case LIST_RESULT: break;
+      case LIST_DELETE: break; 
+
+      case POINT_STATS: break;
+      case MEDAL_STATS: break;
 
       default:
         std::cout << "Command not supported...\n";
