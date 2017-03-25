@@ -14,6 +14,7 @@ namespace view
 {
   inline 
   void field(const std::string key, const std::string value);
+  
   void nation(const std::vector<std::string>* nation);
   void participant(const std::vector<std::string>* participant);
   void sport(const std::vector<std::string>* sport);
