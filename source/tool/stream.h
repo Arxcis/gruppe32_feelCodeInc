@@ -11,6 +11,7 @@
 // @foreign
 #include <string>
 #include <sstream>
+#include <iostream>
 
 // @local files
 #include "Date.h"
@@ -35,7 +36,7 @@ namespace stream
   bool readPhone(std::string& value);
   bool readEmail(std::string& value);
   bool readInt(std::string& value);
-  bool readDouble(std::string&value);
+  bool readDouble(std::string& value);
   bool readTime(std::string& value);
   bool readDate(std::string& value);
   bool readMedals(std::string& value);
