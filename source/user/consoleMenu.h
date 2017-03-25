@@ -32,10 +32,16 @@ namespace menu
   int nationBase();
   int participantBase();
   int sportBase();
+  int listBase();
+
+  int pointStats();
+  int medalStats();
 
   int sport();
   int nation();
   int participant();
-  //int eventBase();
-  //int event();
+  int dicipline();
+
+  int deleteDicipline();
+  int deleteList();
 }

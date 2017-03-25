@@ -14,10 +14,9 @@ void view::nation(const std::vector<std::string>* nation)
   view::field("Short", (*nation)[1]);
   view::field("Name", (*nation)[2]);
   view::field("Participant count", (*nation)[3]);
-  std::cout << "Contact\n";
-  view::field("Name", (*nation)[4]);
-  view::field("Phone", (*nation)[5]);
-  view::field("Email", (*nation)[6]);
+  view::field("ContactName", (*nation)[4]);
+  view::field("ContactPhone", (*nation)[5]);
+  view::field("ContactEmail", (*nation)[6]);
   
 }
 
@@ -54,7 +53,7 @@ void view::dicipline(const std::vector<std::string>* dicipline)
   view::field("Name", (*dicipline)[1]);
   view::field("Time", (*dicipline)[2]);
   view::field("Date", (*dicipline)[3]);
-  view::field("e2", (*dicipline)[4]);
-  view::field("e3", (*dicipline)[5]);
+  view::field("Participant list", " - >");
+  view::field("Result list", " - >");
 
 }
