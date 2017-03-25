@@ -1,0 +1,25 @@
+3,                       // Number of objects   
+
+nation,                   // Type of object
+NOR,                      // Code
+Norge,                    // Name
+150,                      // Number of athletes
+Jonas                     // Name of contact
+452000864,                // Phone
+jonas.solsvik@gmail.com,  // Email
+
+nation,                   // Type of object
+NOR,                      // Code
+Norge,                    // Name
+150,                      // Number of athletes
+Jonas                     // Name of contact
+452000864,                // Phone
+jonas.solsvik@gmail.com,  // Email
+
+nation,                   // Type of object
+NOR,                      // Code
+Norge,                    // Name
+0,                        // Number of athletes
+Jonas                     // Name of contact
+452000864,                // Phone
+jonas.solsvik@gmail.com,  // Email
