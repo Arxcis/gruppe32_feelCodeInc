@@ -26,16 +26,16 @@ namespace test {
       "nation",                   // Type of object
       "NOR",                      // Code
       "Norge",                    // Name
-      "150",                      // Number of athletes
+      "150",                      // Number of participants
       "Jonas",                     // Name of contact
       "452000864",                // Phone
       "jonas.solsvik@gmail.com",  // Email
   };
 
   std::vector<std::string>
-  athlete 
+  participant 
   {
-      "athlete",                 // Type of object
+      "participant",                 // Type of object
       "1002",                    // ID
       "Jonas",                   // Name
       "452000864",               // Phone
@@ -63,9 +63,9 @@ namespace test {
       "Finale - Golden Goal",   // Name of event
       "19:00",                  // Time of event
       "29.03.18",               // Date of event
-      "2",                      // number of Athletes
-      "1001",                   // Athlete 1
-      "1002",                   // Athlete 2
+      "2",                      // number of participants
+      "1001",                   // participant 1
+      "1002",                   // participant 2
       "2",                      // number of Results
       "1",                      // Result 1
       "0",                      // Result 2
@@ -80,11 +80,11 @@ namespace test {
   };  
 
   std::vector<std::vector<std::string>>
-  athletes 
+  participants 
   {
-    athlete, 
-    athlete, 
-    athlete,
+    participant, 
+    participant, 
+    participant,
   };  
 
   std::vector<std::vector<std::string>>
@@ -142,7 +142,7 @@ namespace API
       case NATION: 
         return &test::nation;
       case PARTICIPANT:
-        return &test::athlete;
+        return &test::participant;
       case SPORT:
         return &test::sport;
       case EVENT:
@@ -162,7 +162,7 @@ namespace API
       case NATION: 
         return &test::nations;
       case PARTICIPANT:
-        return &test::athletes;
+        return &test::participants;
       case SPORT:
         return &test::sports;
       case EVENT: 

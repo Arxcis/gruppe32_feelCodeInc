@@ -19,8 +19,8 @@ Finale - Golden Goal,   // Name of event
 1001,                   // Athlete 1
 1002,                   // Athlete 2
 2,                      // number of Results
-118p,                   // Result 1
-110p,                   // Result 2
+118,                   // Result 1
+110,                   // Result 2
 
 event,                  // Type of object
 Finale - Golden Goal,   // Name of event
