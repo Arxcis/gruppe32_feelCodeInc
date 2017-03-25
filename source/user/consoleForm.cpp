@@ -61,10 +61,10 @@ auto form::sport() ->std::vector<std::string>*
   return &container;
 }
 
-auto form::event() ->std::vector<std::string>*
+auto form::dicipline() ->std::vector<std::string>*
 {
   std::vector<std::string> formBuilder;
-  formBuilder.push_back("Event");
+  formBuilder.push_back("dicipline");
   std::string buffer = "";
 
   stream::readString("Name[ex.10km]", buffer);
@@ -104,7 +104,7 @@ void form::sportField(std::vector<std::string>* container, const int index)
   (*container)[index-1] = buffer;
 } 
 
-void form::eventField(std::vector<std::string>* container, const int index)
+void form::diciplineField(std::vector<std::string>* container, const int index)
 {
   std::string buffer = "";
   stream::readString("edit: ", buffer);

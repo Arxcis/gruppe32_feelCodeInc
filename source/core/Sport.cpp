@@ -10,7 +10,7 @@ ScoreType Sport::getScoreType()
 	return scoreType_;
 }
 
-BetterArray Sport::getEvents()
+BetterArray Sport::getDiciplines()
 {
 	return events_;
 }

@@ -35,19 +35,19 @@ namespace test {
       "sport",                // Type of object
       "Fotball",                // Sport name
       "Points",                 // Score type
-      "3",                      // Number of events
-      "Event1",                 // Event 1
-      "Event2",                 // Event 2
-      "Event3",                 // Event 3
+      "3",                      // Number of diciplines
+      "dicipline1",                 // dicipline 1
+      "dicipline2",                 // dicipline 2
+      "dicipline3",                 // dicipline 3
   };
 
   std::vector<std::string>
-  event 
+  dicipline 
   {
-      "event",                  // Type of object
-      "Finale - Golden Goal",   // Name of event
-      "19:00",                  // Time of event
-      "29.03.18",               // Date of event
+      "dicipline",                  // Type of object
+      "Finale - Golden Goal",   // Name of dicipline
+      "19:00",                  // Time of dicipline
+      "29.03.18",               // Date of dicipline
       "2",                      // number of participants
       "1001",                   // participant 1
       "1002",                   // participant 2
@@ -81,11 +81,11 @@ namespace test {
   };  
 
   std::vector<std::vector<std::string>>
-  events 
+  diciplines 
   {
-    event, 
-    event, 
-    event,
+    dicipline, 
+    dicipline, 
+    dicipline,
   };  
 
   std::vector<std::string>* nulldata = nullptr;
@@ -129,8 +129,8 @@ auto API::get(Entity entity, int id) -> std::vector<std::string>*
       return &test::participant;
     case SPORT:
       return &test::sport;
-    case EVENT:
-      return &test::event;
+    case DICIPLINE:
+      return &test::dicipline;
     default:
       return test::nulldata;
   }
@@ -149,8 +149,8 @@ auto API::getAll(Entity entity)  -> std::vector<std::vector<std::string>>*
       return &test::participants;
     case SPORT:
       return &test::sports;
-    case EVENT: 
-      return &test::events;
+    case DICIPLINE: 
+      return &test::diciplines;
     default: 
       return test::nulldatas;
   }

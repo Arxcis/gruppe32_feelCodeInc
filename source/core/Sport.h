@@ -15,12 +15,12 @@ class Sport : TextElement
 private:
 	std::string name_;
 	//ScoreType scoreType_;
-	//BetterArray events;
+	//BetterArray dicipline;
 
 public:
 	//	GETTERS
 
     auto getName() -> std::string;
 	//ScoreType getScoreType();
-	//BetterArray getEvents();
+	//BetterArray getDiciplines();
 };

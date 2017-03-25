@@ -1,8 +1,8 @@
 #pragma once
-// @file    core/Event.h
+// @file    core/Dicipline.h
 // @repo    gruppe32
 // @created 24.03.17 by Halvor
-// @brief   All data relevant to a Event is stored within
+// @brief   All data relevant to a Dicipline is stored within
 //
 
 #include <string>
@@ -10,7 +10,7 @@
 //#include "Date.h"
 #include "../tool/array.h"
 #include "Participant.h"
-class Event
+class Dicipline
 {
 	std::string name_;
 	dat::array<Participant, 0> participants;

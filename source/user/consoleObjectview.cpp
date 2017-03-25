@@ -40,21 +40,21 @@ void view::sport(const std::vector<std::string>* sport)
   menu::header((*sport)[0]);
   view::field("Name", (*sport)[1]);
   view::field("ScoreType", (*sport)[2]);
-  view::field("numofEvents", (*sport)[3]);
+  view::field("numofdiciplines", (*sport)[3]);
   view::field("e1", (*sport)[4]);
   view::field("e2", (*sport)[5]);
   view::field("e3", (*sport)[6]);
 
 }
 
-void view::event(const std::vector<std::string>* event)
+void view::dicipline(const std::vector<std::string>* dicipline)
 {
   menu::newPage();
-  menu::header((*event)[0]);
-  view::field("Name", (*event)[1]);
-  view::field("Time", (*event)[2]);
-  view::field("Date", (*event)[3]);
-  view::field("e2", (*event)[4]);
-  view::field("e3", (*event)[5]);
+  menu::header((*dicipline)[0]);
+  view::field("Name", (*dicipline)[1]);
+  view::field("Time", (*dicipline)[2]);
+  view::field("Date", (*dicipline)[3]);
+  view::field("e2", (*dicipline)[4]);
+  view::field("e3", (*dicipline)[5]);
 
 }
