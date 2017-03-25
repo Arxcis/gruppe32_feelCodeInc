@@ -27,12 +27,14 @@ namespace menu
 
   // Menu functions
   MenuState begin();
+  
   int nationBase();
   int participantBase();
   int sportBase();
+
   int sport();
-  int eventBase();
-  //int nation();
-  //int participant();
+  int nation();
+  int participant();
+  //int eventBase();
   //int event();
 }

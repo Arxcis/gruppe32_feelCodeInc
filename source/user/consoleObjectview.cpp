@@ -18,8 +18,6 @@ void view::nation(const std::vector<std::string>* nation)
   view::field("Phone", (*nation)[5]);
   view::field("Email", (*nation)[6]);
   
-  std::cin >> ch;
-  std::cin.ignore(1);
 }
 
 void view::participant(const std::vector<std::string>* participant)
@@ -32,8 +30,6 @@ void view::participant(const std::vector<std::string>* participant)
   view::field("Country", (*participant)[5]);
   view::field("Sex", (*participant)[6]);
 
-  std::cin >> ch;
-  std::cin.ignore(1);
 }
 
 void view::sport(const std::vector<std::string>* sport)
@@ -46,8 +42,6 @@ void view::sport(const std::vector<std::string>* sport)
   view::field("e2", (*sport)[5]);
   view::field("e3", (*sport)[6]);
 
-  std::cin >> ch;
-  std::cin.ignore(1);
 }
 
 void view::event(const std::vector<std::string>* event)
@@ -59,6 +53,4 @@ void view::event(const std::vector<std::string>* event)
   view::field("e2", (*event)[4]);
   view::field("e3", (*event)[5]);
 
-  std::cin >> ch;
-  std::cin.ignore(1);
 }

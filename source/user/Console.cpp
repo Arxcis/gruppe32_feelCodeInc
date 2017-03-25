@@ -35,44 +35,82 @@ int Console::run()
         menuState = menu::begin();
         break;
 
+
+
+      //
+      // Nation cases
+      //
       case NATION_BASE:
         retval = menu::nationBase();
-        if (!retval)          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;           }
         else if (retval >= 2) {  menuState = NATION_SELECT;  } 
-        else {}
+        else                  {  menuState = SPORT_NEW;      }
         break;
 
       case NATION_SELECT:
         container = API::get(NATION, retval);
         view::nation(container);
-        menuState = NATION_BASE;
+        retval = menu::nation();
+
+        if (!retval)          {  menuState = NATION_BASE;  }
+        else if (retval >= 2) {  menuState = NATION_EDIT;  } 
+        else                  {  menuState = NATION_NEW; }
         break;
 
+      case NATION_NEW:  menuState = BASE;break;
+      case NATION_EDIT: menuState = BASE;break;
+
+
+
+      //
+      // Participant cases
+      //
       case PARTICIPANT_BASE:
         retval = menu::participantBase();
         if (!retval)          {  menuState = BASE;  }
         else if (retval >= 2) {  menuState = PARTICIPANT_SELECT;  } 
-        else {}
+        else                  {  menuState = PARTICIPANT_NEW; }
         break;
 
       case PARTICIPANT_SELECT:
         container = API::get(PARTICIPANT, retval);
         view::participant(container);
-        menuState = PARTICIPANT_BASE;
+
+        retval = menu::participant();
+        if (!retval)          {  menuState = PARTICIPANT_BASE;  }
+        else if (retval >= 2) {  menuState = PARTICIPANT_EDIT;  } 
+        else                  {  menuState = PARTICIPANT_NEW; }
         break;
 
+      case PARTICIPANT_NEW:  menuState = BASE;break;
+      case PARTICIPANT_EDIT: menuState = BASE;break;
+
+
+
+      //
+      // Sport cases
+      //
       case SPORT_BASE:
+
         retval = menu::sportBase();
-        if (!retval) {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;  }
         else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
-        else {}
+        else                  {  menuState = SPORT_NEW;     }
         break;
 
       case SPORT_SELECT:
         container = API::get(SPORT, retval);
         view::sport( container );
-        menuState = SPORT_BASE;
+
+        retval = menu::sport();
+        if (!retval)          {  menuState = SPORT_BASE;  }
+        else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
+        else                  {  menuState = SPORT_NEW; }
         break;
+
+      case SPORT_NEW: menuState = BASE;break;
+      case SPORT_EDIT: menuState = BASE;break;
+
 
       default:
         std::cout << "Command not supported...\n";
