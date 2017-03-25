@@ -10,7 +10,11 @@ bool valid::isInt(const std::string& value)
     int test = stoi(value);
     return true;
   }
-  catch (int e)
+  catch (const std::invalid_argument& e)
+  {
+    return false;
+  }
+  catch (const std::out_of_range& e)
   {
     return false;
   }
@@ -26,7 +30,11 @@ bool valid::isDouble(const std::string& value)
     float test = stof(value);
     return true;
   }
-  catch (int e)
+  catch (const std::invalid_argument& e)
+  {
+    return false;
+  }
+  catch (const std::out_of_range& e)
   {
     return false;
   }
