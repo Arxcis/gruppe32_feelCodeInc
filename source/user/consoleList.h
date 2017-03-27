@@ -12,9 +12,9 @@
 
 namespace list
 {
-  void nations      (const std::vector<std::vector<std::string>>* containers, int step);
-  void participants (const std::vector<std::vector<std::string>>* containers, int step);
-  void sports       (const std::vector<std::vector<std::string>>* containers, int step);
-  void diciplines   (const std::vector<std::vector<std::string>>* containers, int step);
-  void diciplineList(const std::vector<std::vector<std::string>>* containers, int step);
+  void nations      (const std::vector<std::vector<std::string>>* containers);
+  void participants (const std::vector<std::vector<std::string>>* containers);
+  void sports       (const std::vector<std::vector<std::string>>* containers);
+  void diciplines   (const std::vector<std::vector<std::string>>* containers);
+  void diciplineList(const std::vector<std::vector<std::string>>* containers);
 }

@@ -1,61 +1,76 @@
 #include "consoleList.h"
 
 
-void list::nations(const std::vector<std::vector<std::string>>* containers, int step=20)
+void list::nations(const std::vector<std::vector<std::string>>* containers)
 {
+  //std::cout << "Nation 1-step:\n";
+  int count = 2;
   for (const auto& cont: (*containers))
   {
-    std::cout << "Nation 1-" << step << ":\n"
-              << "\tCode: "          << cont[1] 
-              << "\tName: "          << cont[2] 
-              << "\t#participants: " << cont[3] << std::endl;
+    std::cout << "    " << count 
+              << ":    Code: "          << cont[1] 
+              << "    Name: "          << cont[2] 
+              << "    #participants: " << cont[3] << std::endl;
+              count++;
   }
 }
 
-void list::participants(const std::vector<std::vector<std::string>>* containers, int step=20)
+void list::participants(const std::vector<std::vector<std::string>>* containers)
 {
+  //std::cout << "Participant 1-step:\n";
+  int count = 2;
   for (const auto& cont: (*containers))
   {
-    std::cout << "Participant 1-" << step << ":\n"
-              << "\tID: "     << cont[1] 
-              << "\tName: "   << cont[2] 
-              << "\tNation: " << cont[5] << std::endl;
+    std::cout << "    " << count 
+              << ":    ID: "     << cont[1] 
+              << "    Name: "   << cont[2] 
+              << "    Nation: " << cont[5] << std::endl;
+              count++;
   }
 }
 
-void list::sports(const std::vector<std::vector<std::string>>* containers, int step=20)
+void list::sports(const std::vector<std::vector<std::string>>* containers)
 {
+  //std::cout << "Sport 1-step:\n";
+  int count = 2;
   for (const auto& cont: (*containers))
   {
-    std::cout << "Sport 1-" << step << ":\n"
-              << "\tName: "        << cont[1]
-              << "\tScoreType: ";
+    std::cout << "    " << count 
+              << ":    Name: "        << cont[1]
+              << "    ScoreType: ";
 
     (std::stoi(cont[2]) == 0) ? (std::cout << "Points") : (std::cout << "Medals"); // points=0, medals=1  
     
-    std::cout << "\t#diciplines: " << cont[3] << std::endl;
+    std::cout << "    #diciplines: " << cont[3] << std::endl;
+              count++;
   }
 }
 
-void list::diciplines(const std::vector<std::vector<std::string>>* containers, int step=20)
+void list::diciplines(const std::vector<std::vector<std::string>>* containers)
 {
+  //std::cout << "Dicipline 1-step:\n";
+  int count = 2;
   for (const auto& cont: (*containers))
   {
-    std::cout << "Dicipline 1-" << step << ":\n"
-              << "\tName: "     << cont[1] 
-              << "\tTime: "     << cont[2] 
-              << "\tDate: "     << cont[3] 
-              << "\t#participants: " << cont[4] << std::endl;
+    std::cout << "    " << count 
+              << ":    Name: "     << cont[1] 
+              << "    Time: "     << cont[2] 
+              << "    Date: "     << cont[3] 
+              << "    #participants: " << cont[4] << std::endl;
+              count++;
   }
 }
 
-void list::diciplineList(const std::vector<std::vector<std::string>>* containers, int step=20)
+void list::diciplineList(const std::vector<std::vector<std::string>>* containers)
 {
+  //std::cout << "Participant 1-step:\n";
+  int count = 2;
   for (const auto& cont: (*containers))
   {
-    std::cout << "Participant 1-" << step << ":\n"
-              << "\tName: "       << cont[1] 
-              << "\t#start: "     << cont[2] 
-              << "\tResult: "    << cont[3] << std::endl;
+    std::cout << "    " << count 
+              << ":    Name: "       << cont[1] 
+              << "    #start: "     << cont[2] 
+              << "    Result: "    << cont[3] << std::endl;
+              count++;
   }
 }

@@ -5,7 +5,6 @@ bool Console::instantiated_ = false;
 
 Console::Console()
 { 
-  api_=API();
   assert(!instantiated_);
   instantiated_ = true;
 }
@@ -29,8 +28,6 @@ int Console::run()
   bool running = true;
   int nextMenuIndex = 0;
   int selectedNumber = 0;
-  std::vector<std::string>* container = nullptr;
-  std::vector<std::string>* containers = nullptr;
 
   currentMenu_ = allMenus_[0];
 

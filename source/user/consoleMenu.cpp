@@ -18,13 +18,11 @@ namespace menu
               << "\n";
   }
 
-
   inline void footer()
   {
     std::cout << "\n"
               << "-------------------------------\n";
   }
-
 
   inline void newPage()
   {
@@ -95,12 +93,15 @@ namespace menu
   }
 
   void NationBase::view()
-  {
+  { 
     newPage();
+
+    containers = api_.getAll(NATION);
+
     header("Nation Base");
-    std::cout << "   1: New          \n"
-              << "2-10: Pick nation  \n"
-              << "   0: Back         \n";
+    std::cout << "   1: New          \n";
+      list::nations(containers);
+    std::cout << "   0: Back         \n";
     footer();
   }
 
@@ -115,10 +116,13 @@ namespace menu
   void ParticipantBase::view()
   {
     newPage();
+
+    containers = api_.getAll(PARTICIPANT);
+
     header("Participant Base");
-    std::cout << "   1: New              \n"
-              << "2-50: Pick Participant \n"
-              << "   0: Back             \n";
+    std::cout << "   1: New              \n";
+      list::participants(containers);
+    std::cout << "   0: Back             \n";
     footer();
   }
 
@@ -132,11 +136,15 @@ namespace menu
 
   void SportBase::view()
   {
+    containers = api_.getAll(SPORT);
+    
+
     newPage();
     header("Sport Base");
-    std::cout << "   1: New          \n"
-              << "2-20: Pick Sport   \n"
-              << "   0: Back         \n";
+
+    std::cout << "   1: New          \n";        
+      list::sports(containers);  
+    std::cout << "   0: Back         \n";
     footer();
   }
 

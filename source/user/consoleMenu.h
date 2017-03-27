@@ -19,10 +19,11 @@
 #include <unordered_map>
 #include <utility>
 
+#include "../API.h"   // @global dependency
+#include "../enum.h"
 #include "consoleForm.h"
 #include "consoleObjectView.h"
 #include "consoleList.h"
-#include "consoleMenu_old.h"
 
 namespace menu 
 {  
@@ -57,13 +58,16 @@ namespace menu
     //
     virtual int getNextIndex(const int userInput);
 
+  protected:
     //
     // @map   
     // Holds the key-indicies to the next menu
     //  Each menu should have their own unique initialization of this
     //  variable.
     std::unordered_map<int, int> mapNext_;
-  private:
+
+    std::vector<std::string>* container = nullptr;
+    std::vector<std::vector<std::string>>* containers = nullptr;
 
     //
     // @static 
@@ -71,7 +75,8 @@ namespace menu
     //  in focus gets stored here. This is a way for communication between
     //   the selection menus, and the objectView-menus
     //
-    static int selectedObject;  
+    API api_;
+    static int selectedObject_;  
   };
 
 

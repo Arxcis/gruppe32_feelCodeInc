@@ -26,7 +26,7 @@ namespace test {
       "452000864",               // Phone
       "jonas.solsvik@gmail.com", // Email
       "NOR",                     // Nation Code 
-      "Male"                     // enum Gender
+      "1"                       // female=0, male=1
   };
 
   std::vector<std::string>
@@ -34,7 +34,7 @@ namespace test {
   {   
       "sport",                // Type of object
       "Fotball",                // Sport name
-      "Points",                 // Score type
+      "0",                 // Points=0, Medals=1
       "3",                      // Number of diciplines
       "dicipline1",                 // dicipline 1
       "dicipline2",                 // dicipline 2

@@ -11,8 +11,6 @@
 #include <string>
 
 // @local files
-#include "../enum.h"  // @global dependency fysh og fy
-#include "../API.h"   // @global dependency
 #include "../tool/stream.h"
 #include "ConsoleMenu.h"
 
@@ -29,7 +27,7 @@ public:
   int run();
 
 private:
-  API api_;
+  
   static bool instantiated_;
   static const int maxMenus_ = 6;
 
