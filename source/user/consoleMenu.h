@@ -1,60 +1,26 @@
 #pragma once
 //
-// @file    user/consoleMenu.h
+// @file    user/ConsoleMenu.h
 // @repo    gruppe32
-// @created 24.03.17 by Jonas
-// @brief   Has namespace menu, which produces the graphical
-//          representation of all the menus in the console
-//          application.
+// @created 27.03.17 by Jonas
+// @brief   A new take on the menu system. This new approach
+//          is heavily inpired by the object-oriented way of implementing
+//          the state-pattern described here --> 
+//            http://gameprogrammingpatterns.com/state.html - 27.03.17 by Robert Nystrom
+//   Basically, each menu-state is a class, inheriting from the abstract
+//          class menu. They all have to implement their own version of 
+//          view(); Also they have to point to the next menu the user 
+//          should be sent to, according the what input parameter the 
+//          user gives.
+//          
 //
-
-#include <iostream>   // stringstream
-#include <string>
-
-#include "MenuState.h"
-#include "consoleMenu.h"
-//
-// @namespace menu
-// @brief One important thing to note about these functions is that
-//        , every function returns a choice/command, from the user.
-//        This command chould be processed by the Console object.
-//
-namespace menu
-{  
-
-  // Menu functions
-  int begin_();
-  
-  int nationBase_();
-  int participantBase_();
-  int sportBase_();
-  int listBase_();
-
-  int pointStats_();
-  int medalStats_();
-
-  int sport_();
-  int nation_();
-  int participant_();
-  int dicipline_();
-
-  int deleteDicipline_();
-  int deleteList_();
-}
 
 namespace menu 
 { 
   //
-  // Helper functions
-  //
-  inline void header(std::string);
-  inline void footer();
-  inline void newPage();
-
-  //
   // @abstract class Menu
   //
-  class Menu 
+  class ConsoleMenu 
   {
   public:
     virtual ~Menu(){}
@@ -74,7 +40,7 @@ namespace menu
   };
 
 
-  class Begin : public Menu
+  class Begin : public ConsoleMenu
   {
   public:
     Begin(){}
@@ -87,7 +53,7 @@ namespace menu
   //
   //  BASE MENU classes
   //
-  class NationBase : public Menu
+  class NationBase : public ConsoleMenu
   {
   public:
     NationBase(){}
@@ -97,7 +63,7 @@ namespace menu
   };
 
 
-  class ParticipantBase : public Menu
+  class ParticipantBase : public ConsoleMenu
   {
   public:
     ParticipantBase(){}
@@ -107,7 +73,7 @@ namespace menu
   };
 
 
-  class SportBase : public Menu
+  class SportBase : public ConsoleMenu
   {
   public:
     SportBase(){}
@@ -117,7 +83,7 @@ namespace menu
   };
 
 
-  class ListBase : public Menu
+  class ListBase : public ConsoleMenu
   {
   public:
     ListBase(){}
@@ -134,7 +100,7 @@ namespace menu
 
 
 
-  class Nation : public Menu
+  class Nation : public ConsoleMenu
   {
   public:
     Nation(){}
@@ -144,7 +110,7 @@ namespace menu
   };
 
 
-  class Participant : public Menu
+  class Participant : public ConsoleMenu
   {
   public:
     Participant(){}
@@ -153,7 +119,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class Sport : public Menu
+  class Sport : public ConsoleMenu
   {
   public:
     Sport(){}
@@ -162,7 +128,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class Dicipline : public Menu
+  class Dicipline : public ConsoleMenu
   {
   public:
     Dicipline(){}
@@ -178,7 +144,7 @@ namespace menu
 
 
 
-  class NewNation : public Menu
+  class NewNation : public ConsoleMenu
   {
   public:
     NewNation(){}
@@ -188,7 +154,7 @@ namespace menu
   };
 
 
-  class NewParticpant : public Menu
+  class NewParticpant : public ConsoleMenu
   {
   public:
     NewParticpant(){}
@@ -197,7 +163,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class NewSport : public Menu
+  class NewSport : public ConsoleMenu
   {
   public:
     NewSport(){}
@@ -206,7 +172,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class NewDicipline : public Menu
+  class NewDicipline : public ConsoleMenu
   {
   public:
     NewDicipline(){}
@@ -222,7 +188,7 @@ namespace menu
   //  EDIT MENU classes
   //
 
-  class EditNation : public Menu
+  class EditNation : public ConsoleMenu
   {
   public:
     EditNation(){}
@@ -232,7 +198,7 @@ namespace menu
   };
 
 
-  class EditParticipant : public Menu
+  class EditParticipant : public ConsoleMenu
   {
   public:
     EditParticipant(){}
@@ -241,7 +207,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class EditSport : public Menu
+  class EditSport : public ConsoleMenu
   {
   public:
     EditSport(){}
@@ -250,7 +216,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class EditDicipline : public Menu
+  class EditDicipline : public ConsoleMenu
   {
   public:
     EditDicipline(){}
@@ -265,7 +231,7 @@ namespace menu
   //
 
 
-  class DeleteDicipline : public Menu
+  class DeleteDicipline : public ConsoleMenu
   {
   public:
     DeleteDicipline(){}
@@ -275,7 +241,7 @@ namespace menu
   };
 
 
-  class DeleteList : public Menu
+  class DeleteList : public ConsoleMenu
   {
   public:
     DeleteList(){}
@@ -290,7 +256,7 @@ namespace menu
   //  APPEND TO LIST MENU classes
   //
 
-  class AppendList : public Menu
+  class AppendList : public ConsoleMenu
   {
   public:
     AppendList(){}
@@ -299,7 +265,7 @@ namespace menu
     virtual int getNext(int userInput) override;
   };
 
-  class AppendResult : public Menu
+  class AppendResult : public ConsoleMenu
   {
   public:
     AppendResult(){}
@@ -314,7 +280,7 @@ namespace menu
   //  STATS AND DELETE menu classes
   //
 
-  class PointStats : public Menu
+  class PointStats : public ConsoleMenu
   {
   public:
     PointStats(){}
@@ -324,7 +290,7 @@ namespace menu
   };
 
 
-  class MedalStats : public Menu
+  class MedalStats : public ConsoleMenu
   {
   public:
     MedalStats(){}

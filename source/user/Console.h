@@ -12,7 +12,7 @@
 // @local files
 #include "../enum.h"  // @global dependency fysh og fy
 #include "../API.h"   // @global dependency
-#include "consoleMenu.h"
+#include "consoleMenu_old.h"
 #include "consoleObjectview.h"
 #include "consoleForm.h"
 #include "MenuState.h"
