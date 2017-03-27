@@ -12,8 +12,13 @@ Console::Console()
 
 
 Console::~Console() 
-{
+{ 
   instantiated_ = false; 
+
+  for (int i=0; i < maxStates_; i++)
+  {
+    delete allStates[i];
+  }
 }
 
 //
@@ -27,9 +32,9 @@ int Console::run()
   int retval=1;
   std::vector<std::string>* container;
 
-  menuState = BASE;
+  menuState = allStates[0];
 
-  while(menuState)
+  /*while(menuState)
   { 
     switch(menuState)
     {
@@ -232,6 +237,6 @@ int Console::run()
         break;  
     }
     
-  }
+  }*/
   return 0;
 }

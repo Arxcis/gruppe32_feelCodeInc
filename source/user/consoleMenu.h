@@ -24,14 +24,16 @@
 #include "consoleMenu_old.h"
 
 namespace menu 
-{ 
+{  
+
   //
   // @abstract class Menu
   //
   class ConsoleMenu 
   {
   public:
-    virtual ~Menu(){}
+    ConsoleMenu(){};
+    virtual ~ConsoleMenu(){};
     //
     // @function view()
     //  Views all static and dynamic content of the current menu
@@ -44,18 +46,31 @@ namespace menu
     //  Usually a number mapped to the current menu. The menu maps this
     //  relative index, to an absoulute inedex to the next Menu.
     //
-    Menu* getNext(int userInput);
+    virtual int getNext(int userInput);
 
   private:
-    const std::unordered_map<int, int> mapNext;
+    //
+    // @map   
+    // Holds the key-indicies to the next menu
+    //  Each menu should have their own unique initialization of this
+    //  variable.
+    std::unordered_map<int, int> mapNext_;
+
+    //
+    // @static 
+    //  If the user selects a specific object from a list, the object
+    //  in focus gets stored here. This is a way for communication between
+    //   the selection menus, and the objectView-menus
+    //
+    static int selectedObject;  
   };
 
 
   class Begin : public ConsoleMenu
   {
   public:
-    Begin(){}
-    virtual ~Begin(){}
+    Begin(){};
+    virtual ~Begin(){};
     virtual void view() override;
   };
 
@@ -283,5 +298,5 @@ namespace menu
     MedalStats(){}
     virtual ~MedalStats(){}
     virtual void view() override;
-  };
-}*/
+  };*/
+}

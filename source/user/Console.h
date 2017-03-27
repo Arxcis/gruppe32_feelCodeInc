@@ -12,14 +12,12 @@
 // @local files
 #include "../enum.h"  // @global dependency fysh og fy
 #include "../API.h"   // @global dependency
-#include "consoleMenu_old.h"
-#include "consoleObjectview.h"
-#include "consoleForm.h"
-#include "MenuState.h"
+#include "ConsoleMenu.h"
 
 //
 // @class Console
 //  @brief This class i instancieted once (Singleton-ish)
+//   Console launches the Console-user-level application.
 //
 class Console
 {
@@ -31,13 +29,11 @@ public:
 private:
   API api_;
   static bool instantiated_;
-  menu::Menu* currentMenu;     // The most recent command from the user
+  menu::ConsoleMenu* menuState;
 
-  MenuState menuState = BASE;
-
-  menu::Begin begin;
-  menu::Menu* menuStates[1] = 
+  static const int maxStates_ = 1;
+  menu::ConsoleMenu* allStates[maxStates_] = 
   {
-    &begin,
+    new menu::Begin(),
   };
 };

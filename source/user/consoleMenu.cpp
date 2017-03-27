@@ -1,38 +1,41 @@
 #include "ConsoleMenu.h"
-using namespace menu;
-
 #include <string>
 
-Menu* Menu::getNextMenu(int userInput)
-{}
 
-void Begin::view(){}
+int menu::ConsoleMenu::getNext(int userInput)
+{
+  return mapNext_[userInput];
+}
 
-void NationBase::view(){}
-void ParticipantBase::view(){}
-void SportBase::view(){}
-void ListBase::view(){}
+void menu::Begin::view(){}
 
-void Nation::view(){}
-void Participant::view(){}
-void Sport::view(){}
-void Dicipline::view(){}
+/*void menu::NationBase::view(){}
+void menu::ParticipantBase::view(){}
+void menu::SportBase::view(){}
+void menu::ListBase::view(){}
 
-void NewNation::view(){}
-void NewParticipant::view(){}
-void NewSport::view(){}
-void NewDicipline::view(){}
+void menu::Nation::view(){}
+void menu::Participant::view(){}
+void menu::Sport::view(){}
+void menu::Dicipline::view(){}
 
-void EditNation::view(){}
-void EditParticipant::view(){}
-void EditSport::view(){}
-void EditDicipline::view(){}
+void menu::NewNation::view(){}
+void menu::NewParticipant::view(){}
+void menu::NewSport::view(){}
+void menu::NewDicipline::view(){}
 
-void DeleteDicipline::view(){}
-void DeleteList::view(){}
+void menu::EditNation::view(){}
+void menu::EditParticipant::view(){}
+void menu::EditSport::view(){}
+void menu::EditDicipline::view(){}
 
-void AppendList::view(){}
-void AppendResult::view(){}
+void menu::DeleteDicipline::view(){}
+void menu::DeleteList::view(){}
 
-void PointStats(){}
-void MedalStats(){}
+void menu::AppendList::view(){}
+void menu::AppendResult::view(){}
+
+void menu::PointStats(){}
+void menu::MedalStats(){}*/
+
+

@@ -11,17 +11,9 @@
 // @local files
 #include "Console.h"
 
-int main()
+int main() 
 {
-    Console console;
-
-  if(!console.run())
-  {
-    printf("Program exited normally...\n");
-  }
-  else {
-    printf("Program exited in an unexpected manner..\n");
-  }
-
-  printf("Hello from user module\n");
+  Console console;
+  console.run();
+  return 0;
 }
