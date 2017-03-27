@@ -31,5 +31,13 @@ public:
 private:
   API api_;
   static bool instantiated_;
-  MenuState menuState = BASE;     // The most recent command from the user
+  menu::Menu* currentMenu;     // The most recent command from the user
+
+  MenuState menuState = BASE;
+
+  menu::Begin begin;
+  menu::Menu* menuStates[1] = 
+  {
+    &begin,
+  };
 };

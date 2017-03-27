@@ -37,4 +37,4 @@ enum MenuState
 
   POINT_STATS = 22,
   MEDAL_STATS = 23,
-  };
+};

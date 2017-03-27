@@ -25,7 +25,7 @@ inline void menu::newPage()
   }
 }
 
-int menu::begin()
+int menu::begin_()
 {
   int command;
   menu::newPage();
@@ -44,7 +44,7 @@ int menu::begin()
 }
 
 
-int menu::nationBase()
+int menu::nationBase_()
 {
   int command;
   menu::newPage();
@@ -59,7 +59,7 @@ int menu::nationBase()
   return command;
 }
 
-int menu::participantBase()
+int menu::participantBase_()
 {
   int command;
   menu::newPage();
@@ -74,7 +74,7 @@ int menu::participantBase()
   return command;
 }
 
-int menu::sportBase()
+int menu::sportBase_()
 {
   int command;
   menu::newPage();
@@ -89,7 +89,7 @@ int menu::sportBase()
   return command;
 }
 
-int menu::listBase()
+int menu::listBase_()
 {
   int command;
   menu::newPage();
@@ -105,7 +105,7 @@ int menu::listBase()
   return command;
 }
 
-int menu::pointStats()
+int menu::pointStats_()
 {
   int command;
   menu::newPage();
@@ -119,7 +119,7 @@ int menu::pointStats()
   return command;
 }
 
-int menu::medalStats()
+int menu::medalStats_()
 {
   int command;
   menu::newPage();
@@ -133,7 +133,7 @@ int menu::medalStats()
   return command;
 }
 
-int menu::sport()
+int menu::sport_()
 {
   int command;
   menu::footer();
@@ -148,7 +148,7 @@ int menu::sport()
   return command;
 }
 
-int menu::nation()
+int menu::nation_()
 {
   int command;
   menu::footer();
@@ -162,7 +162,7 @@ int menu::nation()
   return command;
 }
 
-int menu::participant()
+int menu::participant_()
 {
   int command;
   menu::footer();
@@ -177,7 +177,7 @@ int menu::participant()
 }
 
 
-int menu::dicipline()
+int menu::dicipline_()
 {
   int command;
   menu::footer();
@@ -193,7 +193,7 @@ int menu::dicipline()
   return command;
 }
 
-int menu::deleteDicipline()
+int menu::deleteDicipline_()
 {
   int command;
   menu::footer();
@@ -207,7 +207,7 @@ int menu::deleteDicipline()
   return command;
 }
 
-int menu::deleteList()
+int menu::deleteList_()
 {
   int command;
   menu::footer();

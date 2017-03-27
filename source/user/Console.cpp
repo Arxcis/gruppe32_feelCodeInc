@@ -29,7 +29,7 @@ int Console::run()
 
   menuState = BASE;
 
-  while(menuState) 
+  while(menuState)
   { 
     switch(menuState)
     {
@@ -38,7 +38,7 @@ int Console::run()
         break;
 
       case BASE:
-        retval = menu::begin();
+        retval = menu::begin_();
         if (!retval)          {  menuState = EXIT;             }
         else if (retval == 1) {  menuState = NATION_BASE;      } 
         else if (retval == 2) {  menuState = PARTICIPANT_BASE; } 
@@ -55,7 +55,7 @@ int Console::run()
       // Nation cases
       //
       case NATION_BASE:
-        retval = menu::nationBase();
+        retval = menu::nationBase_();
         if (!retval)          {  menuState = BASE;           }
         else if (retval >= 2) {  menuState = NATION_SELECT;  } 
         else                  {  menuState = NATION_NEW;      }
@@ -64,7 +64,7 @@ int Console::run()
       case NATION_SELECT:
         container = api_.get(NATION, retval);
         view::nation(container);
-        retval = menu::nation();
+        retval = menu::nation_();
 
         if (!retval)          {  menuState = NATION_BASE;  }
         else if (retval >= 2) {  menuState = NATION_EDIT;  } 
@@ -87,7 +87,7 @@ int Console::run()
       // Participant cases
       //
       case PARTICIPANT_BASE:
-        retval = menu::participantBase();
+        retval = menu::participantBase_();
         if (!retval)          {  menuState = BASE;                }
         else if (retval >= 2) {  menuState = PARTICIPANT_SELECT;  } 
         else                  {  menuState = PARTICIPANT_NEW;     }
@@ -97,7 +97,7 @@ int Console::run()
         container = api_.get(PARTICIPANT, retval);
         view::participant(container);
 
-        retval = menu::participant();
+        retval = menu::participant_();
         if (!retval)          {  menuState = PARTICIPANT_BASE;  }
         else if (retval >= 2) {  menuState = PARTICIPANT_EDIT;  } 
         else                  {  menuState = PARTICIPANT_NEW;   }
@@ -119,7 +119,7 @@ int Console::run()
       // Sport cases
       //
       case SPORT_BASE:
-        retval = menu::sportBase();
+        retval = menu::sportBase_();
         if (!retval)          {  menuState = BASE;          }
         else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
         else                  {  menuState = SPORT_NEW;     }
@@ -129,7 +129,7 @@ int Console::run()
         container = api_.get(SPORT, retval);
         view::sport( container );
 
-        retval = menu::sport();
+        retval = menu::sport_();
         if (!retval)                        {  menuState = SPORT_BASE;   }
         else if(retval >= 2 && retval <= 3) {  menuState = SPORT_EDIT;        } 
         else if (retval >= 4)               {  menuState = DICIPLINE_SELECT;  } 
@@ -155,7 +155,7 @@ int Console::run()
         container = api_.get(DICIPLINE, retval);
         view::dicipline( container );
         
-        retval = menu::dicipline();
+        retval = menu::dicipline_();
         if (!retval)                         {  menuState = SPORT_SELECT;     }
         else if (retval == 1)                {  menuState = DICIPLINE_NEW;    } 
         else if (retval >= 2 && retval <= 4) {  menuState = DICIPLINE_EDIT;   } 
@@ -174,7 +174,7 @@ int Console::run()
         break;
 
       case DICIPLINE_DELETE : 
-        retval = menu::deleteDicipline();
+        retval = menu::deleteDicipline_();
         if(!retval)          {   menuState = DICIPLINE_SELECT;  }
         else if(retval == 1) {   menuState = SPORT_SELECT;      }
         else                 {   menuState = DICIPLINE_SELECT;  }
@@ -186,7 +186,7 @@ int Console::run()
       // List cases
       //
       case LIST_BASE  : 
-        retval = menu::listBase();
+        retval = menu::listBase_();
         if(!retval)          {   menuState = DICIPLINE_SELECT;   }
         else if(retval == 1) {   menuState = LIST_ADD;           }
         else if(retval == 2) {   menuState = LIST_RESULT;        }
@@ -204,7 +204,7 @@ int Console::run()
         break;
 
       case LIST_DELETE: 
-        retval = menu::deleteList();
+        retval = menu::deleteList_();
         if(!retval)          {   menuState = LIST_BASE;          }
         else if(retval == 1) {   menuState = DICIPLINE_SELECT;   }
         else if(retval == 2) {   menuState = LIST_BASE;          }
@@ -218,11 +218,11 @@ int Console::run()
       // Stats cases
       //
       case POINT_STATS: 
-        menu::pointStats();
+        menu::pointStats_();
         menuState = BASE;
         break;
       case MEDAL_STATS:
-        menu::medalStats();
+        menu::medalStats_();
         menuState = BASE;
         break;
 
