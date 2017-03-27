@@ -12,7 +12,6 @@
 #include <string>
 
 #include "MenuState.h"
-#include "consoleMenu.h"
 //
 // @namespace menu
 // @brief One important thing to note about these functions is that

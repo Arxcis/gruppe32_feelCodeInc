@@ -15,6 +15,14 @@
 //          
 //
 
+#include <string>
+#include <unordered_map>
+
+#include "consoleForm.h"
+#include "consoleObjectView.h"
+#include "consoleList.h"
+#include "consoleMenu_old.h"
+
 namespace menu 
 { 
   //
@@ -36,7 +44,10 @@ namespace menu
     //  Usually a number mapped to the current menu. The menu maps this
     //  relative index, to an absoulute inedex to the next Menu.
     //
-    virtual int getNext(int userInput)=0;
+    Menu* getNext(int userInput);
+
+  private:
+    const std::unordered_map<int, int> mapNext;
   };
 
 
@@ -46,10 +57,9 @@ namespace menu
     Begin(){}
     virtual ~Begin(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
-  //---------//---------//---------//---------//---------//---------//
+  /*//---------//---------//---------//---------//---------//---------//
   //
   //  BASE MENU classes
   //
@@ -59,7 +69,6 @@ namespace menu
     NationBase(){}
     virtual ~NationBase(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -69,7 +78,6 @@ namespace menu
     ParticipantBase(){}
     virtual ~ParticipantBase(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -79,7 +87,6 @@ namespace menu
     SportBase(){}
     virtual ~SportBase(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -89,7 +96,6 @@ namespace menu
     ListBase(){}
     virtual ~ListBase(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
  
 
@@ -98,15 +104,12 @@ namespace menu
   // OBJECT MENU classes
   //
 
-
-
   class Nation : public ConsoleMenu
   {
   public:
     Nation(){}
     virtual ~Nation(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -116,7 +119,6 @@ namespace menu
     Participant(){}
     virtual ~Participant(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class Sport : public ConsoleMenu
@@ -125,7 +127,6 @@ namespace menu
     Sport(){}
     virtual ~Sport(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class Dicipline : public ConsoleMenu
@@ -134,7 +135,6 @@ namespace menu
     Dicipline(){}
     virtual ~Dicipline(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   //---------//---------//---------//---------//---------//---------//
@@ -150,7 +150,6 @@ namespace menu
     NewNation(){}
     virtual ~NewNation(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -160,7 +159,6 @@ namespace menu
     NewParticpant(){}
     virtual ~NewParticpant(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class NewSport : public ConsoleMenu
@@ -169,7 +167,6 @@ namespace menu
     NewSport(){}
     virtual ~NewSport(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class NewDicipline : public ConsoleMenu
@@ -178,7 +175,6 @@ namespace menu
     NewDicipline(){}
     virtual ~NewDicipline(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -194,7 +190,6 @@ namespace menu
     EditNation(){}
     virtual ~EditNation(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -204,7 +199,6 @@ namespace menu
     EditParticipant(){}
     virtual ~EditParticipant(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class EditSport : public ConsoleMenu
@@ -213,7 +207,6 @@ namespace menu
     EditSport(){}
     virtual ~EditSport(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class EditDicipline : public ConsoleMenu
@@ -222,7 +215,6 @@ namespace menu
     EditDicipline(){}
     virtual ~EditDicipline(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   //---------//---------//---------//---------//---------//---------//
@@ -237,7 +229,6 @@ namespace menu
     DeleteDicipline(){}
     virtual ~DeleteDicipline(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -247,7 +238,6 @@ namespace menu
     DeleteList(){}
     virtual ~DeleteList(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -262,7 +252,6 @@ namespace menu
     AppendList(){}
     virtual ~AppendList(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
   class AppendResult : public ConsoleMenu
@@ -271,7 +260,6 @@ namespace menu
     AppendResult(){}
     virtual ~AppendResult(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -286,7 +274,6 @@ namespace menu
     PointStats(){}
     virtual ~PointStats(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
 
 
@@ -296,6 +283,5 @@ namespace menu
     MedalStats(){}
     virtual ~MedalStats(){}
     virtual void view() override;
-    virtual int getNext(int userInput) override;
   };
-}
+}*/
