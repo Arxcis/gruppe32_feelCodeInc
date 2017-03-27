@@ -37,6 +37,18 @@ void stream::readInt(const std::string& message, std::string& value)
   }
 }
 
+int stream::readInt(const std::string& message)
+{ 
+  std::string tempString;
+  std::cout << message << " :  ";  getline(std::cin, tempString, '\n');
+  while(!valid::isInt(tempString)) 
+  {  
+    std::cout << "Wrong input...\n";
+    std::cout << message << " :  ";  getline(std::cin, tempString, '\n');
+  }
+  return std::stoi(tempString);
+}
+
 void stream::readDouble(const std::string& message, std::string&value)
 {
   std::cout << message << " :  ";  getline(std::cin, value, '\n');

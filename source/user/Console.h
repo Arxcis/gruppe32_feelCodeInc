@@ -8,10 +8,12 @@
 
 #include <assert.h>
 #include <iostream>
+#include <string>
 
 // @local files
 #include "../enum.h"  // @global dependency fysh og fy
 #include "../API.h"   // @global dependency
+#include "../tool/stream.h"
 #include "ConsoleMenu.h"
 
 //
@@ -29,11 +31,17 @@ public:
 private:
   API api_;
   static bool instantiated_;
-  menu::ConsoleMenu* menuState;
+  static const int maxMenus_ = 6;
 
-  static const int maxStates_ = 1;
-  menu::ConsoleMenu* allStates[maxStates_] = 
+  menu::ConsoleMenu* currentMenu_;
+  menu::ConsoleMenu* allMenus_[maxMenus_] = 
   {
-    new menu::Begin(),
+    new menu::Begin           ({ -1,1,2,3,4,5 }),      // 0
+    new menu::NationBase      ({ 0,1,1        }),      // 1
+    new menu::ParticipantBase ({ 0,2,2        }),      // 2
+    new menu::SportBase       ({ 0,3,3        }),      // 3
+    new menu::PointStats      ({ 0,4          }),      // 4
+    new menu::MedalStats      ({ 0,5          }),      // 5
+
   };
 };

@@ -17,6 +17,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 #include "consoleForm.h"
 #include "consoleObjectView.h"
@@ -25,6 +26,14 @@
 
 namespace menu 
 {  
+
+  //
+  // Helper functions
+  //
+  inline void header(std::string);
+  inline void footer();
+  inline void newPage();
+
 
   //
   // @abstract class Menu
@@ -46,15 +55,15 @@ namespace menu
     //  Usually a number mapped to the current menu. The menu maps this
     //  relative index, to an absoulute inedex to the next Menu.
     //
-    virtual int getNext(int userInput);
+    virtual int getNextIndex(const int userInput);
 
-  private:
     //
     // @map   
     // Holds the key-indicies to the next menu
     //  Each menu should have their own unique initialization of this
     //  variable.
     std::unordered_map<int, int> mapNext_;
+  private:
 
     //
     // @static 
@@ -69,19 +78,19 @@ namespace menu
   class Begin : public ConsoleMenu
   {
   public:
-    Begin(){};
+    Begin(const std::vector<int> args);
     virtual ~Begin(){};
     virtual void view() override;
   };
 
-  /*//---------//---------//---------//---------//---------//---------//
+  //---------//---------//---------//---------//---------//---------//
   //
   //  BASE MENU classes
   //
   class NationBase : public ConsoleMenu
   {
   public:
-    NationBase(){}
+    NationBase(const std::vector<int> args);
     virtual ~NationBase(){}
     virtual void view() override;
   };
@@ -90,7 +99,7 @@ namespace menu
   class ParticipantBase : public ConsoleMenu
   {
   public:
-    ParticipantBase(){}
+    ParticipantBase(const std::vector<int> args);
     virtual ~ParticipantBase(){}
     virtual void view() override;
   };
@@ -99,12 +108,34 @@ namespace menu
   class SportBase : public ConsoleMenu
   {
   public:
-    SportBase(){}
+    SportBase(const std::vector<int> args);
     virtual ~SportBase(){}
     virtual void view() override;
   };
 
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  STATS 
+  //
 
+  class PointStats : public ConsoleMenu
+  {
+  public:
+    PointStats(const std::vector<int> args);
+    virtual ~PointStats(){}
+    virtual void view() override;
+  };
+
+
+  class MedalStats : public ConsoleMenu
+  {
+  public:
+    MedalStats(const std::vector<int> args);
+    virtual ~MedalStats(){}
+    virtual void view() override;
+  };
+
+/*
   class ListBase : public ConsoleMenu
   {
   public:
@@ -277,26 +308,6 @@ namespace menu
     virtual void view() override;
   };
 
+*/
 
-  //---------//---------//---------//---------//---------//---------//
-  //
-  //  STATS AND DELETE menu classes
-  //
-
-  class PointStats : public ConsoleMenu
-  {
-  public:
-    PointStats(){}
-    virtual ~PointStats(){}
-    virtual void view() override;
-  };
-
-
-  class MedalStats : public ConsoleMenu
-  {
-  public:
-    MedalStats(){}
-    virtual ~MedalStats(){}
-    virtual void view() override;
-  };*/
 }

@@ -1,18 +1,186 @@
 #include "ConsoleMenu.h"
 #include <string>
 
-
-int menu::ConsoleMenu::getNext(int userInput)
+namespace menu 
 {
-  return mapNext_[userInput];
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  HELPER FUNCTIONS
+  //
+
+  inline void header(std::string name)
+  { 
+    std::cout << "\n"
+              << "-------------------------------\n" 
+              << "| " << name << "               \n"
+              << "-------------------------------\n"
+              << "\n";
+  }
+
+
+  inline void footer()
+  {
+    std::cout << "\n"
+              << "-------------------------------\n";
+  }
+
+
+  inline void newPage()
+  {
+    for(int i=0; i<40; i++)
+    {
+      std::cout << "\n";
+    }
+  }
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  ABSTRACT BASE CLASS ConsoleMenu
+  //
+
+  int ConsoleMenu::getNextIndex(const int userInput)
+  {
+    auto it = mapNext_.find(userInput);
+
+    if(it != mapNext_.end())  // If it exists in the map
+      { return it->second; }
+    else 
+      { return -1; }
+  }
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  BEGIN MENU
+  //
+
+  Begin::Begin(const std::vector<int> args)
+  {
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] },
+       { 2, args[2] },
+       { 3, args[3] },
+       { 4, args[4] },
+       { 5, args[5] }};
+  }
+
+  void Begin::view()
+  {
+    newPage();
+    header("Main Menu");
+    std::cout << "1: Nations     \n"
+              << "2: Participants\n"
+              << "3: Sports      \n"
+              << "4: Points      \n"
+              << "5: Medals      \n"
+              << "0: Exit        \n";
+    footer();
+  }
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  BASES MENU classes
+  //
+
+  NationBase::NationBase(const std::vector<int> args)
+  {   
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] },
+       { 2, args[2] }};
+  }
+
+  void NationBase::view()
+  {
+    newPage();
+    header("Nation Base");
+    std::cout << "   1: New          \n"
+              << "2-10: Pick nation  \n"
+              << "   0: Back         \n";
+    footer();
+  }
+
+  ParticipantBase::ParticipantBase(const std::vector<int> args)
+  {   
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] },
+       { 2, args[2] }};
+  }
+
+  void ParticipantBase::view()
+  {
+    newPage();
+    header("Participant Base");
+    std::cout << "   1: New              \n"
+              << "2-50: Pick Participant \n"
+              << "   0: Back             \n";
+    footer();
+  }
+
+  SportBase::SportBase(const std::vector<int> args)
+  {   
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] },
+       { 2, args[2] }};
+  }
+
+  void SportBase::view()
+  {
+    newPage();
+    header("Sport Base");
+    std::cout << "   1: New          \n"
+              << "2-20: Pick Sport   \n"
+              << "   0: Back         \n";
+    footer();
+  }
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  STATS MENU classes
+  //
+
+  PointStats::PointStats(const std::vector<int> args)
+  {   
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] }};
+  }
+
+  void PointStats::view()
+  {
+    menu::newPage();
+    menu::header("Point stats");
+    std::cout << "   1: Sort          \n"
+              << "   0: Back         \n";
+    menu::footer();
+  }
+
+  MedalStats::MedalStats(const std::vector<int> args)
+   {   
+    mapNext_ = 
+      {{ 0, args[0] },
+       { 1, args[1] }};
+  }
+
+  void MedalStats::view()
+  {
+    menu::newPage();
+    menu::header("Medal stats");
+    std::cout << "   1: Sort          \n"
+              << "   0: Back         \n";
+    menu::footer();
+  }
 }
 
-void menu::Begin::view(){}
 
-/*void menu::NationBase::view(){}
-void menu::ParticipantBase::view(){}
-void menu::SportBase::view(){}
-void menu::ListBase::view(){}
+/*void menu::ListBase::view(){}
 
 void menu::Nation::view(){}
 void menu::Participant::view(){}
@@ -33,9 +201,8 @@ void menu::DeleteDicipline::view(){}
 void menu::DeleteList::view(){}
 
 void menu::AppendList::view(){}
-void menu::AppendResult::view(){}
+void menu::AppendResult::view(){} */
 
-void menu::PointStats(){}
-void menu::MedalStats(){}*/
+
 
 

@@ -36,6 +36,7 @@ namespace stream
   void readPhone(const std::string& message, std::string& value);
   void readEmail(const std::string& message, std::string& value);
   void readInt(const std::string& message, std::string& value);
+  int readInt(const std::string& message);
   void readDouble(const std::string& message, std::string& value);
   void readTime(const std::string& message, std::string& value);
   void readDate(const std::string& message, std::string& value);
