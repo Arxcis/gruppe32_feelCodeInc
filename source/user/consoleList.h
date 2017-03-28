@@ -7,6 +7,7 @@
 //          
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include <string>
 #include "../API.h"

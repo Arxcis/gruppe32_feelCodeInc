@@ -4,7 +4,7 @@ namespace list
 {
   inline void printField(const dat::Field& field)
   {
-    std::cout << "  "<<std::get<0>(field) << ": " << std::get<1>(field) << "     ";
+    std::cout << "  "<<std::get<0>(field) << ": " << std::get<1>(field) << "    ";
   }
 
   void nations(const dat::Container* container)
