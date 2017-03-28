@@ -5,7 +5,7 @@ dat::Object formSubmit;
 auto form::nation() ->dat::Object*
 {
   dat::Object 
-  nationProto
+  proto
   {            
       {"Code",          ""},       //PK              
       {"Name",          ""},                    
@@ -15,20 +15,19 @@ auto form::nation() ->dat::Object*
       {"ContactEmail",  ""},  
   };
   
-  for(auto& field: nationProto)
+  for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  formSubmit = nationProto;
+  proto.insert(proto.begin(), {"type", "Nation"});
+  formSubmit = proto;
   return &formSubmit;
 }
 
 auto form::participant() ->dat::Object*
 {
   dat::Object 
-  participantProto
+  proto
   {
-      {"type", ""},
-      {"ID"  , ""},     //PK
       {"Name", ""},
       {"Phone", ""},
       {"Email", ""},
@@ -36,45 +35,46 @@ auto form::participant() ->dat::Object*
       {"Gender", ""},
   };
   
-  for(auto& field: participantProto)
+  for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  formSubmit = participantProto;
+  proto.insert(proto.begin(), {"type", "Participant"});
+  formSubmit = proto;
   return &formSubmit;
 }
 
 auto form::sport() ->dat::Object*
 {
   dat::Object 
-  sportProto
+  proto
   {
-      {"Type",      ""},
       {"Name",      ""},     //PK
       {"ScoreType", ""},
   };
   
-  for(auto& field: sportProto)
+  for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  formSubmit = sportProto;
+  proto.insert(proto.begin(), {"type", "Sport"});
+  formSubmit = proto;
   return &formSubmit;
 }
 
 auto form::dicipline() ->dat::Object*
 {
   dat::Object 
-  diciplineProto
+  proto
   {
-      {"Type", ""},
       {"Name", ""},     //PK
       {"Time", ""}, 
       {"Date", ""},
   };
   
-  for(auto& field: diciplineProto)
+  for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  formSubmit = diciplineProto;
+  proto.insert(proto.begin(), {"type", "Dicipline"});
+  formSubmit = proto;
   return &formSubmit;        // ship container
 }
 /*

@@ -276,7 +276,7 @@ namespace menu
     {{ 0, args[0] },
      { 1, args[1] }};
   }
-  void menu::Participant::view()
+  void Participant::view()
   {
     newPage();
     header("Participant");
@@ -436,15 +436,6 @@ namespace menu
 
 
 /*void menu::ListBase::view(){}
-*/
-
-
-
-/*
-void menu::Participant::view(){}
-void menu::Sport::view(){}
-void menu::Dicipline::view(){}
-
 */
 
 

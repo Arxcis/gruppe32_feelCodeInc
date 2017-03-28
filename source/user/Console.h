@@ -35,9 +35,11 @@ private:
   menu::ConsoleMenu* allMenus_[maxMenus_] = 
   {
     new menu::Begin           ({ -1,1,2,3,4,5 }),      // 0
-    new menu::NationBase      ({ 0,9,6        }),      // 1
-    new menu::ParticipantBase ({ 0,10,7        }),      // 2
-    new menu::SportBase       ({ 0,11,8        }),      // 3
+
+    new menu::NationBase      ({ 0,9,6         }),      // 1
+    new menu::ParticipantBase ({ 0,10,7        }),     // 2
+    new menu::SportBase       ({ 0,11,8        }),     // 3
+
     new menu::PointStats      ({ 0,4          }),      // 4
     new menu::MedalStats      ({ 0,5          }),      // 5
 
