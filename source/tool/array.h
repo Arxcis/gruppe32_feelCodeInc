@@ -15,7 +15,7 @@ namespace dat
     {
     private:
         size_t count_;
-        T values[arr_size];
+        T values[];
     public:
         array(size_t arr_sizeLimit);
         const size_t limit;

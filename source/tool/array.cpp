@@ -9,8 +9,10 @@ size_t dat::array<T>::Count()
 { return count_; }
 
 template<typename T>
-inline T const & dat::array<T>::operator[](int x) const
-{ return const values[x]; }
+inline T & dat::array<T>::operator[](int x) const
+{
+  return values[x];
+}
 
 template<typename T>
 bool dat::array<T>::Add(T item)

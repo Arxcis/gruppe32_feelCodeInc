@@ -7,7 +7,7 @@
 //
 
 #include <string>
-#include "../tool/char3.h"
+#include "../tool/typedef.h"
 #include "../tool/Contact.h"
 #include "ListTool2B.h"
 
