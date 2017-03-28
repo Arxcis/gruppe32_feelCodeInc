@@ -29,7 +29,7 @@ public:
 private:
   
   static bool instantiated_;
-  static const int maxMenus_ = 12;
+  static const int maxMenus_ = 15;
 
   menu::ConsoleMenu* currentMenu_;
   menu::ConsoleMenu* allMenus_[maxMenus_] = 
@@ -50,5 +50,9 @@ private:
     new menu::NewNation       ({ 1,  9, 6     }),      // 9
     new menu::NewParticipant  ({ 2, 10, 7     }),      // 10
     new menu::NewSport        ({ 3, 11, 8     }),      // 11
+
+    new menu::EditField       ({ 6, 6         }),     // 12  - Edit nation
+    new menu::EditField       ({ 7, 7         }),     // 13  - Edit participant
+    new menu::EditField       ({ 8, 8         }),     // 14  - Edit sport
   };
 };

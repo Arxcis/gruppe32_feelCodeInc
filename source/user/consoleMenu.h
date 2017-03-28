@@ -67,7 +67,9 @@ namespace menu
     //  variable.
     std::unordered_map<int, int> mapNext_;
 
-    static dat::Object* selectedObject;
+    static dat::Object     oldObject;         // Used to revert back a change, if the user decides to abort.
+    static dat::Field*     selectedField;
+    static dat::Object*    selectedObject;
     static dat::Container* selectedContainer;
 
     //
@@ -232,7 +234,6 @@ namespace menu
     virtual void view() override;
   };
 
-/*
 
 
   //---------//---------//---------//---------//---------//---------//
@@ -240,45 +241,22 @@ namespace menu
   //  EDIT MENU classes
   //
 
-  class EditNation : public ConsoleMenu
+  class EditField : public ConsoleMenu
   {
   public:
-    EditNation(){}
-    virtual ~EditNation(){}
+    EditField(const std::vector<int> args);
+    virtual ~EditField(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
-
-  class EditParticipant : public ConsoleMenu
-  {
-  public:
-    EditParticipant(){}
-    virtual ~EditParticipant(){}
-    virtual void view() override;
-  };
-
-  class EditSport : public ConsoleMenu
-  {
-  public:
-    EditSport(){}
-    virtual ~EditSport(){}
-    virtual void view() override;
-  };
-
-  class EditDicipline : public ConsoleMenu
-  {
-  public:
-    EditDicipline(){}
-    virtual ~EditDicipline(){}
-    virtual void view() override;
-  };
 
   //---------//---------//---------//---------//---------//---------//
   //
   //  DELETE MENU classes
   //
 
-
+/*
   class DeleteDicipline : public ConsoleMenu
   {
   public:

@@ -77,40 +77,18 @@ auto form::dicipline() ->dat::Object*
   formSubmit = proto;
   return &formSubmit;        // ship container
 }
-/*
+
 //
-// @edit field functions 
-//  @brief - This 4 functions are identical at the moment, but perhaps they will differ
-//   Ideally they will be the same funciton.
+// @function editField
+//  @brief - A function that changes a specific field of a dat::object
 //
-void form::nationField(std::vector<std::string>* container, const int index)
-{
-  std::string buffer = "";
-  stream::readString("edit: ", buffer);
-  (*container)[index-1] = buffer;
-} 
+void form::editField(dat::Field& field)
+  { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-void form::participantField(std::vector<std::string>* container, const int index)
-{
-  std::string buffer = "";
-  stream::readString("edit: ", buffer);
-  (*container)[index-1] = buffer;
-}
 
-void form::sportField(std::vector<std::string>* container, const int index)
-{
-  std::string buffer = "";
-  stream::readString("edit: ", buffer);
-  (*container)[index-1] = buffer;
-} 
-
-void form::diciplineField(std::vector<std::string>* container, const int index)
-{
-  std::string buffer = "";
-  stream::readString("edit: ", buffer);
-  (*container)[index-1] = buffer;
-} 
-
+//
+// Add to list @functions
+//
 void form::listAdd()
 {
   std::string buffer = "";
@@ -121,4 +99,4 @@ void form::listResult()
 {
   std::string buffer = "";
   stream::readString("Result: ", buffer);
-}*/
+}

@@ -52,7 +52,9 @@ namespace menu
   //
 
   // Define static members
-  dat::Object* ConsoleMenu::selectedObject = nullptr;
+  dat::Object     ConsoleMenu::oldObject = {{}};
+  dat::Field*     ConsoleMenu::selectedField  = nullptr;
+  dat::Object*    ConsoleMenu::selectedObject = nullptr;
   dat::Container* ConsoleMenu::selectedContainer = nullptr;
 
   int ConsoleMenu::getNextIndex(const int userInput)
@@ -265,6 +267,7 @@ namespace menu
     footer();
   }
 
+
   //---------//---------//---------//---------//---------//---------//
   //
   //  @class menu::Participant
@@ -353,6 +356,7 @@ namespace menu
     std::cout << "   1: New          \n";
     std::cout << "   2: Show Newest  \n";
     std::cout << "   0: New          \n";
+    footer();
   }
 
   //---------//---------//---------//---------//---------//---------//
@@ -378,6 +382,7 @@ namespace menu
     std::cout << "   1: New        \n";
     std::cout << "   2: Show new   \n";
     std::cout << "   0: New        \n";
+    footer();
   }
 
   //---------//---------//---------//---------//---------//---------//
@@ -402,6 +407,7 @@ namespace menu
     std::cout << "   1: New          \n";
     std::cout << "   2: Show new  \n";
     std::cout << "   0: New          \n";
+    footer();
 
   }
 
@@ -428,8 +434,44 @@ namespace menu
     std::cout << "   1: New       \n";
     std::cout << "   2: Show new  \n";
     std::cout << "   0: New       \n";
+    footer();
   }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::EditField
+  //
+
+  EditField::EditField(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] }};
+  }
+
+  void EditField::view()
+  {
+
+    footer();
+    oldObject = *selectedObject;      // Save un-edited object for later
+    form::editField(*selectedField);
+    std::cout << "   1: Confirm \n";
+    std::cout << "   0: Abort   \n";
+    footer();
+  }
+
+  int EditField::getNextIndex(const int userInput)
+  {
+    if (userInput == 1)
+      { api_.update(selectedObject); }    // Updated DB with changes
+    else 
+      { *selectedObject = oldObject; }    // Copy old object back
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }  
 }
+
+
 
 
 
@@ -439,11 +481,9 @@ namespace menu
 */
 
 
+
+
 /*
-void menu::EditNation::view(){}
-void menu::EditParticipant::view(){}
-void menu::EditSport::view(){}
-void menu::EditDicipline::view(){}
 
 void menu::DeleteDicipline::view(){}
 void menu::DeleteList::view(){}

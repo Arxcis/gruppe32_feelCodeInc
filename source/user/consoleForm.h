@@ -16,15 +16,12 @@
 
 namespace form
 {
-  auto nation() ->dat::Object*;
+  auto nation()      ->dat::Object*;
   auto participant() ->dat::Object*;
-  auto sport() ->dat::Object*;
-  auto dicipline() ->dat::Object*;
+  auto sport()       ->dat::Object*;
+  auto dicipline()   ->dat::Object*;
 
-  void nationField(dat::Object*, const int index);     
-  void participantField(dat::Object*, const int index);
-  void sportField(dat::Object*, const int index);      
-  void diciplineField(dat::Object*, const int index);  
+  void editField(dat::Field& field);
 
   void listAdd();
   void listResult();    
