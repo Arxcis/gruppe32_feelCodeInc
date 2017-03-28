@@ -16,6 +16,7 @@ namespace dat
     std::string address;
     std::string phone;
 
+    Contact();
     Contact(
       std::string name_, 
       std::string address_, 

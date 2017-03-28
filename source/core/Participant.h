@@ -7,7 +7,7 @@
 
 #include "ListTool2B.h"
 #include "../tool/Contact.h"
-#include "../tool/typedef.h"
+#include "../tool/char3.h"
 
 class Participant : public NumElement
 {

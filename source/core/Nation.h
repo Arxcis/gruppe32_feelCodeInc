@@ -7,9 +7,10 @@
 //
 
 #include <string>
-#include "../tool/typedef.h"
+#include "../tool/char3.h"
 #include "../tool/Contact.h"
 #include "ListTool2B.h"
+
 
 
 class Nation : public TextElement
@@ -22,7 +23,7 @@ private:
 
 public:
 	//	GETTERS
-
+  Nation(dat::char3 shortName, std::string name, dat::Contact contact, int participantCount);
 	auto getShortName() -> dat::char3;
 	auto getName() -> std::string;
 	auto getContact() -> dat::Contact;
