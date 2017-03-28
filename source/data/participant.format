@@ -1,25 +1,25 @@
-3,                       // Number of objects
+#objects, 3;
 
-participant,             // Type of object
-1002,                    // ID
-Jonas,                   // Name
-452000864,               // Phone
-jonas.solsvik@gmail.com, // Email
-NOR,                     // Nation Code 
-0,                       // Sex: female=0, male=1      
+type,        Participant;
+ID  ,        1002;                   //PK
+Name,        Jonas;
+Phone,       452000864;
+Email,       jonas.solsvik@gmail.com;
+CountryCode, NOR;
+Gender,      Male;     
 
-participant,             // Type of object
-1002,                    // ID
-Jonas,                   // Name
-452000864,               // Phone
-jonas.solsvik@gmail.com, // Email
-NOR,                     // Nation Code 
-1,                       // Sex: female=0, male=1 
+type,        Participant;
+ID  ,        1002;                   //PK
+Name,        Jonas;
+Phone,       452000864;
+Email,       jonas.solsvik@gmail.com;
+CountryCode, NOR;
+Gender,      Male;     
 
-participant,             // Type of object
-1002,                    // ID
-Jonas,                   // Name
-452000864,               // Phone
-jonas.solsvik@gmail.com, // Email
-NOR,                     // Nation Code 
-0,                       // Sex: female=0, male=1 
+type,        Participant;
+ID  ,        1002;                   //PK
+Name,        Jonas;
+Phone,       452000864;
+Email,       jonas.solsvik@gmail.com;
+CountryCode, NOR;
+Gender,      Male;     

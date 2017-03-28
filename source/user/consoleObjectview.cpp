@@ -12,11 +12,13 @@ namespace object
   void view(const dat::Object* object, int startIndex) 
   {
     if(object) 
-    {
+    { 
+      int i = startIndex-1;
       for(auto& field: (*object)) 
-      {
-        printField(std::to_string(startIndex), field);
-        startIndex++;
+      { 
+        if(i >= startIndex)
+          printField(std::to_string(i), field);
+        i++;
       }
     }
     else 

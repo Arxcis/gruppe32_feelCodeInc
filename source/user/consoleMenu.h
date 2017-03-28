@@ -128,7 +128,6 @@ namespace menu
   //
   //  STATS 
   //
-
   class PointStats : public ConsoleMenu
   {
   public:
@@ -146,27 +145,19 @@ namespace menu
     virtual void view() override;
   };
 
-/*
-  class ListBase : public ConsoleMenu
-  {
-  public:
-    ListBase(){}
-    virtual ~ListBase(){}
-    virtual void view() override;
-  };
  
 
   //---------//---------//---------//---------//---------//---------//
   //
   // OBJECT MENU classes
   //
-*/
   class Nation : public ConsoleMenu
   {
   public:
     Nation(const std::vector<int> args);
     virtual ~Nation(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Participant : public ConsoleMenu
@@ -175,6 +166,7 @@ namespace menu
     Participant(const std::vector<int> args);
     virtual ~Participant(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Sport : public ConsoleMenu
@@ -183,6 +175,7 @@ namespace menu
     Sport(const std::vector<int> args);
     virtual ~Sport(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Dicipline : public ConsoleMenu
@@ -191,16 +184,15 @@ namespace menu
     Dicipline(const std::vector<int> args);
     virtual ~Dicipline(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
+
 
 
   //---------//---------//---------//---------//---------//---------//
   //
   //  NEW MENU classes
   //
-
-
-
   class NewNation : public ConsoleMenu
   {
   public:
@@ -275,10 +267,20 @@ namespace menu
   };
 
 
+
   //---------//---------//---------//---------//---------//---------//
   //
-  //  APPEND TO LIST MENU classes
+  //  LIST MENU classes
   //
+
+  class ListBase : public ConsoleMenu
+  {
+  public:
+    ListBase(){}
+    virtual ~ListBase(){}
+    virtual void view() override;
+  };
+
 
   class AppendList : public ConsoleMenu
   {

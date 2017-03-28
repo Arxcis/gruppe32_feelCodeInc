@@ -4,7 +4,7 @@ namespace list
 {
   inline void printField(const dat::Field& field)
   {
-    std::cout << "  "<<std::get<0>(field) << ": " << std::get<1>(field) << "     ";
+    std::cout << "  "<<std::get<0>(field) << ": " << std::get<1>(field) << "    ";
   }
 
   void nations(const dat::Container* container)
@@ -12,7 +12,7 @@ namespace list
     //std::cout << "Nation 1-step:\n";
     int count = 2;
      for (const auto& object: (*container))
-    { 
+    {
       std::cout <<  "\t" << count << ": ";
       printField(object[1]);
       printField(object[2]);

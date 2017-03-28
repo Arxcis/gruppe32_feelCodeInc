@@ -12,63 +12,85 @@
 
 #include <vector>
 #include <string>
+#include "../tool/typedef.h"
 
 //
 // @namespace test - testdata
 //
 namespace test {
-  std::vector<std::string> 
+  dat::Object 
   nation
   {
-      "nation",                   // Type of object
-      "NOR",                      // Code
-      "Norge",                    // Name
-      "150",                      // Number of athletes
-      "Jonas"                     // Name of contact
-      "452000864",                // Phone
-      "jonas.solsvik@gmail.com",  // Email
+      {"Type",          "Nation"},               
+      {"Code",          "NOR"},       //PK              
+      {"Name",          "Norge"},                    
+      {"#Participants", "150"},  
+      {"ContactName",   "Jonas"},                    
+      {"ContactPhone",  "452000864"},             
+      {"ContactEmail",   "jonas.solsvik@gmail.com"},  
   };
 
-  std::vector<std::string>
-  athlete 
+  dat::Object
+  participant 
   {
-      "athlete",                 // Type of object
-      "1002",                    // ID
-      "Jonas",                   // Name
-      "452000864",               // Phone
-      "jonas.solsvik@gmail.com", // Email
-      "NOR",                     // Nation Code 
-      "Male"                     // enum Gender
+      {"type", "Participant"},
+      {"ID"  , "1002"},     //PK
+      {"Name", "Jonas"},
+      {"Phone", "452000864"},
+      {"Email", "jonas.solsvik@gmail.com"},
+      {"CountryCode", "NOR"},
+      {"Gender", "Male"},
   };
 
-  std::vector<std::string>
+  dat::Object
   sport 
   {   
-      "sport",                // Type of object
-      "Fotball",                // Sport name
-      "Points",                 // Score type
-      "3",                      // Number of diciplines
-      "dicipline1",             // dicipline 1
-      "dicipline2",             // dicipline 2
-      "dicipline3",             // dicipline 3
+      {"Type", "Sport"},
+      {"Name", "Fotball"},     //PK
+      {"ScoreType", "Points"},
+      {"#Diciplines", "3"},
+      {"1", "Final"},
+      {"2", "Semi-final"},
+      {"3", "1/4-final"},
   };
 
-  std::vector<std::string>
+  dat::Object
   dicipline 
   {
-      "dicipline",                  // Type of object
-      "Finale - Golden Goal",   // Name of dicipline
-      "19:00",                  // Time of dicipline
-      "29.03.18",               // Date of dicipline
-      "2",                      // number of Athletes
-      "1001",                   // Athlete 1
-      "1002",                   // Athlete 2
-      "2",                      // number of Results
-      "1",                      // Result 1
-      "0",                      // Result 2
+      {"Type","Dicipline"},
+      {"Name", "Finale"},     //PK
+      {"Time", "19:00"}, 
+      {"Date","29.03.18"},
+      {"#Participants", "2"},
+      {"1", "1001"},
+      {"2", "1002"},
+      {"#Results","2"},
+      {"1", "00:48:01"},
+      {"2", "00:28:55"},
   };
 
-  std::vector<std::vector<std::string>>
+  dat::Object
+  medalStas
+  {
+      {"Type", "MedalStats"},
+      {"#Entries", "3"},
+      {"NOR", "1-2-3"},
+      {"SWE", "0-2-3"},
+      {"DAN", "0-0-5"},
+  };
+
+  dat::Object
+  pointStats
+  {
+      {"Type", "PointStats"},
+      {"#Entries", "3"},
+      {"NOR", "100"},
+      {"SWE", "90"},
+      {"DAN", "80"},
+  };
+
+
+  dat::Container
   nations 
   {
     nation, 
@@ -76,15 +98,15 @@ namespace test {
     nation,
   };  
 
-  std::vector<std::vector<std::string>>
-  athletes 
+  dat::Container
+  participants 
   {
-    athlete, 
-    athlete, 
-    athlete,
+    participant, 
+    participant, 
+    participant,
   };  
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   sports 
   {
     sport, 
@@ -92,7 +114,7 @@ namespace test {
     sport,
   };  
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   diciplines 
   {
     dicipline, 
@@ -100,6 +122,6 @@ namespace test {
     dicipline,
   };  
 
-  std::vector<std::string>* nulldata = nullptr;
-  std::vector<std::vector<std::string>>* nulldatas = nullptr;
+  dat::Object* nulldata = nullptr;
+  dat::Container* nulldatas = nullptr;
 }

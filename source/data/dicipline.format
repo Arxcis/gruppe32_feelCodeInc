@@ -1,32 +1,34 @@
-3,                       // Number of objects
+#objects, 3;
 
-dicipline,              // Type of object
-Finale - Golden Goal,   // Name of dicipline
-19:00,                  // Time of dicipline
-29.03.18,               // Date of dicipline
-2,                      // number of Athletes
-1001,                   // Athlete 1
-1002,                   // Athlete 2
-2,                      // number of Results
-11:58,                  // Result 1
-11:59,                  // Result 2
+Type,          Dicipline;
+Name,          Finale;     //PK
+Time,          19:00; 
+Date,          29.03.18;
+#Entries,      2
+1,             1001;
+2,             1002;
+#Results,      2;
+1,             00:48:01;
+2,             00:28:55;
 
-dicipline,              // Type of object
-Finale - Golden Goal,   // Name of dicipline
-19:00,                  // Time of dicipline
-29.03.18,               // Date of dicipline
-2,                      // number of Athletes
-1001,                   // Athlete 1
-1002,                   // Athlete 2
-2,                      // number of Results
-118,                    // Result 1
-110,                    // Result 2
+Type,          Dicipline;
+Name,          Finale;     //PK
+Time,          19:00; 
+Date,          29.03.18;
+#Entries,      2
+1,             1001;
+2,             1002;
+#Results,      2;
+1,             00:48:01;
+2,             00:28:55;
 
-dicipline,              // Type of object
-Finale - Golden Goal,   // Name of dicipline
-19:00,                  // Time of dicipline
-29.03.18,               // Date of dicipline
-2,                      // number of Athletes
-1001,                   // Athlete 1
-1002,                   // Athlete 2
-0,                      // number of Results
+Type,          Dicipline;
+Name,          Finale;     //PK
+Time,          19:00; 
+Date,          29.03.18;
+#Entries,      2
+1,             1001;
+2,             1002;
+#Results,      2;
+1,             00:48:01;
+2,             00:28:55;
