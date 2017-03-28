@@ -1,13 +1,13 @@
 #include "Nation.h"
 
-auto Nation::GetShortName() -> dat::char3
+auto Nation::getShortName() -> dat::char3
 { return shortName_; }
 
-auto Nation::GetName() -> std::string
+auto Nation::getName() -> std::string
 { return name_; }
 
-auto Nation::GetContact() -> dat::Contact
+auto Nation::getContact() -> dat::Contact
 {	return contact_; }
 
-int Nation::GetParticipantCount()
+int Nation::getParticipantCount()
 {	return participantCount_; }

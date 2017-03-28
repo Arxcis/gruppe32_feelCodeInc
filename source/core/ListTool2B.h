@@ -50,7 +50,7 @@ class Element  {                       //  Base class 'Element'.
   public:
     Element();                         //  Sets element type.
     virtual ~Element();                //  Virtual, empty destr.
-    char GetType();                    //  Return element type.
+    char getType();                    //  Return element type.
     virtual int compare (Element* el); 
     virtual void display();            //  Displayed only if function is NOT
 				       //   redefined insided derived classes.
@@ -89,7 +89,7 @@ class List  {                          //  The class 'List'.
     struct Node  {                     //  Internal struct 'node'.
       Element*  liElem;                //  Element from the program that
 				                       //    is stored inside THIS node.
-      Node*     next;                  //  Nodes are linked toGether.
+      Node*     next;                  //  Nodes are linked together.
     };
 
     Node*     first;                   //  Pointer to first element/head.

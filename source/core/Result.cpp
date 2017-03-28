@@ -1,7 +1,7 @@
 #include "Result.h"
 
-auto Result::GetName() -> std::string
+auto Result::getName() -> std::string
 {	return std::string(); }
 
-int Result::GetScore()
+int Result::getScore()
 { return score_; }

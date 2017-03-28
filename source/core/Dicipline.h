@@ -22,8 +22,5 @@ private:
 	dat::array<Participant> participants;
   dat::array<Result> result;
 public:
-  // Getters and setters
-  auto GetName() -> std::string;
-  auto GetTime() -> dat::Time;
-  auto GetDate() -> dat::Date;
+    // getters and setters
 };

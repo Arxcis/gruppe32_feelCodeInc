@@ -7,7 +7,7 @@
 //
 
 #include <string>
-#include "../tool/typedef.h"
+#include "../tool/char3.h"
 #include "../tool/Contact.h"
 #include "ListTool2B.h"
 
@@ -23,8 +23,8 @@ private:
 public:
 	//	GETTERS
 
-	auto GetShortName() -> dat::char3;
-	auto GetName() -> std::string;
-	auto GetContact() -> dat::Contact;
-	int GetParticipantCount();
+	auto getShortName() -> dat::char3;
+	auto getName() -> std::string;
+	auto getContact() -> dat::Contact;
+	int getParticipantCount();
 };

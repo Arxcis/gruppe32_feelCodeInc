@@ -1,10 +1,10 @@
 #include "Participant.h"
 
-int Participant::GetID()
+int Participant::getID()
 { return ID_; }
 
-auto Participant::GetContact() -> dat::Contact
+auto Participant::getContact() -> dat::Contact
 {	return contact_; }
 
-auto Participant::GetNation() -> dat::char3
+auto Participant::getNation() -> dat::char3
 {	return nation_; }
