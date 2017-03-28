@@ -12,13 +12,8 @@
 
 #include "ConsoleMenu.h"
 
-namespace objectView
-{
-  inline 
-  void field(const dat::Field);
-  
-  void nation(const dat::Object* nation,           int startIndex);
-  void participant(const dat::Object* participant, int startIndex);
-  void sport(const dat::Object* sport,             int startIndex);
-  void dicipline(const dat::Object* dicipline,     int startIndex);
+namespace object
+{ 
+  inline void printField(const int index, const dat::Field& field);
+  void view(const dat::Object* view,           int startIndex);
 }

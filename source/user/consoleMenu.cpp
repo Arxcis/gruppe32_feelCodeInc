@@ -241,7 +241,7 @@ namespace menu
   {
     menu::newPage();
     menu::header("Nation");
-    objectView::nation(selectedObject, 1); 
+      object::view(selectedObject, 1); 
     std::cout << "   0: Back        \n";
     menu::footer();
   }
