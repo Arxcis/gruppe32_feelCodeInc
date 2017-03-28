@@ -9,9 +9,8 @@ namespace objectView
     std::cout << key << ": " << value << "\n";
   }
 
-  void nation(const std::vector<std::string>* nation) 
+  void nation(const std::vector<std::string>* nation, int startIndex) 
   {
-    field("Nation", "");
     if(nation)
     {
         field("Short", (*nation)[1]);
@@ -26,7 +25,7 @@ namespace objectView
     
   }
 
-  void participant(const std::vector<std::string>* participant)
+  void participant(const std::vector<std::string>* participant, int startIndex)
   {
     field("ID", (*participant)[1]);
     field("Name", (*participant)[2]);
@@ -37,7 +36,7 @@ namespace objectView
 
   }
 
-  void sport(const std::vector<std::string>* sport)
+  void sport(const std::vector<std::string>* sport, int startIndex)
   { 
     field("Name", (*sport)[1]);
     field("ScoreType", (*sport)[2]);
@@ -48,7 +47,7 @@ namespace objectView
 
   }
 
-  void dicipline(const std::vector<std::string>* dicipline)
+  void dicipline(const std::vector<std::string>* dicipline, int startIndex)
   {
     field("Name", (*dicipline)[1]);
     field("Time", (*dicipline)[2]);

@@ -6,11 +6,9 @@
 // @brief   Main hub of the application. Glues together
 //           Core-module with the User-module
 
-#include <tuple>
-#include <vector>
-#include <string>
 #include <stdio.h>  
 #include <stdlib.h>
+#include <../tool/typedef.h>
 
 //#include "data/testData.h"
 #include "enum.h"
@@ -23,12 +21,15 @@
 class API 
 { 
 public:
-  bool add    (std::vector<std::string>* container);
-  bool addAll (std::vector<std::vector<std::string>>* containers);
-  bool update (std::vector<std::string>* container);
+  bool add (dat::Object* object);
+
+  bool addAll (dat::Container* container);
+
+  bool update (dat::Object* object);
+
   bool remove (Entity entity, int id);
-  auto get    (Entity entity, int id) -> std::vector<std::string>*;
-  auto getAll (Entity entity)  -> std::vector<std::vector<std::string>>*;
+  auto get    (Entity entity, int id) -> dat::Object*;
+  auto getAll (Entity entity)  -> dat::Container*;
   void quit();
   API(){};
 private:

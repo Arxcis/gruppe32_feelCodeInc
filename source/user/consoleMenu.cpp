@@ -241,10 +241,7 @@ namespace menu
   {
     menu::newPage();
     menu::header("Nation");
-    objectView::nation(selectedContainer); 
-    if(selectedContainer)
-      { std::cout << " 1-" << (selectedContainer->size()-1) << ": Edit field  \n"; }
-
+    objectView::nation(selectedContainer, 1); 
     std::cout << "   0: Back        \n";
     menu::footer();
   }
