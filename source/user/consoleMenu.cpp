@@ -127,7 +127,7 @@ namespace menu
     //
     // Resetting selectedContainer here, in case I dont get anything
     // 
-    selectedContainer = nullptr;
+    selectedObject = nullptr;
 
     //
     // @ugly - This will select a container, if there exists one

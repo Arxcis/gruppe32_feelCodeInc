@@ -1,6 +1,6 @@
 #include "consoleObjectview.h"
 
-char ch;
+
 
 namespace object 
 {
@@ -20,6 +20,6 @@ namespace object
       }
     }
     else 
-      { printField("", { (std::get<0>((*object)[0])), " not found...."}); }  
+      { printField("", { "Object", " not found...."}); }  
   }
 }
