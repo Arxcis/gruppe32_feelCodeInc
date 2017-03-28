@@ -6,7 +6,7 @@
 // @brief   All data relevant to Results are stored within.
 
 #include <string>
-#include "../tool/char3.h"
+#include "../tool/typedef.h"
 #include "ListTool2B.h"
 
 class Result : public NumElement 
