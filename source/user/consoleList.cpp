@@ -1,76 +1,86 @@
 #include "consoleList.h"
 
-
-void list::nations(const dat::Container* containers)
+namespace list 
 {
-  //std::cout << "Nation 1-step:\n";
-  int count = 2;
-/*  for (const auto& cont: (*containers))
+  inline void printField(const dat::Field& field)
   {
-    std::cout << "    " << count 
-              << ":    Code: "          << cont[1] 
-              << "    Name: "          << cont[2] 
-              << "    #participants: " << cont[3] << std::endl;
-              count++;
-  }*/
-}
+    std::cout << "  "<<std::get<0>(field) << ": " << std::get<1>(field) << "     ";
+  }
 
-void list::participants(const dat::Container* containers)
-{
-  //std::cout << "Participant 1-step:\n";
-  int count = 2;
-/*  for (const auto& cont: (*containers))
+  void nations(const dat::Container* container)
   {
-    std::cout << "    " << count 
-              << ":    ID: "     << cont[1] 
-              << "    Name: "   << cont[2] 
-              << "    Nation: " << cont[5] << std::endl;
-              count++;
-  }*/
-}
+    //std::cout << "Nation 1-step:\n";
+    int count = 2;
+     for (const auto& object: (*container))
+    { 
+      std::cout <<  "\t" << count << ": ";
+      printField(object[1]);
+      printField(object[2]);
+      printField(object[3]);
+      std::cout << std::endl;
+      count++;
+    }
+  }
 
-void list::sports(const dat::Container* containers)
-{
-  //std::cout << "Sport 1-step:\n";
-  int count = 2;
-/*  for (const auto& cont: (*containers))
+  void participants(const dat::Container* container)
   {
-    std::cout << "    " << count 
-              << ":    Name: "        << cont[1]
-              << "    ScoreType: ";
+    //std::cout << "Participant 1-step:\n";
+    int count = 2;
+   for (const auto& object: (*container))
+    {
+      std::cout << "\t" << count << ": ";
+      printField(object[1]);
+      printField(object[2]);
+      printField(object[5]);
+      std::cout << std::endl;
+      count++;
+    }
+  }
 
-    (std::stoi(cont[2]) == 0) ? (std::cout << "Points") : (std::cout << "Medals"); // points=0, medals=1  
-    
-    std::cout << "    #diciplines: " << cont[3] << std::endl;
-              count++;
-  }*/
-}
-
-void list::diciplines(const dat::Container* containers)
-{
-  //std::cout << "Dicipline 1-step:\n";
-  int count = 2;
-/*  for (const auto& cont: (*containers))
+  void sports(const dat::Container* container)
   {
-    std::cout << "    " << count 
-              << ":    Name: "     << cont[1] 
-              << "    Time: "     << cont[2] 
-              << "    Date: "     << cont[3] 
-              << "    #participants: " << cont[4] << std::endl;
-              count++;
-  }*/
-}
+    //std::cout << "Sport 1-step:\n";
+    int count = 2;
+    for (const auto& object: (*container))
+    {
+      std::cout << "\t" << count << ": ";
+      printField(object[1]);
+      printField(object[2]);
+      printField(object[3]);
+      std::cout << std::endl;
+      count++;
+    }
+  }
 
-void list::diciplineList(const dat::Container* containers)
-{
-  //std::cout << "Participant 1-step:\n";
-  int count = 2;
-/*  for (const auto& cont: (*containers))
+  void diciplines(const dat::Container* container)
   {
-    std::cout << "    " << count 
-              << ":    Name: "       << cont[1] 
-              << "    #start: "     << cont[2] 
-              << "    Result: "    << cont[3] << std::endl;
-              count++;
-  }*/
+    //std::cout << "Dicipline 1-step:\n";
+    int count = 2;
+  for (const auto& object: (*container))
+    {
+      std::cout << "\t" << count << ": ";
+      printField(object[1]);
+      printField(object[2]);
+      printField(object[3]);
+      printField(object[4]);
+      std::cout << std::endl;
+      count++;
+    }
+  }
+
+  void diciplineList(const dat::Container* container)
+  {
+    //std::cout << "Participant 1-step:\n";
+    int count = 2;
+    for (const auto& object: (*container))
+    {
+      std::cout << "\t" << count << ": ";
+      printField(object[1]);
+      printField(object[2]);
+      printField(object[3]);
+      printField(object[4]);
+      std::cout << std::endl;
+      count++;
+    }
+  }
 }

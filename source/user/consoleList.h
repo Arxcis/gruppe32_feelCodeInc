@@ -13,6 +13,8 @@
 
 namespace list
 {
+  inline void printField(const dat::Field& field);
+
   void nations      (const dat::Container* container);
   void participants (const dat::Container* container);
   void sports       (const dat::Container* container);

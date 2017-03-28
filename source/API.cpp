@@ -26,7 +26,7 @@ namespace test {
       {"Phone", "452000864"},
       {"Email", "jonas.solsvik@gmail.com"},
       {"CountryCode", "NOR"},
-      {"Gender", "1"},
+      {"Gender", "Male"},
   };
 
   dat::Object
@@ -34,7 +34,7 @@ namespace test {
   {   
       {"Type", "Sport"},
       {"Name", "Fotball"},   
-      {"ScoreType", "0"},
+      {"ScoreType", "Points"},
       {"#Diciplines", "3"},
       {"1", "Final"},
       {"2", "Semi-final"},
