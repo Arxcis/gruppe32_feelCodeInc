@@ -56,6 +56,34 @@ namespace test {
       "0",                      // Result 2
   };
 
+  std::vector<std::string>
+  medalStas
+  {
+      "medalStats",
+      "3"
+      "NOR", 
+      "1-2-3",
+      "SWE", 
+      "0-2-3",
+      "DAN", 
+      "0-0-5",                  // Type of object
+
+  };
+
+  std::vector<std::string>
+  pointStats
+  {
+      "pointStats",
+      "3"
+      "NOR", 
+      "100p",
+      "SWE", 
+      "90p",
+      "DAN", 
+      "80p",
+  };
+
+
   std::vector<std::vector<std::string>>
   nations 
   {
@@ -95,7 +123,7 @@ namespace test {
 //
 // @class function add()
 //
-bool API::add( std::vector<std::string>* container)
+bool API::add( std::vector<std::string>* container )
 {  return 1;  }
 
 //

@@ -35,6 +35,7 @@ namespace menu
   inline void footer();
   inline void newPage();
 
+  inline int clamp(const int input, const int max);
 
   //
   // @abstract class Menu
@@ -66,8 +67,8 @@ namespace menu
     //  variable.
     std::unordered_map<int, int> mapNext_;
 
-    std::vector<std::string>* container = nullptr;
-    std::vector<std::vector<std::string>>* containers = nullptr;
+    static std::vector<std::string>* selectedContainer;
+    static std::vector<std::vector<std::string>>* selectedContainers;
 
     //
     // @static 
@@ -98,6 +99,7 @@ namespace menu
     NationBase(const std::vector<int> args);
     virtual ~NationBase(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
 
@@ -154,16 +156,16 @@ namespace menu
   //
   // OBJECT MENU classes
   //
-
+*/
   class Nation : public ConsoleMenu
   {
   public:
-    Nation(){}
+    Nation(const std::vector<int> args);
     virtual ~Nation(){}
     virtual void view() override;
   };
 
-
+/*
   class Participant : public ConsoleMenu
   {
   public:

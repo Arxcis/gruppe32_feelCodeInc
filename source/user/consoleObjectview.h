@@ -12,7 +12,7 @@
 
 #include "consoleMenu.h"
 
-namespace view
+namespace objectView
 {
   inline 
   void field(const std::string key, const std::string value);

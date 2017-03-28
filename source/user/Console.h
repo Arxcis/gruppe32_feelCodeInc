@@ -29,17 +29,18 @@ public:
 private:
   
   static bool instantiated_;
-  static const int maxMenus_ = 6;
+  static const int maxMenus_ = 7;
 
   menu::ConsoleMenu* currentMenu_;
   menu::ConsoleMenu* allMenus_[maxMenus_] = 
   {
     new menu::Begin           ({ -1,1,2,3,4,5 }),      // 0
-    new menu::NationBase      ({ 0,1,1        }),      // 1
+    new menu::NationBase      ({ 0,1,6        }),      // 1
     new menu::ParticipantBase ({ 0,2,2        }),      // 2
     new menu::SportBase       ({ 0,3,3        }),      // 3
     new menu::PointStats      ({ 0,4          }),      // 4
     new menu::MedalStats      ({ 0,5          }),      // 5
 
+    new menu::Nation          ({ 1,6          }),      // 6
   };
 };

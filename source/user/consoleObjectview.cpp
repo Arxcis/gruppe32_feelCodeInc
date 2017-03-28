@@ -2,50 +2,59 @@
 
 char ch;
 
-inline void view::field(const std::string key, const std::string value)
+namespace objectView 
 {
-  std::cout << key << ": " << value << "\n";
-}
+  inline void field(const std::string key, const std::string value)
+  {
+    std::cout << key << ": " << value << "\n";
+  }
 
-void view::nation(const std::vector<std::string>* nation) 
-{
-  view::field("Short", (*nation)[1]);
-  view::field("Name", (*nation)[2]);
-  view::field("Participant count", (*nation)[3]);
-  view::field("ContactName", (*nation)[4]);
-  view::field("ContactPhone", (*nation)[5]);
-  view::field("ContactEmail", (*nation)[6]);
-  
-}
+  void nation(const std::vector<std::string>* nation) 
+  {
+    field("Nation", "");
+    if(nation)
+    {
+        field("Short", (*nation)[1]);
+        field("Name", (*nation)[2]);
+        field("Participant count", (*nation)[3]);
+        field("ContactName", (*nation)[4]);
+        field("ContactPhone", (*nation)[5]);
+        field("ContactEmail", (*nation)[6]);
+    }
+    else 
+      { field("", " not found...."); }
+    
+  }
 
-void view::participant(const std::vector<std::string>* participant)
-{
-  view::field("ID", (*participant)[1]);
-  view::field("Name", (*participant)[2]);
-  view::field("Phone", (*participant)[3]);
-  view::field("Email", (*participant)[4]);
-  view::field("Country", (*participant)[5]);
-  view::field("Sex", (*participant)[6]);
+  void participant(const std::vector<std::string>* participant)
+  {
+    field("ID", (*participant)[1]);
+    field("Name", (*participant)[2]);
+    field("Phone", (*participant)[3]);
+    field("Email", (*participant)[4]);
+    field("Country", (*participant)[5]);
+    field("Sex", (*participant)[6]);
 
-}
+  }
 
-void view::sport(const std::vector<std::string>* sport)
-{ 
-  view::field("Name", (*sport)[1]);
-  view::field("ScoreType", (*sport)[2]);
-  view::field("numofdiciplines", (*sport)[3]);
-  view::field("e1", (*sport)[4]);
-  view::field("e2", (*sport)[5]);
-  view::field("e3", (*sport)[6]);
+  void sport(const std::vector<std::string>* sport)
+  { 
+    field("Name", (*sport)[1]);
+    field("ScoreType", (*sport)[2]);
+    field("numofdiciplines", (*sport)[3]);
+    field("e1", (*sport)[4]);
+    field("e2", (*sport)[5]);
+    field("e3", (*sport)[6]);
 
-}
+  }
 
-void view::dicipline(const std::vector<std::string>* dicipline)
-{
-  view::field("Name", (*dicipline)[1]);
-  view::field("Time", (*dicipline)[2]);
-  view::field("Date", (*dicipline)[3]);
-  view::field("Participant list", " - >");
-  view::field("Result list", " - >");
+  void dicipline(const std::vector<std::string>* dicipline)
+  {
+    field("Name", (*dicipline)[1]);
+    field("Time", (*dicipline)[2]);
+    field("Date", (*dicipline)[3]);
+    field("Participant list", " - >");
+    field("Result list", " - >");
 
+  }
 }
