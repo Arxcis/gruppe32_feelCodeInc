@@ -8,7 +8,7 @@
 
 #include <stdio.h>  
 #include <stdlib.h>
-#include <../tool/typedef.h>
+#include "tool/typedef.h"
 
 //#include "data/testData.h"
 #include "enum.h"

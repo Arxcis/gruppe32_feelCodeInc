@@ -9,12 +9,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "../API.h"
 
 namespace list
 {
-  void nations      (const std::vector<std::vector<std::string>>* containers);
-  void participants (const std::vector<std::vector<std::string>>* containers);
-  void sports       (const std::vector<std::vector<std::string>>* containers);
-  void diciplines   (const std::vector<std::vector<std::string>>* containers);
-  void diciplineList(const std::vector<std::vector<std::string>>* containers);
+  void nations      (const dat::Container* container);
+  void participants (const dat::Container* container);
+  void sports       (const dat::Container* container);
+  void diciplines   (const dat::Container* container);
+  void diciplineList(const dat::Container* container);
 }

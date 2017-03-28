@@ -5,86 +5,79 @@
 // @namespace test - testdata
 //
 namespace test {
-  std::vector<std::string> 
+  dat::Object 
   nation
   {
-      "nation",                   // Type of object
-      "NOR",                      // Code
-      "Norge",                    // Name
-      "150",                      // Number of participants
-      "Jonas",                     // Name of contact
-      "452000864",                // Phone
-      "jonas.solsvik@gmail.com",  // Email
+      {"Type",          "Nation"},               
+      {"Code",          "NOR"},                   
+      {"Name",          "Norge"},                    
+      {"#Participants", "150"},  
+      {"ContactName",   "Jonas"},                    
+      {"ContactPhone",  "452000864"},             
+      {"ContactEmail",   "jonas.solsvik@gmail.com"},  
   };
 
-  std::vector<std::string>
+  dat::Object
   participant 
   {
-      "participant",                 // Type of object
-      "1002",                    // ID
-      "Jonas",                   // Name
-      "452000864",               // Phone
-      "jonas.solsvik@gmail.com", // Email
-      "NOR",                     // Nation Code 
-      "1"                       // female=0, male=1
+      {"type", "Participant"},
+      {"ID"  , "1002"},
+      {"Name", "Jonas"},
+      {"Phone", "452000864"},
+      {"Email", "jonas.solsvik@gmail.com"},
+      {"CountryCode", "NOR"},
+      {"Gender", "1"},
   };
 
-  std::vector<std::string>
+  dat::Object
   sport 
   {   
-      "sport",                // Type of object
-      "Fotball",                // Sport name
-      "0",                 // Points=0, Medals=1
-      "3",                      // Number of diciplines
-      "dicipline1",                 // dicipline 1
-      "dicipline2",                 // dicipline 2
-      "dicipline3",                 // dicipline 3
+      {"Type", "Sport"},
+      {"Name", "Fotball"},   
+      {"ScoreType", "0"},
+      {"#Diciplines", "3"},
+      {"1", "Final"},
+      {"2", "Semi-final"},
+      {"3", "1/4-final"},
   };
 
-  std::vector<std::string>
+  dat::Object
   dicipline 
   {
-      "dicipline",                  // Type of object
-      "Finale - Golden Goal",   // Name of dicipline
-      "19:00",                  // Time of dicipline
-      "29.03.18",               // Date of dicipline
-      "2",                      // number of participants
-      "1001",                   // participant 1
-      "1002",                   // participant 2
-      "2",                      // number of Results
-      "1",                      // Result 1
-      "0",                      // Result 2
+      {"Type","Dicipline"},
+      {"Name", "Finale"},
+      {"Time", "19:00"}, 
+      {"Date","29.03.18"},
+      {"#Participants", "2"},
+      {"1", "1001"},
+      {"2", "1002"},
+      {"#Results","2"},
+      {"1", "00:48:01"},
+      {"2", "00:28:55"},
   };
 
-  std::vector<std::string>
+  dat::Object
   medalStas
   {
-      "medalStats",
-      "3"
-      "NOR", 
-      "1-2-3",
-      "SWE", 
-      "0-2-3",
-      "DAN", 
-      "0-0-5",                  // Type of object
-
+      {"Type", "MedalStats"},
+      {"#Entries", "3"},
+      {"NOR", "1-2-3"},
+      {"SWE", "0-2-3"},
+      {"DAN", "0-0-5"},
   };
 
-  std::vector<std::string>
+  dat::Object
   pointStats
   {
-      "pointStats",
-      "3"
-      "NOR", 
-      "100p",
-      "SWE", 
-      "90p",
-      "DAN", 
-      "80p",
+      {"Type", "PointStats"},
+      {"#Entries", "3"},
+      {"NOR", "100"},
+      {"SWE", "90"},
+      {"DAN", "80"},
   };
 
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   nations 
   {
     nation, 
@@ -92,7 +85,7 @@ namespace test {
     nation,
   };  
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   participants 
   {
     participant, 
@@ -100,7 +93,7 @@ namespace test {
     participant,
   };  
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   sports 
   {
     sport, 
@@ -108,7 +101,7 @@ namespace test {
     sport,
   };  
 
-  std::vector<std::vector<std::string>>
+  dat::Container
   diciplines 
   {
     dicipline, 
@@ -116,26 +109,26 @@ namespace test {
     dicipline,
   };  
 
-  std::vector<std::string>* nulldata = nullptr;
-  std::vector<std::vector<std::string>>* nulldatas = nullptr;
+  dat::Object* nulldata = nullptr;
+  dat::Container* nulldatas = nullptr;
 }
 
 //
 // @class function add()
 //
-bool API::add( std::vector<std::string>* container )
+bool API::add( dat::Object* object )
 {  return 1;  }
 
 //
 // @class function addAll()
 //
-bool API::addAll (std::vector<std::vector<std::string>>* containers) 
+bool API::addAll (dat::Container* container) 
 { return 1; }
 
 //
 // @class function update()
 //
-bool API::update (std::vector<std::string>* container)
+bool API::update (dat::Object* object)
 {  return 1;  }
 
 //
@@ -147,7 +140,7 @@ bool API::remove(Entity entity, int id)
 //
 // @class function get()
 //
-auto API::get(Entity entity, int id) -> std::vector<std::string>*
+auto API::get(Entity entity, int id) -> dat::Object*
 {
   switch(entity)
   {
@@ -167,7 +160,7 @@ auto API::get(Entity entity, int id) -> std::vector<std::string>*
 //
 // @class function getAll()
 //
-auto API::getAll(Entity entity)  -> std::vector<std::vector<std::string>>*
+auto API::getAll(Entity entity)  -> dat::Container*
 {
   switch(entity)
   {

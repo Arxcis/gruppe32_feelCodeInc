@@ -67,8 +67,8 @@ namespace menu
     //  variable.
     std::unordered_map<int, int> mapNext_;
 
-    static std::vector<std::string>* selectedContainer;
-    static std::vector<std::vector<std::string>>* selectedContainers;
+    static dat::Object* selectedObject;
+    static dat::Container* selectedContainer;
 
     //
     // @static 

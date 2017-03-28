@@ -1,39 +1,39 @@
 #include "consoleList.h"
 
 
-void list::nations(const std::vector<std::vector<std::string>>* containers)
+void list::nations(const dat::Container* containers)
 {
   //std::cout << "Nation 1-step:\n";
   int count = 2;
-  for (const auto& cont: (*containers))
+/*  for (const auto& cont: (*containers))
   {
     std::cout << "    " << count 
               << ":    Code: "          << cont[1] 
               << "    Name: "          << cont[2] 
               << "    #participants: " << cont[3] << std::endl;
               count++;
-  }
+  }*/
 }
 
-void list::participants(const std::vector<std::vector<std::string>>* containers)
+void list::participants(const dat::Container* containers)
 {
   //std::cout << "Participant 1-step:\n";
   int count = 2;
-  for (const auto& cont: (*containers))
+/*  for (const auto& cont: (*containers))
   {
     std::cout << "    " << count 
               << ":    ID: "     << cont[1] 
               << "    Name: "   << cont[2] 
               << "    Nation: " << cont[5] << std::endl;
               count++;
-  }
+  }*/
 }
 
-void list::sports(const std::vector<std::vector<std::string>>* containers)
+void list::sports(const dat::Container* containers)
 {
   //std::cout << "Sport 1-step:\n";
   int count = 2;
-  for (const auto& cont: (*containers))
+/*  for (const auto& cont: (*containers))
   {
     std::cout << "    " << count 
               << ":    Name: "        << cont[1]
@@ -43,14 +43,14 @@ void list::sports(const std::vector<std::vector<std::string>>* containers)
     
     std::cout << "    #diciplines: " << cont[3] << std::endl;
               count++;
-  }
+  }*/
 }
 
-void list::diciplines(const std::vector<std::vector<std::string>>* containers)
+void list::diciplines(const dat::Container* containers)
 {
   //std::cout << "Dicipline 1-step:\n";
   int count = 2;
-  for (const auto& cont: (*containers))
+/*  for (const auto& cont: (*containers))
   {
     std::cout << "    " << count 
               << ":    Name: "     << cont[1] 
@@ -58,19 +58,19 @@ void list::diciplines(const std::vector<std::vector<std::string>>* containers)
               << "    Date: "     << cont[3] 
               << "    #participants: " << cont[4] << std::endl;
               count++;
-  }
+  }*/
 }
 
-void list::diciplineList(const std::vector<std::vector<std::string>>* containers)
+void list::diciplineList(const dat::Container* containers)
 {
   //std::cout << "Participant 1-step:\n";
   int count = 2;
-  for (const auto& cont: (*containers))
+/*  for (const auto& cont: (*containers))
   {
     std::cout << "    " << count 
               << ":    Name: "       << cont[1] 
               << "    #start: "     << cont[2] 
               << "    Result: "    << cont[3] << std::endl;
               count++;
-  }
+  }*/
 }

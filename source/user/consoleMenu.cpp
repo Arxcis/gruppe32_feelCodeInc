@@ -51,8 +51,8 @@ namespace menu
   //
 
   // Define static members
-  std::vector<std::string>* ConsoleMenu::selectedContainer = nullptr;
-  std::vector<std::vector<std::string>>* ConsoleMenu::selectedContainers = nullptr;
+  dat::Object* ConsoleMenu::selectedObject = nullptr;
+  dat::Container* ConsoleMenu::selectedContainer = nullptr;
 
   int ConsoleMenu::getNextIndex(const int userInput)
   {
@@ -110,14 +110,14 @@ namespace menu
     newPage();
 
     //
-    // Resetting selectedContainers here, in case I dont get anything
+    // Resetting selectedContainer here, in case I dont get anything
     // 
-    selectedContainers = nullptr;
-    selectedContainers = api_.getAll(NATION);
+    selectedContainer = nullptr;
+    selectedContainer = api_.getAll(NATION);
 
     header("Nation Base");
     std::cout << "   1: New          \n";
-      list::nations(selectedContainers);
+      list::nations(selectedContainer);
     std::cout << "   0: Back         \n";
     footer();
   }
@@ -132,8 +132,8 @@ namespace menu
     //
     // @ugly - This will select a container, if there exists one
     //          Subtract 2 from userInput to get the actual index of the container in the vector.
-    if (userInput >= 2 && userInput <= selectedContainers->size()+1) 
-      { selectedContainer = &((*selectedContainers)[userInput-2]); }
+    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
+      { selectedObject = &((*selectedContainer)[userInput-2]); }
 
     return ConsoleMenu::getNextIndex(userInput);
   }
@@ -154,11 +154,11 @@ namespace menu
   {
     newPage();
 
-    selectedContainers = api_.getAll(PARTICIPANT);
+    selectedContainer = api_.getAll(PARTICIPANT);
 
     header("Participant Base");
     std::cout << "   1: New              \n";
-      list::participants(selectedContainers);
+      list::participants(selectedContainer);
     std::cout << "   0: Back             \n";
     footer();
   }
@@ -177,13 +177,13 @@ namespace menu
 
   void SportBase::view()
   {
-    selectedContainers = api_.getAll(SPORT);
+    selectedContainer = api_.getAll(SPORT);
 
     newPage();
     header("Sport Base");
 
     std::cout << "   1: New          \n";        
-      list::sports(selectedContainers);  
+      list::sports(selectedContainer);  
     std::cout << "   0: Back         \n";
     footer();
   }
@@ -241,7 +241,7 @@ namespace menu
   {
     menu::newPage();
     menu::header("Nation");
-    objectView::nation(selectedContainer, 1); 
+    objectView::nation(selectedObject, 1); 
     std::cout << "   0: Back        \n";
     menu::footer();
   }

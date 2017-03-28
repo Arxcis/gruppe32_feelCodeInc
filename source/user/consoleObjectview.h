@@ -10,15 +10,15 @@
 #include <vector>
 #include <iostream>
 
-#include "consoleMenu.h"
+#include "ConsoleMenu.h"
 
 namespace objectView
 {
   inline 
-  void field(const std::string key, const std::string value);
+  void field(const dat::Field);
   
-  void nation(const std::vector<std::string>* nation,           int startIndex);
-  void participant(const std::vector<std::string>* participant, int startIndex);
-  void sport(const std::vector<std::string>* sport,             int startIndex);
-  void dicipline(const std::vector<std::string>* dicipline,     int startIndex);
+  void nation(const dat::Object* nation,           int startIndex);
+  void participant(const dat::Object* participant, int startIndex);
+  void sport(const dat::Object* sport,             int startIndex);
+  void dicipline(const dat::Object* dicipline,     int startIndex);
 }

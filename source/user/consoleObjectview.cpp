@@ -4,14 +4,14 @@ char ch;
 
 namespace objectView 
 {
-  inline void field(const std::string key, const std::string value)
+  inline void field(const dat::Field field)
   {
-    std::cout << key << ": " << value << "\n";
+    std::cout << std::get<0>(field) << ": " << std::get<1>(field) << "\n";
   }
 
-  void nation(const std::vector<std::string>* nation, int startIndex) 
+  void nation(const dat::Object* nation, int startIndex) 
   {
-    if(nation)
+/*    if(nation)
     {
         field("Short", (*nation)[1]);
         field("Name", (*nation)[2]);
@@ -21,39 +21,39 @@ namespace objectView
         field("ContactEmail", (*nation)[6]);
     }
     else 
-      { field("", " not found...."); }
+      { field("", " not found...."); }*/
     
   }
 
-  void participant(const std::vector<std::string>* participant, int startIndex)
+  void participant(const dat::Object* participant, int startIndex)
   {
-    field("ID", (*participant)[1]);
+/*    field("ID", (*participant)[1]);
     field("Name", (*participant)[2]);
     field("Phone", (*participant)[3]);
     field("Email", (*participant)[4]);
     field("Country", (*participant)[5]);
-    field("Sex", (*participant)[6]);
+    field("Sex", (*participant)[6]);*/
 
   }
 
-  void sport(const std::vector<std::string>* sport, int startIndex)
+  void sport(const dat::Object* sport, int startIndex)
   { 
-    field("Name", (*sport)[1]);
+/*    field("Name", (*sport)[1]);
     field("ScoreType", (*sport)[2]);
     field("numofdiciplines", (*sport)[3]);
     field("e1", (*sport)[4]);
     field("e2", (*sport)[5]);
-    field("e3", (*sport)[6]);
+    field("e3", (*sport)[6]);*/
 
   }
 
-  void dicipline(const std::vector<std::string>* dicipline, int startIndex)
+  void dicipline(const dat::Object* dicipline, int startIndex)
   {
-    field("Name", (*dicipline)[1]);
+/*    field("Name", (*dicipline)[1]);
     field("Time", (*dicipline)[2]);
     field("Date", (*dicipline)[3]);
     field("Participant list", " - >");
-    field("Result list", " - >");
+    field("Result list", " - >");*/
 
   }
 }
