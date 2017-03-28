@@ -267,7 +267,16 @@ namespace menu
     footer();
   }
 
-  
+  int Nation::getNextIndex(const int userInput)
+  {  
+    selectedField = nullptr;
+
+    if (userInput >= 1 && userInput < selectedObject->size()) 
+      { selectedField = &((*selectedObject)[userInput]); }
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }
+
 
   //---------//---------//---------//---------//---------//---------//
   //
@@ -289,6 +298,16 @@ namespace menu
     footer();
   }
 
+  int Participant::getNextIndex(const int userInput)
+  {  
+    selectedField = nullptr;
+
+    if (userInput >= 1 && userInput < selectedObject->size()) 
+      { selectedField = &((*selectedObject)[userInput]); }
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }
+
   //---------//---------//---------//---------//---------//---------//
   //
   //  @class menu::Sport
@@ -308,6 +327,15 @@ namespace menu
     footer();
   }
 
+  int Sport::getNextIndex(const int userInput)
+  {  
+    selectedField = nullptr;
+
+    if (userInput >= 1 && userInput < selectedObject->size()) 
+      { selectedField = &((*selectedObject)[userInput]); }
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }
 
   //---------//---------//---------//---------//---------//---------//
   //
@@ -329,8 +357,15 @@ namespace menu
     footer();
   }
 
+  int Dicipline::getNextIndex(const int userInput)
+  {  
+    selectedField = nullptr;
 
+    if (userInput >= 1 && userInput < selectedObject->size()) 
+      { selectedField = &((*selectedObject)[userInput]); }
 
+    return ConsoleMenu::getNextIndex(userInput);
+  }
 
 
 
@@ -452,18 +487,23 @@ namespace menu
 
   void EditField::view()
   {
+    if (selectedField)
+    {
+      footer();
+      oldObject = *selectedObject;      // Save un-edited object for later
+      form::editField(*selectedField);
+      std::cout << "   1: Confirm \n";
+    }
+    else
+      { std::cout << "Field not found...\n"; } 
 
-    footer();
-    oldObject = *selectedObject;      // Save un-edited object for later
-    form::editField(*selectedField);
-    std::cout << "   1: Confirm \n";
     std::cout << "   0: Abort   \n";
     footer();
   }
 
   int EditField::getNextIndex(const int userInput)
   {
-    if (userInput == 1)
+    if (userInput == 1 && selectedField)
       { api_.update(selectedObject); }    // Updated DB with changes
     else 
       { *selectedObject = oldObject; }    // Copy old object back

@@ -43,9 +43,9 @@ private:
     new menu::PointStats      ({ 0,4          }),      // 4
     new menu::MedalStats      ({ 0,5          }),      // 5
 
-    new menu::Nation          ({ 1,6          }),      // 6
-    new menu::Participant     ({ 2,7          }),      // 7
-    new menu::Sport           ({ 3,8          }),      // 8
+    new menu::Nation          ({ 1,12          }),      // 6
+    new menu::Participant     ({ 2,13          }),      // 7
+    new menu::Sport           ({ 3,14          }),      // 8
 
     new menu::NewNation       ({ 1,  9, 6     }),      // 9
     new menu::NewParticipant  ({ 2, 10, 7     }),      // 10

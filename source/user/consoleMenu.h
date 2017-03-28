@@ -167,6 +167,7 @@ namespace menu
     Nation(const std::vector<int> args);
     virtual ~Nation(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Participant : public ConsoleMenu
@@ -175,6 +176,7 @@ namespace menu
     Participant(const std::vector<int> args);
     virtual ~Participant(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Sport : public ConsoleMenu
@@ -183,6 +185,7 @@ namespace menu
     Sport(const std::vector<int> args);
     virtual ~Sport(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   class Dicipline : public ConsoleMenu
@@ -191,6 +194,7 @@ namespace menu
     Dicipline(const std::vector<int> args);
     virtual ~Dicipline(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
 
