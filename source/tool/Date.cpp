@@ -19,7 +19,7 @@ void Date::display(){}
 //  @brief Converts the date, into an integer which can be compared.
 //    This integer is not meant to be an accurate representation of the date
 //    which is why the conversion is simplified. It is necesarry to do 
-//    and accurate conversion, as long as two equal dates gets an
+//    and accurate conversion, as long as two equal dates Gets an
 //    equal integer which can be compared to 'true'
 //
 int  Date::castToInt()

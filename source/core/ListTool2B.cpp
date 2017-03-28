@@ -39,7 +39,7 @@ Element::Element()       { elementType = 'B'; }   //  Sets element type.
 
 Element::~Element()      {     }                  //  Virtual. Empty destr.
 
-char Element::getType()  { return  elementType; } //  Return element type.
+char Element::GetType()  { return  elementType; } //  Return element type.
 
 int Element::compare(Element* el)                 //  Virtual.
 						 {  el = el; return 0; }  //  Dummy body.
@@ -71,7 +71,7 @@ void TextElement::strcpy2(char* s, const char* t)    //  Home made "strcpy"
 
 								//  Class "TextElement" member functions:
 TextElement::TextElement()                      //  Needs and reads the ID-name/text.
-      {  char id[80];   cout << "\nID-text:  ";   cin.getline(id, 80);
+      {  char id[80];   cout << "\nID-text:  ";   cin.Getline(id, 80);
 	     text = new char[strlen(id) + 1];  strcpy2(text, id);
 	     elementType = 'T';  }
 
@@ -168,12 +168,12 @@ bool List::add(Element* eptr)  {  //  Add "eptr" into the list:
 		 break;
 
      case Sorted: 
-		 litype = eptr->getType();  // Gets the element type.
+		 litype = eptr->GetType();  // Gets the element type.
 		 if (litype == 'N'  ||  litype == 'T')  {  // Legal type:
 		    if (first == nullptr)  {   //  Empty list:
 		       first = new Node;       //  Creates head
 		       last = new Node;        //    and tail.
-		       first->next = last;     //  Linking them together.
+		       first->next = last;     //  Linking them toGether.
 		       last->next = nullptr;   //  Terminating the list.
 		       if (litype == 'N')  {   //  Numeric list:
 					    //  Fill head/tail:
@@ -187,7 +187,7 @@ bool List::add(Element* eptr)  {  //  Add "eptr" into the list:
 		 }
 					    //  Element of same type as those
 					    //    those in the list:
-		    if (litype ==  first->liElem->getType()) { 
+		    if (litype ==  first->liElem->GetType()) { 
 		       newNode = new Node; //  Creates new list-node.
 		       newNode->liElem = eptr;  //  Fills with data.
 					    //  Finds the position where
@@ -246,7 +246,7 @@ Element* List::remove(int no)  {  //   ID='no' in a numeric sorted list:
 				                       //    possible relevant one. 
   if (first)  {                        //  At least head and tail:
 				                       //  Legal list type:
-     if (liType == Sorted  &&  first->liElem->getType() == 'N')  {      
+     if (liType == Sorted  &&  first->liElem->GetType() == 'N')  {      
 	    if (!isEmpty())  {             //  Something in the list:
 	       nuptr = new NumElement(no); //  Creates temporary element with
 				                       //     equal ID to the searhed one.
@@ -278,7 +278,7 @@ Element* List::remove(const char* t) { //    ID='t' in a text sorted list:
 				                       //    possible relevant one.
   if (first)  {                        //  At least head and tail:
 				                       //  Legal list type:
-     if (liType == Sorted  &&  first->liElem->getType() == 'T')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'T')  {
 	    if (!isEmpty())  {               //  Something in the list:
 	       teptr = new TextElement(t);   // Creates temporary element with
 				                         //   equal ID to the searhed one.
@@ -353,7 +353,7 @@ bool List::destroy(int no)  {
 
   if (first)  {                        //  At least head and tail:
 				                       //  Legal list type:
-     if (liType == Sorted  &&  first->liElem->getType() == 'N')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'N')  {
      	if (!isEmpty())  {            //  Something in the list:
 	       eptr = remove(no);          //  Get (if possible) relevant element.
 	       if (eptr)  {                //  Element found:
@@ -375,7 +375,7 @@ bool List::destroy(const char* t)  {
 
   if (first)  {                        //  At least head and tail:
 				                       //  Legal list type:
-     if (liType == Sorted  &&  first->liElem->getType() == 'T')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'T')  {
 	    if (!isEmpty())  {             //  Something in the list:
 	       eptr = remove(t);           //  Get (if possible) relevant element.
 	       if (eptr)  {                //  Element found:
@@ -398,7 +398,7 @@ bool List::inList(int no)  {  //    in a numeric sorted list:
 
   if (first)  {                    //  At least head and tail:
 				                   //  Legal list type: 
-     if (liType == Sorted  &&  first->liElem->getType() == 'N')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'N')  {
     	if (!isEmpty())  {            //  Something in the list:
 	       neptr = new NumElement(no);   //  Creates temporary element with
 					                     //    equal ID to the searhed one.
@@ -425,7 +425,7 @@ bool List::inList(const char* t)  { //    in a text/string sorted list:
 
   if (first)  {                        //  At least head and tail:
 				                       //  Legal list type: 
-     if (liType == Sorted  &&  first->liElem->getType() == 'T')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'T')  {
 	    if (!isEmpty())  {             //  Something in the list:
 	       teptr = new TextElement(t); //  Creates temporary element with
 					                   //    equal ID to the searhed one.
@@ -460,7 +460,7 @@ bool List::displayElement(int no)   {
 	       current->liElem->display();  //  Display the element. 
 	       displayed = true;            //  Displayment was successful.
 	    }                               //  Case:  NUMERIC SORTED list:
-     } else if (liType == Sorted  &&  first->liElem->getType() == 'N')  {
+     } else if (liType == Sorted  &&  first->liElem->GetType() == 'N')  {
 	     nuptr = new NumElement(no);    // Creates temporary element with
 					                    //   equal ID to the searhed one.
 	     current = findPosition(nuptr); // Finds the position BEFORE
@@ -487,7 +487,7 @@ bool List::displayElement(const char* t) { //  a TEXT/STRING SORTED list:
 
   if (first)  {                            //  At least head and tail:
 				                           //  Legal list type:
-     if (liType == Sorted  &&  first->liElem->getType() == 'T')  {
+     if (liType == Sorted  &&  first->liElem->GetType() == 'T')  {
      	if (!isEmpty())  {                 //  Something in the list:
 	       teptr = new TextElement(t);     // Creates temporary element with
 				                           //    equal ID to the searhed one.

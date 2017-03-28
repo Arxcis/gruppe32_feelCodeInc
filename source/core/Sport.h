@@ -7,10 +7,10 @@
 //
 
 #include <string>
-#include "../tool/char3.h"
+#include "../tool/typedef.h"
 #include "ListTool2B.h"
 
-class Sport : TextElement
+class Sport : public TextElement
 {
 private:
 	std::string name_;
@@ -20,7 +20,7 @@ private:
 public:
 	//	GETTERS
 
-    auto getName() -> std::string;
-	//ScoreType getScoreType();
-	//BetterArray getDiciplines();
+    auto GetName() -> std::string;
+	//ScoreType GetScoreType();
+	//BetterArray GetDiciplines();
 };

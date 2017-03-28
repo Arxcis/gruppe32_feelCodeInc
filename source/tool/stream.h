@@ -3,7 +3,7 @@
 // @file    core/File.h
 // @repo    gruppe32
 // @created 25.03.17 by Jonas
-// @brief   Reads and verfies lines from any stream.getline(). 
+// @brief   Reads and verfies lines from any stream.Getline(). 
 //          Could be used to read from file, and read from keyboard
 //           Maintains the correct file format.
 //

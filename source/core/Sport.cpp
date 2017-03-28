@@ -1,16 +1,16 @@
 #include "Sport.h"
 
-auto Sport::getName() -> std::string
+auto Sport::GetName() -> std::string
 {
 	return name_;
 }
 /*
-ScoreType Sport::getScoreType()
+ScoreType Sport::GetScoreType()
 {
 	return scoreType_;
 }
 
-BetterArray Sport::getDiciplines()
+BetterArray Sport::GetDiciplines()
 {
 	return events_;
 }

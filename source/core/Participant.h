@@ -7,7 +7,7 @@
 
 #include "ListTool2B.h"
 #include "../tool/Contact.h"
-#include "../tool/char3.h"
+#include "../tool/typedef.h"
 
 class Participant : public NumElement
 {
@@ -17,8 +17,8 @@ private:
   dat::char3 nation_;
   //Gender gender;
 public:
-  int getID();
-  auto getContact() -> dat::Contact;
-  auto getNation() -> dat::char3;
-  //Gender getGender();
+  int GetID();
+  auto GetContact() -> dat::Contact;
+  auto GetNation() -> dat::char3;
+  //Gender GetGender();
 };
