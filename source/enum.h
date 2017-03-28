@@ -11,5 +11,5 @@ enum Entity
   NATION,
   PARTICIPANT, 
   SPORT,
-  EVENT,
+  DICIPLINE,
 };

@@ -9,9 +9,10 @@
 //
 
 #include <iostream>   // stringstream
-#include "MenuState.h"
 #include <string>
 
+#include "MenuState.h"
+#include "consoleMenu.h"
 //
 // @namespace menu
 // @brief One important thing to note about these functions is that
@@ -26,15 +27,21 @@ namespace menu
   inline void newPage();
 
   // Menu functions
-  MenuState begin();
+  int begin();
   
   int nationBase();
   int participantBase();
   int sportBase();
+  int listBase();
+
+  int pointStats();
+  int medalStats();
 
   int sport();
   int nation();
   int participant();
-  //int eventBase();
-  //int event();
+  int dicipline();
+
+  int deleteDicipline();
+  int deleteList();
 }

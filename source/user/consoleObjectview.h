@@ -10,6 +10,8 @@
 #include <vector>
 #include <iostream>
 
+#include "consoleMenu.h"
+
 namespace view
 {
   inline 
@@ -18,5 +20,5 @@ namespace view
   void nation(const std::vector<std::string>* nation);
   void participant(const std::vector<std::string>* participant);
   void sport(const std::vector<std::string>* sport);
-  void event(const std::vector<std::string>* event);
+  void dicipline(const std::vector<std::string>* dicipline);
 }

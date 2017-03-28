@@ -26,7 +26,9 @@ int Console::run()
 { 
   int retval=1;
   std::vector<std::string>* container;
-  menuState = menu::begin();
+
+  menuState = BASE;
+
   while(menuState) 
   { 
     switch(menuState)
@@ -36,11 +38,19 @@ int Console::run()
         break;
 
       case BASE:
-        menuState = menu::begin();
+        retval = menu::begin();
+        if (!retval)          {  menuState = EXIT;             }
+        else if (retval == 1) {  menuState = NATION_BASE;      } 
+        else if (retval == 2) {  menuState = PARTICIPANT_BASE; } 
+        else if (retval == 3) {  menuState = SPORT_BASE;       }
+        else if (retval == 4) {  menuState = POINT_STATS;      }
+        else if (retval == 5) {  menuState = MEDAL_STATS;      }  
+        else                  {  menuState = BASE;             }
+
         break;
 
 
-
+      /////////////////////////////////////////////////////////////////////////
       //
       // Nation cases
       //
@@ -48,7 +58,7 @@ int Console::run()
         retval = menu::nationBase();
         if (!retval)          {  menuState = BASE;           }
         else if (retval >= 2) {  menuState = NATION_SELECT;  } 
-        else                  {  menuState = SPORT_NEW;      }
+        else                  {  menuState = NATION_NEW;      }
         break;
 
       case NATION_SELECT:
@@ -58,7 +68,7 @@ int Console::run()
 
         if (!retval)          {  menuState = NATION_BASE;  }
         else if (retval >= 2) {  menuState = NATION_EDIT;  } 
-        else                  {  menuState = NATION_NEW; }
+        else                  {  menuState = NATION_NEW;   }
         break;
 
       case NATION_NEW: 
@@ -66,18 +76,21 @@ int Console::run()
         menuState = NATION_SELECT;
         break;
 
-      case NATION_EDIT: menuState = BASE;break;
+      case NATION_EDIT: 
+        form::nationField(container, retval);
+        menuState = NATION_SELECT;
+        break;
 
 
-
+      /////////////////////////////////////////////////////////////////////////
       //
       // Participant cases
       //
       case PARTICIPANT_BASE:
         retval = menu::participantBase();
-        if (!retval)          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;                }
         else if (retval >= 2) {  menuState = PARTICIPANT_SELECT;  } 
-        else                  {  menuState = PARTICIPANT_NEW; }
+        else                  {  menuState = PARTICIPANT_NEW;     }
         break;
 
       case PARTICIPANT_SELECT:
@@ -87,25 +100,27 @@ int Console::run()
         retval = menu::participant();
         if (!retval)          {  menuState = PARTICIPANT_BASE;  }
         else if (retval >= 2) {  menuState = PARTICIPANT_EDIT;  } 
-        else                  {  menuState = PARTICIPANT_NEW; }
+        else                  {  menuState = PARTICIPANT_NEW;   }
         break;
 
       case PARTICIPANT_NEW:  
-        container = form::nation(); 
+        container = form::participant(); 
         menuState = PARTICIPANT_SELECT;
         break;
 
-      case PARTICIPANT_EDIT: menuState = BASE;break;
+      case PARTICIPANT_EDIT: 
+        form::participantField(container, retval);
+        menuState = PARTICIPANT_SELECT;
+        break;
 
 
-
+      ///////////////////////////////////////////////////////////////////////////
       //
       // Sport cases
       //
       case SPORT_BASE:
-
         retval = menu::sportBase();
-        if (!retval)          {  menuState = BASE;  }
+        if (!retval)          {  menuState = BASE;          }
         else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
         else                  {  menuState = SPORT_NEW;     }
         break;
@@ -115,18 +130,101 @@ int Console::run()
         view::sport( container );
 
         retval = menu::sport();
-        if (!retval)          {  menuState = SPORT_BASE;  }
-        else if (retval >= 2) {  menuState = SPORT_SELECT;  } 
-        else                  {  menuState = SPORT_NEW; }
+        if (!retval)                        {  menuState = SPORT_BASE;   }
+        else if(retval >= 2 && retval <= 3) {  menuState = SPORT_EDIT;        } 
+        else if (retval >= 4)               {  menuState = DICIPLINE_SELECT;  } 
+        else                                {  menuState = SPORT_NEW;         }
         break;
 
       case SPORT_NEW:         
-        container = form::nation(); 
+        container = form::sport(); 
         menuState = SPORT_SELECT;
         break;
         
-      case SPORT_EDIT: menuState = BASE;break;
+      case SPORT_EDIT:
+        form::sportField(container, retval);
+        menuState = SPORT_SELECT; 
+        break;
 
+
+      /////////////////////////////////////////////////////////////////////////
+      //
+      // Dicipline cases
+      //
+      case DICIPLINE_SELECT : 
+        container = api_.get(DICIPLINE, retval);
+        view::dicipline( container );
+        
+        retval = menu::dicipline();
+        if (!retval)                         {  menuState = SPORT_SELECT;     }
+        else if (retval == 1)                {  menuState = DICIPLINE_NEW;    } 
+        else if (retval >= 2 && retval <= 4) {  menuState = DICIPLINE_EDIT;   } 
+        else if (retval == 5)                {  menuState = LIST_BASE;        } 
+        else                                 {  menuState = DICIPLINE_SELECT; }
+        break;
+
+      case DICIPLINE_EDIT: 
+        form::diciplineField(container, retval);
+        menuState = DICIPLINE_SELECT;
+        break;
+
+      case DICIPLINE_NEW:
+        container = form::dicipline();
+        menuState = DICIPLINE_SELECT;
+        break;
+
+      case DICIPLINE_DELETE : 
+        retval = menu::deleteDicipline();
+        if(!retval)          {   menuState = DICIPLINE_SELECT;  }
+        else if(retval == 1) {   menuState = SPORT_SELECT;      }
+        else                 {   menuState = DICIPLINE_SELECT;  }
+        break;
+
+
+      /////////////////////////////////////////////////////////////////////////
+      //
+      // List cases
+      //
+      case LIST_BASE  : 
+        retval = menu::listBase();
+        if(!retval)          {   menuState = DICIPLINE_SELECT;   }
+        else if(retval == 1) {   menuState = LIST_ADD;           }
+        else if(retval == 2) {   menuState = LIST_RESULT;        }
+        else if(retval == 3) {   menuState = LIST_DELETE;        }
+        else                 {   menuState = LIST_BASE;          }
+        break;
+
+      case LIST_ADD: 
+        form::listAdd();
+        menuState = LIST_BASE;
+        break;
+      case LIST_RESULT:
+        form::listResult();
+        menuState = LIST_BASE;
+        break;
+
+      case LIST_DELETE: 
+        retval = menu::deleteList();
+        if(!retval)          {   menuState = LIST_BASE;          }
+        else if(retval == 1) {   menuState = DICIPLINE_SELECT;   }
+        else if(retval == 2) {   menuState = LIST_BASE;          }
+        else                 {   menuState = LIST_BASE;          }
+        break;
+
+
+
+      /////////////////////////////////////////////////////////////////////////
+      //
+      // Stats cases
+      //
+      case POINT_STATS: 
+        menu::pointStats();
+        menuState = BASE;
+        break;
+      case MEDAL_STATS:
+        menu::medalStats();
+        menuState = BASE;
+        break;
 
       default:
         std::cout << "Command not supported...\n";

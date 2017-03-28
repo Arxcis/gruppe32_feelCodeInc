@@ -15,7 +15,7 @@ int main()
 {
     Console console;
 
-  if(console.run())
+  if(!console.run())
   {
     printf("Program exited normally...\n");
   }
