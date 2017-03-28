@@ -6,13 +6,21 @@
 //
 
 #include <string>
-//#include "Time.h"
-//#include "Date.h"
+#include "../tool/Time.h"
+#include "../tool/Date.h"
 #include "../tool/array.h"
 #include "Participant.h"
+#include "Result.h"
+
 class Event
 {
+private:
 	std::string name_;
-	dat::array<Participant, 0> participants;
-	//dat::array<Results, 0> results;
+  dat::Time time_;
+  dat::Date date_;
+
+	dat::array<Participant> participants;
+  dat::array<Result> result;
+public:
+
 };
