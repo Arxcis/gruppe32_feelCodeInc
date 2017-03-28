@@ -6,9 +6,12 @@
 //
 
 #include <stdio.h>
+#include "user/Console.h"
 
 int main()
 { 
+  Console console;
+  console.run();
   printf("Hei main.cpp\n");
   return 0;
 }
