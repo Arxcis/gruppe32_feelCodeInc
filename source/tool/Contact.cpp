@@ -9,6 +9,9 @@
 
 using namespace dat;
 
+dat::Contact::Contact()
+{}
+
 Contact::Contact(
   std::string name_, 
   std::string address_, 

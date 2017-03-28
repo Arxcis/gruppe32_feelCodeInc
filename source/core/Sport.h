@@ -7,7 +7,6 @@
 //
 
 #include <string>
-#include "../tool/typedef.h"
 #include "ListTool2B.h"
 
 class Sport : TextElement

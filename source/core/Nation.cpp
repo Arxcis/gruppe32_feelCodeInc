@@ -1,5 +1,9 @@
 #include "Nation.h"
 
+Nation::Nation(dat::char3 shortName, std::string name, dat::Contact contact, int participantCount) :
+  shortName_(shortName), name_(name), contact_(contact), participantCount_(participantCount)
+{}
+
 auto Nation::getShortName() -> dat::char3
 { return shortName_; }
 
