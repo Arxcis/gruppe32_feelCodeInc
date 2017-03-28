@@ -1,25 +1,25 @@
-3,                       // Number of objects   
+#objects, 3;                
 
-nation,                   // Type of object
-NOR,                      // Code
-Norge,                    // Name
-150,                      // Number of athletes
-Jonas                     // Name of contact
-452000864,                // Phone
-jonas.solsvik@gmail.com,  // Email
+Type,            Nation;               
+Code,            NOR;                 // PK             
+Name,            Norge;                    
+#Participants,   150;  
+ContactName,     Jonas;                    
+ContactPhone,    452000864;             
+ContactEmail,    jonas.solsvik@gmail.com;  
 
-nation,                   // Type of object
-NOR,                      // Code
-Norge,                    // Name
-150,                      // Number of athletes
-Jonas                     // Name of contact
-452000864,                // Phone
-jonas.solsvik@gmail.com,  // Email
+Type,            Nation;               
+Code,            NOR;                 // PK             
+Name,            Norge;                    
+#Participants,   150;  
+ContactName,     Jonas;                    
+ContactPhone,    452000864;             
+ContactEmail,    jonas.solsvik@gmail.com;  
 
-nation,                   // Type of object
-NOR,                      // Code
-Norge,                    // Name
-0,                        // Number of athletes
-Jonas                     // Name of contact
-452000864,                // Phone
-jonas.solsvik@gmail.com,  // Email
+Type,            Nation;               
+Code,            NOR;                 // PK             
+Name,            Norge;                    
+#Participants,   150;  
+ContactName,     Jonas;                    
+ContactPhone,    452000864;             
+ContactEmail,    jonas.solsvik@gmail.com;  
