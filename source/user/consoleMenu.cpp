@@ -271,7 +271,7 @@ namespace menu
   {  
     selectedField = nullptr;
 
-    if (userInput >= 1 && userInput < selectedObject->size()) 
+    if (userInput >= 2 && userInput <= 6) 
       { selectedField = &((*selectedObject)[userInput]); }
 
     return ConsoleMenu::getNextIndex(userInput);
@@ -302,7 +302,7 @@ namespace menu
   {  
     selectedField = nullptr;
 
-    if (userInput >= 1 && userInput < selectedObject->size()) 
+    if (userInput >= 2 && userInput <= 6) 
       { selectedField = &((*selectedObject)[userInput]); }
 
     return ConsoleMenu::getNextIndex(userInput);
@@ -331,7 +331,7 @@ namespace menu
   {  
     selectedField = nullptr;
 
-    if (userInput >= 1 && userInput < selectedObject->size()) 
+    if (userInput >= 2 && userInput <= 2) 
       { selectedField = &((*selectedObject)[userInput]); }
 
     return ConsoleMenu::getNextIndex(userInput);
@@ -361,7 +361,7 @@ namespace menu
   {  
     selectedField = nullptr;
 
-    if (userInput >= 1 && userInput < selectedObject->size()) 
+    if (userInput >= 2 && userInput <= 3) 
       { selectedField = &((*selectedObject)[userInput]); }
 
     return ConsoleMenu::getNextIndex(userInput);
@@ -490,12 +490,11 @@ namespace menu
     if (selectedField)
     {
       footer();
-      oldObject = *selectedObject;      // Save un-edited object for later
       form::editField(*selectedField);
       std::cout << "   1: Confirm \n";
     }
     else
-      { std::cout << "Field not found...\n"; } 
+      { std::cout << "Field not allowed..\n"; } 
 
     std::cout << "   0: Abort   \n";
     footer();
@@ -505,8 +504,6 @@ namespace menu
   {
     if (userInput == 1 && selectedField)
       { api_.update(selectedObject); }    // Updated DB with changes
-    else 
-      { *selectedObject = oldObject; }    // Copy old object back
 
     return ConsoleMenu::getNextIndex(userInput);
   }  

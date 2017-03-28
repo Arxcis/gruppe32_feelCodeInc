@@ -12,7 +12,7 @@ namespace list
     //std::cout << "Nation 1-step:\n";
     int count = 2;
      for (const auto& object: (*container))
-    { 
+    {
       std::cout <<  "\t" << count << ": ";
       printField(object[1]);
       printField(object[2]);

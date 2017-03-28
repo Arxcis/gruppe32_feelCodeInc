@@ -128,7 +128,6 @@ namespace menu
   //
   //  STATS 
   //
-
   class PointStats : public ConsoleMenu
   {
   public:
@@ -146,21 +145,12 @@ namespace menu
     virtual void view() override;
   };
 
-/*
-  class ListBase : public ConsoleMenu
-  {
-  public:
-    ListBase(){}
-    virtual ~ListBase(){}
-    virtual void view() override;
-  };
  
 
   //---------//---------//---------//---------//---------//---------//
   //
   // OBJECT MENU classes
   //
-*/
   class Nation : public ConsoleMenu
   {
   public:
@@ -198,13 +188,11 @@ namespace menu
   };
 
 
+
   //---------//---------//---------//---------//---------//---------//
   //
   //  NEW MENU classes
   //
-
-
-
   class NewNation : public ConsoleMenu
   {
   public:
@@ -279,10 +267,20 @@ namespace menu
   };
 
 
+
   //---------//---------//---------//---------//---------//---------//
   //
-  //  APPEND TO LIST MENU classes
+  //  LIST MENU classes
   //
+
+  class ListBase : public ConsoleMenu
+  {
+  public:
+    ListBase(){}
+    virtual ~ListBase(){}
+    virtual void view() override;
+  };
+
 
   class AppendList : public ConsoleMenu
   {
