@@ -109,6 +109,7 @@ namespace menu
     ParticipantBase(const std::vector<int> args);
     virtual ~ParticipantBase(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
 
@@ -118,6 +119,7 @@ namespace menu
     SportBase(const std::vector<int> args);
     virtual ~SportBase(){}
     virtual void view() override;
+    virtual int getNextIndex(const int userInput) override;
   };
 
   //---------//---------//---------//---------//---------//---------//
@@ -165,11 +167,10 @@ namespace menu
     virtual void view() override;
   };
 
-/*
   class Participant : public ConsoleMenu
   {
   public:
-    Participant(){}
+    Participant(const std::vector<int> args);
     virtual ~Participant(){}
     virtual void view() override;
   };
@@ -177,7 +178,7 @@ namespace menu
   class Sport : public ConsoleMenu
   {
   public:
-    Sport(){}
+    Sport(const std::vector<int> args);
     virtual ~Sport(){}
     virtual void view() override;
   };
@@ -185,10 +186,11 @@ namespace menu
   class Dicipline : public ConsoleMenu
   {
   public:
-    Dicipline(){}
+    Dicipline(const std::vector<int> args);
     virtual ~Dicipline(){}
     virtual void view() override;
   };
+
 
   //---------//---------//---------//---------//---------//---------//
   //
@@ -200,24 +202,24 @@ namespace menu
   class NewNation : public ConsoleMenu
   {
   public:
-    NewNation(){}
+    NewNation(const std::vector<int> args);
     virtual ~NewNation(){}
     virtual void view() override;
   };
 
 
-  class NewParticpant : public ConsoleMenu
+  class NewParticipant : public ConsoleMenu
   {
   public:
-    NewParticpant(){}
-    virtual ~NewParticpant(){}
+    NewParticipant(const std::vector<int> args);
+    virtual ~NewParticipant(){}
     virtual void view() override;
   };
 
   class NewSport : public ConsoleMenu
   {
   public:
-    NewSport(){}
+    NewSport(const std::vector<int> args);
     virtual ~NewSport(){}
     virtual void view() override;
   };
@@ -225,11 +227,12 @@ namespace menu
   class NewDicipline : public ConsoleMenu
   {
   public:
-    NewDicipline(){}
+    NewDicipline(const std::vector<int> args);
     virtual ~NewDicipline(){}
     virtual void view() override;
   };
 
+/*
 
 
   //---------//---------//---------//---------//---------//---------//

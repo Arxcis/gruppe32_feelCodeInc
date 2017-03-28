@@ -27,8 +27,8 @@ public:
 
   bool update (dat::Object* object);
 
-  bool remove (Entity entity, int id);
-  auto get    (Entity entity, int id) -> dat::Object*;
+  bool remove (Entity entity, dat::Field id);
+  auto get    (Entity entity, dat::Field id) -> dat::Object*;
   auto getAll (Entity entity)  -> dat::Container*;
   void quit();
   API(){};

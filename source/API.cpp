@@ -9,7 +9,7 @@ namespace test {
   nation
   {
       {"Type",          "Nation"},               
-      {"Code",          "NOR"},                   
+      {"Code",          "NOR"},       //PK              
       {"Name",          "Norge"},                    
       {"#Participants", "150"},  
       {"ContactName",   "Jonas"},                    
@@ -21,7 +21,7 @@ namespace test {
   participant 
   {
       {"type", "Participant"},
-      {"ID"  , "1002"},
+      {"ID"  , "1002"},     //PK
       {"Name", "Jonas"},
       {"Phone", "452000864"},
       {"Email", "jonas.solsvik@gmail.com"},
@@ -33,7 +33,7 @@ namespace test {
   sport 
   {   
       {"Type", "Sport"},
-      {"Name", "Fotball"},   
+      {"Name", "Fotball"},     //PK
       {"ScoreType", "Points"},
       {"#Diciplines", "3"},
       {"1", "Final"},
@@ -45,7 +45,7 @@ namespace test {
   dicipline 
   {
       {"Type","Dicipline"},
-      {"Name", "Finale"},
+      {"Name", "Finale"},     //PK
       {"Time", "19:00"}, 
       {"Date","29.03.18"},
       {"#Participants", "2"},
@@ -134,13 +134,13 @@ bool API::update (dat::Object* object)
 //
 // @class function remove()
 //
-bool API::remove(Entity entity, int id)
+bool API::remove(Entity entity, dat::Field id)
 {  return 1;  }
 
 //
 // @class function get()
 //
-auto API::get(Entity entity, int id) -> dat::Object*
+auto API::get(Entity entity, dat::Field id) -> dat::Object*
 {
   switch(entity)
   {

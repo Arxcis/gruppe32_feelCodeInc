@@ -11,19 +11,20 @@
 #include <iostream>
 
 #include "../tool/stream.h"
+#include "../tool/typedef.h"
 
 
 namespace form
 {
-  auto nation() ->std::vector<std::string>*;
-  auto participant() ->std::vector<std::string>*;
-  auto sport() ->std::vector<std::string>*;
-  auto dicipline() ->std::vector<std::string>*;
+  auto nation() ->dat::Object*;
+  auto participant() ->dat::Object*;
+  auto sport() ->dat::Object*;
+  auto dicipline() ->dat::Object*;
 
-  void nationField(std::vector<std::string>*, const int index);     
-  void participantField(std::vector<std::string>*, const int index);
-  void sportField(std::vector<std::string>*, const int index);      
-  void diciplineField(std::vector<std::string>*, const int index);  
+  void nationField(dat::Object*, const int index);     
+  void participantField(dat::Object*, const int index);
+  void sportField(dat::Object*, const int index);      
+  void diciplineField(dat::Object*, const int index);  
 
   void listAdd();
   void listResult();    

@@ -1,83 +1,83 @@
 #include "consoleForm.h"
 
-std::vector<std::string> container;
+dat::Object formSubmit;
 
-auto form::nation() ->std::vector<std::string>*
+auto form::nation() ->dat::Object*
 {
-  std::vector<std::string> formBuilder;
-  formBuilder.push_back("Nation");
-  std::string buffer = "";
+  dat::Object 
+  nationProto
+  {            
+      {"Code",          ""},       //PK              
+      {"Name",          ""},                    
+      {"#Participants", ""},  
+      {"ContactName",   ""},                    
+      {"ContactPhone",  ""},             
+      {"ContactEmail",  ""},  
+  };
+  
+  for(auto& field: nationProto)
+    { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  stream::readString("ContryCode[ex.NOR]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Name[ex.Norway]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readInt("NumberOfParticipants[ex.150]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("ContactName[ex.Jonas Solsvik]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readPhone("ContactPhone[ex.+4745200864]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readEmail("ContactMail[ex.jonas.solsvik@gmail.com]", buffer);
-  formBuilder.push_back(buffer);
-
-  container = formBuilder;
-  return &container;
+  formSubmit = nationProto;
+  return &formSubmit;
 }
 
-auto form::participant() ->std::vector<std::string>*
+auto form::participant() ->dat::Object*
 {
-  std::vector<std::string> formBuilder;
-  formBuilder.push_back("Participant");
-  std::string buffer = "";
+  dat::Object 
+  participantProto
+  {
+      {"type", ""},
+      {"ID"  , ""},     //PK
+      {"Name", ""},
+      {"Phone", ""},
+      {"Email", ""},
+      {"CountryCode", ""},
+      {"Gender", ""},
+  };
+  
+  for(auto& field: participantProto)
+    { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  stream::readString("Name[ex.Jonas]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Phone[ex.+4745200864]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Mail[ex.jonas.solsvik@gmail.com]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("ContryCode[ex.NOR]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Gender[female=0, male=1]", buffer);
-  formBuilder.push_back(buffer);
-
-  container = formBuilder;
-  return &container;
+  formSubmit = participantProto;
+  return &formSubmit;
 }
 
-auto form::sport() ->std::vector<std::string>*
+auto form::sport() ->dat::Object*
 {
-  std::vector<std::string> formBuilder;
-  formBuilder.push_back("Sport");
-  std::string buffer = "";
+  dat::Object 
+  sportProto
+  {
+      {"Type",      ""},
+      {"Name",      ""},     //PK
+      {"ScoreType", ""},
+  };
+  
+  for(auto& field: sportProto)
+    { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  stream::readString("Name[ex.Fotball", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("ScoreType[medals=0, points=1]", buffer);
-  formBuilder.push_back(buffer);
-
-  container = formBuilder;
-  return &container;
+  formSubmit = sportProto;
+  return &formSubmit;
 }
 
-auto form::dicipline() ->std::vector<std::string>*
+auto form::dicipline() ->dat::Object*
 {
-  std::vector<std::string> formBuilder;
-  formBuilder.push_back("dicipline");
-  std::string buffer = "";
+  dat::Object 
+  diciplineProto
+  {
+      {"Type", ""},
+      {"Name", ""},     //PK
+      {"Time", ""}, 
+      {"Date", ""},
+  };
+  
+  for(auto& field: diciplineProto)
+    { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
-  stream::readString("Name[ex.10km]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Time[ex.10:00:00]", buffer);
-  formBuilder.push_back(buffer);
-  stream::readString("Date[ex.24.01.17]", buffer);
-  formBuilder.push_back(buffer);
-
-  container = formBuilder;
-  return &container;        // ship container
+  formSubmit = diciplineProto;
+  return &formSubmit;        // ship container
 }
-
+/*
 //
 // @edit field functions 
 //  @brief - This 4 functions are identical at the moment, but perhaps they will differ
@@ -121,4 +121,4 @@ void form::listResult()
 {
   std::string buffer = "";
   stream::readString("Result: ", buffer);
-}
+}*/

@@ -10,7 +10,8 @@ namespace menu
   //
 
   inline void header(std::string name)
-  { 
+  {   
+    newPage();
     std::cout << "\n"
               << "-------------------------------\n" 
               << "| " << name << "               \n"
@@ -128,7 +129,6 @@ namespace menu
     // Resetting selectedContainer here, in case I dont get anything
     // 
     selectedObject = nullptr;
-
     //
     // @ugly - This will select a container, if there exists one
     //          Subtract 2 from userInput to get the actual index of the container in the vector.
@@ -163,6 +163,16 @@ namespace menu
     footer();
   }
 
+  int ParticipantBase::getNextIndex(const int userInput)
+  {  
+    selectedObject = nullptr;
+
+    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
+      { selectedObject = &((*selectedContainer)[userInput-2]); }
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }
+
   //---------//---------//---------//---------//---------//---------//
   //
   //  @class menu::SportBase
@@ -188,6 +198,15 @@ namespace menu
     footer();
   }
 
+  int SportBase::getNextIndex(const int userInput)
+  {  
+    selectedObject = nullptr;
+
+    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
+      { selectedObject = &((*selectedContainer)[userInput-2]); }
+
+    return ConsoleMenu::getNextIndex(userInput);
+  }
 
   //---------//---------//---------//---------//---------//---------//
   //
@@ -219,11 +238,11 @@ namespace menu
 
   void MedalStats::view()
   {
-    menu::newPage();
-    menu::header("Medal stats");
+    newPage();
+    header("Medal stats");
     std::cout << "   1: Sort          \n"
               << "   0: Back         \n";
-    menu::footer();
+    footer();
   }
 
   //---------//---------//---------//---------//---------//---------//
@@ -239,13 +258,181 @@ namespace menu
 
   void Nation::view()
   {
-    menu::newPage();
-    menu::header("Nation");
+    newPage();
+    header("Nation");
       object::view(selectedObject, 1); 
     std::cout << "   0: Back        \n";
-    menu::footer();
+    footer();
+  }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::Participant
+  //
+
+  Participant::Participant(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] }};
+  }
+  void menu::Participant::view()
+  {
+    newPage();
+    header("Participant");
+      object::view(selectedObject, 1); 
+    std::cout << "   0: Back        \n";
+    footer();
+  }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::Sport
+  //
+  Sport::Sport(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] }};
+  }
+  void Sport::view()
+  {
+    newPage();
+    header("Sport");
+      object::view(selectedObject, 1); 
+    std::cout << "   0: Back        \n";
+    footer();
+  }
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::Dicipline
+  //
+  Dicipline::Dicipline(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] }};
+  }
+
+  void Dicipline::view()
+  {
+    newPage();
+    header("Dicipline");
+      object::view(selectedObject, 1); 
+    std::cout << "   0: Back        \n";
+    footer();
+  }
+
+
+
+
+
+
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::NewNation
+  //
+
+  NewNation::NewNation(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] },
+     { 2, args[2] }};
+  }
+  void NewNation::view()
+  {
+    header("New Dicipline");
+
+    selectedObject = form::nation();    
+    api_.add(selectedObject); 
+
+    std::cout << "   1: New          \n";
+    std::cout << "   2: Show Newest  \n";
+    std::cout << "   0: New          \n";
+  }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::NewParticipant
+  //
+
+  NewParticipant::NewParticipant(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] },
+     { 2, args[2] }};
+  }
+
+  void NewParticipant::view()
+  { 
+    header("New Participant");
+
+    selectedObject = form::participant();    
+    api_.add(selectedObject); 
+
+    std::cout << "   1: New        \n";
+    std::cout << "   2: Show new   \n";
+    std::cout << "   0: New        \n";
+  }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::NewSport
+  //
+
+  NewSport::NewSport(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] },
+     { 2, args[2] }};
+  }
+  void NewSport::view()
+  {
+    header("New Sport");
+
+    selectedObject = form::sport();    
+    api_.add(selectedObject); 
+
+    std::cout << "   1: New          \n";
+    std::cout << "   2: Show new  \n";
+    std::cout << "   0: New          \n";
+
+  }
+
+  //---------//---------//---------//---------//---------//---------//
+  //
+  //  @class menu::NewDicipline
+  //
+
+  NewDicipline::NewDicipline(const std::vector<int> args)
+  {
+    mapNext_ = 
+    {{ 0, args[0] },
+     { 1, args[1] },
+     { 2, args[2] }};
+  }
+
+  void NewDicipline::view()
+  {
+    header("New Dicipline");
+
+    selectedObject = form::dicipline();    
+    api_.add(selectedObject); 
+    
+    std::cout << "   1: New       \n";
+    std::cout << "   2: Show new  \n";
+    std::cout << "   0: New       \n";
   }
 }
+
+
+
 
 
 /*void menu::ListBase::view(){}
@@ -258,11 +445,10 @@ void menu::Participant::view(){}
 void menu::Sport::view(){}
 void menu::Dicipline::view(){}
 
-void menu::NewNation::view(){}
-void menu::NewParticipant::view(){}
-void menu::NewSport::view(){}
-void menu::NewDicipline::view(){}
+*/
 
+
+/*
 void menu::EditNation::view(){}
 void menu::EditParticipant::view(){}
 void menu::EditSport::view(){}
