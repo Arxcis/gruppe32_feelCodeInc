@@ -18,12 +18,7 @@
 namespace form
 {
   auto object(const std::string& type) ->dat::Object*;
-  auto nation()      ->dat::Object*;
-  auto participant() ->dat::Object*;
-  auto sport()       ->dat::Object*;
-  auto dicipline()   ->dat::Object*;
-
-  void editField(dat::Field& field);
+  void field(dat::Field& field);
 
   void listAdd();
   void listResult();    

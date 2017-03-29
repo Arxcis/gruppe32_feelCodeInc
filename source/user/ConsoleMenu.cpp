@@ -386,7 +386,7 @@ namespace menu
     if (selectedField)
     {
       footer();
-      form::editField(*selectedField);
+      form::field(*selectedField);
       api_.add(selectedObject);
     }
     else
