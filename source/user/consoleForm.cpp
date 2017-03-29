@@ -1,19 +1,66 @@
 #include "consoleForm.h"
 
-dat::Object formSubmit;
-
-auto form::nation() ->dat::Object*
+std::unordered_map<std::string, dat::Object> protos = 
 {
-  dat::Object 
-  proto
-  {            
+  {
+    "Nation",
+    {
       {"Code",          ""},       //PK              
       {"Name",          ""},                    
       {"#Participants", ""},  
       {"ContactName",   ""},                    
       {"ContactPhone",  ""},             
-      {"ContactEmail",  ""},  
-  };
+      {"ContactEmail",  ""}
+    }
+  },
+  {
+    "Participant",
+    {
+      {"Name", ""},
+      {"Phone", ""},
+      {"Email", ""},
+      {"CountryCode", ""},
+      {"Gender", ""},
+    }
+  },
+  {
+    "Sport",
+    {
+      {"Name",      ""},     //PK
+      {"ScoreType", ""},
+    }
+  },
+  {
+    "Dicipline",
+    {
+      {"Name", ""},          //PK
+      {"Time", ""}, 
+      {"Date", ""},
+    }
+  }
+};
+
+
+dat::Object formSubmit;
+
+
+auto form::object(const std::string& type) ->dat::Object*
+{
+  dat::Object 
+  proto = protos[type];
+  
+  for(auto& field: proto)
+    { stream::readString(std::get<0>(field), std::get<1>(field)); }
+
+  proto.insert(proto.begin(), {"type", type});
+  formSubmit = proto;
+  return &formSubmit;
+}
+
+auto form::nation() ->dat::Object*
+{
+  dat::Object 
+  proto = protos["Nation"];
   
   for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
@@ -26,14 +73,7 @@ auto form::nation() ->dat::Object*
 auto form::participant() ->dat::Object*
 {
   dat::Object 
-  proto
-  {
-      {"Name", ""},
-      {"Phone", ""},
-      {"Email", ""},
-      {"CountryCode", ""},
-      {"Gender", ""},
-  };
+  proto = protos["Participant"];
   
   for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
@@ -46,11 +86,7 @@ auto form::participant() ->dat::Object*
 auto form::sport() ->dat::Object*
 {
   dat::Object 
-  proto
-  {
-      {"Name",      ""},     //PK
-      {"ScoreType", ""},
-  };
+  proto = protos["Sport"];
   
   for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }
@@ -63,12 +99,7 @@ auto form::sport() ->dat::Object*
 auto form::dicipline() ->dat::Object*
 {
   dat::Object 
-  proto
-  {
-      {"Name", ""},     //PK
-      {"Time", ""}, 
-      {"Date", ""},
-  };
+  proto = protos["Dicipline"];
   
   for(auto& field: proto)
     { stream::readString(std::get<0>(field), std::get<1>(field)); }

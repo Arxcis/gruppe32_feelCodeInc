@@ -193,37 +193,15 @@ namespace menu
   //
   //  NEW MENU classes
   //
-  class NewNation : public ConsoleMenu
+
+  class NewObject : public ConsoleMenu
   {
   public:
-    NewNation(const std::vector<int> args);
-    virtual ~NewNation(){}
+    NewObject(const std::vector<int> args, const std::string type);
+    virtual ~NewObject(){}
     virtual void view() override;
-  };
-
-
-  class NewParticipant : public ConsoleMenu
-  {
-  public:
-    NewParticipant(const std::vector<int> args);
-    virtual ~NewParticipant(){}
-    virtual void view() override;
-  };
-
-  class NewSport : public ConsoleMenu
-  {
-  public:
-    NewSport(const std::vector<int> args);
-    virtual ~NewSport(){}
-    virtual void view() override;
-  };
-
-  class NewDicipline : public ConsoleMenu
-  {
-  public:
-    NewDicipline(const std::vector<int> args);
-    virtual ~NewDicipline(){}
-    virtual void view() override;
+  private:
+    const std::string type_;
   };
 
 

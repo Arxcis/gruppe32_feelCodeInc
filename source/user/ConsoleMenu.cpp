@@ -348,100 +348,33 @@ namespace menu
   }
 
 
-
-
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NewNation
+  //  @class menu::NewObject (Nation,Participant,Sport, Dicipline)
   //
 
-  NewNation::NewNation(const std::vector<int> args)
-  :ConsoleMenu(args)
+  NewObject::NewObject(const std::vector<int> args, const std::string type)
+  :ConsoleMenu(args),
+  type_(type)
   {}
 
-  void NewNation::view()
+  void NewObject::view()
   {
-    header("New Dicipline");
+    header(("New " + type_));
 
-    selectedObject = form::nation();    
+    selectedObject = form::object(type_);    
     api_.add(selectedObject); 
 
     std::cout << "   1: New          \n";
-    std::cout << "   2: Show Nation  \n";
+    std::cout << ("   2: Show " + type_ + "  \n");
     std::cout << "   0: Back         \n";
     footer();
   }
 
+  
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NewParticipant
-  //
-
-  NewParticipant::NewParticipant(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
-
-  void NewParticipant::view()
-  { 
-    header("New Participant");
-
-    selectedObject = form::participant();    
-    api_.add(selectedObject); 
-
-    std::cout << "   1: New        \n";
-    std::cout << "   2: Show Participant   \n";
-    std::cout << "   0: Back       \n";
-    footer();
-  }
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::NewSport
-  //
-
-  NewSport::NewSport(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
-
-  void NewSport::view()
-  {
-    header("New Sport");
-
-    selectedObject = form::sport();    
-    api_.add(selectedObject); 
-
-    std::cout << "   1: New         \n";
-    std::cout << "   2: Show Sport  \n";
-    std::cout << "   0: Back        \n";
-    footer();
-
-  }
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::NewDicipline
-  //
-
-  NewDicipline::NewDicipline(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
-
-  void NewDicipline::view()
-  {
-    header("New Dicipline");
-
-    selectedObject = form::dicipline();    
-    api_.add(selectedObject); 
-    
-    std::cout << "   1: New       \n";
-    std::cout << "   2: Show Dicipline  \n";
-    std::cout << "   0: Back       \n";
-    footer();
-  }
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::EditField
+  //  @class menu::EditField (Nation,Participant,Sport, Dicipline)
   //
 
   EditField::EditField(const std::vector<int> args)
@@ -463,12 +396,6 @@ namespace menu
     footer();
   }
 }
-
-
-
-
-
-
 
 /*void menu::ListBase::view(){}
 */

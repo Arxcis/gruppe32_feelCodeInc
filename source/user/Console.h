@@ -30,7 +30,7 @@ public:
 private:
   
   static bool instantiated_;
-  static const int maxMenus_ = 23;
+  static const int maxMenus_ = 16;
 
   //
   // @setup of all the connections between each menu.

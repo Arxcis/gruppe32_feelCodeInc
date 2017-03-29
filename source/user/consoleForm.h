@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <unordered_map>
 
 #include "../tool/stream.h"
 #include "../tool/typedef.h"
@@ -16,6 +17,7 @@
 
 namespace form
 {
+  auto object(const std::string& type) ->dat::Object*;
   auto nation()      ->dat::Object*;
   auto participant() ->dat::Object*;
   auto sport()       ->dat::Object*;
