@@ -4,9 +4,9 @@ Type,         Sport;
 Name,         Fotball;         //PK
 ScoreType,    Points;
 #Diciplines,  3;
-1,            Final;
-2,            Semi-final;
-3,            1/4-final;
+1,            Final;           //FK
+2,            Semi-final;      //FK
+3,            1/4-final;       //FK
 
 Type,         Sport;
 Name,         Fotball;         //PK

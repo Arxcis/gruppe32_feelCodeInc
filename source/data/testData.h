@@ -17,7 +17,8 @@
 //
 // @namespace test - testdata
 //
-namespace test {
+namespace test 
+{
   dat::Object 
   nation
   {
@@ -61,16 +62,12 @@ namespace test {
       {"Name", "Finale"},     //PK
       {"Time", "19:00"}, 
       {"Date","29.03.18"},
-      {"#Participants", "2"},
-      {"1", "1001"},
-      {"2", "1002"},
+      {"#Starts", "2"},
       {"#Results","2"},
-      {"1", "00:48:01"},
-      {"2", "00:28:55"},
   };
 
   dat::Object
-  medalStas
+  medalStats
   {
       {"Type", "MedalStats"},
       {"#Entries", "3"},
@@ -87,6 +84,24 @@ namespace test {
       {"NOR", "100"},
       {"SWE", "90"},
       {"DAN", "80"},
+  };
+
+  dat::Object
+  startList
+  {
+    {"Type", "StartList"},
+    {"#Entries", "2"},
+    {"1001", "1001"},
+    {"1002", "1002"},
+  };
+
+  dat::Object
+  resultList
+  {
+    {"Type", "ResultList"},
+    {"#Entries", "2"},
+    {"1001", "00:48:01"},
+    {"1002", "00:28:55"},
   };
 
 

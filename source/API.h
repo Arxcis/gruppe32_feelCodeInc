@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include "tool/typedef.h"
 
-//#include "data/testData.h"
 #include "enum.h"
 
 
@@ -21,15 +20,12 @@
 class API 
 { 
 public:
-  bool add (dat::Object* object);
-
+  bool add    (dat::Object* object);
   bool addAll (dat::Container* container);
-
   bool update (dat::Object* object);
-
   bool remove (Entity entity, dat::Field id);
   auto get    (Entity entity, dat::Field id) -> dat::Object*;
-  auto getAll (Entity entity)  -> dat::Container*;
+  auto getAll (Entity entity)                -> dat::Container*;
   void quit();
   API(){};
 private:

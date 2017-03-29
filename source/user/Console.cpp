@@ -22,7 +22,7 @@ Console::Console()
   
   allMenus_[NATION_SELECT] = new menu::Nation          ({ NATION_BASE, NATION_EDIT    });
   allMenus_[PART_SELECT]   = new menu::Participant     ({ PART_BASE,   PART_EDIT      });
-  allMenus_[SPORT_SELECT]  = new menu::Sport           ({ SPORT_BASE,  SPORT_EDIT     });
+  allMenus_[SPORT_SELECT]  = new menu::Sport           ({ SPORT_BASE,  SPORT_EDIT, DICI_SELECT  });
   
   allMenus_[NATION_NEW]    = new menu::NewNation       ({ NATION_BASE, NATION_NEW, NATION_SELECT   });
   allMenus_[PART_NEW]      = new menu::NewParticipant  ({ PART_BASE,   PART_NEW,   PART_SELECT     });
@@ -31,6 +31,8 @@ Console::Console()
   allMenus_[NATION_EDIT]   = new menu::EditField       ({ NATION_SELECT  });
   allMenus_[PART_EDIT]     = new menu::EditField       ({ PART_SELECT    });
   allMenus_[SPORT_EDIT]    = new menu::EditField       ({ SPORT_SELECT   });
+
+  allMenus_[DICI_SELECT]   = new menu::Dicipline       ({ SPORT_SELECT  });
 
   //
   // Advanced menus

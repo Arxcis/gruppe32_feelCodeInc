@@ -33,10 +33,10 @@ enum MenuState : int
   POINT_STATS = 13,
   MEDAL_STATS = 14,
 
-/*  DICI_SELECT = 14,
-  DICI_EDIT   = 15,
-  DICI_NEW    = 16,
-  DICI_DELETE = 17,*/
+  DICI_SELECT = 15,
+/*  DICI_EDIT   = 15,
+    DICI_NEW    = 16,
+    DICI_DELETE = 17,*/
 
 /*  LIST_BASE   = 18,
   LIST_ADD    = 19,

@@ -58,10 +58,10 @@ namespace menu
   }
 
   // Define static members
-  dat::Object     ConsoleMenu::oldObject = {{}};
-  dat::Field*     ConsoleMenu::selectedField  = nullptr;
-  dat::Object*    ConsoleMenu::selectedObject = nullptr;
-  dat::Container* ConsoleMenu::selectedContainer = nullptr;
+  dat::Field*     ConsoleMenu::selectedField        = nullptr;
+  dat::Object*    ConsoleMenu::selectedObject       = nullptr;
+  dat::Object*    ConsoleMenu::selectedObjectSecond = nullptr;
+  dat::Container* ConsoleMenu::selectedContainer    = nullptr;
 
   int ConsoleMenu::getNextIndex(const int userInput)
   {
@@ -306,9 +306,18 @@ namespace menu
     selectedField = nullptr;
 
     if (userInput >= 2 && userInput <= 2) 
-      { selectedField = &((*selectedObject)[userInput]); }
+    { 
+      selectedField = &((*selectedObject)[userInput]); 
+      return ConsoleMenu::getNextIndex(1);
+    }
 
-    return ConsoleMenu::getNextIndex(userInput);
+    else if (userInput >= 4 && userInput < selectedObject->size()) 
+    { 
+      selectedObjectSecond = api_.get(DICIPLINE, ((*selectedObject)[userInput]));
+      return ConsoleMenu::getNextIndex(2);
+    }
+    else
+      { return ConsoleMenu::getNextIndex(0); }
   }
 
   ////////////////////////////////////////////////////////////////
@@ -323,7 +332,7 @@ namespace menu
   {
     newPage();
     header("Dicipline");
-      object::view(selectedObject, 1); 
+      object::view(selectedObjectSecond, 1); 
     std::cout << "   0: Back        \n";
     footer();
   }
@@ -358,8 +367,8 @@ namespace menu
     api_.add(selectedObject); 
 
     std::cout << "   1: New          \n";
-    std::cout << "   2: Show Newest  \n";
-    std::cout << "   0: New          \n";
+    std::cout << "   2: Show Nation  \n";
+    std::cout << "   0: Back         \n";
     footer();
   }
 
@@ -380,8 +389,8 @@ namespace menu
     api_.add(selectedObject); 
 
     std::cout << "   1: New        \n";
-    std::cout << "   2: Show new   \n";
-    std::cout << "   0: New        \n";
+    std::cout << "   2: Show Participant   \n";
+    std::cout << "   0: Back       \n";
     footer();
   }
 
@@ -393,7 +402,7 @@ namespace menu
   NewSport::NewSport(const std::vector<int> args)
   :ConsoleMenu(args)
   {}
-  
+
   void NewSport::view()
   {
     header("New Sport");
@@ -401,9 +410,9 @@ namespace menu
     selectedObject = form::sport();    
     api_.add(selectedObject); 
 
-    std::cout << "   1: New          \n";
-    std::cout << "   2: Show new  \n";
-    std::cout << "   0: New          \n";
+    std::cout << "   1: New         \n";
+    std::cout << "   2: Show Sport  \n";
+    std::cout << "   0: Back        \n";
     footer();
 
   }
@@ -425,8 +434,8 @@ namespace menu
     api_.add(selectedObject); 
     
     std::cout << "   1: New       \n";
-    std::cout << "   2: Show new  \n";
-    std::cout << "   0: New       \n";
+    std::cout << "   2: Show Dicipline  \n";
+    std::cout << "   0: Back       \n";
     footer();
   }
 
@@ -445,22 +454,14 @@ namespace menu
     {
       footer();
       form::editField(*selectedField);
-      std::cout << "   1: Confirm \n";
+      api_.add(selectedObject);
     }
     else
-      { std::cout << "Field not allowed..\n"; } 
+      { std::cout << "     Field not allowed..\n"; } 
 
-    std::cout << "   0: Abort   \n";
+    std::cout << "   0: Any number to go back...  \n";
     footer();
   }
-
-  int EditField::getNextIndex(const int userInput)
-  {
-    if (userInput == 1 && selectedField)
-      { api_.update(selectedObject); }    // Updated DB with changes
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }  
 }
 
 
@@ -471,8 +472,6 @@ namespace menu
 
 /*void menu::ListBase::view(){}
 */
-
-
 
 
 /*

@@ -67,9 +67,9 @@ namespace menu
     //  variable.
     std::unordered_map<int, int> mapNext_;
 
-    static dat::Object     oldObject;         // Used to revert back a change, if the user decides to abort.
     static dat::Field*     selectedField;
     static dat::Object*    selectedObject;
+    static dat::Object*    selectedObjectSecond;
     static dat::Container* selectedContainer;
 
     //
@@ -91,7 +91,7 @@ namespace menu
     virtual void view() override;
   };
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  BASE MENU classes
   //
@@ -124,7 +124,7 @@ namespace menu
     virtual int getNextIndex(const int userInput) override;
   };
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  STATS 
   //
@@ -147,7 +147,7 @@ namespace menu
 
  
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   // OBJECT MENU classes
   //
@@ -189,7 +189,7 @@ namespace menu
 
 
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  NEW MENU classes
   //
@@ -228,7 +228,7 @@ namespace menu
 
 
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  EDIT MENU classes
   //
@@ -239,11 +239,10 @@ namespace menu
     EditField(const std::vector<int> args);
     virtual ~EditField(){}
     virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
   };
 
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  DELETE MENU classes
   //
@@ -268,7 +267,7 @@ namespace menu
 
 
 
-  //---------//---------//---------//---------//---------//---------//
+  //////////////////////////////////////////////////////////////////
   //
   //  LIST MENU classes
   //
