@@ -13,6 +13,7 @@
 // @local files
 #include "../tool/stream.h"
 #include "ConsoleMenu.h"
+#include "MenuState.h"
 
 //
 // @class Console
@@ -31,28 +32,9 @@ private:
   static bool instantiated_;
   static const int maxMenus_ = 15;
 
+  //
+  // @setup of all the connections between each menu.
+  //
   menu::ConsoleMenu* currentMenu_;
-  menu::ConsoleMenu* allMenus_[maxMenus_] = 
-  {
-    new menu::Begin           ({ -1,1,2,3,4,5 }),      // 0
-
-    new menu::NationBase      ({ 0,9,6         }),     // 1
-    new menu::ParticipantBase ({ 0,10,7        }),     // 2
-    new menu::SportBase       ({ 0,11,8        }),     // 3
-
-    new menu::PointStats      ({ 0,4          }),      // 4
-    new menu::MedalStats      ({ 0,5          }),      // 5
-
-    new menu::Nation          ({ 1,12          }),     // 6
-    new menu::Participant     ({ 2,13          }),     // 7
-    new menu::Sport           ({ 3,14, 15      }),     // 8
-
-    new menu::NewNation       ({ 1,  9, 6     }),      // 9
-    new menu::NewParticipant  ({ 2, 10, 7     }),      // 10
-    new menu::NewSport        ({ 3, 11, 8     }),      // 11
-
-    new menu::EditField       ({ 1, 6         }),      // 12  - Edit nation
-    new menu::EditField       ({ 2, 7         }),      // 13  - Edit participant
-    new menu::EditField       ({ 3, 8         }),      // 14  - Edit sport
-  };
+  menu::ConsoleMenu* allMenus_[maxMenus_]; 
 };

@@ -4,7 +4,7 @@
 namespace menu 
 {
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  HELPER FUNCTIONS
   //
@@ -46,10 +46,16 @@ namespace menu
   }
 
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  ABSTRACT BASE CLASS ConsoleMenu
   //
+
+  ConsoleMenu::ConsoleMenu(const std::vector<int> args)
+  {
+    for(int i=0; i < args.size(); i++)
+      mapNext_[i] = args[i];
+  }
 
   // Define static members
   dat::Object     ConsoleMenu::oldObject = {{}};
@@ -66,21 +72,14 @@ namespace menu
   }
 
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  BEGIN MENU
   //
 
   Begin::Begin(const std::vector<int> args)
-  {
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] },
-       { 2, args[2] },
-       { 3, args[3] },
-       { 4, args[4] },
-       { 5, args[5] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void Begin::view()
   {
@@ -96,17 +95,13 @@ namespace menu
   }
 
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NationBase
   //
   NationBase::NationBase(const std::vector<int> args)
-  {   
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] },
-       { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void NationBase::view()
   { 
@@ -140,17 +135,13 @@ namespace menu
     return ConsoleMenu::getNextIndex(userInput);
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::ParticipantBase
   //
   ParticipantBase::ParticipantBase(const std::vector<int> args)
-  {   
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] },
-       { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void ParticipantBase::view()
   {
@@ -175,17 +166,13 @@ namespace menu
     return ConsoleMenu::getNextIndex(userInput);
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::SportBase
   //
   SportBase::SportBase(const std::vector<int> args)
-  {   
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] },
-       { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void SportBase::view()
   {
@@ -210,17 +197,14 @@ namespace menu
     return ConsoleMenu::getNextIndex(userInput);
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  STATS MENU classes
   //
 
   PointStats::PointStats(const std::vector<int> args)
-  {   
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void PointStats::view()
   {
@@ -232,11 +216,8 @@ namespace menu
   }
 
   MedalStats::MedalStats(const std::vector<int> args)
-   {   
-    mapNext_ = 
-      {{ 0, args[0] },
-       { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void MedalStats::view()
   {
@@ -247,16 +228,13 @@ namespace menu
     footer();
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Nation
   //
   Nation::Nation(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void Nation::view()
   {
@@ -278,17 +256,15 @@ namespace menu
   }
 
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Participant
   //
 
   Participant::Participant(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
+
   void Participant::view()
   {
     newPage();
@@ -308,16 +284,14 @@ namespace menu
     return ConsoleMenu::getNextIndex(userInput);
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Sport
   //
   Sport::Sport(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
+
   void Sport::view()
   {
     newPage();
@@ -337,16 +311,13 @@ namespace menu
     return ConsoleMenu::getNextIndex(userInput);
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Dicipline
   //
   Dicipline::Dicipline(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void Dicipline::view()
   {
@@ -370,18 +341,15 @@ namespace menu
 
 
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewNation
   //
 
   NewNation::NewNation(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] },
-     { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
+
   void NewNation::view()
   {
     header("New Dicipline");
@@ -395,18 +363,14 @@ namespace menu
     footer();
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewParticipant
   //
 
   NewParticipant::NewParticipant(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] },
-     { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void NewParticipant::view()
   { 
@@ -421,18 +385,15 @@ namespace menu
     footer();
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewSport
   //
 
   NewSport::NewSport(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] },
-     { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
+  
   void NewSport::view()
   {
     header("New Sport");
@@ -447,18 +408,14 @@ namespace menu
 
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewDicipline
   //
 
   NewDicipline::NewDicipline(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] },
-     { 2, args[2] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void NewDicipline::view()
   {
@@ -473,17 +430,14 @@ namespace menu
     footer();
   }
 
-  //---------//---------//---------//---------//---------//---------//
+  ////////////////////////////////////////////////////////////////
   //
   //  @class menu::EditField
   //
 
   EditField::EditField(const std::vector<int> args)
-  {
-    mapNext_ = 
-    {{ 0, args[0] },
-     { 1, args[1] }};
-  }
+  :ConsoleMenu(args)
+  {}
 
   void EditField::view()
   {

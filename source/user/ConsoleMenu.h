@@ -43,7 +43,7 @@ namespace menu
   class ConsoleMenu 
   {
   public:
-    ConsoleMenu(){};
+    ConsoleMenu(const std::vector<int> args);
     virtual ~ConsoleMenu(){};
     //
     // @function view()

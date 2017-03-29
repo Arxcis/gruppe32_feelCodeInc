@@ -7,6 +7,34 @@ Console::Console()
 { 
   assert(!instantiated_);
   instantiated_ = true;
+
+  //
+  // Basic menus
+  //
+  allMenus_[START] = new menu::Begin({ EXIT, NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS }), 
+  
+  allMenus_[NATION_BASE]   = new menu::NationBase      ({ START, NATION_NEW, NATION_SELECT });     
+  allMenus_[PART_BASE]     = new menu::ParticipantBase ({ START, PART_NEW,   PART_SELECT   });     
+  allMenus_[SPORT_BASE]    = new menu::SportBase       ({ START, SPORT_NEW,  SPORT_SELECT  });     
+
+  allMenus_[POINT_STATS]   = new menu::PointStats      ({ START, POINT_STATS          }); 
+  allMenus_[MEDAL_STATS]   = new menu::MedalStats      ({ START, MEDAL_STATS          }); 
+  
+  allMenus_[NATION_SELECT] = new menu::Nation          ({ NATION_BASE, NATION_EDIT    });
+  allMenus_[PART_SELECT]   = new menu::Participant     ({ PART_BASE,   PART_EDIT      });
+  allMenus_[SPORT_SELECT]  = new menu::Sport           ({ SPORT_BASE,  SPORT_EDIT     });
+  
+  allMenus_[NATION_NEW]    = new menu::NewNation       ({ NATION_BASE, NATION_NEW, NATION_SELECT   });
+  allMenus_[PART_NEW]      = new menu::NewParticipant  ({ PART_BASE,   PART_NEW,   PART_SELECT     });
+  allMenus_[SPORT_NEW]     = new menu::NewSport        ({ SPORT_BASE,  SPORT_NEW,  SPORT_SELECT    });
+ 
+  allMenus_[NATION_EDIT]   = new menu::EditField       ({ NATION_SELECT  });
+  allMenus_[PART_EDIT]     = new menu::EditField       ({ PART_SELECT    });
+  allMenus_[SPORT_EDIT]    = new menu::EditField       ({ SPORT_SELECT   });
+
+  //
+  // Advanced menus
+  //
 }
 
 
