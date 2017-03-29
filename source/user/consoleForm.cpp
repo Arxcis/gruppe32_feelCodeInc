@@ -16,16 +16,16 @@ namespace form
 
     {
       {"Type", "Participant"},
-      {"Name",            ""},
+      {"Name",            ""},  // PK
       {"Phone",           ""},
       {"Email",           ""},
-      {"CountryCode",     ""},
+      {"CountryCode",     ""},  // FK
       {"Gender",          ""},
     },
 
     {
        {"Type",    "Sport"},
-       {"Name",         ""},   //PK
+       {"Name",         ""},    // PK
        {"ScoreType",    ""},
        {"#Diciplines", "0"},
     },
@@ -34,7 +34,7 @@ namespace form
       {"Type","Dicipline"},
       {"#Starts",     "0"},
       {"#Results",    "0"},
-      {"Name",         ""},    //PK
+      {"Name",         ""},     // PK
       {"Time",         ""}, 
       {"Date",         ""},
     },
