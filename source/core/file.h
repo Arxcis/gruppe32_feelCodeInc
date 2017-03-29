@@ -13,7 +13,7 @@
 #include "database/SportBase.h"
 
 //
-// @namespace file skriver til
+// @namespace file 
 //
 namespace file
 {
