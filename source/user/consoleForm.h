@@ -20,6 +20,6 @@ namespace form
   auto object(const std::string& type) ->dat::Object*;
   void field(dat::Field& field);
 
-  void listAdd();
-  void listResult();    
+  void startList();
+  void resultList();    
 }

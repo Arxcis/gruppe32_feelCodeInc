@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 // @local files
 #include "Date.h"
@@ -48,4 +49,6 @@ namespace stream
   template<class T> void writeTime(T& stream, const dat::Time& value);
   template<class T> void writeDate(T& stream, const dat::Date& value);
   template<class T> void writeMedals(T& stream, const dat::Medals& value);
+
+
 }

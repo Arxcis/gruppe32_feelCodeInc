@@ -40,9 +40,12 @@ std::unordered_map<std::string, dat::Object> protos =
   }
 };
 
+dat::Object formSubmit;     // Temp-object which is used to send data.
 
-dat::Object formSubmit;
-
+//
+// @function form::object - Based on type information, this function queries for a object-prototype.
+//             It then loops through this prototype, and fills in the blanks.
+//
 auto form::object(const std::string& type) ->dat::Object*
 {
   dat::Object 
@@ -57,23 +60,23 @@ auto form::object(const std::string& type) ->dat::Object*
 }
 
 //
-// @function editField
+// @function form::field
 //  @brief - A function that changes a specific field of a dat::object
 //
-void form::editField(dat::Field& field)
+void form::field(dat::Field& field)
   { stream::readString(std::get<0>(field), std::get<1>(field)); }
 
 
 //
 // Add to list @functions
 //
-void form::listAdd()
+void form::startList()
 {
   std::string buffer = "";
   stream::readString("ParticipantID: ", buffer);
 }
 
-void form::listResult()
+void form::resultList()
 {
   std::string buffer = "";
   stream::readString("Result: ", buffer);
