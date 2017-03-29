@@ -6,7 +6,7 @@ namespace form
   {
     {
       {"type",     "Nation"},
-      {"Code",           ""},       //PK              
+      {"Code",           ""},   //PK              
       {"Name",           ""},                    
       {"ContactName",    ""},                    
       {"ContactPhone",   ""},             
@@ -25,7 +25,7 @@ namespace form
 
     {
        {"Type",    "Sport"},
-       {"Name",         ""},     //PK
+       {"Name",         ""},   //PK
        {"ScoreType",    ""},
        {"#Diciplines", "0"},
     },
@@ -34,15 +34,15 @@ namespace form
       {"Type","Dicipline"},
       {"#Starts",     "0"},
       {"#Results",    "0"},
-      {"Name",         ""},            //PK
+      {"Name",         ""},    //PK
       {"Time",         ""}, 
       {"Date",         ""},
     },
   };
 
   dat::Object submit;     // Temp-object which is used to send data.
-}
 
+}
 
 //
 // @function form::object - Based on type information, this function queries for a object-prototype.
@@ -52,31 +52,44 @@ auto form::object(const std::string type) ->dat::Object*
 {
   dat::Object proto;
 
+  auto printKey = [](const std::string key)
+                  { std::cout << key << ": ";}
+
   if (type == "Nation")     
   {
     proto = form::protos[NATION];
-    std::cout << proto[1].first << ": ";  stream::readChar3(std::cin, proto[1].second);   // @robustness - PK code check if Nation-code already exists
-    std::cout << proto[2].first << ": ";  stream::readString(std::cin, proto[2].second); 
-    std::cout << proto[3].first << ": ";  stream::readString(std::cin, proto[3].second);
-    std::cout << proto[4].first << ": ";  stream::readPhone(std::cin, proto[4].second);
-    std::cout << proto[5].first << ": ";  stream::readEmail(std::cin, proto[5].second);
+
+    printKey(proto[1].first);  stream::readChar3(std::cin, proto[1].second);   // @robustness - PK code check if Nation-code already exists
+    printKey(proto[2].first);  stream::readString(std::cin, proto[2].second); 
+    printKey(proto[3].first);  stream::readString(std::cin, proto[3].second);
+    printKey(proto[4].first);  stream::readPhone(std::cin, proto[4].second);
+    printKey(proto[5].first);  stream::readEmail(std::cin, proto[5].second);
   }
   else if (type == "Participant")
   {
     proto = form::protos[PARTICIPANT];
-    std::cout << proto[1].first << ": ";  stream::readString(std::cin, proto[1].second); // @robustness - PK name, check if already exist 
-    std::cout << proto[2].first << ": ";  stream::readPhone(std::cin,  proto[2].second);
-    std::cout << proto[3].first << ": ";  stream::readEmail(std::cin,  proto[3].second);
-    std::cout << proto[4].first << ": ";  stream::readChar3(std::cin,  proto[4].second);  // @robustness - FK NationCode - check if already exist
-    std::cout << proto[5].first << ": ";  stream::readEnum(std::cin,   proto[5].second, {"Male", "Female"});
+
+    printKey(proto[1].first);  stream::readString(std::cin, proto[1].second); // @robustness - PK name, check if already exist 
+    printKey(proto[2].first);  stream::readPhone(std::cin,  proto[2].second);
+    printKey(proto[3].first);  stream::readEmail(std::cin,  proto[3].second);
+    printKey(proto[4].first);  stream::readChar3(std::cin,  proto[4].second);  // @robustness - FK NationCode - check if already exist
+    printKey(proto[5].first);  stream::readEnum(std::cin,   proto[5].second, {"Male", "Female"});
   }
   else if (type == "Sport")      
   {
     proto = form::protos[SPORT];
+
+    printKey(proto[1].first);  stream::readString(std::cin, proto[1].second);  // @robustness - PK should be checked if exst
+    printKey(proto[2].first);  stream::readEnum(std::cin,   proto[2].second, {"Point", "Medal"});
   }
   else if (type == "Dicipline")  
   {
     proto = form::protos[DICIPLINE];
+
+    printKey(proto[3].first);  stream::readString(std::cin, proto[3].second);  // @robustness - PK should be checked if exst
+    printKey(proto[4].first);  stream::readTime(std::cin,   proto[4].second);  
+    printKey(proto[5].first);  stream::readDate(std::cin,   proto[5].second);  
+    
   }
 
   form::submit = proto;
