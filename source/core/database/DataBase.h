@@ -1,19 +1,20 @@
 #pragma once
 
-#include "../../core/ListTool2B.h"
+#include "../ListTool2B.h"
 #include "../../tool/typedef.h"
 
-template<typename T>
 class DataBase
 {
 protected:
-  List elements;
+  List* elements = new List(Sorted);
 
 public:
+  DataBase();
+  virtual ~DataBase();
   void display(); 
   //bool find(dat::Object ID);
 
-  bool add(T* obj);
+  //bool add(T* obj);
   virtual bool add(dat::Object* object)=0;
 
   //T* operator[] (dat::Object ID); //instead of get(...)?

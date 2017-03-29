@@ -1,3 +1,4 @@
+#pragma once
 /* 
 |  FILE        :   ListTool2B.h
 |
@@ -26,9 +27,6 @@
 |          |                                           |
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */       
-
-#if !defined(__LISTTOOL2B_H)           //  Ensures that this file will be
-#define __LISTTOOL2B_H                 //    included only ONCE in each file.
 
 
 			     //  ENUM:
@@ -125,6 +123,3 @@ class List  {                          //  The class 'List'.
     bool displayElement(const char* t); //                             X
     void displayList();                 //      X          X           X
 }; 
-
-
-#endif

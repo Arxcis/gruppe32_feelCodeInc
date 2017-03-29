@@ -4,9 +4,11 @@
 #include "../Nation.h"
 #include "../../tool/Unpacker.h"
 
-class NationBase : public DataBase<Nation>
+class NationBase : public DataBase
 {
-  List& nations = elements; //aliasing the list
+  List* nations = elements; //aliasing the list
 public:
+  NationBase();
+  virtual ~NationBase();
   virtual bool add(dat::Object* object) override;
 };

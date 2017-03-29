@@ -19,7 +19,7 @@ struct Timer
     TimePoint startOfProgram;
 };
 
-Timer g_timer;
+extern Timer g_timer;
 
 template<std::size_t sizeOfFileName>
 void

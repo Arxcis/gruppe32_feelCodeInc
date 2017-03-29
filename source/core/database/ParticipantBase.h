@@ -5,5 +5,5 @@
 
 class ParticipantBase : public DataBase<Participant>
 {
-  List& participants = elements; //aliasing the list
+  List* participants = elements; //aliasing the list
 };

@@ -60,7 +60,7 @@ namespace file
       inFile.close();
     }
     else 
-      { PMS_ERROR("File not found at %s", filepath.c_str()); }
+      { std::cout << "Not finding file.. "<< filepath << "\n"; }//PMS_ERROR("File not found at %s", filepath.c_str()); }
 
     return currentStream;
   }
@@ -76,11 +76,11 @@ namespace file
     {
       std::string numberOfObjects;
       stream::readInt(ss, numberOfObjects);
-      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      //PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
       for (int i = 0; i < std::stoi(numberOfObjects); i++){}
     }
   }
-
+/*
   //
   // @function file::readParticipants
   //
@@ -92,7 +92,7 @@ namespace file
     {
       std::string numberOfObjects;
       stream::readInt(ss, numberOfObjects);
-      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      //PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
       for (int i = 0; i < std::stoi(numberOfObjects); i++){}
     }
   }
@@ -108,9 +108,9 @@ namespace file
     {
       std::string numberOfObjects;
       stream::readInt(ss, numberOfObjects);
-      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      //PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
       for (int i = 0; i < std::stoi(numberOfObjects); i++){}
     }
-  }
+  }*/
 
 }

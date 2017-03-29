@@ -5,5 +5,5 @@
 
 class SportBase : public DataBase<Sport>
 {
-  List& sports = elements; //aliasing the list
+  List* sports = elements; //aliasing the list
 };

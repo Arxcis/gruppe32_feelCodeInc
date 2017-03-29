@@ -1,11 +1,12 @@
 #include "API.h"
 
+
 //
 // @namespace test - testdata
 //
 namespace test 
 {
-  dat::Object 
+  const dat::Object 
   nation
   {
       {"Type",          "Nation"},               
@@ -17,7 +18,7 @@ namespace test
       {"ContactEmail",   "jonas.solsvik@gmail.com"},  
   };
 
-  dat::Object
+  const dat::Object
   participant 
   {
       {"type", "Participant"},
@@ -29,7 +30,7 @@ namespace test
       {"Gender", "Male"},
   };
 
-  dat::Object
+  const dat::Object
   sport 
   {   
       {"Type", "Sport"},
@@ -41,7 +42,7 @@ namespace test
       {"3", "1/4-final"},
   };
 
-  dat::Object
+  const dat::Object
   dicipline 
   {
       {"Type","Dicipline"},
@@ -52,7 +53,7 @@ namespace test
       {"Date","29.03.18"},
   };
 
-  dat::Object
+  const dat::Object
   medalStats
   {
       {"Type", "MedalStats"},
@@ -62,7 +63,7 @@ namespace test
       {"DAN", "0-0-5"},
   };
 
-  dat::Object
+  const dat::Object
   pointStats
   {
       {"Type", "PointStats"},
@@ -72,7 +73,7 @@ namespace test
       {"DAN", "80"},
   };
 
-  dat::Object
+  const dat::Object
   startList
   {
     {"Type", "StartList"},
@@ -81,7 +82,7 @@ namespace test
     {"1002", "1002"},
   };
 
-  dat::Object
+  const dat::Object
   resultList
   {
     {"Type", "ResultList"},
@@ -91,7 +92,7 @@ namespace test
   };
 
 
-  dat::Container
+  const dat::Container
   nations 
   {
     nation, 
@@ -99,7 +100,7 @@ namespace test
     nation,
   };  
 
-  dat::Container
+  const dat::Container
   participants 
   {
     participant, 
@@ -107,7 +108,7 @@ namespace test
     participant,
   };  
 
-  dat::Container
+  const dat::Container
   sports 
   {
     sport, 
@@ -115,7 +116,7 @@ namespace test
     sport,
   };  
 
-  dat::Container
+  const dat::Container
   diciplines 
   {
     dicipline, 
@@ -123,10 +124,15 @@ namespace test
     dicipline,
   };  
 
-  dat::Object* nulldata = nullptr;
-  dat::Container* nulldatas = nullptr;
+  const dat::Object* nulldata = nullptr;
+  const dat::Container* nulldatas = nullptr;
 }
 
+
+API::API()
+{
+  file::readNations(nationBase_, ".");
+}
 
 //
 // @class function add()
@@ -149,7 +155,7 @@ bool API::remove(const Entity entity, const dat::Field& id)
 //
 // @class function get()
 //
-auto API::get(const Entity entity, const dat::Field& id) -> dat::Object*
+auto API::get(const Entity entity, const dat::Field& id) -> const dat::Object*
 {
   switch(entity)
   {
@@ -169,7 +175,7 @@ auto API::get(const Entity entity, const dat::Field& id) -> dat::Object*
 //
 // @class function getAll()
 //
-auto API::getAll(const Entity entity)  -> dat::Container*
+auto API::getAll(const Entity entity)  -> const dat::Container*
 {
   switch(entity)
   {

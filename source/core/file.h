@@ -1,3 +1,4 @@
+#pragma once
 //
 // @file    core/File.h
 // @repo    gruppe32
@@ -11,12 +12,11 @@
 #include <sstream>    // stringstream
 #include <string>
 
-#include "../enum.h"                // For NAITON, PARTICPANT.....
 #include "../tool/stream.h"         // stream::readData()-functions
 #include "../tool/pms_log.h"        // PMS_ERROR()
 #include "database/NationBase.h"
-#include "database/ParticipantBase.h"
-#include "database/SportBase.h"
+//#include "database/ParticipantBase.h"
+//#include "database/SportBase.h"
 
 //
 // @namespace file 
@@ -25,6 +25,6 @@ namespace file
 {
   std::stringstream& getFilestream(const std::string& filepath);
   void readNations      (NationBase&      nationBase,      const std::string& filepath);
-  void readParticipants (ParticipantBase& participantBase, const std::string& filepath);
-  void readSports       (SportBase&       sportBase,       const std::string& filepath);
+  //void readParticipants (ParticipantBase& participantBase, const std::string& filepath);
+  //void readSports       (SportBase&       sportBase,       const std::string& filepath);
 }
