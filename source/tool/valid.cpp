@@ -1,5 +1,16 @@
 #include "valid.h"
 
+bool valid::isEnum(const std::string& value, const std::vector<std::string>& validStrings)
+{
+
+  for(const auto& str: validStrings)
+  { 
+    if (value == str) 
+       { return true; } 
+  }
+  return false;
+}
+
 //
 // @funciton isChar3
 //  @robustness We should also check that all letters are indeed letters and nothing else

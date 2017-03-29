@@ -62,6 +62,13 @@ namespace stream
     assert(valid::isMedals(value));
   }
 
+  void readEnum(std::stringstream& stream, std::string& value, const std::vector<std::string>& validStrings)
+  {
+    getline(stream, value, ';');
+    for(const auto& str: validStrings)
+      { assert(value == str); }
+  }
+
 ////////////////////////////////////////////////////////////////
 
               // READING FROM std::istream (cin)
@@ -158,6 +165,16 @@ namespace stream
     while(!valid::isMedals(value))
     {
       std::cout << "Not a Medals! ex: '1-3-0'\n";
+      getline(stream, value, '\n');
+    }
+  }
+
+  void readEnum(std::istream& stream, std::string& value, const std::vector<std::string>& validStrings)
+  {
+    getline(stream, value, '\n');
+    while(!valid::isEnum(value, validStrings)) 
+    {
+      std::cout << "Not a valid Enum! ex: '"+validStrings[0]+"'";
       getline(stream, value, '\n');
     }
   }

@@ -8,6 +8,7 @@
 
 
 #include <string>
+#include <vector>
 
 namespace valid
 {
@@ -20,4 +21,5 @@ namespace valid
   bool isTime(const std::string& value);
   bool isDate(const std::string& value);
   bool isMedals(const std::string& value);
+  bool isEnum(const std::string& value, const std::vector<std::string>& validStrings);
 }

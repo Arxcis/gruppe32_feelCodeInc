@@ -34,6 +34,7 @@ namespace stream
   void readTime  (std::stringstream& stream, std::string& value);
   void readDate  (std::stringstream& stream, std::string& value);
   void readMedals(std::stringstream& stream, std::string& value);
+  void readEnum  (std::stringstream& stream, std::string& value, const std::vector<std::string>& validStrings);
 
   // Reading from cin - Keyboard input
   void readChar3 (std::istream& stream, std::string& value);
@@ -45,6 +46,7 @@ namespace stream
   void readTime  (std::istream& stream, std::string& value);
   void readDate  (std::istream& stream, std::string& value);
   void readMedals(std::istream& stream, std::string& value);
+  void readEnum  (std::istream& stream, std::string& value, const std::vector<std::string>& validStrings);
 
   template<class T> void writeString(T& stream, const std::string& value, bool assert=false);
   template<class T> void writeInt   (T& stream, const std::string& value, bool assert=false);

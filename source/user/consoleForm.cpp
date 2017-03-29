@@ -55,11 +55,20 @@ auto form::object(const std::string type) ->dat::Object*
   if (type == "Nation")     
   {
     proto = form::protos[NATION];
-    stream::readString(std::cin, proto[1].second); // @robustness - check if Nation-name already exists
+    std::cout << proto[1].first << ": ";  stream::readChar3(std::cin, proto[1].second);   // @robustness - PK code check if Nation-code already exists
+    std::cout << proto[2].first << ": ";  stream::readString(std::cin, proto[2].second); 
+    std::cout << proto[3].first << ": ";  stream::readString(std::cin, proto[3].second);
+    std::cout << proto[4].first << ": ";  stream::readPhone(std::cin, proto[4].second);
+    std::cout << proto[5].first << ": ";  stream::readEmail(std::cin, proto[5].second);
   }
   else if (type == "Participant")
   {
     proto = form::protos[PARTICIPANT];
+    std::cout << proto[1].first << ": ";  stream::readString(std::cin, proto[1].second); // @robustness - PK name, check if already exist 
+    std::cout << proto[2].first << ": ";  stream::readPhone(std::cin,  proto[2].second);
+    std::cout << proto[3].first << ": ";  stream::readEmail(std::cin,  proto[3].second);
+    std::cout << proto[4].first << ": ";  stream::readChar3(std::cin,  proto[4].second);  // @robustness - FK NationCode - check if already exist
+    std::cout << proto[5].first << ": ";  stream::readEnum(std::cin,   proto[5].second, {"Male", "Female"});
   }
   else if (type == "Sport")      
   {
