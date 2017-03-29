@@ -7,10 +7,13 @@
 //
 
 #include <string>
+#include "../enum.h"      // For NAITON, PARTICPANT.....
+#include "database/NationBase.h"
+#include "database/ParticipantBase.h"
+#include "database/SportBase.h"
 
 //
-// @namespace file skriver til den respektive database ved dependency injection, istedet for
-//              globale inkludes.
+// @namespace file skriver til
 //
 namespace file
 {
