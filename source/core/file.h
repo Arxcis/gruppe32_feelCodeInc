@@ -13,7 +13,6 @@
 #include <string>
 
 #include "../tool/stream.h"         // stream::readData()-functions
-#include "../tool/pms_log.h"        // PMS_ERROR()
 #include "database/NationBase.h"
 //#include "database/ParticipantBase.h"
 //#include "database/SportBase.h"

@@ -2,7 +2,7 @@
 
 DataBase::DataBase(){}
 DataBase::~DataBase()
-  { delete elements; };
+  {  };
 
 //template<typename T>
 //inline void DataBase<T>::display()
