@@ -3,7 +3,7 @@
 namespace file
 { 
   //
-  // @prototype objects
+  // @brief prototype objects
   //
   dat::Container protos = 
   {
@@ -27,10 +27,10 @@ namespace file
     },
 
     {
-       {"Type",         ""},  // Sport
-       {"Name",         ""},  // PK
-       {"ScoreType",    ""},
-       {"#Diciplines",  ""},
+      {"Type",         ""},  // Sport
+      {"Name",         ""},  // PK
+      {"ScoreType",    ""},
+      {"#Diciplines",  ""},
     },
 
     {
@@ -43,22 +43,42 @@ namespace file
     },
   };
 
+  // 
+  // @functino file::getFilestream
   //
-  // @function file::readNations
-  //
-  void readNations      (NationBase&      nationBase,      const std::string& filepath)
-  { 
+  static std::stringstream currentStream;  // file::ss  - @global object which contains the current stream.
+
+  std::stringstream& getFilestream(const std::string& filepath)
+  {
+    
     std::ifstream inFile(filepath);
-    std::stringstream ss;
+    currentStream.str(std::string());     // Clear stream contents.
 
     if (inFile)
     {
-      ss << inFile.rdbuf();     // Flushing filestream contents into stringstream buffer
+      currentStream << inFile.rdbuf();     // Flushing filestream contents into stringstream buffer
       inFile.close();
-
     }
     else 
-      { std::cout << filepath << " not found ....\n"; }
+      { PMS_ERROR("File not found at %s", filepath.c_str()); }
+
+    return currentStream;
+  }
+
+  //
+  // @function file::readNations
+  //
+  void readNations (NationBase&  nationBase, const std::string& filepath)
+  {  
+    std::stringstream& ss = getFilestream(filepath);
+
+    if (ss)
+    {
+      std::string numberOfObjects;
+      stream::readInt(ss, numberOfObjects);
+      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      for (int i = 0; i < std::stoi(numberOfObjects); i++){}
+    }
   }
 
   //
@@ -66,17 +86,15 @@ namespace file
   //
   void readParticipants (ParticipantBase& participantBase, const std::string& filepath)
   {
-    std::ifstream inFile(filepath);
-    std::stringstream ss;
+    std::stringstream& ss = getFilestream(filepath);
 
-    if (inFile)
+    if (ss)
     {
-      ss << inFile.rdbuf();     // Flushing filestream contents into stringstream buffer
-      inFile.close();
-
+      std::string numberOfObjects;
+      stream::readInt(ss, numberOfObjects);
+      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      for (int i = 0; i < std::stoi(numberOfObjects); i++){}
     }
-    else 
-      { std::cout << filepath << " not found ....\n"; }
   }
 
   //
@@ -84,17 +102,15 @@ namespace file
   //
   void readSports       (SportBase&       sportBase,       const std::string& filepath)
   {
-    std::ifstream inFile(filepath);
-    std::stringstream ss;
+    std::stringstream& ss = getFilestream(filepath);
 
-    if (inFile)
+    if (ss) 
     {
-      ss << inFile.rdbuf();     // Flushing filestream contents into stringstream buffer
-      inFile.close();
-
+      std::string numberOfObjects;
+      stream::readInt(ss, numberOfObjects);
+      PMS_DEBUG("Found %s nationobjects...", numberOfObjects.c_str());
+      for (int i = 0; i < std::stoi(numberOfObjects); i++){}
     }
-    else 
-      { std::cout << filepath << " not found ....\n"; }
   }
 
 }
