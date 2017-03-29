@@ -53,7 +53,7 @@ auto form::object(const std::string type) ->dat::Object*
   dat::Object proto;
 
   auto printKey = [](const std::string key)
-                  { std::cout << key << ": ";}
+                    { std::cout << key << ": "; };
 
   if (type == "Nation")     
   {
