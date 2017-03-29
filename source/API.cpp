@@ -131,31 +131,25 @@ namespace test
 //
 // @class function add()
 //
-bool API::add( dat::Object* object )
+bool API::add( const dat::Object* object )
 {  return 1;  }
-
-//
-// @class function addAll()
-//
-bool API::addAll (dat::Container* container) 
-{ return 1; }
 
 //
 // @class function update()
 //
-bool API::update (dat::Object* object)
+bool API::update (const dat::Object* object)
 {  return 1;  }
 
 //
 // @class function remove()
 //
-bool API::remove(Entity entity, dat::Field id)
+bool API::remove(const Entity entity, const dat::Field& id)
 {  return 1;  }
 
 //
 // @class function get()
 //
-auto API::get(Entity entity, dat::Field id) -> dat::Object*
+auto API::get(const Entity entity, const dat::Field& id) -> dat::Object*
 {
   switch(entity)
   {
@@ -175,7 +169,7 @@ auto API::get(Entity entity, dat::Field id) -> dat::Object*
 //
 // @class function getAll()
 //
-auto API::getAll(Entity entity)  -> dat::Container*
+auto API::getAll(const Entity entity)  -> dat::Container*
 {
   switch(entity)
   {

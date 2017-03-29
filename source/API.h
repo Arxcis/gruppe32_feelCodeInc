@@ -20,12 +20,13 @@
 class API 
 { 
 public:
-  bool add    (dat::Object* object);
-  bool addAll (dat::Container* container);
-  bool update (dat::Object* object);
-  bool remove (Entity entity, dat::Field id);
-  auto get    (Entity entity, dat::Field id) -> dat::Object*;
-  auto getAll (Entity entity)                -> dat::Container*;
+  bool add       (const dat::Object* object);
+  bool update    (const dat::Object* object);
+  bool remove    (const Entity entity, const dat::Field& id);
+  auto get       (const Entity entity, const dat::Field& id) -> dat::Object*;
+  auto getAll    (const Entity entity)  -> dat::Container*;
+  auto getStarts (const dat::Field id)        -> dat::Object*;
+  auto getResults(const dat::Field id)        -> dat::Object*;
   void quit();
   API(){};
 private:
