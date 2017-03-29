@@ -43,7 +43,6 @@ std::unordered_map<std::string, dat::Object> protos =
 
 dat::Object formSubmit;
 
-
 auto form::object(const std::string& type) ->dat::Object*
 {
   dat::Object 
@@ -55,58 +54,6 @@ auto form::object(const std::string& type) ->dat::Object*
   proto.insert(proto.begin(), {"type", type});
   formSubmit = proto;
   return &formSubmit;
-}
-
-auto form::nation() ->dat::Object*
-{
-  dat::Object 
-  proto = protos["Nation"];
-  
-  for(auto& field: proto)
-    { stream::readString(std::get<0>(field), std::get<1>(field)); }
-
-  proto.insert(proto.begin(), {"type", "Nation"});
-  formSubmit = proto;
-  return &formSubmit;
-}
-
-auto form::participant() ->dat::Object*
-{
-  dat::Object 
-  proto = protos["Participant"];
-  
-  for(auto& field: proto)
-    { stream::readString(std::get<0>(field), std::get<1>(field)); }
-
-  proto.insert(proto.begin(), {"type", "Participant"});
-  formSubmit = proto;
-  return &formSubmit;
-}
-
-auto form::sport() ->dat::Object*
-{
-  dat::Object 
-  proto = protos["Sport"];
-  
-  for(auto& field: proto)
-    { stream::readString(std::get<0>(field), std::get<1>(field)); }
-
-  proto.insert(proto.begin(), {"type", "Sport"});
-  formSubmit = proto;
-  return &formSubmit;
-}
-
-auto form::dicipline() ->dat::Object*
-{
-  dat::Object 
-  proto = protos["Dicipline"];
-  
-  for(auto& field: proto)
-    { stream::readString(std::get<0>(field), std::get<1>(field)); }
-
-  proto.insert(proto.begin(), {"type", "Dicipline"});
-  formSubmit = proto;
-  return &formSubmit;        // ship container
 }
 
 //
