@@ -11,6 +11,7 @@
 
 namespace valid
 {
+  bool isChar3(const std::string& value);
   bool isInt(const std::string& value);
   bool isDouble(const std::string& value);
   bool isPhone(const std::string& value);

@@ -7,19 +7,19 @@
 //
 
 #include <string>
-#include <vector>
 #include <iostream>
-#include <unordered_map>
 
 #include "../tool/stream.h"
 #include "../tool/typedef.h"
+#include "../enum.h"
 
 
 namespace form
 {
-  auto object(const std::string& type) ->dat::Object*;
+  auto object(const std::string type) ->dat::Object*;
   void field(dat::Field& field);
 
   void startList();
   void resultList();    
 }
+

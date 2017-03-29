@@ -1,62 +1,77 @@
 #include "consoleForm.h"
 
-std::unordered_map<std::string, dat::Object> protos = 
+namespace form
 {
+  dat::Container protos = 
   {
-    "Nation",
     {
-      {"Code",          ""},       //PK              
-      {"Name",          ""},                    
-      {"#Participants", ""},  
-      {"ContactName",   ""},                    
-      {"ContactPhone",  ""},             
-      {"ContactEmail",  ""}
-    }
-  },
-  {
-    "Participant",
-    {
-      {"Name", ""},
-      {"Phone", ""},
-      {"Email", ""},
-      {"CountryCode", ""},
-      {"Gender", ""},
-    }
-  },
-  {
-    "Sport",
-    {
-      {"Name",      ""},     //PK
-      {"ScoreType", ""},
-    }
-  },
-  {
-    "Dicipline",
-    {
-      {"Name", ""},          //PK
-      {"Time", ""}, 
-      {"Date", ""},
-    }
-  }
-};
+      {"type",     "Nation"},
+      {"Code",           ""},       //PK              
+      {"Name",           ""},                    
+      {"ContactName",    ""},                    
+      {"ContactPhone",   ""},             
+      {"ContactEmail",   ""},
+      {"#Participants", "0"},  
+    },
 
-dat::Object formSubmit;     // Temp-object which is used to send data.
+    {
+      {"Type", "Participant"},
+      {"Name",            ""},
+      {"Phone",           ""},
+      {"Email",           ""},
+      {"CountryCode",     ""},
+      {"Gender",          ""},
+    },
+
+    {
+       {"Type",    "Sport"},
+       {"Name",         ""},     //PK
+       {"ScoreType",    ""},
+       {"#Diciplines", "0"},
+    },
+
+    {
+      {"Type","Dicipline"},
+      {"#Starts",     "0"},
+      {"#Results",    "0"},
+      {"Name",         ""},            //PK
+      {"Time",         ""}, 
+      {"Date",         ""},
+    },
+  };
+
+  dat::Object submit;     // Temp-object which is used to send data.
+}
+
 
 //
 // @function form::object - Based on type information, this function queries for a object-prototype.
 //             It then loops through this prototype, and fills in the blanks.
 //
-auto form::object(const std::string& type) ->dat::Object*
+auto form::object(const std::string type) ->dat::Object*
 {
-  dat::Object 
-  proto = protos[type];
-  
-  for(auto& field: proto)
-    { stream::readString(std::get<0>(field), std::get<1>(field)); }
+  dat::Object proto;
 
-  proto.insert(proto.begin(), {"type", type});
-  formSubmit = proto;
-  return &formSubmit;
+  if (type == "Nation")     
+  {
+    proto = form::protos[NATION];
+    stream::readString(std::cin, proto[1].second); // @robustness - check if Nation-name already exists
+  }
+  else if (type == "Participant")
+  {
+    proto = form::protos[PARTICIPANT];
+  }
+  else if (type == "Sport")      
+  {
+    proto = form::protos[SPORT];
+  }
+  else if (type == "Dicipline")  
+  {
+    proto = form::protos[DICIPLINE];
+  }
+
+  form::submit = proto;
+  return &form::submit;
 }
 
 //
@@ -64,7 +79,9 @@ auto form::object(const std::string& type) ->dat::Object*
 //  @brief - A function that changes a specific field of a dat::object
 //
 void form::field(dat::Field& field)
-  { stream::readString(std::get<0>(field), std::get<1>(field)); }
+{
+    std::cout << std::get<0>(field) << " : ";
+    stream::readString(std::cin, std::get<1>(field)); }
 
 
 //
@@ -73,11 +90,13 @@ void form::field(dat::Field& field)
 void form::startList()
 {
   std::string buffer = "";
-  stream::readString("ParticipantID: ", buffer);
+    std::cout << "ParticipantID: ";
+    stream::readString(std::cin, buffer);
 }
 
 void form::resultList()
 {
   std::string buffer = "";
-  stream::readString("Result: ", buffer);
+    std::cout << "Result: ";
+    stream::readString(std::cin, buffer);
 }

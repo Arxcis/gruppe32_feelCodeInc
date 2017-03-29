@@ -13,6 +13,7 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 // @local files
 #include "Date.h"
@@ -22,33 +23,35 @@
 
 namespace stream
 { 
-  // Reading from std::stingstream (preferably a file) 
-  bool readString(std::string& value, std::stringstream& ss);
-  bool readPhone(std::string& value, std::stringstream& ss);
-  bool readEmail(std::string& value, std::stringstream& ss);
-  bool readInt(int& value, std::stringstream& ss);
-  bool readDouble(double& value, std::stringstream& ss);
-  bool readTime(dat::Time& value, std::stringstream& ss);
-  bool readDate(dat::Date& value, std::stringstream& ss);
-  bool readMedals(dat::Medals& value, std::stringstream& ss);
+  int  readInt(const std::string& message);
+  // Reading from stringstream - File Input
+  void readChar3 (std::stringstream& stream, std::string& value);
+  void readString(std::stringstream& stream, std::string& value);
+  void readPhone (std::stringstream& stream, std::string& value);
+  void readEmail (std::stringstream& stream, std::string& value);
+  void readInt   (std::stringstream& stream, std::string& value);
+  void readDouble(std::stringstream& stream, std::string& value);
+  void readTime  (std::stringstream& stream, std::string& value);
+  void readDate  (std::stringstream& stream, std::string& value);
+  void readMedals(std::stringstream& stream, std::string& value);
 
-  // Reading from cin
-  void readString(const std::string& message, std::string& value);
-  void readPhone(const std::string& message, std::string& value);
-  void readEmail(const std::string& message, std::string& value);
-  void readInt(const std::string& message, std::string& value);
-  int readInt(const std::string& message);
-  void readDouble(const std::string& message, std::string& value);
-  void readTime(const std::string& message, std::string& value);
-  void readDate(const std::string& message, std::string& value);
-  void readMedals(const std::string& message, std::string& value);
+  // Reading from cin - Keyboard input
+  void readChar3 (std::istream& stream, std::string& value);
+  void readString(std::istream& stream, std::string& value);
+  void readPhone (std::istream& stream, std::string& value);
+  void readEmail (std::istream& stream, std::string& value);
+  void readInt   (std::istream& stream, std::string& value);
+  void readDouble(std::istream& stream, std::string& value);
+  void readTime  (std::istream& stream, std::string& value);
+  void readDate  (std::istream& stream, std::string& value);
+  void readMedals(std::istream& stream, std::string& value);
 
-  template<class T> void writeString(T& stream, const std::string& value);
-  template<class T> void writeInt(T& stream, const int value);
-  template<class T> void writeDouble(T& stream, const double value);
-  template<class T> void writeTime(T& stream, const dat::Time& value);
-  template<class T> void writeDate(T& stream, const dat::Date& value);
-  template<class T> void writeMedals(T& stream, const dat::Medals& value);
+  template<class T> void writeString(T& stream, const std::string& value, bool assert=false);
+  template<class T> void writeInt   (T& stream, const std::string& value, bool assert=false);
+  template<class T> void writeDouble(T& stream, const std::string& value, bool assert=false);
+  template<class T> void writeTime  (T& stream, const std::string& value, bool assert=false);
+  template<class T> void writeDate  (T& stream, const std::string& value, bool assert=false);
+  template<class T> void writeMedals(T& stream, const dat::Medals& value, bool assert=false);
 
 
 }

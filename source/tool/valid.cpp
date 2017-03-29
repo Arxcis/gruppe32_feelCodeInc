@@ -1,6 +1,15 @@
 #include "valid.h"
 
 //
+// @funciton isChar3
+//  @robustness We should also check that all letters are indeed letters and nothing else
+
+bool valid::isChar3(const std::string& value)
+{
+  return (value.size() == 3);
+}
+
+//
 // @funciton isInt
 //
 bool valid::isInt(const std::string& value)
