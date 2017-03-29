@@ -90,16 +90,16 @@ namespace test
   startList
   {
     {"Type", "StartList"},
-    {"#Entries", "2"},
-    {"1001", "1001"},
-    {"1002", "1002"},
+    {"ID", "Final"},
+    {"1001",""},
+    {"1002",""},
   };
 
   dat::Object
   resultList
   {
     {"Type", "ResultList"},
-    {"#Entries", "2"},
+    {"ID", "Final"},
     {"1001", "00:48:01"},
     {"1002", "00:28:55"},
   };

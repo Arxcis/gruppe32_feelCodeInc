@@ -1,25 +1,25 @@
-#objects, 3;                
+3;                
 
-Type,            Nation;               
-Code,            NOR;                 // PK             
-Name,            Norge;                    
-#Participants,   150;  
-ContactName,     Jonas;                    
-ContactPhone,    452000864;             
-ContactEmail,    jonas.solsvik@gmail.com;  
+Nation;               
+NOR;                 // PK             
+Norge;                    
+150;  
+Jonas;                    
+452000864;             
+jonas.solsvik@gmail.com;  
 
-Type,            Nation;               
-Code,            NOR;                 // PK             
-Name,            Norge;                    
-#Participants,   150;  
-ContactName,     Jonas;                    
-ContactPhone,    452000864;             
-ContactEmail,    jonas.solsvik@gmail.com;  
+Nation;               
+NOR;                 // PK             
+Norge;                    
+150;  
+Jonas;                    
+452000864;             
+jonas.solsvik@gmail.com;  
 
-Type,            Nation;               
-Code,            NOR;                 // PK             
-Name,            Norge;                    
-#Participants,   150;  
-ContactName,     Jonas;                    
-ContactPhone,    452000864;             
-ContactEmail,    jonas.solsvik@gmail.com;  
+Nation;               
+NOR;                 // PK             
+Norge;                    
+150;  
+Jonas;                    
+452000864;             
+jonas.solsvik@gmail.com;  

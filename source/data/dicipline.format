@@ -1,22 +1,22 @@
-#objects, 3;
+3;
 
-Type,          Dicipline;
-#Starts,       2;
-#Results,      2;
-Name,          Finale;        //PK
-Time,          19:00; 
-Date,          29.03.18;
+Dicipline;
+2;
+2;
+Finale;        //PK
+19:00; 
+29.03.18;
 
-Type,          Dicipline;
-#Starts,       2;
-#Results,      2;
-Name,          Semi-final;     //PK
-Time,          19:00; 
-Date,          29.03.18;
+Dicipline;
+2;
+2;
+Semi-final;     //PK
+19:00; 
+29.03.18;
 
-Type,          Dicipline;
-#Starts,       2;
-#Results,      2;
-Name,          1/4-final;      //PK
-Time,          19:00; 
-Date,          29.03.18;
+Dicipline;
+2;
+2;
+1/4-final;      //PK
+19:00; 
+29.03.18;
