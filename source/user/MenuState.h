@@ -34,13 +34,13 @@ enum MenuState : int
   MEDAL_STATS = 14,
 
   DICI_SELECT = 15,
-/*  DICI_EDIT   = 15,
-    DICI_NEW    = 16,
-    DICI_DELETE = 17,*/
+  DICI_EDIT   = 16,
+  DICI_DELETE = 17,
+  DICI_NEW    = 18,
 
-/*  LIST_BASE   = 18,
-  LIST_ADD    = 19,
-  LIST_RESULT = 20,
-  LIST_DELETE = 21, */
+  SLIST_SELECT = 19,
+  SLIST_DELETE = 20,
+  RLIST_SELECT = 21,
+  RLIST_DELETE = 22,
 
 };

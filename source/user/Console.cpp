@@ -32,7 +32,7 @@ Console::Console()
   allMenus_[PART_EDIT]     = new menu::EditField       ({ PART_SELECT    });
   allMenus_[SPORT_EDIT]    = new menu::EditField       ({ SPORT_SELECT   });
 
-  allMenus_[DICI_SELECT]   = new menu::Dicipline       ({ SPORT_SELECT  });
+  allMenus_[DICI_SELECT]   = new menu::Dicipline       ({ SPORT_SELECT, DICI_DELETE, SLIST_SELECT, RLIST_SELECT, DICI_EDIT});
 
   //
   // Advanced menus
