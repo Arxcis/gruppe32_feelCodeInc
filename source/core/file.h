@@ -6,8 +6,13 @@
 //          
 //
 
+#include <iostream>   // cout
+#include <fstream>    // ifstream, ofstream
+#include <sstream>    // stringstream
 #include <string>
-#include "../enum.h"      // For NAITON, PARTICPANT.....
+
+#include "../enum.h"                // For NAITON, PARTICPANT.....
+#include "../tool/stream.h"         // stream::readData()-functions
 #include "database/NationBase.h"
 #include "database/ParticipantBase.h"
 #include "database/SportBase.h"

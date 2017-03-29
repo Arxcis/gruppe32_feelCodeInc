@@ -1,5 +1,4 @@
 3;
-
 Participant;
 1002;                   //PK
 Jonas;
@@ -7,7 +6,6 @@ Jonas;
 jonas.solsvik@gmail.com;
 NOR;                    // FK
 Male;     
-
 Participant;
 1002;                   //PK
 Jonas;
@@ -15,7 +13,6 @@ Jonas;
 jonas.solsvik@gmail.com;
 NOR;
 Male;     
-
 Participant;
 1002;                   //PK
 Jonas;

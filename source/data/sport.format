@@ -1,5 +1,4 @@
 3;
-
 Sport;
 Fotball;         //PK
 Points;
@@ -7,7 +6,6 @@ Points;
 Final;           //FK
 Semi-final;      //FK
 1/4-final;       //FK
-
 Sport;
 Fotball;         //PK
 Points;
@@ -15,7 +13,6 @@ Points;
 Final;
 Semi-final;
 1/4-final;
-
 Sport;
 Fotball;         //PK
 Points;
