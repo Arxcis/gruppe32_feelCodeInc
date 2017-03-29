@@ -5,7 +5,13 @@ namespace dat {
   {}
   char3::char3(const char* s)
   {
-    strcpy_s(str, s);
+
+#ifdef WIN_32
+      strcpy_s(str, s);
+#else
+      strcpy(str, s);
+#endif
+      
   }
   inline char & char3::operator[](int i)
   {
