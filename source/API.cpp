@@ -45,11 +45,11 @@ namespace test
   dicipline 
   {
       {"Type","Dicipline"},
+      {"#Starts", "2"},
+      {"#Results","2"},
       {"Name", "Finale"},     //PK
       {"Time", "19:00"}, 
       {"Date","29.03.18"},
-      {"#Starts", "2"},
-      {"#Results","2"},
   };
 
   dat::Object
