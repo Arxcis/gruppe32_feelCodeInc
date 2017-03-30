@@ -51,40 +51,13 @@ namespace menu
   //  ABSTRACT BASE CLASS ConsoleMenu
   //
 
-  ConsoleMenu::ConsoleMenu(const std::vector<int> args)
-  {
-    for(int i=0; i < args.size(); i++)
-      mapNext_[i] = args[i];
-  }
 
-  ConsoleMenu::~ConsoleMenu()
-  {
-    delete api_;
-  }
-
-  // Define static members
-  dat::Field*     ConsoleMenu::selectedField        = nullptr;
-  dat::Object*    ConsoleMenu::selectedObject       = nullptr;
-  dat::Object*    ConsoleMenu::selectedObjectSecond = nullptr;
-  dat::Container* ConsoleMenu::selectedContainer    = nullptr;
-
-  int ConsoleMenu::getNextIndex(const int userInput)
-  {
-    const int clampedInput = clamp(userInput, (mapNext_.size()-1));
-    auto it = mapNext_.find(clampedInput);
-
-    return it->second;
-  }
 
 
   ////////////////////////////////////////////////////////////////
   //
   //  BEGIN MENU
   //
-
-  Begin::Begin(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
 
   void Begin::view()
   {
@@ -104,9 +77,7 @@ namespace menu
   //
   //  @class menu::NationBase
   //
-  NationBase::NationBase(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
+
 
   void NationBase::view()
   { 
@@ -125,28 +96,11 @@ namespace menu
     footer();
   }
 
-  int NationBase::getNextIndex(const int userInput)
-  {  
-    //
-    // Resetting selectedContainer here, in case I dont get anything
-    // 
-    selectedObject = nullptr;
-    //
-    // @ugly - This will select a container, if there exists one
-    //          Subtract 2 from userInput to get the actual index of the container in the vector.
-    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
-      { selectedObject = &((*selectedContainer)[userInput-2]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::ParticipantBase
   //
-  ParticipantBase::ParticipantBase(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
 
   void ParticipantBase::view()
   {
@@ -161,23 +115,12 @@ namespace menu
     footer();
   }
 
-  int ParticipantBase::getNextIndex(const int userInput)
-  {  
-    selectedObject = nullptr;
 
-    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
-      { selectedObject = &((*selectedContainer)[userInput-2]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::SportBase
   //
-  SportBase::SportBase(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
 
   void SportBase::view()
   {
@@ -192,24 +135,13 @@ namespace menu
     footer();
   }
 
-  int SportBase::getNextIndex(const int userInput)
-  {  
-    selectedObject = nullptr;
-
-    if (userInput >= 2 && userInput <= selectedContainer->size()+1) 
-      { selectedObject = &((*selectedContainer)[userInput-2]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  STATS MENU classes
   //
 
-  PointStats::PointStats(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
+
 
   void PointStats::view()
   {
@@ -220,27 +152,13 @@ namespace menu
     menu::footer();
   }
 
-  MedalStats::MedalStats(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
 
-  void MedalStats::view()
-  {
-    newPage();
-    header("Medal stats");
-    std::cout << "   1: Sort          \n"
-              << "   0: Back         \n";
-    footer();
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Nation
   //
-  Nation::Nation(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
-
+ 
   void Nation::view()
   {
     newPage();
@@ -250,15 +168,6 @@ namespace menu
     footer();
   }
 
-  int Nation::getNextIndex(const int userInput)
-  {  
-    selectedField = nullptr;
-
-    if (userInput >= 2 && userInput <= 6) 
-      { selectedField = &((*selectedObject)[userInput]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
 
   ////////////////////////////////////////////////////////////////
@@ -266,9 +175,7 @@ namespace menu
   //  @class menu::Participant
   //
 
-  Participant::Participant(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
+
 
   void Participant::view()
   {
@@ -279,23 +186,12 @@ namespace menu
     footer();
   }
 
-  int Participant::getNextIndex(const int userInput)
-  {  
-    selectedField = nullptr;
-
-    if (userInput >= 2 && userInput <= 6) 
-      { selectedField = &((*selectedObject)[userInput]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Sport
   //
-  Sport::Sport(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
+ 
 
   void Sport::view()
   {
@@ -306,32 +202,12 @@ namespace menu
     footer();
   }
 
-  int Sport::getNextIndex(const int userInput)
-  {  
-    selectedField = nullptr;
-
-    if (userInput >= 2 && userInput <= 2) 
-    { 
-      selectedField = &((*selectedObject)[userInput]); 
-      return ConsoleMenu::getNextIndex(1);
-    }
-
-    else if (userInput >= 4 && userInput < selectedObject->size()) 
-    { 
-      *selectedObjectSecond = *(api_->get(DICIPLINE, ((*selectedObject)[userInput])));
-      return ConsoleMenu::getNextIndex(2);
-    }
-    else
-      { return ConsoleMenu::getNextIndex(0); }
-  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Dicipline
   //
-  Dicipline::Dicipline(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
+
 
   void Dicipline::view()
   {
@@ -342,15 +218,6 @@ namespace menu
     footer();
   }
 
-  int Dicipline::getNextIndex(const int userInput)
-  {  
-    selectedField = nullptr;
-
-    if (userInput >= 2 && userInput <= 3) 
-      { selectedField = &((*selectedObject)[userInput]); }
-
-    return ConsoleMenu::getNextIndex(userInput);
-  }
 
 
   ////////////////////////////////////////////////////////////////
@@ -358,8 +225,7 @@ namespace menu
   //  @class menu::NewObject (Nation,Participant,Sport, Dicipline)
   //
 
-  NewObject::NewObject(const std::vector<int> args, const std::string type)
-  :ConsoleMenu(args),
+  NewObject::NewObject(const std::string type)
   type_(type)
   {}
 
@@ -381,10 +247,6 @@ namespace menu
   //
   //  @class menu::EditField (Nation,Participant,Sport, Dicipline)
   //
-
-  EditField::EditField(const std::vector<int> args)
-  :ConsoleMenu(args)
-  {}
 
   void EditField::view()
   {

@@ -10,6 +10,7 @@
 #include <string>
 #include <tuple>
 #include <vector>
+#include <unordered_map>
 
 namespace dat
 {   
@@ -45,4 +46,8 @@ namespace dat
     //    
     using Container = GenericContainer<Object>; 
 
+    //
+    // @typedef dat::transitionMap - A map can be used to store information about different states in a program
+    //     
+    using TransitionMap = std::unordered_map<int, std::pair<int, std::string>>
 }

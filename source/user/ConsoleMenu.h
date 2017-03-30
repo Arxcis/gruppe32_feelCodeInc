@@ -19,38 +19,34 @@
 #include <unordered_map>
 #include <utility>
 
-#include "../API.h"   // @global dependency
-#include "../enum.h"
+#include "../tool/typedef.h"
+#include "MenuState.h"
 #include "consoleForm.h"
 #include "consoleObjectView.h"
 #include "consoleList.h"
 
 namespace menu 
 {  
-  static API api_;
-  //
-  // Helper functions
-  //
-  inline void header(std::string);
-  inline void footer();
-  inline void newPage();
 
-  inline int clamp(const int input, const int max);
+
 
   //
-  // @abstract class Menu
+  // @abstract class ConsoleMenu
   //
   class ConsoleMenu 
   {
   public:
-    ConsoleMenu(const std::vector<int> args);
-    virtual ~ConsoleMenu();
+    ConsoleMenu(){};
+    virtual ~ConsoleMenu(){};
     //
-    // @function view()
-    //  Views all static and dynamic content of the current menu
+    // @function view() 
+    //  Different virtual functions which children might implement.
     //
-    virtual void view()=0;
-
+    virtual void view(dat::TransitionMap& map){}
+    virtual void view(dat::TransitionMap& map, dat::Container& container){}
+    virtual void view(dat::TransitionMap& map, dat::Container& container){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object){}
+    virtual void view(dat::TransitionMap& map, dat::Field&  field){}
     //
     // @function getNext()
     //  The input-handler catches a relative index from the user.
@@ -59,37 +55,45 @@ namespace menu
     //
     virtual int getNextIndex(const int userInput); 
 
-  protected:
-    //
-    // @map   
-    // Holds the key-indicies to the next menu
-    //  Each menu should have their own unique initialization of this
-    //  variable.
-    std::unordered_map<int, int> mapNext_;
-
-    static dat::Field*     selectedField;
-    static dat::Object*    selectedObject;
-    static dat::Object*    selectedObjectSecond;
-    static dat::Container* selectedContainer;
 
     //
-    // @static 
-    //  If the user selects a specific object from a list, the object
-    //  in focus gets stored here. This is a way for communication between
-    //   the selection menus, and the objectView-menus
+    // @class funciton - small helper functions
     //
+    inline void footer()  const;
+    inline void newPage() const;
+    inline void header(std::string) const;
+    inline int  clamp(const int input, const int max) const;
 
-    static int selectedObject_;  
-    API* api_ = new API();
+    //
+    // @class funciton registerStaticOption() menu-option
+    //    1. Prints an option. Registeres
+    // 
+    constexpr inline void registerStaticOption(
+      dat::TransitionMap&,
+      const int select, 
+      const std::string& text,
+      const int menuPointer);
+
+    //
+    // @class function registerDynamicOption()
+    //    Should
+    //
+    inline void registerDynamicOption(
+      dat::TransitionMap&,
+      int select, 
+      std::string& text,
+      const int menuPointer,
+      std::string& id,
+    );
   };
 
 
   class Begin : public ConsoleMenu
   {
   public:
-    Begin(const std::vector<int> args);
+    Begin(){};
     virtual ~Begin(){};
-    virtual void view() override;
+    virtual void view(dat::TransitionMap& map) override;
   };
 
   //////////////////////////////////////////////////////////////////
@@ -99,30 +103,27 @@ namespace menu
   class NationBase : public ConsoleMenu
   {
   public:
-    NationBase(const std::vector<int> args);
+    NationBase(){};
     virtual ~NationBase(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
 
   class ParticipantBase : public ConsoleMenu
   {
   public:
-    ParticipantBase(const std::vector<int> args);
+    ParticipantBase(){};
     virtual ~ParticipantBase(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
 
   class SportBase : public ConsoleMenu
   {
   public:
-    SportBase(const std::vector<int> args);
+    SportBase(){};
     virtual ~SportBase(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
   //////////////////////////////////////////////////////////////////
@@ -132,18 +133,18 @@ namespace menu
   class PointStats : public ConsoleMenu
   {
   public:
-    PointStats(const std::vector<int> args);
+    PointStats(){};
     virtual ~PointStats(){}
-    virtual void view() override;
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
 
   class MedalStats : public ConsoleMenu
   {
   public:
-    MedalStats(const std::vector<int> args);
+    MedalStats(){};
     virtual ~MedalStats(){}
-    virtual void view() override;
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
  
@@ -155,37 +156,33 @@ namespace menu
   class Nation : public ConsoleMenu
   {
   public:
-    Nation(const std::vector<int> args);
+    Nation(){};
     virtual ~Nation(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
   class Participant : public ConsoleMenu
   {
   public:
-    Participant(const std::vector<int> args);
+    Participant(){};
     virtual ~Participant(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
   class Sport : public ConsoleMenu
   {
   public:
-    Sport(const std::vector<int> args);
+    Sport(){};
     virtual ~Sport(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
   class Dicipline : public ConsoleMenu
   {
   public:
-    Dicipline(const std::vector<int> args);
+    Dicipline(){};
     virtual ~Dicipline(){}
-    virtual void view() override;
-    virtual int getNextIndex(const int userInput) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
 
@@ -198,9 +195,9 @@ namespace menu
   class NewObject : public ConsoleMenu
   {
   public:
-    NewObject(const std::vector<int> args, const std::string type);
+    NewObject(const std::string type);
     virtual ~NewObject(){}
-    virtual void view() override;
+    virtual void view(dat::TransitionMap& map) override;
   private:
     const std::string type_;
   };
@@ -215,9 +212,9 @@ namespace menu
   class EditField : public ConsoleMenu
   {
   public:
-    EditField(const std::vector<int> args);
+    EditField(){};
     virtual ~EditField(){}
-    virtual void view() override;
+    virtual void view(dat::TransitionMap& map, dat::Field& object) override;
   };
 
 

@@ -11,6 +11,7 @@
 #include <string>
 
 // @local files
+#include "../tool/typedef.h"
 #include "../tool/stream.h"
 #include "../API.h"
 #include "ConsoleMenu.h"
