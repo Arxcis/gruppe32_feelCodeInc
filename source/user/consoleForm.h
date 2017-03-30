@@ -16,7 +16,7 @@
 
 namespace form
 {
-  auto object(const std::string type) ->dat::Object*;
+  auto object(const std::string type) ->dat::Object&;
   void field(dat::Field& field);
 
   void startList();

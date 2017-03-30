@@ -50,7 +50,7 @@ namespace menu
     const std::string& text) const
   {  
     std::cout << "   " << select << "-> " << text << " \n";  // 1. Write option to screen
-    map[select] = { menuPointer, "" };             // 2. Bind option to next menu
+    map[select] = { menuPointer, "" };                       // 2. Bind option to next menu
   }
 
   inline void ConsoleMenu::bindDynamicOption(
@@ -62,7 +62,7 @@ namespace menu
   {
     
     std::cout << "   " << select << "-> " << text << "\n"; // 1. Write option to screen
-    map[select] = { menuPointer, id };             // 2. Bind option AND object to next menu
+    map[select] = { menuPointer, id };                     // 2. Bind option AND object to next menu
   }
 
   ////////////////////////////////////////////////////////////////
@@ -164,8 +164,9 @@ namespace menu
 
   void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
   {
-   std::cout << "Not implemented yet...\n";
-   bindStaticOption(map, 0, START, "Back to start");
+   newObject = form::object(type_);
+   bindStaticOption(map, 1, nextState_[1], "New  " + type_);
+   bindStaticOption(map, 0, nextState_[0], "Back");
   }
 
   
@@ -181,6 +182,21 @@ namespace menu
   {
    std::cout << "Not implemented yet...\n";
    bindStaticOption(map, 0, START, "Back to start");
+  }
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::Error 
+  //
+  Error::Error(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {}
+
+  void Error::view()
+  {
+   header("Error");
+   std::cout << type_;
+   footer();
   }
 }
 

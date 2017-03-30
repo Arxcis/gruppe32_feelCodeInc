@@ -174,7 +174,10 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isEnum(value, validStrings)) 
     {
-      std::cout << "Not a valid Enum! ex: '"+validStrings[0]+"'";
+      std::cout << "Not a valid Enum! ex: ";
+      for(const auto& string: validStrings)
+        { std::cout << string << ", "; }
+      std::cout << "\n";
       getline(stream, value, '\n');
     }
   }

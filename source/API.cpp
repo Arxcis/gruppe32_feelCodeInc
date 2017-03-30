@@ -157,13 +157,13 @@ bool API::update (dat::Object& object)
 //
 // @class function remove()
 //
-bool API::remove(const Entity entity, dat::Field& id)
+bool API::remove(const Entity entity, const std::string& id)
 {  return 1;  }
 
 //
 // @class function get()
 //
-auto API::get(const Entity entity, dat::Field& id) -> const dat::Object&
+auto API::get(const Entity entity, const std::string& id) -> const dat::Object&
 {
   switch(entity)
   {

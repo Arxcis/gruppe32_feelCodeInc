@@ -22,7 +22,6 @@
 #include "../tool/typedef.h"
 #include "../enum.h"
 #include "consoleForm.h"
-#include "consoleObjectView.h"
 
 namespace menu 
 {  
@@ -41,6 +40,7 @@ namespace menu
     //  Different virtual functions which children might implement.
     //   Not implemented in the base class
     //
+    virtual void view(){};
     virtual void view(dat::TransitionMap& map){}
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
@@ -159,5 +159,17 @@ namespace menu
     EditField(const std::string type, const std::vector<int> nextState);
     virtual ~EditField(){}
     virtual void view(dat::TransitionMap& map, dat::Field& field) override;
+  };
+
+  /////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::Error
+  //
+  class Error : public ConsoleMenu
+  {
+  public:
+    Error(const std::string type, const std::vector<int> nextState);
+    virtual ~Error(){}
+    virtual void view() override;
   };
 }

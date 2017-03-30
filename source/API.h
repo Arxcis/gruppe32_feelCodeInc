@@ -23,8 +23,8 @@ class API
 public:
   bool add       (dat::Object& object);
   bool update    (dat::Object& object);
-  bool remove    (const Entity entity, dat::Field& id);
-  auto get       (const Entity entity, dat::Field& id) -> const dat::Object&;
+  bool remove    (const Entity entity, const std::string& id);
+  auto get       (const Entity entity, const std::string& id) -> const dat::Object&;
   auto getAll    (const Entity entity)                 -> const dat::Container&;
 
   auto getStarts (const dat::Field id)  -> const dat::Object&;

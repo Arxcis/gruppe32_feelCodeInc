@@ -48,7 +48,7 @@ namespace form
 // @function form::object - Based on type information, this function queries for a object-prototype.
 //             It then loops through this prototype, and fills in the blanks.
 //
-auto form::object(const std::string type) ->dat::Object*
+auto form::object(const std::string type) ->dat::Object&
 {
   dat::Object proto;
 
@@ -80,7 +80,7 @@ auto form::object(const std::string type) ->dat::Object*
     proto = form::protos[SPORT];
 
     printKey(proto[1].first);  stream::readString(std::cin, proto[1].second);  // @robustness - PK should be checked if exst
-    printKey(proto[2].first);  stream::readEnum(std::cin,   proto[2].second, {"Point", "Medal"});
+    printKey(proto[2].first);  stream::readEnum(std::cin,   proto[2].second, {"Point", "Time"});
   }
   else if (type == "Dicipline")  
   {
@@ -93,7 +93,7 @@ auto form::object(const std::string type) ->dat::Object*
   }
 
   form::submit = proto;
-  return &form::submit;
+  return form::submit;
 }
 
 //

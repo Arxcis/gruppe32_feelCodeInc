@@ -50,6 +50,9 @@ private:
   dat::Field         field;
 
   dat::TransitionMap  currentMap;
+  int                 input = 0;
+  int                 clampedInput = 0;
+  int                 tempMenu     = 0;
   int                 selectedMenu = START;
   dat::Container&     selectedContainer = container;
   dat::Object&        selectedObject = object;
