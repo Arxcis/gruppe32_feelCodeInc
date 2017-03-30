@@ -1,12 +1,16 @@
 #pragma once
 
-#include "DataBase.h"
 #include "../Nation.h"
 #include "../../tool/Unpacker.h"
-
-class NationBase : public DataBase<Nation>
+#include "DataBase.h"
+namespace db
 {
-  List& nations = elements; //aliasing the list
-public:
-  virtual Nation* NationBase::unpack(dat::Object * object) override;
-};
+  class NationBase : public DataBase<Nation>
+  {
+    List& nations; //aliasing the list
+  public:
+    NationBase();
+    // Inherited via DataBase
+    virtual Nation * unpack(dat::Object * object) override;
+  };
+}
