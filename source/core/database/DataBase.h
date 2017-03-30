@@ -16,7 +16,7 @@ namespace db
     { delete elements; }
 
     void display()
-    { return elements.displayList(); }
+    { return elements->displayList(); }
 
     bool add(dat::Object * object)
     {

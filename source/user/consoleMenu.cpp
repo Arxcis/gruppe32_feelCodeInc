@@ -126,11 +126,11 @@ namespace menu
   //
   //  @class menu::Stats
   //
-  Stats::Stats(const std::string type, const std::vector<int> nextState)
+  StatsMenu::StatsMenu(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
-  void Stats::view(dat::TransitionMap& map, dat::Object& object)
+  void StatsMenu::view(dat::TransitionMap& map, dat::Object& object)
   {
     newPage();
     header(type_ + " stats");
