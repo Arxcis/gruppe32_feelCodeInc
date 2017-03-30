@@ -1,8 +1,11 @@
 #include "Nation.h"
 
 Nation::Nation(dat::char3 shortName, std::string name, dat::Contact contact, int participantCount) : 
-  /*TextElement(shortName) @TODO make a char3 to char conversion (implicit pls),*/
-  shortName_(shortName), name_(name), contact_(contact), participantCount_(participantCount){}
+  TextElement(shortName),
+  shortName_(shortName), 
+  name_(name), 
+  contact_(contact), 
+  participantCount_(participantCount){}
 
 Nation::~Nation()
 {}
@@ -18,3 +21,9 @@ auto Nation::getContact() -> dat::Contact
 
 int Nation::getParticipantCount()
 {	return participantCount_; }
+
+void Nation::display()
+{
+  printf("Nation Code:\t%s\nNation Name:\t%s\nParticipants:\t%d\n", (char*)shortName_, name_.c_str(), participantCount_);
+  contact_.display();
+}

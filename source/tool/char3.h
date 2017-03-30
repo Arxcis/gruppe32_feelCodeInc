@@ -9,5 +9,6 @@ namespace dat {
     char3();
     char3(const char* s);
     inline char & operator[](int i);
+    operator char*() const;
   };
 }

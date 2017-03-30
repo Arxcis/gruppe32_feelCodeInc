@@ -10,6 +10,7 @@
 #include "../tool/char3.h"
 #include "../tool/Contact.h"
 #include "ListTool2B.h"
+#include <iostream>
 
 
 
@@ -31,4 +32,7 @@ public:
 	auto getName() -> std::string;
 	auto getContact() -> dat::Contact;
 	int getParticipantCount();
+
+  // Inherited via TextElement
+  virtual void display() override;
 };

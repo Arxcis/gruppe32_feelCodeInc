@@ -21,4 +21,9 @@ Contact::Contact(
 ,phone(phone_)
 {}
 
+void dat::Contact::display()
+{
+  printf("Name:\t%s\nAddress:\t%s\nPhone:\t%d\n", name.c_str(), address.c_str(), phone.c_str());
+}
+
 
