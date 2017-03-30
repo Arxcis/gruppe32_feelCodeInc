@@ -11,4 +11,6 @@ public:
   NationBase();
   virtual ~NationBase();
   virtual bool add(dat::Object* object) override;
+
+  virtual void readFile();
 };

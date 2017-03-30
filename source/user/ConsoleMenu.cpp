@@ -43,6 +43,15 @@ namespace menu
   //
   // @class functions - bind menu option functions
   //
+
+  inline void ConsoleMenu::illegalOption(
+    const std::string& text) const
+  {  
+    std::cout << "  " << " --- " << text << " \n";  // 1. Write option to screen
+    
+  }
+
+
   inline void ConsoleMenu::bindStaticOption(
     dat::TransitionMap& map,
     const int select, 
@@ -132,23 +141,71 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::Object
+  //  @class menu::NationMenu
   //
-  Object::Object(const std::string type, const std::vector<int> nextState)
+  NationMenu::NationMenu(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
-  void Object::view(dat::TransitionMap& map, dat::Object& object) 
+  void NationMenu::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header(type_);
     int it=1;
-    for(const dat::Field& field: object)
-    {
-      bindDynamicOption(map, it, nextState_[1], field.first, 
-                        (field.first + ": " + field.second));
-      it++;
-    }
+
+    illegalOption(object[1].first + ": " + object[1].second);
+    bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
+    illegalOption(object[3].first + ": " + object[3].second);
+    bindDynamicOption(map, 2, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
+    bindDynamicOption(map, 3, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second));
+    bindDynamicOption(map, 4, nextState_[1], object[6].first, (object[6].first + ": " + object[6].second));
+    
+    bindStaticOption(map, 0, nextState_[0], "Back     ");
+    footer();
+  }
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::NationMenu
+  //
+  ParticipantMenu::ParticipantMenu(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void ParticipantMenu::view(dat::TransitionMap& map, dat::Object& object) 
+  {
+    newPage();
+    header(type_);
+
+    illegalOption(object[1].first + ": " + object[1].second);
+    bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
+    bindDynamicOption(map, 2, nextState_[1], object[3].first, (object[3].first + ": " + object[3].second));
+    bindDynamicOption(map, 3, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
+    bindDynamicOption(map, 4, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second)); // @robustness check if country exists
+
+    bindStaticOption(map, 0, nextState_[0], "Back     ");
+    footer();
+  }
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::NationMenu
+  //
+  SportMenu::SportMenu(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void SportMenu::view(dat::TransitionMap& map, dat::Object& object) 
+  {
+    newPage();
+    header(type_);
+
+    illegalOption(object[1].first + ": " + object[1].second);
+    bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
+    illegalOption(object[3].first + ": " + object[3].second);
+    illegalOption(object[4].first + ": " + object[4].second);
+    illegalOption(object[5].first + ": " + object[5].second);
+
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -169,6 +226,7 @@ namespace menu
    bindStaticOption(map, 0, nextState_[0], "Back");
   }
 
+  
   
   ////////////////////////////////////////////////////////////////
   //

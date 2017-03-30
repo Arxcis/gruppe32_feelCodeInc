@@ -6,4 +6,7 @@
 class SportBase : public DataBase<Sport>
 {
   List* sports = elements; //aliasing the list
+
+public:
+  virtual void readFile();
 };

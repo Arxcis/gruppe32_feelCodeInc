@@ -25,4 +25,6 @@ public:
   //virtual readFile(std::string filePath) = 0 -> void;
   //virtual writeFile(std::string filePath) = 0 -> void;
 
+
+  virtual void readFile()=0;
 };

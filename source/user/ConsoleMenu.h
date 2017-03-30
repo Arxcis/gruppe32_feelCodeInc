@@ -77,6 +77,12 @@ namespace menu
       const std::string& id, 
       const std::string& text) const;
 
+    //
+    // @class function immutableOption
+    //
+    inline void illegalOption(
+      const std::string& text) const;
+
     protected:
       const std::string type_;
       const std::vector<int> nextState_;
@@ -127,11 +133,35 @@ namespace menu
   //
   // @class menu::Object
   //
-  class Object : public ConsoleMenu
+  class NationMenu : public ConsoleMenu
   {
   public:
-    Object(const std::string type, const std::vector<int> nextState);
-    virtual ~Object(){}
+    NationMenu(const std::string type, const std::vector<int> nextState);
+    virtual ~NationMenu(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
+  };
+
+  //////////////////////////////////////////////////////////////////
+  //
+  // @class menu::Object
+  //
+  class ParticipantMenu: public ConsoleMenu
+  {
+  public:
+    ParticipantMenu(const std::string type, const std::vector<int> nextState);
+    virtual ~ParticipantMenu(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
+  };
+
+  //////////////////////////////////////////////////////////////////
+  //
+  // @class menu::Object
+  //
+  class SportMenu : public ConsoleMenu
+  {
+  public:
+    SportMenu(const std::string type, const std::vector<int> nextState);
+    virtual ~SportMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
