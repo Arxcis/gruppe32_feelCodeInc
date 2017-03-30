@@ -26,8 +26,10 @@
 
 namespace menu 
 {  
+
+  ////////////////////////////////////////////////////////////////
   //
-  // @abstract class ConsoleMenu
+  //  @base class menu::ConsoleMenu
   //
   class ConsoleMenu 
   {
@@ -81,6 +83,10 @@ namespace menu
   };
 
 
+  //////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::Start
+  //
   class Start : public ConsoleMenu
   {
   public:
@@ -90,12 +96,10 @@ namespace menu
   };
 
 
-
   //////////////////////////////////////////////////////////////////
   //
   //  @class menu::Base
   //
-
   class Base : public ConsoleMenu
   {
   public:
@@ -104,7 +108,6 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
 
   };
-
 
 
   //////////////////////////////////////////////////////////////////

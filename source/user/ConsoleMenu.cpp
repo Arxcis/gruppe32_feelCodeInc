@@ -6,7 +6,7 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  ABSTRACT BASE CLASS ConsoleMenu
+  //  @base class menu::ConsoleMenu
   //
   ConsoleMenu::ConsoleMenu(const std::string type, const std::vector<int> nextState)
   :type_(type)
@@ -67,7 +67,7 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  START MENU
+  //  @class menu::Start
   //
   Start::Start(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
@@ -112,6 +112,7 @@ namespace menu
     footer();
   }
 
+
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Stats
@@ -133,7 +134,6 @@ namespace menu
   //
   //  @class menu::Object
   //
-
   Object::Object(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {} 
@@ -154,12 +154,10 @@ namespace menu
   }
 
 
-
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewObject
   //
-
   NewObject::NewObject(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {}
@@ -175,7 +173,6 @@ namespace menu
   //
   //  @class menu::EditField 
   //
-
   EditField::EditField(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {}
