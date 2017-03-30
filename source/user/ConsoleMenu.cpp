@@ -238,8 +238,9 @@ namespace menu
 
   void EditField::view(dat::TransitionMap& map, dat::Field& field)
   {
-   std::cout << "Not implemented yet...\n";
-   bindStaticOption(map, 0, START, "Back to start");
+   std::cout << "New " << field.first << "\n";
+   stream::readString(std::cin, field.second);
+   bindStaticOption(map, 0, nextState_[0], "Back");
   }
 
   ////////////////////////////////////////////////////////////////

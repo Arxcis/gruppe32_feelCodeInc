@@ -49,6 +49,7 @@ private:
   dat::Object       object;
   dat::Field         field;
 
+
   dat::TransitionMap  currentMap;
   int                 input = 0;
   int                 clampedInput = 0;
@@ -58,4 +59,5 @@ private:
   dat::Object&        selectedObject = object;
   dat::Field&         selectedField = field;
   std::string         selectedID = "";
+  dat::Object         editObject;
 };

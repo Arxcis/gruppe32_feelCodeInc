@@ -131,7 +131,7 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  // @class menu::Object
+  // @class menu::NationMenu
   //
   class NationMenu : public ConsoleMenu
   {
@@ -141,9 +141,10 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
+
   //////////////////////////////////////////////////////////////////
   //
-  // @class menu::Object
+  // @class menu::ParticipantMenu
   //
   class ParticipantMenu: public ConsoleMenu
   {
@@ -153,9 +154,10 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
+
   //////////////////////////////////////////////////////////////////
   //
-  // @class menu::Object
+  // @class menu::SportMenu
   //
   class SportMenu : public ConsoleMenu
   {

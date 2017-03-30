@@ -78,6 +78,7 @@ int Console::run()
     clampedInput = clamp(input, currentMap.size()-1);
 
     selectedMenu = currentMap[clampedInput].first;
+    selectedID   = currentMap[clampedInput].second;
     // 4. Reset current map
     currentMap = {};
 
@@ -169,18 +170,35 @@ void Console::displayMenu()
 //  ----------- EDIT  -----------------
 
     case NATION_EDIT:
-      allMenus_[NATION_EDIT]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
+      editObject = selectedObject;
+      for(auto& field: editObject)
+      {
+        if (field.first == selectedID) 
+          { allMenus_[NATION_EDIT]->view(currentMap, field); }
+      }
+      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
       break;
+
 
     case PART_EDIT:
-      allMenus_[PART_EDIT]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
+      editObject = selectedObject;
+      for(auto& field: editObject)
+      {
+        if (field.first == selectedID) 
+          { allMenus_[PART_EDIT]->view(currentMap, field); }
+      }
+      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
+
     case SPORT_EDIT:
-      allMenus_[SPORT_EDIT]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
+      editObject = selectedObject;
+      for(auto& field: editObject)
+      {
+        if (field.first == selectedID) 
+          { allMenus_[SPORT_EDIT]->view(currentMap, field); }
+      }
+      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 

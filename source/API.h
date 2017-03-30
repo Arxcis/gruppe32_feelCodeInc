@@ -21,8 +21,8 @@
 class API 
 { 
 public:
-  bool add       (dat::Object& object);
-  bool update    (dat::Object& object);
+  bool add       (const dat::Object& object);
+  auto update    (const dat::Object& object) -> const dat::Object&;
   bool remove    (const Entity entity, const std::string& id);
   auto get       (const Entity entity, const std::string& id) -> const dat::Object&;
   auto getAll    (const Entity entity)                 -> const dat::Container&;

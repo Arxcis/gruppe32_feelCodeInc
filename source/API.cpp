@@ -145,14 +145,20 @@ API::API()
 //
 // @class function add()
 //
-bool API::add(dat::Object& object )
+bool API::add(const dat::Object& object )
 {  return 1;  }
 
 //
 // @class function update()
 //
-bool API::update (dat::Object& object)
-{  return 1;  }
+auto update    (const dat::Object& object) -> const dat::Object&
+{  
+  if(object[0].second == "Nation")      return test::nation;
+  if(object[0].second == "Participant") return test::participant;
+  if(object[0].second == "Sport")       return test::sport;
+  else
+    return test::nullobject;
+}
 
 //
 // @class function remove()

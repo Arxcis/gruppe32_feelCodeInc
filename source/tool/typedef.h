@@ -28,7 +28,8 @@ namespace dat
     // @typedef(using) dat::Field is used throughout the code as a key-value pair of strings.
     //           All fields in all objects are evntually passed around as a collection of dat::Fields.
     //    
-    using Field = GenericField<std::string, std::string>;
+    using Field = std::pair<std::string, std::string>;
+    //using Field = GenericField<std::string, std::string>;
 
 
     //
@@ -38,13 +39,16 @@ namespace dat
     //                         data/testData.h and data/*.format -files.
     //                         Does only hold basic data of std::string type. 
     //    
-    using Object = GenericContainer<Field>; 
+    using Object = std::vector<std::pair<std::string, std::string>>;
+    //using Object = GenericContainer<Field>; 
 
     //
     // @typedef(using) dat::Container - Used when we want to transmit a collection of object which are of 
     //                            the same type. Does only hold basic data of std::string type.
     //    
-    using Container = GenericContainer<Object>; 
+
+    using Container = std::vector<std::vector<std::pair<std::string, std::string>>>;
+    //using Container = GenericContainer<Object>; 
 
     //
     // @typedef dat::transitionMap - A map can be used to store information about different states in a program
