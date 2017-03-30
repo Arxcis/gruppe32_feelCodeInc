@@ -17,6 +17,7 @@ void db::ParticipantBase::readFile(const std::string filepath)
   dat::Object prototype =
   {
       {"Type",        ""},  // Participant
+      {"ID",          ""},
       {"Name",        ""},  // PK
       {"Phone",       ""},
       {"Email",       ""},
@@ -42,5 +43,13 @@ void db::ParticipantBase::readFile(const std::string filepath)
   for(int i=0; i < std::stoi(objectCount); i++)
   {
     std::cout << "Participant " << i << "\n";
+
+    stream::readString (ss, prototype[0].second);
+    stream::readInt    (ss, prototype[1].second);
+    stream::readString (ss, prototype[2].second);
+    stream::readPhone  (ss, prototype[3].second);
+    stream::readEmail  (ss, prototype[4].second);
+    stream::readChar3  (ss, prototype[5].second);
+    stream::readEnum   (ss, prototype[6].second, {"Male", "Female"});
   } 
 }

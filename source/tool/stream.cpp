@@ -81,8 +81,10 @@ namespace stream
   void readEnum(std::stringstream& stream, std::string& value, const std::vector<std::string>& validStrings)
   {
     getline(stream, value, ';');
+    bool oneHit = false;
     for(const auto& str: validStrings)
-      { assert(value == str); }
+    {  if(value == str) oneHit = true; }
+      assert(oneHit);
     eatSpaces(stream);
   }
 

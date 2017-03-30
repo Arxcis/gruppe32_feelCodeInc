@@ -41,5 +41,14 @@ void db::SportBase::readFile(const std::string filepath)
   for(int i=0; i < std::stoi(objectCount); i++)
   {
     std::cout << "Sport " << i << "\n";
+
+    stream::readString (ss, prototype[0].second);
+    stream::readString (ss, prototype[1].second);
+    stream::readEnum   (ss, prototype[2].second, {"Point", "Medal"});
+    stream::readInt    (ss, prototype[3].second);
+
+    for(int j=4; j < (4+std::stoi(prototype[3].second)); j++)
+      { stream::readString (ss, prototype[i].second); }
+
   } 
 }
