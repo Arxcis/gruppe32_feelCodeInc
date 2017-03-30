@@ -57,6 +57,11 @@ namespace menu
       mapNext_[i] = args[i];
   }
 
+  ConsoleMenu::~ConsoleMenu()
+  {
+    delete api_;
+  }
+
   // Define static members
   dat::Field*     ConsoleMenu::selectedField        = nullptr;
   dat::Object*    ConsoleMenu::selectedObject       = nullptr;
@@ -111,7 +116,7 @@ namespace menu
     // Resetting selectedContainer here, in case I dont get anything
     // 
     selectedContainer = nullptr;
-    *selectedContainer = *api_.getAll(NATION);
+    *selectedContainer = *(api_->getAll(NATION));
 
     header("Nation Base");
     std::cout << "   1: New          \n";
@@ -147,7 +152,7 @@ namespace menu
   {
     newPage();
 
-    *selectedContainer = *api_.getAll(PARTICIPANT);
+    *selectedContainer = *(api_->getAll(PARTICIPANT));
 
     header("Participant Base");
     std::cout << "   1: New              \n";
@@ -176,7 +181,7 @@ namespace menu
 
   void SportBase::view()
   {
-    *selectedContainer = *api_.getAll(SPORT);
+    *selectedContainer = *(api_->getAll(SPORT));
 
     newPage();
     header("Sport Base");
@@ -313,7 +318,7 @@ namespace menu
 
     else if (userInput >= 4 && userInput < selectedObject->size()) 
     { 
-      *selectedObjectSecond = *api_.get(DICIPLINE, ((*selectedObject)[userInput]));
+      *selectedObjectSecond = *(api_->get(DICIPLINE, ((*selectedObject)[userInput])));
       return ConsoleMenu::getNextIndex(2);
     }
     else
@@ -363,7 +368,7 @@ namespace menu
     header(("New " + type_));
 
     selectedObject = form::object(type_);    
-    api_.add(selectedObject); 
+    (api_->add(selectedObject));
 
     std::cout << "   1: New          \n";
     std::cout << ("   2: Show " + type_ + "  \n");
@@ -387,7 +392,7 @@ namespace menu
     {
       footer();
       form::field(*selectedField);
-      api_.add(selectedObject);
+      (api_->add(selectedObject));
     }
     else
       { std::cout << "     Field not allowed..\n"; } 
