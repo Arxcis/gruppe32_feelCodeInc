@@ -71,7 +71,7 @@ namespace menu
     const std::string& id)
   {
     
-    std::cout << select << ": " << text << " \n"; // 1. Write option to screen
+    std::cout << select << ": " << text << "\n"; // 1. Write option to screen
     map[select] = { menuPointer, id }             // 2. Bind option AND object to next menu
   }
 
@@ -80,16 +80,16 @@ namespace menu
   //  BEGIN MENU
   //
 
-  void Begin::view(dat::TransitionMap& map)
+  void Start::view(dat::TransitionMap& map)
   {
     newPage();
     header("Main Menu");
-    std::cout << "1: Nations     \n"
-              << "2: Participants\n"
-              << "3: Sports      \n"
-              << "4: Points      \n"
-              << "5: Medals      \n"
-              << "0: Exit        \n";
+    bindStaticOption(map, 1, NATION_BASE,"Nations     ");
+    bindStaticOption(map, 2, PART_BASE,  "Participants");
+    bindStaticOption(map, 3, SPORT_BASE, "Sports      ");
+    bindStaticOption(map, 4, POINT_BASE, "Points      ");
+    bindStaticOption(map, 5, MEDAL_STATS,"Medals      ");
+    bindStaticOption(map, 0, POINT_STATS,"Exit        ");
     footer();
   }
 

@@ -79,11 +79,11 @@ namespace menu
   };
 
 
-  class Begin : public ConsoleMenu
+  class Start : public ConsoleMenu
   {
   public:
-    Begin(){};
-    virtual ~Begin(){};
+    Start(){};
+    virtual ~Start(){};
     virtual void view(dat::TransitionMap& map) override;
   };
 
