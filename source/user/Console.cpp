@@ -72,6 +72,7 @@ int Console::run()
 
   while (running) 
   {
+    std::cout << "Number of options: " << currentMap.size() << "\n"; // @debug
     input = stream::readInt("0-N");
 
     input = clamp(input, currentMap.size());
@@ -120,5 +121,8 @@ void Console::displayMenu()
       selectedObject = api_.getMedals();
       allMenus_[MEDAL_STATS]->view(currentMap, selectedObject);
       break;
+
+    default:
+      std::cout << "Not supported...\n";
   }
 }

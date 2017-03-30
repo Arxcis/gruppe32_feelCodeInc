@@ -15,7 +15,7 @@ namespace test
       {"#Participants", "150"},  
       {"ContactName",   "Jonas"},                    
       {"ContactPhone",  "452000864"},             
-      {"ContactEmail",   "jonas.solsvik@gmail.com"},  
+      {"ContactEmail",  "jonas.solsvik@gmail.com"},  
   };
 
   const dat::Object
