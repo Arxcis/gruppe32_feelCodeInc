@@ -263,7 +263,8 @@ namespace menu
       object::view(selectedObjectSecond, 1); 
     std::cout << "   0: Back        \n";
     footer();*/
-    cout << "Not implemented yet..."
+   cout << "Not implemented yet..."
+   bindStaticOption(map, 0, START, "Back to start");
   }
 
 
@@ -277,17 +278,10 @@ namespace menu
   type_(type)
   {}
 
-  void NewObject::view(dat::TransitionMap& map)
+  void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
   {
-    header(("New " + type_));
-
-    selectedObject = form::object(type_);    
-    (api_->add(selectedObject));
-
-    std::cout << "   1: New          \n";
-    std::cout << ("   2: Show " + type_ + "  \n");
-    std::cout << "   0: Back         \n";
-    footer();
+   cout << "Not implemented yet..."
+   bindStaticOption(map, 0, START, "Back to start");
   }
 
   
@@ -298,31 +292,11 @@ namespace menu
 
   void EditField::view(dat::TransitionMap& map)
   {
-    if (selectedField)
-    {
-      footer();
-      form::field(*selectedField);
-      (api_->add(selectedObject));
-    }
-    else
-      { std::cout << "     Field not allowed..\n"; } 
-
-    std::cout << "   0: Any number to go back...  \n";
-    footer();
+   cout << "Not implemented yet..."
+   bindStaticOption(map, 0, START, "Back to start");
   }
 }
 
-/*void menu::ListBase::view(dat::TransitionMap& map){}
-*/
-
-
-/*
-
-void menu::DeleteDicipline::view(dat::TransitionMap& map){}
-void menu::DeleteList::view(dat::TransitionMap& map){}
-
-void menu::AppendList::view(dat::TransitionMap& map){}
-void menu::AppendResult::view(dat::TransitionMap& map){} */
 
 
 

@@ -87,6 +87,8 @@ namespace menu
     virtual void view(dat::TransitionMap& map) override;
   };
 
+
+
   //////////////////////////////////////////////////////////////////
   //
   //  BASE MENU classes
@@ -116,6 +118,8 @@ namespace menu
     virtual ~SportBase(){}
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
+
+
 
   //////////////////////////////////////////////////////////////////
   //
@@ -188,7 +192,7 @@ namespace menu
   public:
     NewObject(const std::string& type);
     virtual ~NewObject(){}
-    virtual void view(dat::TransitionMap& map) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& newObject) override;
   private:
     const std::string type_;
   };
@@ -207,63 +211,4 @@ namespace menu
     virtual ~EditField(){}
     virtual void view(dat::TransitionMap& map, dat::Field& object) override;
   };
-
-
-  //////////////////////////////////////////////////////////////////
-  //
-  //  DELETE MENU classes
-  //
-
-/*
-  class DeleteDicipline : public ConsoleMenu
-  {
-  public:
-    DeleteDicipline(){}
-    virtual ~DeleteDicipline(){}
-    virtual void view() override;
-  };
-
-
-  class DeleteList : public ConsoleMenu
-  {
-  public:
-    DeleteList(){}
-    virtual ~DeleteList(){}
-    virtual void view() override;
-  };
-
-
-
-  //////////////////////////////////////////////////////////////////
-  //
-  //  LIST MENU classes
-  //
-
-  class ListBase : public ConsoleMenu
-  {
-  public:
-    ListBase(){}
-    virtual ~ListBase(){}
-    virtual void view() override;
-  };
-
-
-  class AppendList : public ConsoleMenu
-  {
-  public:
-    AppendList(){}
-    virtual ~AppendList(){}
-    virtual void view() override;
-  };
-
-  class AppendResult : public ConsoleMenu
-  {
-  public:
-    AppendResult(){}
-    virtual ~AppendResult(){}
-    virtual void view() override;
-  };
-
-*/
-
 }
