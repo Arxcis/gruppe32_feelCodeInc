@@ -13,6 +13,7 @@ namespace db
     // Inherited via DataBase
     virtual Sport * unpack(dat::Object * object) override;
     //List& sports = *elements; //aliasing the list
+    virtual void readFile(const std::string filepath){}
   };
 }
 

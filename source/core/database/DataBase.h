@@ -2,6 +2,7 @@
 
 #include "../../tool/typedef.h"
 #include "../Nation.h"
+#include <string>
 namespace db
 {
   template<class T>
@@ -27,6 +28,8 @@ namespace db
       { delete object; return false; }
     }
     virtual T * unpack(dat::Object * object) = 0;
+
+    virtual void readFile(const std::string filepath)=0;
   };
 
 }
