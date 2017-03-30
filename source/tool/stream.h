@@ -23,6 +23,7 @@
 
 namespace stream
 { 
+  void eatSpaces(std::stringstream& stream);
   int  readInt(const std::string& message);
   // Reading from stringstream - File Input
   void readChar3 (std::stringstream& stream, std::string& value);

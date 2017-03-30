@@ -9,57 +9,73 @@ namespace stream
   
 ////////////////////////////////////////////////////////////////
 
+  void eatSpaces(std::stringstream& stream)
+  {
+    std::string spaces;
+    getline(stream, spaces, '\n');
+  }
+
   void readChar3 (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isChar3(value));
+    eatSpaces(stream);
   }
 
   void readString(std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
+
+    eatSpaces(stream);
   }
 
   void readPhone (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isPhone(value));
+    eatSpaces(stream);
   }
 
   void readEmail (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isEmail(value));
+    eatSpaces(stream);
   }
 
   void readInt   (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isInt(value));
+    eatSpaces(stream);
   }
 
   void readDouble(std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isDouble(value));
+    eatSpaces(stream);
   }
 
   void readTime  (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isTime(value));
+    eatSpaces(stream);
   }
 
   void readDate  (std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isDate(value));
+    eatSpaces(stream);
   }
 
   void readMedals(std::stringstream& stream, std::string& value)
   {
     getline(stream, value, ';');
     assert(valid::isMedals(value));
+    eatSpaces(stream);
   }
 
   void readEnum(std::stringstream& stream, std::string& value, const std::vector<std::string>& validStrings)
@@ -67,6 +83,7 @@ namespace stream
     getline(stream, value, ';');
     for(const auto& str: validStrings)
       { assert(value == str); }
+    eatSpaces(stream);
   }
 
 ////////////////////////////////////////////////////////////////
