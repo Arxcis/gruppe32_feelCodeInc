@@ -8,8 +8,10 @@ namespace menu
   //
   //  ABSTRACT BASE CLASS ConsoleMenu
   //
-
-
+  ConsoleMenu::ConsoleMenu(const std::string type, const std::vector<int> nextState)
+  :type_(type)
+  ,nextState_(nextState)
+  {}
   // 
   // @class functions - helper functions
   //
@@ -65,32 +67,32 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  BEGIN MENU
+  //  START MENU
   //
+  Start::Start(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {}
 
   void Start::view(dat::TransitionMap& map)
   {
     newPage();
     header("Main Menu");
-    bindStaticOption(map, 1, NATION_BASE, "Nations     ");
-    bindStaticOption(map, 2, PART_BASE,   "Participants");
-    bindStaticOption(map, 3, SPORT_BASE,  "Sports      ");
-    bindStaticOption(map, 4, POINT_STATS,  "Points      ");
-    bindStaticOption(map, 5, MEDAL_STATS, "Medals      ");
-    bindStaticOption(map, 0, EXIT,         "Exit        ");
+    bindStaticOption(map, 1, nextState_[1], "Nations     ");
+    bindStaticOption(map, 2, nextState_[2], "Participants");
+    bindStaticOption(map, 3, nextState_[3], "Sports      ");
+    bindStaticOption(map, 4, nextState_[4],  "Points      ");
+    bindStaticOption(map, 5, nextState_[5], "Medals      ");
+    bindStaticOption(map, 0, nextState_[0],  "Exit        ");
     footer();
   }
 
 
-
-
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NationBase
+  //  @class menu::Base
   //
   Base::Base(const std::string type, const std::vector<int> nextState)
-  :type_(type)
-  ,nextState_(nextState)
+  :ConsoleMenu(type, nextState)
   {}
 
   void Base::view(dat::TransitionMap& map, dat::Container& container)
@@ -110,189 +112,56 @@ namespace menu
     footer();
   }
 
-
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NationBase
+  //  @class menu::Stats
   //
+  Stats::Stats(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
 
-
-  void NationBase::view(dat::TransitionMap& map, dat::Container& container)
-  { 
+  void Stats::view(dat::TransitionMap& map, dat::Object& object)
+  {
     newPage();
-    header("Nation Base");
-    bindStaticOption(map, 1, NATION_NEW, "New      ");
-
-    int it = 2;
-    for(const auto& object: container)
-    {
-      bindDynamicOption(map, it, NATION_SELECT, object[1].second, 
-                        (object[2].first + ":  " + object[2].second));
-      it++;
-    }
-    bindStaticOption(map, 0, START, "Back      ");
+    header(type_ + " stats");
+    bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
 
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::ParticipantBase
+  //  @class menu::Object
   //
 
-  void ParticipantBase::view(dat::TransitionMap& map, dat::Container& container)
+  Object::Object(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void Object::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
-    header("Participant Base");
-    bindStaticOption(map, 1, PART_NEW, "New      ");
-
-    int it = 2;
-    for(const auto& object: container)
-    {
-      bindDynamicOption(map, it, PART_SELECT, object[1].second, 
-                        (object[2].first + ":  " + object[2].second));
-      it++;
-    }
-    bindStaticOption(map, 0, START, "Back      ");
-    footer();
-  }
-
-
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::SportBase
-  //
-
-  void SportBase::view(dat::TransitionMap& map, dat::Container& container)
-  {
-    newPage();
-    header("Sport Base");
-    bindStaticOption(map, 1, SPORT_NEW, "New      ");
-
-    int it = 2;
-    for(const auto& object: container)
-    {
-      bindDynamicOption(map, it, SPORT_SELECT, object[1].second, 
-                        (object[2].first + ":  " + object[2].second));
-      it++;
-    }
-    bindStaticOption(map, 0, START, "Back      ");
-    footer();
-  }
-
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  STATS MENU classes
-  //
-
-  void PointStats::view(dat::TransitionMap& map, dat::Object& object)
-  {
-    newPage();
-    header("Point stats");
-    bindStaticOption(map, 0, START, "Back     ");
-    footer();
-  }
-
-  void MedalStats::view(dat::TransitionMap& map, dat::Object& object)
-  {
-    newPage();
-    header("Medal stats");
-    bindStaticOption(map, 0, START, "Back     ");
-    footer();
-  }
-
-
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::Nation
-  //
-  void Nation::view(dat::TransitionMap& map, dat::Object& object) 
-  {
-    newPage();
-    header("Nation");
+    header(type_);
     int it=1;
     for(const dat::Field& field: object)
     {
-      bindDynamicOption(map, it, NATION_EDIT, field.first, 
+      bindDynamicOption(map, it, nextState_[1], field.first, 
                         (field.first + ": " + field.second));
       it++;
     }
-    bindStaticOption(map, 0, NATION_BASE, "Back     ");
+    bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
 
 
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::Participant
-  //
-  void Participant::view(dat::TransitionMap& map, dat::Object& object) 
-  {
-    newPage();
-    header("Participant");
-    int it=1;
-    for(const dat::Field& field: object)
-    {
-      bindDynamicOption(map, it, PART_EDIT, field.first, 
-                        (field.first + ": " + field.second));
-      it++;
-    }
-    bindStaticOption(map, 0, PART_BASE, "Back     ");
-    footer();
-  }
-
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::Sport
-  //
- 
-
-  void Sport::view(dat::TransitionMap& map, dat::Object& object) 
-  {
-    newPage();
-    header("Participant");
-    int it=1;
-    for(const dat::Field& field: object)
-    {
-      bindDynamicOption(map, it, SPORT_EDIT, field.first, 
-                        (field.first + ": " + field.second));
-      it++;
-    }
-    bindStaticOption(map, 0, SPORT_BASE, "Back     ");
-    footer();
-  }
-
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::Dicipline
+  //  @class menu::NewObject
   //
 
-
-  void Dicipline::view(dat::TransitionMap& map, dat::Object& object) 
-  {
-/*    newPage();
-    header("Dicipline");
-      object::view(selectedObjectSecond, 1); 
-    std::cout << "   0: Back        \n";
-    footer();*/
-   std::cout << "Not implemented yet...";
-   bindStaticOption(map, 0, START, "Back to start");
-  }
-
-
-
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::NewObject (Nation,Participant,Sport, Dicipline)
-  //
-
-  NewObject::NewObject(const std::string& type)
-  :type_(type)
+  NewObject::NewObject(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
   {}
 
   void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
@@ -304,8 +173,12 @@ namespace menu
   
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::EditField (Nation,Participant,Sport, Dicipline)
+  //  @class menu::EditField 
   //
+
+  EditField::EditField(const std::string type, const std::vector<int> nextState)
+  :ConsoleMenu(type, nextState)
+  {}
 
   void EditField::view(dat::TransitionMap& map, dat::Field& field)
   {

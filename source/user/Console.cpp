@@ -12,26 +12,25 @@ Console::Console()
   //
   // Registring basic menus
   //
-  allMenus_[START]         = new menu::Start    ( ), 
-  allMenus_[NATION_BASE]   = new menu::Base     ("Nation Base",      {START, NATION_NEW, NATION_SELECT});     
-  allMenus_[PART_BASE]     = new menu::Base     ("Participant Base", {START, PART_NEW, PART_SELECT});     
-  allMenus_[SPORT_BASE]    = new menu::Base     ("Sport Base",       {START, SPORT_NEW, SPORT_SELECT});     
-  allMenus_[POINT_STATS]   = new menu::PointStats      ( ); 
-  allMenus_[MEDAL_STATS]   = new menu::MedalStats      ( ); 
-  allMenus_[NATION_SELECT] = new menu::Nation          ( );
-  allMenus_[PART_SELECT]   = new menu::Participant     ( );
-  allMenus_[SPORT_SELECT]  = new menu::Sport           ( );
-  allMenus_[NATION_NEW]    = new menu::NewObject       ( "Nation");
-  allMenus_[PART_NEW]      = new menu::NewObject       ( "Participant");
-  allMenus_[SPORT_NEW]     = new menu::NewObject       ( "Sport");
-  allMenus_[NATION_EDIT]   = new menu::EditField       ( );
-  allMenus_[PART_EDIT]     = new menu::EditField       ( );
-  allMenus_[SPORT_EDIT]    = new menu::EditField       ( );
+  allMenus_[START]         = new menu::Start     ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
+  allMenus_[NATION_BASE]   = new menu::Base      ("Nation Base",      { START, NATION_NEW, NATION_SELECT});     
+  allMenus_[PART_BASE]     = new menu::Base      ("Participant Base", { START, PART_NEW,   PART_SELECT});     
+  allMenus_[SPORT_BASE]    = new menu::Base      ("Sport Base" ,      { START, SPORT_NEW,  SPORT_SELECT});     
+  allMenus_[POINT_STATS]   = new menu::Stats     ("Points"     ,      { START} ); 
+  allMenus_[MEDAL_STATS]   = new menu::Stats     ("Medals"     ,      { START} ); 
+  allMenus_[NATION_SELECT] = new menu::Object    ("Nation"     ,      { NATION_BASE, NATION_EDIT});
+  allMenus_[PART_SELECT]   = new menu::Object    ("Participant",      { PART_BASE,   PART_EDIT});
+  allMenus_[SPORT_SELECT]  = new menu::Object    ("Sport"      ,      { SPORT_BASE,  SPORT_EDIT});
+  allMenus_[NATION_NEW]    = new menu::NewObject ("Nation"     ,      { NATION_BASE , NATION_NEW });
+  allMenus_[PART_NEW]      = new menu::NewObject ("Participant",      { PART_BASE   , PART_NEW   });
+  allMenus_[SPORT_NEW]     = new menu::NewObject ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
+  allMenus_[NATION_EDIT]   = new menu::EditField ("Nation"     ,      { NATION_SELECT});
+  allMenus_[PART_EDIT]     = new menu::EditField ("Participant",      { PART_SELECT});
+  allMenus_[SPORT_EDIT]    = new menu::EditField ("Sport"      ,      { SPORT_SELECT});
 
   //
   // Registring Advanced menus
   //
-  allMenus_[DICI_SELECT]   = new menu::Dicipline       ();
 }
 
 

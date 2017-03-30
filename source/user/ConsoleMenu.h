@@ -32,7 +32,7 @@ namespace menu
   class ConsoleMenu 
   {
   public:
-    ConsoleMenu(){};
+    ConsoleMenu(const std::string type, const std::vector<int> nextState);
     virtual ~ConsoleMenu(){};
     //
     // @function view() 
@@ -75,15 +75,16 @@ namespace menu
       const std::string& id, 
       const std::string& text) const;
 
-    private:
-
+    protected:
+      const std::string type_;
+      const std::vector<int> nextState_;
   };
 
 
   class Start : public ConsoleMenu
   {
   public:
-    Start(){};
+    Start(const std::string type, const std::vector<int> nextState);
     virtual ~Start(){};
     virtual void view(dat::TransitionMap& map) override;
   };
@@ -92,10 +93,8 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  //  BASE MENU classes
+  //  @class menu::Base
   //
-
-   
 
   class Base : public ConsoleMenu
   {
@@ -103,127 +102,58 @@ namespace menu
     Base(const std::string type, const std::vector<int> nextState);
     virtual ~Base(){}
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
-  private:
-    const std::string type_;
-    const std::vector<int> nextState_;
-  };
 
-  class NationBase : public ConsoleMenu
-  {
-  public:
-    NationBase(){};
-    virtual ~NationBase(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
-
-  };
-
-
-  class ParticipantBase : public ConsoleMenu
-  {
-  public:
-    ParticipantBase(){};
-    virtual ~ParticipantBase(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
-  };
-
-
-  class SportBase : public ConsoleMenu
-  {
-  public:
-    SportBase(){};
-    virtual ~SportBase(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
 
 
 
   //////////////////////////////////////////////////////////////////
   //
-  //  STATS 
+  //  @class menu::Stats
   //
-  class PointStats : public ConsoleMenu
+  class Stats : public ConsoleMenu
   {
   public:
-    PointStats(){};
-    virtual ~PointStats(){}
+    Stats(const std::string type, const std::vector<int> nextState);
+    virtual ~Stats(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
-
-
-  class MedalStats : public ConsoleMenu
-  {
-  public:
-    MedalStats(){};
-    virtual ~MedalStats(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
-  };
-
  
 
   //////////////////////////////////////////////////////////////////
   //
-  // OBJECT MENU classes
+  // @class menu::Object
   //
-  class Nation : public ConsoleMenu
+  class Object : public ConsoleMenu
   {
   public:
-    Nation(){};
-    virtual ~Nation(){}
+    Object(const std::string type, const std::vector<int> nextState);
+    virtual ~Object(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
-
-  class Participant : public ConsoleMenu
-  {
-  public:
-    Participant(){};
-    virtual ~Participant(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
-  };
-
-  class Sport : public ConsoleMenu
-  {
-  public:
-    Sport(){};
-    virtual ~Sport(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
-  };
-
-  class Dicipline : public ConsoleMenu
-  {
-  public:
-    Dicipline(){};
-    virtual ~Dicipline(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
-  };
-
 
 
   //////////////////////////////////////////////////////////////////
   //
   //  NEW MENU classes
   //
-
   class NewObject : public ConsoleMenu
   {
   public:
-    NewObject(const std::string& type);
+    NewObject(const std::string type, const std::vector<int> nextState);
     virtual ~NewObject(){}
     virtual void view(dat::TransitionMap& map, dat::Object& newObject) override;
-  private:
-    const std::string type_;
   };
-
 
 
   //////////////////////////////////////////////////////////////////
   //
   //  EDIT MENU classes
   //
-
   class EditField : public ConsoleMenu
   {
   public:
-    EditField(){};
+    EditField(const std::string type, const std::vector<int> nextState);
     virtual ~EditField(){}
     virtual void view(dat::TransitionMap& map, dat::Field& field) override;
   };
