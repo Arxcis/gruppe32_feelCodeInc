@@ -38,18 +38,6 @@ namespace menu
               << "\n";
   }
 
-  int ConsoleMenu::clamp(const int input, const int max) const
-  { 
-    const int min = 0;
-
-    if(input > max)
-      { return max; }
-    else if (input < min)
-      { return min; }
-    else 
-      { return input; }
-  }
-
   //
   // @class functions - bind menu option functions
   //

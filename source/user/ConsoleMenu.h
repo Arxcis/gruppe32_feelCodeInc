@@ -47,10 +47,10 @@ namespace menu
     //
     // @class funciton - small helper functions
     //
-    inline void footer()  const;
            void newPage() const;
+    inline void footer()  const;
     inline void header(const std::string) const;
-    inline int  clamp(const int input, const int max) const;
+    
 
     //
     // @class funciton bindStaticOption() menu-option

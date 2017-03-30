@@ -28,7 +28,8 @@ public:
   Console();
   ~Console();
   int run();
-  void switchMenu();
+  void displayMenu();
+  inline int  clamp(const int input, const int max) const;
 
 private:
   
@@ -36,22 +37,22 @@ private:
   static const int maxMenus_ = 16;
 
   //
-  // @setup of all the connections between each menu.
+  // Static state variables
   //
   API api_;
-  int currentMenu_;
-  dat::TransitionMap map_;
   menu::ConsoleMenu* allMenus_[maxMenus_]; 
 
-
   //
-  // Setting up temp variables
+  // Dynamic state variables. Keeps track of the state of the front-end.
   //
   dat::Container container;
   dat::Object       object;
   dat::Field         field;
 
-  dat::Container& containerRef = container;
-  dat::Object&       objectRef = object;
-  dat::Field&         fieldRef = field;
+  dat::TransitionMap  currentMap;
+  int                 selectedMenu = START;
+  dat::Container&     selectedContainer = container;
+  dat::Object&        selectedObject = object;
+  dat::Field&         selectedField = field;
+  std::string         selectedID = "";
 };

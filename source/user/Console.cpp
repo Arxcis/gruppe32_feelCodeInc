@@ -44,6 +44,21 @@ Console::~Console()
 }
 
 //
+// @function clamp - makes sure that input is kept within range.
+//
+int Console::clamp(const int input, const int max) const
+{ 
+  const int min = 0;
+
+  if(input > max)
+    { return max; }
+  else if (input < min)
+    { return min; }
+  else 
+    { return input; }
+}
+
+//
 // @funciton run()
 //  @brief the entry-point function for presenting the menu system
 //   to the user.
@@ -52,53 +67,58 @@ int Console::run()
 { 
   bool running = true;
   int input = 0;
-  currentMenu_ = START;
+
+  allMenus_[START]->view(currentMap);
 
   while (running) 
   {
-    switchMenu();
-
     input = stream::readInt("0-N");
+
+    input = clamp(input, currentMap.size());
+    selectedMenu = currentMap[input].first;
+
+    currentMap = {};
+    displayMenu();
   }
 
   return 0;
 }
 
-void Console::switchMenu()
+void Console::displayMenu()
 { 
 
-  switch(currentMenu_)
+  switch(selectedMenu)
   {
     case EXIT: exit(0); 
       break;
 
     case START:       
-      allMenus_[START]->view(map_); 
+      allMenus_[START]->view(currentMap); 
       break;
 
     case NATION_BASE: 
-      containerRef = api_.getAll(NATION);
-      allMenus_[NATION_BASE]->view(map_);
+      selectedContainer = api_.getAll(NATION);
+      allMenus_[NATION_BASE]->view(currentMap, selectedContainer);
       break;
 
     case PART_BASE:  
-      containerRef = api_.getAll(PARTICIPANT); 
-      allMenus_[PART_BASE]->view(map_); 
+      selectedContainer = api_.getAll(PARTICIPANT); 
+      allMenus_[PART_BASE]->view(currentMap, selectedContainer); 
       break;
 
     case SPORT_BASE:   
-      containerRef = api_.getAll(SPORT); 
-      allMenus_[SPORT_BASE]->view(map_);
+      selectedContainer = api_.getAll(SPORT); 
+      allMenus_[SPORT_BASE]->view(currentMap, selectedContainer);
       break;
 
     case POINT_STATS: 
-      objectRef = api_.getPoints();
-      allMenus_[POINT_STATS]->view(map_);
+      selectedObject = api_.getPoints();
+      allMenus_[POINT_STATS]->view(currentMap, selectedObject);
       break;
 
     case MEDAL_STATS:  
-      objectRef = api_.getMedals();
-      allMenus_[MEDAL_STATS]->view(map_);
+      selectedObject = api_.getMedals();
+      allMenus_[MEDAL_STATS]->view(currentMap, selectedObject);
       break;
   }
 }
