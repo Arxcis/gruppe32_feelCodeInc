@@ -36,7 +36,7 @@ namespace db
       { delete object; return false; }
     }
     virtual T * unpack(dat::Object * object) = 0;
-    virtual void readFile(const std::string& filepath)=0;
+    virtual dat::Container readFile(const std::string& filepath)=0;
 
 
     // 
@@ -54,7 +54,9 @@ namespace db
       { for(const auto& field: object)
           { outFile << field.second << ";\n"; } 
       }
-    };  
+
+      outFile.close();
+    }
   };
 
 }

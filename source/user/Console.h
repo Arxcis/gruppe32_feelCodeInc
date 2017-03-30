@@ -45,19 +45,15 @@ private:
   //
   // Dynamic state variables. Keeps track of the state of the front-end.
   //
-  dat::Container container;
-  dat::Object       object;
-  dat::Field         field;
+  int input = 0;
+  int clampedInput = 0;
+  int tempMenu     = 0;
+  int selectedMenu = START;
 
-
-  dat::TransitionMap  currentMap;
-  int                 input = 0;
-  int                 clampedInput = 0;
-  int                 tempMenu     = 0;
-  int                 selectedMenu = START;
-  dat::Container&     selectedContainer = container;
-  dat::Object&        selectedObject = object;
-  dat::Field&         selectedField = field;
-  std::string         selectedID = "";
-  dat::Object&        editObject = object;
+  dat::TransitionMap currentMap;
+  dat::Container     selectedContainer;
+  dat::Object        selectedObject;
+  dat::Field         selectedField;
+  std::string        selectedID = "";
+  dat::Object        editObject;
 };

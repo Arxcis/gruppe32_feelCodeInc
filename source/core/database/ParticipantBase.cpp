@@ -12,7 +12,7 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
 // @funciton db::ParticipantBase::readFile()
 //    Used to fill the database with data;
 //
-void db::ParticipantBase::readFile(const std::string& filepath)
+dat::Container db::ParticipantBase::readFile(const std::string& filepath)
 { 
   dat::Container tempContainer; // @delete @temp @testing
 
@@ -57,4 +57,5 @@ void db::ParticipantBase::readFile(const std::string& filepath)
     tempContainer.push_back(prototype);
   } 
   writeFile(filepath, tempContainer);   // @testing @debug @delete me
+  return tempContainer;
 } 

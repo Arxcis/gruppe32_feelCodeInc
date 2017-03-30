@@ -6,42 +6,6 @@
 //
 namespace test 
 {
-  const dat::Object 
-  nation
-  {
-      {"Type",          "Nation"},               
-      {"Code",          "NOR"},       //PK              
-      {"Name",          "Norge"},                    
-      {"#Participants", "150"},  
-      {"ContactName",   "Jonas"},                    
-      {"ContactPhone",  "452000864"},             
-      {"ContactEmail",  "jonas.solsvik@gmail.com"},  
-  };
-
-  const dat::Object
-  participant 
-  {
-      {"type", "Participant"},
-      {"ID"  , "1002"},     //PK
-      {"Name", "Jonas"},
-      {"Phone", "452000864"},
-      {"Email", "jonas.solsvik@gmail.com"},
-      {"CountryCode", "NOR"},
-      {"Gender", "Male"},
-  };
-
-  const dat::Object
-  sport 
-  {   
-      {"Type", "Sport"},
-      {"Name", "Fotball"},     //PK
-      {"ScoreType", "Points"},
-      {"#Diciplines", "3"},
-      {"1", "Final"},
-      {"2", "Semi-final"},
-      {"3", "1/4-final"},
-  };
-
   const dat::Object
   dicipline 
   {
@@ -93,41 +57,12 @@ namespace test
 
 
   const dat::Container
-  nations 
-  {
-    nation, 
-    nation, 
-    nation,
-  };  
-
-  const dat::Container
-  participants 
-  {
-    participant, 
-    participant, 
-    participant,
-  };  
-
-  const dat::Container
-  sports 
-  {
-    sport, 
-    sport, 
-    sport,
-  };  
-
-  const dat::Container
   diciplines 
   {
     dicipline, 
     dicipline, 
     dicipline,
   };  
-
-  const dat::Object
-  nullobject = {};
-  const dat::Container
-  nullcontainer = {};
 }
 
 
@@ -139,9 +74,9 @@ API::API()
 void API::loadAllBases()
 {
   std::cout << "loading all bases...\n";        // @debug
-  nationBase_.readFile("data/nation.format");
-  participantBase_.readFile("data/participant.format");
-  sportBase_.readFile("data/sport.format");
+  dbContainerCache[NATION]      = nationBase_.readFile("data/nation.format");
+  dbContainerCache[PARTICIPANT] = participantBase_.readFile("data/participant.format");
+  dbContainerCache[SPORT]       = sportBase_.readFile("data/sport.format");
 }
 
 //
@@ -153,13 +88,13 @@ bool API::add(const dat::Object& object )
 //
 // @class function update()
 //
-auto update    (const dat::Object& object) -> const dat::Object&
+auto update (const dat::Object& object) -> const dat::Object
 {  
-  if (object[0].second == "Nation")      return test::nation;
-  if (object[0].second == "Participant") return test::participant;
-  if (object[0].second == "Sport")       return test::sport;
-  else
-    return test::nullobject;
+  //if (object[0].second == "Nation")      return test::nation;
+  //if (object[0].second == "Participant") return test::participant;
+  //if (object[0].second == "Sport")       return test::sport;
+  //else
+    return {};
 }
 
 //
@@ -171,59 +106,47 @@ bool API::remove(const Entity entity, const std::string& id)
 //
 // @class function get()
 //
-auto API::get(const Entity entity, const std::string& id) -> const dat::Object&
+auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
-  switch(entity)
-  {
-    case NATION: 
-      return test::nation;
-    case PARTICIPANT:
-      return test::participant;
-    case SPORT:
-      return test::sport;
-    case DICIPLINE:
-      return test::dicipline;
-    default:
-      return test::nullobject;
-  }
+  if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
+    { return dbContainerCache[entity][0]; }
+  else if (entity == PARTICIPANT)
+    { return test::dicipline; }
+  else 
+    { return {}; }
+  
 }
 
 //
 // @class function getAll()
 //
-auto API::getAll(const Entity entity)  -> const dat::Container&
+auto API::getAll(const Entity entity)  -> const dat::Container
 {
-  switch(entity)
-  {
-    case NATION: 
-      return test::nations;
-    case PARTICIPANT:
-      return test::participants;
-    case SPORT:
-      return test::sports;
-    case DICIPLINE: 
-      return test::diciplines;
-    default:
-      return test::nullcontainer;
-  }
+  if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
+    { return dbContainerCache[entity]; }
+  else if(entity == DICIPLINE)
+    { return test::diciplines; }
+  else
+    { return {}; }
+  
 }
 
-auto API::getStarts (const dat::Field id)  -> const dat::Object&
+auto API::getStarts (const dat::Field& id)  -> const dat::Object
 {
   return test::startList;
 }
 
-auto API::getResults(const dat::Field id)  -> const dat::Object&
+auto API::getResults(const dat::Field& id)  -> const dat::Object
 {
  return test::resultList;
 }
 
-auto API::getPoints () -> const dat::Object&
+auto API::getPoints () -> const dat::Object
 {
   return test::pointStats;
 }
 
-auto API::getMedals () -> const dat::Object&
+auto API::getMedals () -> const dat::Object
 {
  return test::medalStats;
 }

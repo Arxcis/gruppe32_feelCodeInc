@@ -24,15 +24,15 @@ class API
 { 
 public:
   bool add       (const dat::Object& object);
-  auto update    (const dat::Object& object) -> const dat::Object&;
+  auto update    (const dat::Object& object) -> const dat::Object;
   bool remove    (const Entity entity, const std::string& id);
-  auto get       (const Entity entity, const std::string& id) -> const dat::Object&;
-  auto getAll    (const Entity entity)                 -> const dat::Container&;
+  auto get       (const Entity entity, const std::string& id) -> const dat::Object;
+  auto getAll    (const Entity entity)                 -> const dat::Container;
 
-  auto getStarts (const dat::Field id)  -> const dat::Object&;
-  auto getResults(const dat::Field id)  -> const dat::Object&;
-  auto getPoints () -> const dat::Object&;
-  auto getMedals () -> const dat::Object&;
+  auto getStarts (const dat::Field& id)  -> const dat::Object;
+  auto getResults(const dat::Field& id)  -> const dat::Object;
+  auto getPoints () -> const dat::Object;
+  auto getMedals () -> const dat::Object;
   void quit();
 
   API();
@@ -43,5 +43,7 @@ private:
   db::NationBase nationBase_;
   db::ParticipantBase participantBase_;
   db::SportBase sportBase_;
+
+  dat::Container dbContainerCache[4];
   void loadAllBases();
 };

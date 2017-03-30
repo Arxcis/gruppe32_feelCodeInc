@@ -12,7 +12,7 @@ Sport * db::SportBase::unpack(dat::Object * object)
 // @funciton db::SportBase::readFile()
 //    Used to fill the database with data;
 //
-void db::SportBase::readFile(const std::string& filepath)
+dat::Container db::SportBase::readFile(const std::string& filepath)
 {
   dat::Container tempContainer; // @delete @temp @testing
 
@@ -55,9 +55,10 @@ void db::SportBase::readFile(const std::string& filepath)
         {std::to_string(j-4), ""});
 
       stream::readString(ss, thisProto[j].second); 
-      std::cout << thisProto[j].second << std::endl;  // @debug
+      //std::cout << thisProto[j].second << std::endl;  // @debug
     }
     tempContainer.push_back(thisProto);
   } 
   writeFile(filepath, tempContainer);  // @testing @debug @delete me
+  return tempContainer;
 }

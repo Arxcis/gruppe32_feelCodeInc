@@ -114,7 +114,7 @@ namespace menu
     for(const auto& object: container)
     {
       bindDynamicOption(map, it, nextState_[2], object[1].second, 
-                        (object[2].first + ":  " + object[2].second));
+                        (object[1].first + ":  " + object[1].second) + "\t " + (object[2].first + ":  " + object[2].second));
       it++;
     }
     bindStaticOption(map, 0, nextState_[0], "Back      ");
@@ -238,9 +238,11 @@ namespace menu
 
   void EditField::view(dat::TransitionMap& map, dat::Field& field)
   {
-   std::cout << "New " << field.first << "\n";
-   stream::readString(std::cin, field.second);
-   bindStaticOption(map, 0, nextState_[0], "Back");
+    footer();
+    std::cout << "New " << field.first << ": ";
+    stream::readString(std::cin, field.second);
+    bindStaticOption(map, 0, nextState_[0], "Back");
+    footer();
   }
 
   ////////////////////////////////////////////////////////////////

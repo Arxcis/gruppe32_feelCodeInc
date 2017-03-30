@@ -12,7 +12,7 @@ Console::Console()
   //
   // Registring basic menus
   //
-  allMenus_[ERROR]         = new menu::Error     ("Wrong input...\n", {});
+  allMenus_[ERROR]         = new menu::Error         ("Wrong input...\n", {});
   allMenus_[START]         = new menu::StartMenu     ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
   allMenus_[NATION_BASE]   = new menu::BaseMenu      ("Nation Base",      { START, NATION_NEW, NATION_SELECT});     
   allMenus_[PART_BASE]     = new menu::BaseMenu      ("Participant Base", { START, PART_NEW,   PART_SELECT});     
@@ -22,18 +22,17 @@ Console::Console()
   allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nation"     , { NATION_BASE , NATION_EDIT });
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Participant", { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Sport"      , { SPORT_BASE  , SPORT_EDIT  });
-  allMenus_[NATION_NEW]    = new menu::NewObject ("Nation"     ,      { NATION_BASE , NATION_NEW });
-  allMenus_[PART_NEW]      = new menu::NewObject ("Participant",      { PART_BASE   , PART_NEW   });
-  allMenus_[SPORT_NEW]     = new menu::NewObject ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
-  allMenus_[NATION_EDIT]   = new menu::EditField ("Nation"     ,      { NATION_SELECT});
-  allMenus_[PART_EDIT]     = new menu::EditField ("Participant",      { PART_SELECT});
-  allMenus_[SPORT_EDIT]    = new menu::EditField ("Sport"      ,      { SPORT_SELECT});
+  allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE , NATION_NEW });
+  allMenus_[PART_NEW]      = new menu::NewObject       ("Participant",      { PART_BASE   , PART_NEW   });
+  allMenus_[SPORT_NEW]     = new menu::NewObject       ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
+  allMenus_[NATION_EDIT]   = new menu::EditField       ("Nation"     ,      { NATION_SELECT});
+  allMenus_[PART_EDIT]     = new menu::EditField       ("Participant",      { PART_SELECT});
+  allMenus_[SPORT_EDIT]    = new menu::EditField       ("Sport"      ,      { SPORT_SELECT});
 
   //
   // Registring Advanced menus
   //
 }
-
 
 Console::~Console() 
 { 
@@ -45,6 +44,7 @@ Console::~Console()
 
 //
 // @function clamp - makes sure that input is kept within range.
+//    @note - Right now input is set to 0 if it is out of range.
 //
 int Console::clamp(const int input, const int max) const
 { 
@@ -74,9 +74,10 @@ int Console::run()
     // 1. Read input
     input = stream::readInt("0-" + std::to_string(currentMap.size()-1));
 
-    // 2. Use input to find next menu
-    clampedInput = clamp(input, currentMap.size()-1);
+    // 2. Make sure input is within bounds.
+    clampedInput = clamp(input, currentMap.size()-1); 
 
+    // 3. Use input to find next menu
     selectedMenu = currentMap[clampedInput].first;
     selectedID   = currentMap[clampedInput].second;
     // 4. Reset current map
@@ -188,7 +189,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[PART_EDIT]->view(currentMap, field); }
       }
-      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
+      // selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
@@ -199,7 +200,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[SPORT_EDIT]->view(currentMap, field); }
       }
-      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
+      // selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
