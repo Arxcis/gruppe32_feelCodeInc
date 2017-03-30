@@ -14,13 +14,13 @@ namespace menu
   // @class functions - helper functions
   //
 
-  inline void ConsoleMenu::footer()
+  constexpr inline void ConsoleMenu::footer()
   {
     std::cout << "\n"
               << "-------------------------------\n";
   }
 
-  inline void ConsoleMenu::newPage()
+  constexpr void ConsoleMenu::newPage()
   {
     for(int i=0; i<40; i++)
     {
@@ -28,7 +28,7 @@ namespace menu
     }
   }
 
-  inline void ConsoleMenu::header(std::string name)
+  constexpr void ConsoleMenu::header(const std::string name)
   {   
     newPage();
     std::cout << "\n"
@@ -38,7 +38,7 @@ namespace menu
               << "\n";
   }
 
-  inline int ConsoleMenu::clamp(const int input, const int max)
+  constexpr int ConsoleMenu::clamp(const int input, const int max)
   { 
     const int min = 0;
 
@@ -51,7 +51,7 @@ namespace menu
   }
 
   //
-  // @class functions - register menu option functions
+  // @class functions - bind menu option functions
   //
   constexpr inline void ConsoleMenu::bindStaticOption(
     dat::TransitionMap& map,
