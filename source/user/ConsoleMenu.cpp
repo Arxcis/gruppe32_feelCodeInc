@@ -59,7 +59,7 @@ namespace menu
     const int menuPointer,
     const std::string& text);
   {  
-    std::cout << "   " << select << ": " << text << " \n";  // 1. Write option to screen
+    std::cout << "   " << select << "-> " << text << " \n";  // 1. Write option to screen
     map[select] = { menuPointer, "" }              // 2. Bind option to next menu
   }
 
@@ -71,7 +71,7 @@ namespace menu
     const std::string& text)
   {
     
-    std::cout << "   " << select << ": " << text << "\n"; // 1. Write option to screen
+    std::cout << "   " << select << "-> " << text << "\n"; // 1. Write option to screen
     map[select] = { menuPointer, id }             // 2. Bind option AND object to next menu
   }
 
@@ -192,31 +192,38 @@ namespace menu
   //
   //  @class menu::Nation
   //
- 
   void Nation::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Nation");
-      object::view(selectedObject, 1); 
-    std::cout << "   0: Back        \n";
+    int it=1;
+    for(const dat::Field& field: object)
+    {
+      bindDynamicOption(map, it, NATION_EDIT, field.first, 
+                        (field.first + ": " field.second));
+      it++;
+    }
+    bindStaticOption(map, 0, NATION_BASE, "Back     ");
     footer();
   }
-
 
 
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Participant
   //
-
-
-
   void Participant::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Participant");
-      object::view(selectedObject, 1); 
-    std::cout << "   0: Back        \n";
+    int it=1;
+    for(const dat::Field& field: object)
+    {
+      bindDynamicOption(map, it, PART_EDIT, field.first, 
+                        (field.first + ": " field.second));
+      it++;
+    }
+    bindStaticOption(map, 0, PART_BASE, "Back     ");
     footer();
   }
 
@@ -230,9 +237,15 @@ namespace menu
   void Sport::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
-    header("Sport");
-      object::view(selectedObject, 1); 
-    std::cout << "   0: Back        \n";
+    header("Participant");
+    int it=1;
+    for(const dat::Field& field: object)
+    {
+      bindDynamicOption(map, it, SPORT_EDIT, field.first, 
+                        (field.first + ": " field.second));
+      it++;
+    }
+    bindStaticOption(map, 0, SPORT_BASE, "Back     ");
     footer();
   }
 
@@ -245,11 +258,12 @@ namespace menu
 
   void Dicipline::view(dat::TransitionMap& map, dat::Object& object) 
   {
-    newPage();
+/*    newPage();
     header("Dicipline");
       object::view(selectedObjectSecond, 1); 
     std::cout << "   0: Back        \n";
-    footer();
+    footer();*/
+    cout << "Not implemented yet..."
   }
 
 
