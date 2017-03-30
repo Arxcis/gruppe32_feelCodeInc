@@ -36,7 +36,6 @@ private:
   // All the bases
   //
   NationBase nationBase_;
-  void loadAllBases();
   //ParticipantBase participantBase_;
   //SportBase sportBase_;
 };

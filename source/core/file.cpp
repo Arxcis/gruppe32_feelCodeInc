@@ -46,11 +46,13 @@ namespace file
   // 
   // @functino file::getFilestream
   //
-  std::stringstream currentStream;  // file::ss  - @global object which contains the current stream.
+  static std::stringstream currentStream;  // file::ss  - @global object which contains the current stream.
 
   std::stringstream& getFilestream(const std::string& filepath)
   {
+    
     std::ifstream inFile(filepath);
+    currentStream.str(std::string());     // Clear stream contents.
 
     if (inFile)
     {
@@ -68,7 +70,7 @@ namespace file
   {  
     std::stringstream& ss = getFilestream(filepath);
 
-    if (!ss.str().empty())
+    if (ss)
     {
       std::cout << "hello.....\n";
       std::string numberOfObjects;

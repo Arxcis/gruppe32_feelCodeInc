@@ -12,7 +12,6 @@
 
 // @local files
 #include "../tool/stream.h"
-#include "../API.h"
 #include "ConsoleMenu.h"
 #include "MenuState.h"
 
@@ -36,7 +35,6 @@ private:
   //
   // @setup of all the connections between each menu.
   //
-  API api_;
   menu::ConsoleMenu* currentMenu_;
   menu::ConsoleMenu* allMenus_[maxMenus_]; 
 };

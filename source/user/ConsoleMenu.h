@@ -27,7 +27,7 @@
 
 namespace menu 
 {  
-  static API api_;
+
   //
   // Helper functions
   //
@@ -44,7 +44,7 @@ namespace menu
   {
   public:
     ConsoleMenu(const std::vector<int> args);
-    virtual ~ConsoleMenu();
+    virtual ~ConsoleMenu(){};
     //
     // @function view()
     //  Views all static and dynamic content of the current menu
@@ -57,7 +57,7 @@ namespace menu
     //  Usually a number mapped to the current menu. The menu maps this
     //  relative index, to an absoulute inedex to the next Menu.
     //
-    virtual int getNextIndex(const int userInput); 
+    virtual int getNextIndex(const int userInput);
 
   protected:
     //
@@ -78,9 +78,8 @@ namespace menu
     //  in focus gets stored here. This is a way for communication between
     //   the selection menus, and the objectView-menus
     //
-
+    API api_;
     static int selectedObject_;  
-    API* api_ = new API();
   };
 
 

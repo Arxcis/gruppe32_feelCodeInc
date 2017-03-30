@@ -131,13 +131,8 @@ namespace test
 
 API::API()
 { 
-  loadAllBases();
-}
-
-void API::loadAllBases()
-{
-  std::cout << "loadAllBases...\n";
-  file::readNations(nationBase_, "toight");
+  std::cout << "File call...\n";
+  file::readNations(nationBase_, ".");
 }
 
 //
