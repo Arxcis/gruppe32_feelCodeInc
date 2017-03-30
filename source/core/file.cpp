@@ -1,4 +1,4 @@
-#include "file.h"
+/*#include "file.h"
 
 namespace file
 { 
@@ -64,7 +64,7 @@ namespace file
   //
   // @function file::readNations
   //
-  void readNations(NationBase&  nationBase, const std::string& filepath)
+ // void readNations(NationBase&  nationBase, const std::string& filepath)
   {  
     std::stringstream& ss = getFilestream(filepath);
 
@@ -77,7 +77,7 @@ namespace file
     }
     else 
       {  std::cout << "File not found...\n"; }
-  }
+  }*/
 /*
   //
   // @function file::readParticipants
@@ -110,4 +110,3 @@ namespace file
     }
   }*/
 
-}

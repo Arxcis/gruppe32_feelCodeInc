@@ -8,4 +8,15 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
   return nullptr;
 }
 
-void db::ParticipantBase::readFile(const std::string filepath){}
+void db::ParticipantBase::readFile(const std::string filepath)
+{
+  dat::Object prototype =
+  {
+      {"Type",        ""},  // Participant
+      {"Name",        ""},  // PK
+      {"Phone",       ""},
+      {"Email",       ""},
+      {"CountryCode", ""},  // FK
+      {"Gender",      ""}
+  };
+}

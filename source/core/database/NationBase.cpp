@@ -14,5 +14,18 @@
   }
 
 
-  void db::NationBase::readFile(const std::string filepath){}
+  void db::NationBase::readFile(const std::string filepath)
+  {
+    dat::Object prototype = 
+    {
+      {"type",           ""},   // Nation
+      {"Code",           ""},   //PK              
+      {"Name",           ""},                    
+      {"ContactName",    ""},                    
+      {"ContactPhone",   ""},             
+      {"ContactEmail",   ""},
+      {"#Participants",  ""}
+    };
+  }
+
 

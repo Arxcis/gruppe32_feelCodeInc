@@ -3,6 +3,10 @@
 #include "../../tool/typedef.h"
 #include "../Nation.h"
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <cassert>
+
 namespace db
 {
   template<class T>

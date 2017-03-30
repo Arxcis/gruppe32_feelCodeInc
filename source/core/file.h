@@ -13,7 +13,6 @@
 #include <string>
 
 #include "../tool/stream.h"         // stream::readData()-functions
-#include "database/NationBase.h"
 //#include "database/ParticipantBase.h"
 //#include "database/SportBase.h"
 
@@ -22,8 +21,8 @@
 //
 namespace file
 {
-  std::stringstream& getFilestream(const std::string& filepath);
-  void readNations      (NationBase&      nationBase,      const std::string& filepath);
+  //std::stringstream& getFilestream(const std::string& filepath);
+  //void readNations      (NationBase&      nationBase,      const std::string& filepath);
   //void readParticipants (ParticipantBase& participantBase, const std::string& filepath);
   //void readSports       (SportBase&       sportBase,       const std::string& filepath);
 }

@@ -8,4 +8,13 @@ Sport * db::SportBase::unpack(dat::Object * object)
   return nullptr;
 }
 
-void db::SportBase::readFile(const std::string filepath){}
+void db::SportBase::readFile(const std::string filepath)
+{
+  dat::Object prototype =
+  {
+    {"Type",         ""},  // Sport
+    {"Name",         ""},  // PK
+    {"ScoreType",    ""},
+    {"#Diciplines",  ""}
+  };
+}
