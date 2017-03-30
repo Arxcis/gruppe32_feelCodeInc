@@ -27,9 +27,6 @@
 
 namespace menu 
 {  
-
-
-
   //
   // @abstract class ConsoleMenu
   //
@@ -41,20 +38,13 @@ namespace menu
     //
     // @function view() 
     //  Different virtual functions which children might implement.
+    //   Not implemented in the base class
     //
     virtual void view(dat::TransitionMap& map){}
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
-    //
-    // @function getNext()
-    //  The input-handler catches a relative index from the user.
-    //  Usually a number mapped to the current menu. The menu maps this
-    //  relative index, to an absoulute inedex to the next Menu.
-    //
-    virtual int getNextIndex(const int userInput); 
-
 
     //
     // @class funciton - small helper functions
@@ -65,26 +55,27 @@ namespace menu
     inline int  clamp(const int input, const int max) const;
 
     //
-    // @class funciton registerStaticOption() menu-option
+    // @class funciton bindStaticOption() menu-option
     //    1. Prints an option. Registeres
     // 
-    constexpr inline void registerStaticOption(
-      dat::TransitionMap&,
+    constexpr inline void bindStaticOption(
+      dat::TransitionMap& map,
       const int select, 
-      const std::string& text,
-      const int menuPointer);
+      const int menuPointer,
+      const std::string& text) const;
 
     //
-    // @class function registerDynamicOption()
-    //    Should
+    // @class function bindDynamicOption()
+    //    Should map user input to a dynamic object-id
+    //    Dynamic - meaning that the same option might lead to different results
+    //              each time the menu is shown.
     //
-    inline void registerDynamicOption(
-      dat::TransitionMap&,
-      int select, 
-      std::string& text,
+    inline void bindDynamicOption(
+      dat::TransitionMap& map,
+      const int select, 
       const int menuPointer,
-      std::string& id,
-    );
+      const std::string& text,
+      const std::string& id) const;
   };
 
 
@@ -195,7 +186,7 @@ namespace menu
   class NewObject : public ConsoleMenu
   {
   public:
-    NewObject(const std::string type);
+    NewObject(const std::string& type);
     virtual ~NewObject(){}
     virtual void view(dat::TransitionMap& map) override;
   private:

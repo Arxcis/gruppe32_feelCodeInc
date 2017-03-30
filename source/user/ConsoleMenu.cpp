@@ -6,10 +6,29 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  HELPER FUNCTIONS
+  //  ABSTRACT BASE CLASS ConsoleMenu
   //
 
-  inline void header(std::string name)
+
+  // 
+  // @class functions - helper functions
+  //
+
+  inline void ConsoleMenu::footer()
+  {
+    std::cout << "\n"
+              << "-------------------------------\n";
+  }
+
+  inline void ConsoleMenu::newPage()
+  {
+    for(int i=0; i<40; i++)
+    {
+      std::cout << "\n";
+    }
+  }
+
+  inline void ConsoleMenu::header(std::string name)
   {   
     newPage();
     std::cout << "\n"
@@ -19,21 +38,7 @@ namespace menu
               << "\n";
   }
 
-  inline void footer()
-  {
-    std::cout << "\n"
-              << "-------------------------------\n";
-  }
-
-  inline void newPage()
-  {
-    for(int i=0; i<40; i++)
-    {
-      std::cout << "\n";
-    }
-  }
-
-  inline int clamp(const int input, const int max)
+  inline int ConsoleMenu::clamp(const int input, const int max)
   { 
     const int min = 0;
 
@@ -45,21 +50,37 @@ namespace menu
       { return input; }
   }
 
-
-  ////////////////////////////////////////////////////////////////
   //
-  //  ABSTRACT BASE CLASS ConsoleMenu
+  // @class functions - register menu option functions
   //
+  constexpr inline void ConsoleMenu::bindStaticOption(
+    dat::TransitionMap& map,
+    const int select, 
+    const int menuPointer,
+    const std::string& text);
+  {  
+    std::cout << select << ": " << text << " \n";  // 1. Write option to screen
+    map[select] = { menuPointer, "" }              // 2. Bind option to next menu
+  }
 
-
-
+  inline void ConsoleMenu::bindDynamicOption(
+    dat::TransitionMap& map,
+    const int select, 
+    const int menuPointer,
+    const std::string& text,
+    const std::string& id)
+  {
+    
+    std::cout << select << ": " << text << " \n"; // 1. Write option to screen
+    map[select] = { menuPointer, id }             // 2. Bind option AND object to next menu
+  }
 
   ////////////////////////////////////////////////////////////////
   //
   //  BEGIN MENU
   //
 
-  void Begin::view()
+  void Begin::view(dat::TransitionMap& map)
   {
     newPage();
     header("Main Menu");
@@ -79,7 +100,7 @@ namespace menu
   //
 
 
-  void NationBase::view()
+  void NationBase::view(dat::TransitionMap& map, dat::Container& container)
   { 
     newPage();
 
@@ -102,7 +123,7 @@ namespace menu
   //  @class menu::ParticipantBase
   //
 
-  void ParticipantBase::view()
+  void ParticipantBase::view(dat::TransitionMap& map, dat::Container& container)
   {
     newPage();
 
@@ -122,7 +143,7 @@ namespace menu
   //  @class menu::SportBase
   //
 
-  void SportBase::view()
+  void SportBase::view(dat::TransitionMap& map, dat::Container& container)
   {
     *selectedContainer = *(api_->getAll(SPORT));
 
@@ -143,7 +164,7 @@ namespace menu
 
 
 
-  void PointStats::view()
+  void PointStats::view(dat::TransitionMap& map, dat::Container& container)
   {
     menu::newPage();
     menu::header("Point stats");
@@ -159,7 +180,7 @@ namespace menu
   //  @class menu::Nation
   //
  
-  void Nation::view()
+  void Nation::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Nation");
@@ -177,7 +198,7 @@ namespace menu
 
 
 
-  void Participant::view()
+  void Participant::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Participant");
@@ -193,7 +214,7 @@ namespace menu
   //
  
 
-  void Sport::view()
+  void Sport::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Sport");
@@ -209,7 +230,7 @@ namespace menu
   //
 
 
-  void Dicipline::view()
+  void Dicipline::view(dat::TransitionMap& map, dat::Object& object) 
   {
     newPage();
     header("Dicipline");
@@ -225,11 +246,11 @@ namespace menu
   //  @class menu::NewObject (Nation,Participant,Sport, Dicipline)
   //
 
-  NewObject::NewObject(const std::string type)
+  NewObject::NewObject(const std::string& type)
   type_(type)
   {}
 
-  void NewObject::view()
+  void NewObject::view(dat::TransitionMap& map)
   {
     header(("New " + type_));
 
@@ -248,7 +269,7 @@ namespace menu
   //  @class menu::EditField (Nation,Participant,Sport, Dicipline)
   //
 
-  void EditField::view()
+  void EditField::view(dat::TransitionMap& map)
   {
     if (selectedField)
     {
@@ -264,17 +285,17 @@ namespace menu
   }
 }
 
-/*void menu::ListBase::view(){}
+/*void menu::ListBase::view(dat::TransitionMap& map){}
 */
 
 
 /*
 
-void menu::DeleteDicipline::view(){}
-void menu::DeleteList::view(){}
+void menu::DeleteDicipline::view(dat::TransitionMap& map){}
+void menu::DeleteList::view(dat::TransitionMap& map){}
 
-void menu::AppendList::view(){}
-void menu::AppendResult::view(){} */
+void menu::AppendList::view(dat::TransitionMap& map){}
+void menu::AppendResult::view(dat::TransitionMap& map){} */
 
 
 
