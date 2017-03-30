@@ -47,7 +47,15 @@ void db::NationBase::readFile(const std::string filepath)
   // Loop through all objects
   for(int i=0; i < std::stoi(objectCount); i++)
   {
-    std::cout << "Nation " << i << "\n";
+    std::cout << "Nation " << i << "\n";      // @debug
+
+    stream::readString(ss, prototype[0].second);
+    stream::readChar3 (ss, prototype[1].second);
+    stream::readString(ss, prototype[2].second);
+    stream::readInt   (ss, prototype[3].second);
+    stream::readString(ss, prototype[4].second);
+    stream::readPhone (ss, prototype[5].second);
+    stream::readEmail  (ss, prototype[6].second);
   } 
 }
 
