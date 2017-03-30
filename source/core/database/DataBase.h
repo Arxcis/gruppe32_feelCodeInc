@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../tool/typedef.h"
+#include "../../tool/stream.h"
 #include "../Nation.h"
 #include <string>
 #include <fstream>
@@ -15,6 +16,8 @@ namespace db
   {
   protected: 
     List * elements;
+    std::stringstream ss;
+    
   public:
     DataBase()
     { elements = new List(Sorted); }

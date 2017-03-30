@@ -14,6 +14,7 @@ Sport * db::SportBase::unpack(dat::Object * object)
 //
 void db::SportBase::readFile(const std::string filepath)
 {
+
   dat::Object prototype =
   {
     {"Type",         ""},  // Sport
@@ -24,10 +25,21 @@ void db::SportBase::readFile(const std::string filepath)
 
   std::ifstream innFile(filepath);
 
-  if(innFile)
+  // Crashing the program if file not found.
+  assert(innFile);
+  std::cout << "Opening "<< filepath << "...\n";  // @debug
+      
+  // Flushing filebuffer into a stringstream and closing the file
+  ss << innFile.rdbuf();
+  innFile.close();
+
+  // Reading number of objects.
+  std::string objectCount;
+  stream::readInt(ss,objectCount);
+
+    // Loop through all objects
+  for(int i=0; i < std::stoi(objectCount); i++)
   {
-    std::cout << "Opening "<< filepath << "...\n";  // @debug
-  }
-  else 
-    { std::cout << "File "<< filepath << " not found...\n"; }   // @debug
+    std::cout << "Sport " << i << "\n";
+  } 
 }
