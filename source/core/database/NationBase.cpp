@@ -26,6 +26,15 @@
       {"ContactEmail",   ""},
       {"#Participants",  ""}
     };
+
+  std::ifstream innFile(filepath);
+
+  if(innFile)
+  { 
+    std::cout << "Opening "<< filepath << "...\n";  // @debug
+  }
+  else 
+    { std::cout << "File "<< filepath << " not found...\n"; }   // @debug
   }
 
 

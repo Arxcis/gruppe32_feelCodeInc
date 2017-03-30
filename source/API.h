@@ -13,6 +13,8 @@
 //#include "core/file.h"   // file::readNations...
 #include "enum.h"
 #include "core/database/NationBase.h"
+#include "core/database/ParticipantBase.h"
+#include "core/database/SportBase.h"
 
 // @class API - Application Layer Interface
 // @brief     API that the user-level code can use to communicate with,
@@ -38,8 +40,8 @@ private:
   //
   // All the bases
   //
-  //NationBase nationBase_;
-  //void loadAllBases();
-  //ParticipantBase participantBase_;
-  //SportBase sportBase_;
+  db::NationBase nationBase_;
+  db::ParticipantBase participantBase_;
+  db::SportBase sportBase_;
+  void loadAllBases();
 };

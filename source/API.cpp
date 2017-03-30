@@ -133,14 +133,16 @@ namespace test
 
 API::API()
 { 
-  //loadAllBases();
+  loadAllBases();
 }
 
-//void API::loadAllBases()
-//{
-//  std::cout << "loadAllBases...\n";
-//  file::readNations(nationBase_, "toight");
-//}
+void API::loadAllBases()
+{
+  std::cout << "loading all bases...\n";        // @debug
+  nationBase_.readFile("data/nation.format");
+  participantBase_.readFile("data/participant.format");
+  sportBase_.readFile("data/sport.format");
+}
 
 //
 // @class function add()

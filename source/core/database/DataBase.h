@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <cassert>
+#include <iostream>
 
 namespace db
 {
