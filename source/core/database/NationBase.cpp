@@ -13,3 +13,6 @@
     return new Nation(shortName, name, contact, participants);
   }
 
+
+  void db::NationBase::readFile(const std::string filepath){}
+

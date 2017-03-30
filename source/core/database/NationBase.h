@@ -12,7 +12,7 @@ namespace db
     NationBase();
     // Inherited via DataBase
     virtual Nation * unpack(dat::Object * object) override;
-    virtual void readFile(const std::string filepath){};
+    virtual void readFile(const std::string filepath) override;
   };
 
 }
