@@ -12,9 +12,9 @@ Console::Console()
   // Registring basic menus
   //
   allMenus_[START]         = new menu::Begin           ({ EXIT, NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS }), 
-  allMenus_[NATION_BASE]   = new menu::NationBase      ({ START, NATION_NEW, NATION_SELECT });     
-  allMenus_[PART_BASE]     = new menu::ParticipantBase ({ START, PART_NEW,   PART_SELECT   });     
-  allMenus_[SPORT_BASE]    = new menu::SportBase       ({ START, SPORT_NEW,  SPORT_SELECT  });     
+  allMenus_[NATION_BASE]   = new menu::NationBaseMenu      ({ START, NATION_NEW, NATION_SELECT });     
+  allMenus_[PART_BASE]     = new menu::ParticipantBaseMenu ({ START, PART_NEW,   PART_SELECT   });     
+  allMenus_[SPORT_BASE]    = new menu::SportBaseMenu       ({ START, SPORT_NEW,  SPORT_SELECT  });     
   allMenus_[POINT_STATS]   = new menu::PointStats      ({ START, POINT_STATS          }); 
   allMenus_[MEDAL_STATS]   = new menu::MedalStats      ({ START, MEDAL_STATS          }); 
   allMenus_[NATION_SELECT] = new menu::Nation          ({ NATION_BASE, NATION_EDIT    });

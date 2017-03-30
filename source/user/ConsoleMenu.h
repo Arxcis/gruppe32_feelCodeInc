@@ -95,31 +95,31 @@ namespace menu
   //
   //  BASE MENU classes
   //
-  class NationBase : public ConsoleMenu
+  class NationBaseMenu : public ConsoleMenu
   {
   public:
-    NationBase(const std::vector<int> args);
-    virtual ~NationBase(){}
+    NationBaseMenu(const std::vector<int> args);
+    virtual ~NationBaseMenu(){}
     virtual void view() override;
     virtual int getNextIndex(const int userInput) override;
   };
 
 
-  class ParticipantBase : public ConsoleMenu
+  class ParticipantBaseMenu : public ConsoleMenu
   {
   public:
-    ParticipantBase(const std::vector<int> args);
-    virtual ~ParticipantBase(){}
+    ParticipantBaseMenu(const std::vector<int> args);
+    virtual ~ParticipantBaseMenu(){}
     virtual void view() override;
     virtual int getNextIndex(const int userInput) override;
   };
 
 
-  class SportBase : public ConsoleMenu
+  class SportBaseMenu : public ConsoleMenu
   {
   public:
-    SportBase(const std::vector<int> args);
-    virtual ~SportBase(){}
+    SportBaseMenu(const std::vector<int> args);
+    virtual ~SportBaseMenu(){}
     virtual void view() override;
     virtual int getNextIndex(const int userInput) override;
   };
@@ -249,11 +249,11 @@ namespace menu
   //  LIST MENU classes
   //
 
-  class ListBase : public ConsoleMenu
+  class ListBaseMenu : public ConsoleMenu
   {
   public:
-    ListBase(){}
-    virtual ~ListBase(){}
+    ListBaseMenu(){}
+    virtual ~ListBaseMenu(){}
     virtual void view() override;
   };
 
