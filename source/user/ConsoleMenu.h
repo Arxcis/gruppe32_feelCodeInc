@@ -74,6 +74,9 @@ namespace menu
       const int menuPointer,
       const std::string& id, 
       const std::string& text) const;
+
+    private:
+
   };
 
 
@@ -91,12 +94,27 @@ namespace menu
   //
   //  BASE MENU classes
   //
+
+   
+
+  class Base : public ConsoleMenu
+  {
+  public:
+    Base(const std::string type, const std::vector<int> nextState);
+    virtual ~Base(){}
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
+  private:
+    const std::string type_;
+    const std::vector<int> nextState_;
+  };
+
   class NationBase : public ConsoleMenu
   {
   public:
     NationBase(){};
     virtual ~NationBase(){}
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
+
   };
 
 

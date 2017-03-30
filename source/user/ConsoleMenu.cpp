@@ -82,6 +82,35 @@ namespace menu
   }
 
 
+
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::NationBase
+  //
+  Base::Base(const std::string type, const std::vector<int> nextState)
+  :type_(type)
+  ,nextState_(nextState)
+  {}
+
+  void Base::view(dat::TransitionMap& map, dat::Container& container)
+  { 
+    newPage();
+    header(type_);
+    bindStaticOption(map, 1, nextState_[1], "New      ");
+
+    int it = 2;
+    for(const auto& object: container)
+    {
+      bindDynamicOption(map, it, nextState_[2], object[1].second, 
+                        (object[2].first + ":  " + object[2].second));
+      it++;
+    }
+    bindStaticOption(map, 0, nextState_[0], "Back      ");
+    footer();
+  }
+
+
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NationBase
