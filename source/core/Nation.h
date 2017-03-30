@@ -22,8 +22,11 @@ private:
 	int participantCount_;		//how many are registered for this nation
 
 public:
-	//	GETTERS
+
   Nation(dat::char3 shortName, std::string name, dat::Contact contact, int participantCount);
+  ~Nation();
+
+	//	GETTERS
 	auto getShortName() -> dat::char3;
 	auto getName() -> std::string;
 	auto getContact() -> dat::Contact;

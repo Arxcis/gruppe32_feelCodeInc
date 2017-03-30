@@ -1,11 +1,17 @@
 #include "DataBase.h"
 
 template<typename T>
-inline void DataBase<T>::display()
+void DataBase<T>::display()
 { return elements.displayList(); }
 
 template<typename T>
-inline bool DataBase<T>::add(T * element)
-{ return elements.add(element); }
+bool DataBase<T>::add(dat::Object * object)
+{
+  T unpackedObject = *unpack(object);
+  if (elements.add(unpackedObject))//if added
+  { return true; }
+  else
+  { delete object; return false; }
+}
 
 

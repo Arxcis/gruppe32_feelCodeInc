@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include ""
+#include "NationBase.h"
 
 // @local files
 
@@ -138,7 +138,7 @@ int main()
 {
   //sprintf("%s", test::nation[1].second.c_str());
   NationBase base;
-  base.add(&nations[0]);
+  base.add(&nation);
   //base.display();
   return 0;
 }

@@ -155,7 +155,6 @@ namespace menu
   {
   public:
     Nation(const std::vector<int> args);
-    virtual ~Nation(){}
     virtual void view() override;
     virtual int getNextIndex(const int userInput) override;
   };

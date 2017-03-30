@@ -13,8 +13,9 @@ public:
   void display(); 
   //bool find(dat::Object ID);
 
-  bool add(T* obj);
-  virtual bool add(dat::Object* object)=0;
+  //bool add(T* object);
+  bool add(dat::Object* object);
+  virtual T * unpack(dat::Object* object) = 0;
 
   //T* operator[] (dat::Object ID); //instead of get(...)?
   //T* get(dat::Object ID);
