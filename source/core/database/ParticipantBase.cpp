@@ -12,8 +12,10 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
 // @funciton db::ParticipantBase::readFile()
 //    Used to fill the database with data;
 //
-void db::ParticipantBase::readFile(const std::string filepath)
-{
+void db::ParticipantBase::readFile(const std::string& filepath)
+{ 
+  dat::Container tempContainer; // @delete @temp @testing
+
   dat::Object prototype =
   {
       {"Type",        ""},  // Participant
@@ -51,5 +53,8 @@ void db::ParticipantBase::readFile(const std::string filepath)
     stream::readEmail  (ss, prototype[4].second);
     stream::readChar3  (ss, prototype[5].second);
     stream::readEnum   (ss, prototype[6].second, {"Male", "Female"});
+
+    tempContainer.push_back(prototype);
   } 
-}
+  writeFile(filepath, tempContainer);   // @testing @debug @delete me
+} 

@@ -59,5 +59,5 @@ private:
   dat::Object&        selectedObject = object;
   dat::Field&         selectedField = field;
   std::string         selectedID = "";
-  dat::Object         editObject;
+  dat::Object&        editObject = object;
 };

@@ -170,6 +170,7 @@ void Console::displayMenu()
 //  ----------- EDIT  -----------------
 
     case NATION_EDIT:
+
       editObject = selectedObject;
       for(auto& field: editObject)
       {

@@ -36,8 +36,25 @@ namespace db
       { delete object; return false; }
     }
     virtual T * unpack(dat::Object * object) = 0;
+    virtual void readFile(const std::string& filepath)=0;
 
-    virtual void readFile(const std::string filepath)=0;
+
+    // 
+    // @funciton // Only implemented in base class
+    //
+    void writeFile(const std::string& filepath, const dat::Container& container)
+    {
+      std::cout << "Writing to " << filepath << "\n";  // @debug
+      std::ofstream outFile(filepath+"_out");
+
+      outFile << container.size() << ";\n";
+      assert(outFile);
+
+      for(const auto& object: container)
+      { for(const auto& field: object)
+          { outFile << field.second << ";\n"; } 
+      }
+    };  
   };
 
 }

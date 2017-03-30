@@ -12,8 +12,9 @@ Sport * db::SportBase::unpack(dat::Object * object)
 // @funciton db::SportBase::readFile()
 //    Used to fill the database with data;
 //
-void db::SportBase::readFile(const std::string filepath)
+void db::SportBase::readFile(const std::string& filepath)
 {
+  dat::Container tempContainer; // @delete @temp @testing
 
   dat::Object prototype =
   {
@@ -40,15 +41,23 @@ void db::SportBase::readFile(const std::string filepath)
     // Loop through all objects
   for(int i=0; i < std::stoi(objectCount); i++)
   {
+    dat::Object thisProto = prototype;
     std::cout << "Sport " << i << "\n";
 
-    stream::readString (ss, prototype[0].second);
-    stream::readString (ss, prototype[1].second);
-    stream::readEnum   (ss, prototype[2].second, {"Point", "Medal"});
-    stream::readInt    (ss, prototype[3].second);
+    stream::readString (ss, thisProto[0].second);
+    stream::readString (ss, thisProto[1].second);
+    stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
+    stream::readInt    (ss, thisProto[3].second);
 
-    for(int j=4; j < (4+std::stoi(prototype[3].second)); j++)
-      { stream::readString (ss, prototype[i].second); }
+    for(int j=4; j < (4+std::stoi(thisProto[3].second)); j++)
+    { 
+      thisProto.push_back(
+        {std::to_string(j-4), ""});
 
+      stream::readString(ss, thisProto[j].second); 
+      std::cout << thisProto[j].second << std::endl;  // @debug
+    }
+    tempContainer.push_back(thisProto);
   } 
+  writeFile(filepath, tempContainer);  // @testing @debug @delete me
 }

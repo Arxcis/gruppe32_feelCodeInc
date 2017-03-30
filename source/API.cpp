@@ -155,9 +155,9 @@ bool API::add(const dat::Object& object )
 //
 auto update    (const dat::Object& object) -> const dat::Object&
 {  
-  if(object[0].second == "Nation")      return test::nation;
-  if(object[0].second == "Participant") return test::participant;
-  if(object[0].second == "Sport")       return test::sport;
+  if (object[0].second == "Nation")      return test::nation;
+  if (object[0].second == "Participant") return test::participant;
+  if (object[0].second == "Sport")       return test::sport;
   else
     return test::nullobject;
 }

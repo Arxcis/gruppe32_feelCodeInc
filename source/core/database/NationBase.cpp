@@ -17,8 +17,10 @@ Nation * db::NationBase::unpack(dat::Object * object)
 // @funciton db::Nationbase::readFile()
 //    Used to fill the database with data;
 //
-void db::NationBase::readFile(const std::string filepath)
+void db::NationBase::readFile(const std::string& filepath)
 {
+  dat::Container tempContainer; // @delete @temp @testing
+
   dat::Object prototype = 
   {
     {"type",           ""},   // Nation
@@ -56,7 +58,11 @@ void db::NationBase::readFile(const std::string filepath)
     stream::readString(ss, prototype[4].second);
     stream::readPhone (ss, prototype[5].second);
     stream::readEmail  (ss, prototype[6].second);
+
+    tempContainer.push_back(prototype);
   } 
+  writeFile(filepath, tempContainer);   // @testing @debug @delete me
 }
+
 
 
