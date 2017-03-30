@@ -24,13 +24,13 @@ public:
   bool add       (dat::Object& object);
   bool update    (dat::Object& object);
   bool remove    (const Entity entity, dat::Field& id);
-  auto get       (const Entity entity, dat::Field& id) -> dat::Object&;
-  auto getAll    (const Entity entity)                -> dat::Container&;
+  auto get       (const Entity entity, dat::Field& id) -> const dat::Object&;
+  auto getAll    (const Entity entity)                 -> const dat::Container&;
 
-  auto getStarts (const dat::Field id)  -> dat::Object&;
-  auto getResults(const dat::Field id)  -> dat::Object&;
-  auto getPoints () -> dat::Object&;
-  auto getMedals () -> dat::Object&;
+  auto getStarts (const dat::Field id)  -> const dat::Object&;
+  auto getResults(const dat::Field id)  -> const dat::Object&;
+  auto getPoints () -> const dat::Object&;
+  auto getMedals () -> const dat::Object&;
   void quit();
 
   API();

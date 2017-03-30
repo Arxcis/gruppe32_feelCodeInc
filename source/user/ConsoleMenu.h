@@ -128,7 +128,7 @@ namespace menu
   public:
     PointStats(){};
     virtual ~PointStats(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
 
@@ -137,7 +137,7 @@ namespace menu
   public:
     MedalStats(){};
     virtual ~MedalStats(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
  

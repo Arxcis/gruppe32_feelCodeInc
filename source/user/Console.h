@@ -28,6 +28,7 @@ public:
   Console();
   ~Console();
   int run();
+  void switchMenu();
 
 private:
   
@@ -38,6 +39,19 @@ private:
   // @setup of all the connections between each menu.
   //
   API api_;
-  menu::ConsoleMenu* currentMenu_;
+  int currentMenu_;
+  dat::TransitionMap map_;
   menu::ConsoleMenu* allMenus_[maxMenus_]; 
+
+
+  //
+  // Setting up temp variables
+  //
+  dat::Container container;
+  dat::Object       object;
+  dat::Field         field;
+
+  dat::Container& refContainer = container;
+  dat::Object&       refObject = object;
+  dat::Field&         refField = field;
 };

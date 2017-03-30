@@ -8,6 +8,7 @@ Console::Console()
   assert(!instantiated_);
   instantiated_ = true;
 
+
   //
   // Registring basic menus
   //
@@ -50,11 +51,52 @@ Console::~Console()
 int Console::run()
 { 
   bool running = true;
-  int nextMenuIndex = 0;
-  int selectedNumber = 0;
+  currentMenu_ = START;
 
-  currentMenu_ = allMenus_[0];
+  while (running) 
+  {
+    switchMenu();
 
+
+  }
 
   return 0;
+}
+
+void Console::switchMenu()
+{ 
+
+
+
+  switch(currentMenu_)
+  {
+    case EXIT: exit(0); 
+      break;
+
+    case START:       
+      allMenus_[START]->view(map_); 
+      break;
+
+    case NATION_BASE: 
+      api_.getAll(NATION);
+      allMenus_[NATION_BASE]->view(map_);
+      break;
+
+    case PART_BASE:  
+      api_.getAll(NATION); 
+      allMenus_[PART_BASE]->view(map_); 
+      break;
+
+    case SPORT_BASE:   
+      allMenus_[SPORT_BASE]->view(map_);
+      break;
+
+    case POINT_STATS: 
+      allMenus_[POINT_STATS]->view(map_);
+      break;
+
+    case MEDAL_STATS:  
+      allMenus_[MEDAL_STATS]->view(map_);
+      break;
+  }
 }

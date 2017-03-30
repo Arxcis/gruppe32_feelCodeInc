@@ -124,8 +124,10 @@ namespace test
     dicipline,
   };  
 
-  const dat::Object* nulldata = nullptr;
-  const dat::Container* nulldatas = nullptr;
+  const dat::Object
+  nullobject = {};
+  const dat::Container
+  nullcontainer = {};
 }
 
 
@@ -161,7 +163,7 @@ bool API::remove(const Entity entity, dat::Field& id)
 //
 // @class function get()
 //
-auto API::get(const Entity entity, dat::Field& id) -> dat::Object&
+auto API::get(const Entity entity, dat::Field& id) -> const dat::Object&
 {
   switch(entity)
   {
@@ -174,14 +176,14 @@ auto API::get(const Entity entity, dat::Field& id) -> dat::Object&
     case DICIPLINE:
       return test::dicipline;
     default:
-      return test::nulldata;
+      return test::nullobject;
   }
 }
 
 //
 // @class function getAll()
 //
-auto API::getAll(const Entity entity)  -> dat::Container&
+auto API::getAll(const Entity entity)  -> const dat::Container&
 {
   switch(entity)
   {
@@ -193,17 +195,17 @@ auto API::getAll(const Entity entity)  -> dat::Container&
       return test::sports;
     case DICIPLINE: 
       return test::diciplines;
-    default: 
-      return test::nulldatas;
+    default:
+      return test::nullcontainer;
   }
 }
 
-auto getStarts (const dat::Field id)  -> dat::Object&
+auto getStarts (const dat::Field id)  -> const dat::Object&
 {
   return test::startList;
 }
 
-auto getResults(const dat::Field id)  -> dat::Object&
+auto getResults(const dat::Field id)  -> const dat::Object&
 {
  return test::resultList;
 }

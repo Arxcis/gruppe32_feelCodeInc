@@ -170,7 +170,7 @@ namespace menu
   //  STATS MENU classes
   //
 
-  void PointStats::view(dat::TransitionMap& map, dat::Container& container)
+  void PointStats::view(dat::TransitionMap& map, dat::Object& object)
   {
     newPage();
     header("Point stats");
@@ -178,7 +178,7 @@ namespace menu
     footer();
   }
 
-  void MedalStats::view(dat::TransitionMap& map, dat::Container& container)
+  void MedalStats::view(dat::TransitionMap& map, dat::Object& object)
   {
     newPage();
     header("Medal stats");
