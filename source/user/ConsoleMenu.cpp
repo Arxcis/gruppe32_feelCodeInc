@@ -103,7 +103,6 @@ namespace menu
   void NationBase::view(dat::TransitionMap& map, dat::Container& container)
   { 
     newPage();
-
     header("Nation Base");
     bindStaticOption(map, 1, NATION_NEW, "New      ");
 
@@ -114,8 +113,7 @@ namespace menu
                         (object[2].first + ":  " + object[2].second));
       it++;
     }
-
-    bindStaticOption(map, 0, NATION_NEW, "Back      ");
+    bindStaticOption(map, 0, START, "Back      ");
     footer();
   }
 
@@ -128,13 +126,17 @@ namespace menu
   void ParticipantBase::view(dat::TransitionMap& map, dat::Container& container)
   {
     newPage();
-
-    *selectedContainer = *(api_->getAll(PARTICIPANT));
-
     header("Participant Base");
-    std::cout << "   1: New              \n";
-      list::participants(selectedContainer);
-    std::cout << "   0: Back             \n";
+    bindStaticOption(map, 1, PART_NEW, "New      ");
+
+    int it = 2;
+    for(const auto& object: container)
+    {
+      bindDynamicOption(map, it, PART_SELECT, object[1].second, 
+                        (object[2].first + ":  " + object[2].second));
+      it++;
+    }
+    bindStaticOption(map, 0, START, "Back      ");
     footer();
   }
 
@@ -147,14 +149,18 @@ namespace menu
 
   void SportBase::view(dat::TransitionMap& map, dat::Container& container)
   {
-    *selectedContainer = *(api_->getAll(SPORT));
-
     newPage();
     header("Sport Base");
+    bindStaticOption(map, 1, SPORT_NEW, "New      ");
 
-    std::cout << "   1: New          \n";        
-      list::sports(selectedContainer);  
-    std::cout << "   0: Back         \n";
+    int it = 2;
+    for(const auto& object: container)
+    {
+      bindDynamicOption(map, it, SPORT_SELECT, object[1].second, 
+                        (object[2].first + ":  " + object[2].second));
+      it++;
+    }
+    bindStaticOption(map, 0, START, "Back      ");
     footer();
   }
 
@@ -164,14 +170,19 @@ namespace menu
   //  STATS MENU classes
   //
 
-
-
   void PointStats::view(dat::TransitionMap& map, dat::Container& container)
   {
     menu::newPage();
     menu::header("Point stats");
-    std::cout << "   1: Sort          \n"
-              << "   0: Back         \n";
+    bindStaticOption(map, 0, START, "Back     ");
+    menu::footer();
+  }
+
+  void MedalStats::view(dat::TransitionMap& map, dat::Container& container)
+  {
+    menu::newPage();
+    menu::header("Medal stats");
+    bindStaticOption(map, 0, START, "Back     ");
     menu::footer();
   }
 
