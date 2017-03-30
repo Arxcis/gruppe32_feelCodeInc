@@ -200,22 +200,22 @@ auto API::getAll(const Entity entity)  -> const dat::Container&
   }
 }
 
-auto getStarts (const dat::Field id)  -> const dat::Object&
+auto API::getStarts (const dat::Field id)  -> const dat::Object&
 {
   return test::startList;
 }
 
-auto getResults(const dat::Field id)  -> const dat::Object&
+auto API::getResults(const dat::Field id)  -> const dat::Object&
 {
  return test::resultList;
 }
 
-auto getPoints () -> const dat::Object&
+auto API::getPoints () -> const dat::Object&
 {
   return test::pointStats;
 }
 
-auto getMedals () -> const dat::Object&
+auto API::getMedals () -> const dat::Object&
 {
  return test::medalStats;
 }

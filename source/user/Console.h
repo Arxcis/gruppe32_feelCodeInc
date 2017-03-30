@@ -51,7 +51,7 @@ private:
   dat::Object       object;
   dat::Field         field;
 
-  dat::Container& refContainer = container;
-  dat::Object&       refObject = object;
-  dat::Field&         refField = field;
+  dat::Container& containerRef = container;
+  dat::Object&       objectRef = object;
+  dat::Field&         fieldRef = field;
 };

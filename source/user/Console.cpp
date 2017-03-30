@@ -51,13 +51,14 @@ Console::~Console()
 int Console::run()
 { 
   bool running = true;
+  int input = 0;
   currentMenu_ = START;
 
   while (running) 
   {
     switchMenu();
 
-
+    input = stream::readInt("0-N");
   }
 
   return 0;
@@ -65,8 +66,6 @@ int Console::run()
 
 void Console::switchMenu()
 { 
-
-
 
   switch(currentMenu_)
   {
@@ -78,24 +77,27 @@ void Console::switchMenu()
       break;
 
     case NATION_BASE: 
-      api_.getAll(NATION);
+      containerRef = api_.getAll(NATION);
       allMenus_[NATION_BASE]->view(map_);
       break;
 
     case PART_BASE:  
-      api_.getAll(NATION); 
+      containerRef = api_.getAll(PARTICIPANT); 
       allMenus_[PART_BASE]->view(map_); 
       break;
 
     case SPORT_BASE:   
+      containerRef = api_.getAll(SPORT); 
       allMenus_[SPORT_BASE]->view(map_);
       break;
 
     case POINT_STATS: 
+      objectRef = api_.getPoints();
       allMenus_[POINT_STATS]->view(map_);
       break;
 
     case MEDAL_STATS:  
+      objectRef = api_.getMedals();
       allMenus_[MEDAL_STATS]->view(map_);
       break;
   }
