@@ -143,36 +143,36 @@ API::API()
 //
 // @class function add()
 //
-bool API::add( const dat::Object* object )
+bool API::add(dat::Object& object )
 {  return 1;  }
 
 //
 // @class function update()
 //
-bool API::update (const dat::Object* object)
+bool API::update (dat::Object& object)
 {  return 1;  }
 
 //
 // @class function remove()
 //
-bool API::remove(const Entity entity, const dat::Field& id)
+bool API::remove(const Entity entity, dat::Field& id)
 {  return 1;  }
 
 //
 // @class function get()
 //
-auto API::get(const Entity entity, const dat::Field& id) -> const dat::Object*
+auto API::get(const Entity entity, dat::Field& id) -> dat::Object&
 {
   switch(entity)
   {
     case NATION: 
-      return &test::nation;
+      return test::nation;
     case PARTICIPANT:
-      return &test::participant;
+      return test::participant;
     case SPORT:
-      return &test::sport;
+      return test::sport;
     case DICIPLINE:
-      return &test::dicipline;
+      return test::dicipline;
     default:
       return test::nulldata;
   }
@@ -181,23 +181,42 @@ auto API::get(const Entity entity, const dat::Field& id) -> const dat::Object*
 //
 // @class function getAll()
 //
-auto API::getAll(const Entity entity)  -> const dat::Container*
+auto API::getAll(const Entity entity)  -> dat::Container&
 {
   switch(entity)
   {
     case NATION: 
-      return &test::nations;
+      return test::nations;
     case PARTICIPANT:
-      return &test::participants;
+      return test::participants;
     case SPORT:
-      return &test::sports;
+      return test::sports;
     case DICIPLINE: 
-      return &test::diciplines;
+      return test::diciplines;
     default: 
       return test::nulldatas;
   }
 }
 
+auto getStarts (const dat::Field id)  -> dat::Object&
+{
+  return test::startList;
+}
+
+auto getResults(const dat::Field id)  -> dat::Object&
+{
+ return test::resultList;
+}
+
+auto getPoints () -> const dat::Object&
+{
+  return test::pointStats;
+}
+
+auto getMedals () -> const dat::Object&
+{
+ return test::medalStats;
+}
 //
 // @class function quit()
 //
