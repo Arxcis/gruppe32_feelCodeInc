@@ -74,8 +74,8 @@ namespace menu
       dat::TransitionMap& map,
       const int select, 
       const int menuPointer,
-      const std::string& text,
-      const std::string& id) const;
+      const std::string& id, 
+      const std::string& text) const;
   };
 
 

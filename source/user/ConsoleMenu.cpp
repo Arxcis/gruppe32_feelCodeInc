@@ -59,7 +59,7 @@ namespace menu
     const int menuPointer,
     const std::string& text);
   {  
-    std::cout << select << ": " << text << " \n";  // 1. Write option to screen
+    std::cout << "   " << select << ": " << text << " \n";  // 1. Write option to screen
     map[select] = { menuPointer, "" }              // 2. Bind option to next menu
   }
 
@@ -67,11 +67,11 @@ namespace menu
     dat::TransitionMap& map,
     const int select, 
     const int menuPointer,
-    const std::string& text,
-    const std::string& id)
+    const std::string& id,
+    const std::string& text)
   {
     
-    std::cout << select << ": " << text << "\n"; // 1. Write option to screen
+    std::cout << "   " << select << ": " << text << "\n"; // 1. Write option to screen
     map[select] = { menuPointer, id }             // 2. Bind option AND object to next menu
   }
 
@@ -84,12 +84,12 @@ namespace menu
   {
     newPage();
     header("Main Menu");
-    bindStaticOption(map, 1, NATION_BASE,"Nations     ");
-    bindStaticOption(map, 2, PART_BASE,  "Participants");
-    bindStaticOption(map, 3, SPORT_BASE, "Sports      ");
-    bindStaticOption(map, 4, POINT_BASE, "Points      ");
-    bindStaticOption(map, 5, MEDAL_STATS,"Medals      ");
-    bindStaticOption(map, 0, POINT_STATS,"Exit        ");
+    bindStaticOption(map, 1, NATION_BASE, "Nations     ");
+    bindStaticOption(map, 2, PART_BASE,   "Participants");
+    bindStaticOption(map, 3, SPORT_BASE,  "Sports      ");
+    bindStaticOption(map, 4, POINT_BASE,  "Points      ");
+    bindStaticOption(map, 5, MEDAL_STATS, "Medals      ");
+    bindStaticOption(map, 0, POINT_STATS, "Exit        ");
     footer();
   }
 
@@ -104,16 +104,18 @@ namespace menu
   { 
     newPage();
 
-    //
-    // Resetting selectedContainer here, in case I dont get anything
-    // 
-    selectedContainer = nullptr;
-    *selectedContainer = *(api_->getAll(NATION));
-
     header("Nation Base");
-    std::cout << "   1: New          \n";
-      list::nations(selectedContainer);
-    std::cout << "   0: Back         \n";
+    bindStaticOption(map, 1, NATION_NEW, "New      ");
+
+    int it = 2;
+    for(const auto& object: container)
+    {
+      bindDynamicOption(map, it, NATION_SELECT, object[1].second, 
+                        (object[2].first + ":  " + object[2].second));
+      it++;
+    }
+
+    bindStaticOption(map, 0, NATION_NEW, "Back      ");
     footer();
   }
 
