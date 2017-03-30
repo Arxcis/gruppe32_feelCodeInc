@@ -21,4 +21,7 @@ public:
   auto getContact() -> dat::Contact;
   auto getNation() -> dat::char3;
   //Gender getGender();
+
+  // Inherited via TextElement
+  virtual void display() override;
 };

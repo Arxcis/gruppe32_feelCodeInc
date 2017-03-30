@@ -139,6 +139,6 @@ int main()
   //sprintf("%s", test::nation[1].second.c_str());
   db::NationBase base;
   base.add(&nation);
-  //base.display();
+  base.display();
   return 0;
 }

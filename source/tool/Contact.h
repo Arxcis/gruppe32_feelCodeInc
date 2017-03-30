@@ -7,6 +7,7 @@
 //
 
 #include <string>
+#include <iostream>
 
 namespace dat 
 {
@@ -21,5 +22,7 @@ namespace dat
       std::string name_, 
       std::string address_, 
       std::string phone_);
+
+    void display();
   };
 }
