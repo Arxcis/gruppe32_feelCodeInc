@@ -78,11 +78,11 @@ namespace menu
   //
   //  @class menu::Start
   //
-  Start::Start(const std::string type, const std::vector<int> nextState)
+  StartMenu::StartMenu(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {}
 
-  void Start::view(dat::TransitionMap& map)
+  void StartMenu::view(dat::TransitionMap& map)
   {
     newPage();
     header("Main Menu");
@@ -100,11 +100,11 @@ namespace menu
   //
   //  @class menu::Base
   //
-  Base::Base(const std::string type, const std::vector<int> nextState)
+  BaseMenu::BaseMenu(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {}
 
-  void Base::view(dat::TransitionMap& map, dat::Container& container)
+  void BaseMenu::view(dat::TransitionMap& map, dat::Container& container)
   { 
     newPage();
     header(type_);
@@ -258,6 +258,7 @@ namespace menu
    footer();
   }
 }
+
 
 
 

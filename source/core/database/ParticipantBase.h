@@ -1,12 +1,16 @@
 #pragma once
 
-#include "DataBase.h"
 #include "../Participant.h"
-
-class ParticipantBase : public DataBase<Participant>
+#include "../../tool/Unpacker.h"
+#include "DataBase.h"
+namespace db
 {
-  List* participants = elements; //aliasing the list
-
-public:
-  virtual void readFile();
-};
+  class ParticipantBase : public DataBase<Participant>
+  {
+    List& participants; //aliasing the list
+  public:
+    ParticipantBase();
+    // Inherited via DataBase
+    virtual Participant * unpack(dat::Object * object) override;
+  };
+}

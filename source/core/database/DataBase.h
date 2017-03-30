@@ -1,30 +1,32 @@
 #pragma once
 
-#include "../ListTool2B.h"
 #include "../../tool/typedef.h"
-
-class DataBase
+#include "../Nation.h"
+namespace db
 {
-protected:
-  List* elements = new List(Sorted);
+  template<class T>
+  class DataBase
+  {
+  protected: 
+    List * elements;
+  public:
+    DataBase()
+    { elements = new List(Sorted); }
+    ~DataBase()
+    { delete elements; }
 
-public:
-  DataBase();
-  virtual ~DataBase();
-  void display(); 
-  //bool find(dat::Object ID);
+    void display()
+    { return elements.displayList(); }
 
-  //bool add(T* obj);
-  virtual bool add(dat::Object* object)=0;
+    bool add(dat::Object * object)
+    {
+      T* unpackedObject = unpack(object);
+      if (elements->add(unpackedObject))//if added
+      { return true; }
+      else
+      { delete object; return false; }
+    }
+    virtual T * unpack(dat::Object * object) = 0;
+  };
 
-  //T* operator[] (dat::Object ID); //instead of get(...)?
-  //T* get(dat::Object ID);
-  //T* pop(dat::Object ID);
-  //bool delete(dat::Object ID);
-  //virtual displayMenu() = 0 -> void;
-  //virtual readFile(std::string filePath) = 0 -> void;
-  //virtual writeFile(std::string filePath) = 0 -> void;
-
-
-  virtual void readFile()=0;
-};
+}

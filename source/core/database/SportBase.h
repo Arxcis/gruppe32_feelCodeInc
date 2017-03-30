@@ -3,10 +3,16 @@
 #include "DataBase.h"
 #include "../Sport.h"
 
-class SportBase : public DataBase<Sport>
+namespace db
 {
-  List* sports = elements; //aliasing the list
+  class SportBase : public DataBase<Sport>
+  {
+    List& sports;
+  public:
+    SportBase();
+    // Inherited via DataBase
+    virtual Sport * unpack(dat::Object * object) override;
+    //List& sports = *elements; //aliasing the list
+  };
+}
 
-public:
-  virtual void readFile();
-};
