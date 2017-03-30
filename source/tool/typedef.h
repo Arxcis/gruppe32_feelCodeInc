@@ -49,5 +49,5 @@ namespace dat
     //
     // @typedef dat::transitionMap - A map can be used to store information about different states in a program
     //     
-    using TransitionMap = std::unordered_map<int, std::pair<int, std::string>>
+    using TransitionMap = std::unordered_map<int, std::pair<int, std::string>>;
 }

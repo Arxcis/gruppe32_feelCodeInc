@@ -20,10 +20,9 @@
 #include <utility>
 
 #include "../tool/typedef.h"
-#include "MenuState.h"
+#include "../enum.h"
 #include "consoleForm.h"
 #include "consoleObjectView.h"
-#include "consoleList.h"
 
 namespace menu 
 {  
@@ -42,23 +41,22 @@ namespace menu
     //
     virtual void view(dat::TransitionMap& map){}
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
-    virtual void view(dat::TransitionMap& map, dat::Container& container){}
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
 
     //
     // @class funciton - small helper functions
     //
-    constexpr inline void footer()  const;
-    constexpr        void newPage() const;
-    constexpr inline void header(const std::string) const;
-    constexpr inline int  clamp(const int input, const int max) const;
+    inline void footer()  const;
+           void newPage() const;
+    inline void header(const std::string) const;
+    inline int  clamp(const int input, const int max) const;
 
     //
     // @class funciton bindStaticOption() menu-option
     //    1. Prints an option. Registeres
     // 
-    constexpr inline void bindStaticOption(
+    inline void bindStaticOption(
       dat::TransitionMap& map,
       const int select, 
       const int menuPointer,
@@ -209,6 +207,6 @@ namespace menu
   public:
     EditField(){};
     virtual ~EditField(){}
-    virtual void view(dat::TransitionMap& map, dat::Field& object) override;
+    virtual void view(dat::TransitionMap& map, dat::Field& field) override;
   };
 }

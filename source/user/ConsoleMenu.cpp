@@ -14,13 +14,13 @@ namespace menu
   // @class functions - helper functions
   //
 
-  constexpr inline void ConsoleMenu::footer()
+  inline void ConsoleMenu::footer() const
   {
     std::cout << "\n"
               << "-------------------------------\n";
   }
 
-  constexpr void ConsoleMenu::newPage()
+  void ConsoleMenu::newPage() const
   {
     for(int i=0; i<40; i++)
     {
@@ -28,7 +28,7 @@ namespace menu
     }
   }
 
-  constexpr void ConsoleMenu::header(const std::string name)
+  void ConsoleMenu::header(const std::string name) const
   {   
     newPage();
     std::cout << "\n"
@@ -38,7 +38,7 @@ namespace menu
               << "\n";
   }
 
-  constexpr int ConsoleMenu::clamp(const int input, const int max)
+  int ConsoleMenu::clamp(const int input, const int max) const
   { 
     const int min = 0;
 
@@ -53,14 +53,14 @@ namespace menu
   //
   // @class functions - bind menu option functions
   //
-  constexpr inline void ConsoleMenu::bindStaticOption(
+  inline void ConsoleMenu::bindStaticOption(
     dat::TransitionMap& map,
     const int select, 
     const int menuPointer,
-    const std::string& text);
+    const std::string& text) const
   {  
     std::cout << "   " << select << "-> " << text << " \n";  // 1. Write option to screen
-    map[select] = { menuPointer, "" }              // 2. Bind option to next menu
+    map[select] = { menuPointer, "" };             // 2. Bind option to next menu
   }
 
   inline void ConsoleMenu::bindDynamicOption(
@@ -68,11 +68,11 @@ namespace menu
     const int select, 
     const int menuPointer,
     const std::string& id,
-    const std::string& text)
+    const std::string& text) const
   {
     
     std::cout << "   " << select << "-> " << text << "\n"; // 1. Write option to screen
-    map[select] = { menuPointer, id }             // 2. Bind option AND object to next menu
+    map[select] = { menuPointer, id };             // 2. Bind option AND object to next menu
   }
 
   ////////////////////////////////////////////////////////////////
@@ -87,9 +87,9 @@ namespace menu
     bindStaticOption(map, 1, NATION_BASE, "Nations     ");
     bindStaticOption(map, 2, PART_BASE,   "Participants");
     bindStaticOption(map, 3, SPORT_BASE,  "Sports      ");
-    bindStaticOption(map, 4, POINT_BASE,  "Points      ");
+    bindStaticOption(map, 4, POINT_STATS,  "Points      ");
     bindStaticOption(map, 5, MEDAL_STATS, "Medals      ");
-    bindStaticOption(map, 0, POINT_STATS, "Exit        ");
+    bindStaticOption(map, 0, EXIT,         "Exit        ");
     footer();
   }
 
@@ -172,18 +172,18 @@ namespace menu
 
   void PointStats::view(dat::TransitionMap& map, dat::Container& container)
   {
-    menu::newPage();
-    menu::header("Point stats");
+    newPage();
+    header("Point stats");
     bindStaticOption(map, 0, START, "Back     ");
-    menu::footer();
+    footer();
   }
 
   void MedalStats::view(dat::TransitionMap& map, dat::Container& container)
   {
-    menu::newPage();
-    menu::header("Medal stats");
+    newPage();
+    header("Medal stats");
     bindStaticOption(map, 0, START, "Back     ");
-    menu::footer();
+    footer();
   }
 
 
@@ -200,7 +200,7 @@ namespace menu
     for(const dat::Field& field: object)
     {
       bindDynamicOption(map, it, NATION_EDIT, field.first, 
-                        (field.first + ": " field.second));
+                        (field.first + ": " + field.second));
       it++;
     }
     bindStaticOption(map, 0, NATION_BASE, "Back     ");
@@ -220,7 +220,7 @@ namespace menu
     for(const dat::Field& field: object)
     {
       bindDynamicOption(map, it, PART_EDIT, field.first, 
-                        (field.first + ": " field.second));
+                        (field.first + ": " + field.second));
       it++;
     }
     bindStaticOption(map, 0, PART_BASE, "Back     ");
@@ -242,7 +242,7 @@ namespace menu
     for(const dat::Field& field: object)
     {
       bindDynamicOption(map, it, SPORT_EDIT, field.first, 
-                        (field.first + ": " field.second));
+                        (field.first + ": " + field.second));
       it++;
     }
     bindStaticOption(map, 0, SPORT_BASE, "Back     ");
@@ -263,7 +263,7 @@ namespace menu
       object::view(selectedObjectSecond, 1); 
     std::cout << "   0: Back        \n";
     footer();*/
-   cout << "Not implemented yet..."
+   std::cout << "Not implemented yet...";
    bindStaticOption(map, 0, START, "Back to start");
   }
 
@@ -275,12 +275,12 @@ namespace menu
   //
 
   NewObject::NewObject(const std::string& type)
-  type_(type)
+  :type_(type)
   {}
 
   void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
   {
-   cout << "Not implemented yet..."
+   std::cout << "Not implemented yet...\n";
    bindStaticOption(map, 0, START, "Back to start");
   }
 
@@ -290,9 +290,9 @@ namespace menu
   //  @class menu::EditField (Nation,Participant,Sport, Dicipline)
   //
 
-  void EditField::view(dat::TransitionMap& map)
+  void EditField::view(dat::TransitionMap& map, dat::Field& field)
   {
-   cout << "Not implemented yet..."
+   std::cout << "Not implemented yet...\n";
    bindStaticOption(map, 0, START, "Back to start");
   }
 }

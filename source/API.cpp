@@ -131,14 +131,14 @@ namespace test
 
 API::API()
 { 
-  loadAllBases();
+  //loadAllBases();
 }
 
-void API::loadAllBases()
-{
-  std::cout << "loadAllBases...\n";
-  file::readNations(nationBase_, "toight");
-}
+//void API::loadAllBases()
+//{
+//  std::cout << "loadAllBases...\n";
+//  file::readNations(nationBase_, "toight");
+//}
 
 //
 // @class function add()

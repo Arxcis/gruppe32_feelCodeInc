@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "tool/typedef.h"
 
-#include "core/file.h"   // file::readNations...
+//#include "core/file.h"   // file::readNations...
 #include "enum.h"
 #include "core/database/NationBase.h"
 
@@ -35,8 +35,8 @@ private:
   //
   // All the bases
   //
-  NationBase nationBase_;
-  void loadAllBases();
+  //NationBase nationBase_;
+  //void loadAllBases();
   //ParticipantBase participantBase_;
   //SportBase sportBase_;
 };

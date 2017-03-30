@@ -11,11 +11,11 @@
 #include <string>
 
 // @local files
+#include "../enum.h"
 #include "../tool/typedef.h"
 #include "../tool/stream.h"
 #include "../API.h"
 #include "ConsoleMenu.h"
-#include "MenuState.h"
 
 //
 // @class Console
