@@ -13,7 +13,10 @@
     return new Nation(shortName, name, contact, participants);
   }
 
-
+//
+// @funciton db::Nationbase::readFile()
+//    Used to fill the database with data;
+//
   void db::NationBase::readFile(const std::string filepath)
   {
     dat::Object prototype = 

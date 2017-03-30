@@ -8,6 +8,10 @@ Sport * db::SportBase::unpack(dat::Object * object)
   return nullptr;
 }
 
+//
+// @funciton db::SportBase::readFile()
+//    Used to fill the database with data;
+//
 void db::SportBase::readFile(const std::string filepath)
 {
   dat::Object prototype =

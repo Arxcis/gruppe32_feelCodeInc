@@ -8,6 +8,10 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
   return nullptr;
 }
 
+//
+// @funciton db::ParticipantBase::readFile()
+//    Used to fill the database with data;
+//
 void db::ParticipantBase::readFile(const std::string filepath)
 {
   dat::Object prototype =
