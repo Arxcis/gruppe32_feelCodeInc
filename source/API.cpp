@@ -70,7 +70,7 @@ bool API::add(const dat::Object& object )
 //
 // @class function update()
 //
-auto update (const dat::Object& object) -> const dat::Object
+auto API::update (const dat::Object& object) -> const dat::Object
 {  
   //if (object[0].second == "Nation")      return test::nation;
   //if (object[0].second == "Participant") return test::participant;

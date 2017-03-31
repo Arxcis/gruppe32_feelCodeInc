@@ -104,6 +104,11 @@ void Console::displayMenu()
 
 //  ----------- BASES  -----------------
 
+    //
+    // @case *_BASE
+    //  1. Fetching a container containing objects of a specific kind from the API
+    //  2. Feed the objects into the selected menu, so they can be listed, and key-bound.
+    //  
     case NATION_BASE: 
       selectedContainer = api_.getAll(NATION);
       allMenus_[NATION_BASE]->view(currentMap, selectedContainer);
@@ -121,6 +126,11 @@ void Console::displayMenu()
 
 //  ----------- STATS  -----------------
 
+    //
+    // @case *_STATS
+    //  1. Fetch a container of stat-objects, Medal or Point, from the API
+    //  2. Feed container to the menu, for dynamic display
+    //  
     case POINT_STATS: 
       selectedContainer = api_.getPoints();
       allMenus_[POINT_STATS]->view(currentMap, selectedContainer);
@@ -133,6 +143,12 @@ void Console::displayMenu()
 
 //  ----------- SELECT  -----------------
 
+    //
+    // @case *_SELECT
+    //  1. Get a specific Object from the API, using the primary key(ID) as a parameter.
+    //  2. We get the primary key by feeding the user-input to the transition-map.
+    //  3. Feeding the object to the menu, where keys are mapped to edit-able fields.
+    // 
     case NATION_SELECT:
       selectedObject = api_.get(NATION, currentMap[input].second);
       allMenus_[NATION_SELECT]->view(currentMap, selectedObject);
@@ -149,7 +165,12 @@ void Console::displayMenu()
       break;
 
 //  ----------- NEW  -----------------
-
+    //
+    // @case *_NEW
+    //  1. Create an empty object.
+    //  2. Pass the empty object to the menu, so that the user can fill it up with data.
+    //  3. Pass the object to the API.
+    //
     case NATION_NEW:
       selectedObject = {};
       allMenus_[NATION_NEW]->view(currentMap, selectedObject);
@@ -169,42 +190,43 @@ void Console::displayMenu()
       break;
 
 //  ----------- EDIT  -----------------
-
+    //
+    // @case *_EDIT
+    //  1. Match the user-selected key(ID) with a field in the selected object.
+    //  2. Give the user access to edit that specific field.
+    //  3. Tell the API to update the database, with the added information.
+    // 
     case NATION_EDIT:
-
-      editObject = selectedObject;
-      for(auto& field: editObject)
+      for(auto& field: selectedObject)
       {
         if (field.first == selectedID) 
           { allMenus_[NATION_EDIT]->view(currentMap, field); }
       }
-      //selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
     case PART_EDIT:
-      editObject = selectedObject;
-      for(auto& field: editObject)
+      for(auto& field: selectedObject)
       {
         if (field.first == selectedID) 
           { allMenus_[PART_EDIT]->view(currentMap, field); }
       }
-      // selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
     case SPORT_EDIT:
-      editObject = selectedObject;
-      for(auto& field: editObject)
+      for(auto& field: selectedObject)
       {
         if (field.first == selectedID) 
           { allMenus_[SPORT_EDIT]->view(currentMap, field); }
       }
-      // selectedObject = api_.update(editObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
     default:
-      std::cout << "Not supported...\n";
+      std::cout << "Not implemented yet....\n";
   }
 }
