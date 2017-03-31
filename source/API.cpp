@@ -18,26 +18,6 @@ namespace test
   };
 
   const dat::Object
-  medalStats
-  {
-      {"Type", "MedalStats"},
-      {"#Entries", "3"},
-      {"NOR", "1-2-3"},
-      {"SWE", "0-2-3"},
-      {"DAN", "0-0-5"},
-  };
-
-  const dat::Object
-  pointStats
-  {
-      {"Type", "PointStats"},
-      {"#Entries", "3"},
-      {"NOR", "100"},
-      {"SWE", "90"},
-      {"DAN", "80"},
-  };
-
-  const dat::Object
   startList
   {
     {"Type", "StartList"},
