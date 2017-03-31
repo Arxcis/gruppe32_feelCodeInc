@@ -21,7 +21,7 @@ namespace db
   public:
     DataBase()
     { elements = new List(Sorted); }
-    ~DataBase()
+    virtual ~DataBase()
     { delete elements; }
 
     void display()

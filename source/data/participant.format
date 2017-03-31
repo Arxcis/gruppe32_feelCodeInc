@@ -1,21 +1,21 @@
 3;
 Participant;
 1002;                   //PK
-Jonas;
+Petter Northug;
 +452000864;
 jonas.solsvik@gmail.com;
 NOR;                    // FK
 Male;     
 Participant;
-1002;                   //PK
-Jonas;
+1004;                   //PK
+Ronaldinho;
 +452000864;
 jonas.solsvik@gmail.com;
 NOR;
 Male;     
 Participant;
-1002;                   //PK
-Jonas;
+1006;                   //PK
+David Beckham;
 +452000864;
 jonas.solsvik@gmail.com;
 NOR;

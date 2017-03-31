@@ -1,4 +1,5 @@
 #pragma once
+//
 // @file    core/Dicipline.h
 // @repo    gruppe32
 // @created 24.03.17 by Halvor

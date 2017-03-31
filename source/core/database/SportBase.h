@@ -10,6 +10,7 @@ namespace db
     List& sports;
   public:
     SportBase();
+    virtual ~SportBase(){}
     // Inherited via DataBase
     virtual Sport * unpack(dat::Object * object) override;
     //List& sports = *elements; //aliasing the list
