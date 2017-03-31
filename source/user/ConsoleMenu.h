@@ -120,12 +120,12 @@ namespace menu
   //
   //  @class menu::Stats
   //
-  class StatsMenu : public ConsoleMenu
+  class RankMenu : public ConsoleMenu
   {
   public:
-    StatsMenu(const std::string type, const std::vector<int> nextState);
-    virtual ~StatsMenu(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
+    RankMenu(const std::string type, const std::vector<int> nextState);
+    virtual ~RankMenu(){}
+    virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
  
 

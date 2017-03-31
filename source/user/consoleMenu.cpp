@@ -126,14 +126,20 @@ namespace menu
   //
   //  @class menu::Stats
   //
-  StatsMenu::StatsMenu(const std::string type, const std::vector<int> nextState)
+  RankMenu::RankMenu(const std::string type, const std::vector<int> nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
-  void StatsMenu::view(dat::TransitionMap& map, dat::Object& object)
+  void RankMenu::view(dat::TransitionMap& map, dat::Container& container)
   {
     newPage();
     header(type_ + " stats");
+
+    for(const auto& object: container)
+    {
+      illegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t");
+    }
+
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }

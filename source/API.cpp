@@ -77,6 +77,8 @@ void API::loadAllBases()
   dbContainerCache[NATION]      = nationBase_.readFile("data/nation.format");
   dbContainerCache[PARTICIPANT] = participantBase_.readFile("data/participant.format");
   dbContainerCache[SPORT]       = sportBase_.readFile("data/sport.format");
+  dbContainerCache[POINT]       = pointBase_.readFile("data/point.format");
+  dbContainerCache[MEDAL]       = medalBase_.readFile("data/medal.format");
 }
 
 //
@@ -141,14 +143,14 @@ auto API::getResults(const dat::Field& id)  -> const dat::Object
  return test::resultList;
 }
 
-auto API::getPoints () -> const dat::Object
+auto API::getPoints () -> const dat::Container
 {
-  return test::pointStats;
+  return dbContainerCache[POINT];
 }
 
-auto API::getMedals () -> const dat::Object
+auto API::getMedals () -> const dat::Container
 {
- return test::medalStats;
+ return dbContainerCache[MEDAL];
 }
 //
 // @class function quit()

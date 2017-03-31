@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../enum.h"
 #include "../../tool/typedef.h"
 #include "../../tool/stream.h"
 #include "../Nation.h"

@@ -12,8 +12,8 @@ enum Entity
   PARTICIPANT, 
   SPORT,
   DICIPLINE,
-  POINTS,
-  MEDALS,
+  POINT,
+  MEDAL,
 };
 
 //

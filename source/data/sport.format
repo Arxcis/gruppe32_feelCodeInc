@@ -7,14 +7,14 @@ Final;           //FK
 Semi-final;      //FK
 1/4-final;       //FK
 Sport;
-Fotball;         //PK
+Amerikansk Fotball;         //PK
 Point;
 3;
 Final;
 Semi-final;
 1/4-final;
 Sport;
-Fotball;         //PK
+Rugby;         //PK
 Point;
 3;
 Final;

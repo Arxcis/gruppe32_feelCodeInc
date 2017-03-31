@@ -15,6 +15,7 @@
 #include "core/database/NationBase.h"
 #include "core/database/ParticipantBase.h"
 #include "core/database/SportBase.h"
+#include "core/database/RankBase.h"
 
 // @class API - Application Layer Interface
 // @brief     API that the user-level code can use to communicate with,
@@ -31,19 +32,22 @@ public:
 
   auto getStarts (const dat::Field& id)  -> const dat::Object;
   auto getResults(const dat::Field& id)  -> const dat::Object;
-  auto getPoints () -> const dat::Object;
-  auto getMedals () -> const dat::Object;
+  auto getPoints () -> const dat::Container;
+  auto getMedals () -> const dat::Container;
   void quit();
 
   API();
+  ~API(){}
 private:
   //
   // All the bases
   //
-  db::NationBase nationBase_;
+  db::NationBase      nationBase_;
   db::ParticipantBase participantBase_;
-  db::SportBase sportBase_;
+  db::SportBase       sportBase_;
+  db::RankBase        pointBase_;
+  db::RankBase        medalBase_;
 
-  dat::Container dbContainerCache[4];
+  dat::Container dbContainerCache[6];
   void loadAllBases();
 };

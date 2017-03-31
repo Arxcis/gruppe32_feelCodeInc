@@ -17,8 +17,8 @@ Console::Console()
   allMenus_[NATION_BASE]   = new menu::BaseMenu      ("Nation Base",      { START, NATION_NEW, NATION_SELECT});     
   allMenus_[PART_BASE]     = new menu::BaseMenu      ("Participant Base", { START, PART_NEW,   PART_SELECT});     
   allMenus_[SPORT_BASE]    = new menu::BaseMenu      ("Sport Base" ,      { START, SPORT_NEW,  SPORT_SELECT});     
-  allMenus_[POINT_STATS]   = new menu::StatsMenu     ("Points"     ,      { START} ); 
-  allMenus_[MEDAL_STATS]   = new menu::StatsMenu     ("Medals"     ,      { START} ); 
+  allMenus_[POINT_STATS]   = new menu::RankMenu      ("Points"     ,      { START} ); 
+  allMenus_[MEDAL_STATS]   = new menu::RankMenu      ("Medals"     ,      { START} ); 
   allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nation"     , { NATION_BASE , NATION_EDIT });
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Participant", { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Sport"      , { SPORT_BASE  , SPORT_EDIT  });
@@ -122,13 +122,13 @@ void Console::displayMenu()
 //  ----------- STATS  -----------------
 
     case POINT_STATS: 
-      selectedObject = api_.getPoints();
-      allMenus_[POINT_STATS]->view(currentMap, selectedObject);
+      selectedContainer = api_.getPoints();
+      allMenus_[POINT_STATS]->view(currentMap, selectedContainer);
       break;
 
     case MEDAL_STATS:  
-      selectedObject = api_.getMedals();
-      allMenus_[MEDAL_STATS]->view(currentMap, selectedObject);
+      selectedContainer = api_.getMedals();
+      allMenus_[MEDAL_STATS]->view(currentMap, selectedContainer);
       break;
 
 //  ----------- SELECT  -----------------
