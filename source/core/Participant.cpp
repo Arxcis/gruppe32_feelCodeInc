@@ -12,5 +12,5 @@ auto Participant::getNation() -> dat::char3
 void Participant::display()
 {
   contact_.display();
-  printf("Nationality:\t%s\nParitcipantID:\t%s\n", (char*)nation_, ID_);
+  printf("Nationality:\t%s\nParitcipantID:\t%d\n", (char*)nation_, ID_);
 }

@@ -75,7 +75,7 @@ int Console::run()
     input = stream::readInt("0-" + std::to_string(currentMap.size()-1));
 
     // 2. Make sure input is within bounds.
-    clampedInput = clamp(input, currentMap.size()-1); 
+    clampedInput = clamp(input, (int)currentMap.size()-1);
 
     // 3. Use input to find next menu
     selectedMenu = currentMap[clampedInput].first;

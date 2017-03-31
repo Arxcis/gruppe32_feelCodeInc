@@ -157,7 +157,6 @@ namespace menu
   {
     newPage();
     header(type_);
-    int it=1;
 
     illegalOption(object[1].first + ": " + object[1].second);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));

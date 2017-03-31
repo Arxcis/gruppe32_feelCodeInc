@@ -109,7 +109,7 @@ auto API::getAll(const Entity entity)  -> const dat::Container
   else if(entity == DICIPLINE)
     { return test::diciplines; }
   else
-    { return {}; }
+    { return {}; }
   
 }
 

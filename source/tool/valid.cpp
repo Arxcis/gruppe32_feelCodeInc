@@ -27,7 +27,7 @@ bool valid::isInt(const std::string& value)
 {
   try
   {
-    int test = stoi(value);
+    int test = stoi(value); // @warning, unused var. Used to provoke exception if the convert to int fails.
     return true;
   }
   catch (const std::invalid_argument& e)
@@ -47,7 +47,7 @@ bool valid::isDouble(const std::string& value)
 {
   try
   {
-    float test = stof(value);
+    float test = stof(value); // @warning - unused var. Used to provoke exception if the convert to float fails.
     return true;
   }
   catch (const std::invalid_argument& e)
