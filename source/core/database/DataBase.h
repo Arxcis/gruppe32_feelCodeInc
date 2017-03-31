@@ -16,8 +16,8 @@ namespace db
   class DataBase
   {
   protected: 
-    List * elements;
-    std::stringstream ss;
+    List * elements;                     // Container for the databases core data
+    std::stringstream ss;                // Buffer for reading from files
     
   public:
     DataBase()
