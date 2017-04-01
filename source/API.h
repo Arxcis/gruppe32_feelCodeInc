@@ -30,8 +30,8 @@ public:
   auto get       (const Entity entity, const std::string& id) -> const dat::Object;
   auto getAll    (const Entity entity)                 -> const dat::Container;
 
-  auto getStarts (const dat::Field& id)  -> const dat::Object;
-  auto getResults(const dat::Field& id)  -> const dat::Object;
+  auto getStarts (const std::string& id)  -> const dat::Object;
+  auto getResults(const std::string& id)  -> const dat::Object;
   auto getPoints () -> const dat::Container;
   auto getMedals () -> const dat::Container;
   void quit();

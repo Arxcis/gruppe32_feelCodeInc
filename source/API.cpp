@@ -22,8 +22,8 @@ namespace test
   {
     {"Type", "StartList"},
     {"#Entries", "2"},
-    {"1001", "1001"},
-    {"1002", "1002"},
+    {"1", "1001"},
+    {"2", "1002"},
   };
 
   const dat::Object
@@ -88,11 +88,8 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
   if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
     { return dbContainerCache[entity][0]; }
-  else if (entity == PARTICIPANT)
-    { return test::dicipline; }
-  else 
-    { return {}; }
-  
+  else
+    { assert(false);}  
 }
 
 //
@@ -102,19 +99,16 @@ auto API::getAll(const Entity entity)  -> const dat::Container
 {
   if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
     { return dbContainerCache[entity]; }
-  else if(entity == DICIPLINE)
-    { return test::diciplines; }
   else
-    { return {}; }
-  
+    { assert(false);}  
 }
 
-auto API::getStarts (const dat::Field& id)  -> const dat::Object
+auto API::getStarts (const std::string& id)  -> const dat::Object
 {
   return test::startList;
 }
 
-auto API::getResults(const dat::Field& id)  -> const dat::Object
+auto API::getResults(const std::string& id)  -> const dat::Object
 {
  return test::resultList;
 }
