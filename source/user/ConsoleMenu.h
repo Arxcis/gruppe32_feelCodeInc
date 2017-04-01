@@ -168,6 +168,18 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
 
+  //////////////////////////////////////////////////////////////////
+  //
+  // @class menu::DiciplineMenu
+  //
+  class DiciplineMenu : public ConsoleMenu
+  {
+  public:
+    DiciplineMenu(const std::string& type, const std::vector<int>& nextState);
+    virtual ~DiciplineMenu(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object) override;
+  };
+
 
   //////////////////////////////////////////////////////////////////
   //

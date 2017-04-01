@@ -1,22 +1,40 @@
 3;
-Sport;
-Fotball;         //PK
+Sport;             // Object1
+Fotball;          
 Point;
 3;
-Final;           //FK
-Semi-final;      //FK
-1/4-final;       //FK
-Sport;
-Amerikansk Fotball;         //PK
+Final;          
+19:00:00; 
+29.03.18;
+Semi-final;     
+18:00:00; 
+29.03.18;
+1/4-final;       
+17:00:00;
+29.03.18;
+Sport;             // Object2
+Amerikansk Fotball;  
 Point;
 3;
 Final;
+16:00:00; 
+29.03.18;
 Semi-final;
+15:00:00; 
+29.03.18;
 1/4-final;
-Sport;
-Rugby;         //PK
+15:00:00; 
+29.03.18;
+Sport;             // Object3
+Rugby;     
 Point;
 3;
 Final;
+14:00:00; 
+29.03.18;
 Semi-final;
+13:00:00;
+29.03.18;
 1/4-final;
+12:00:00;
+29.03.18;

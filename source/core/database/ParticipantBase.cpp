@@ -36,6 +36,7 @@ auto db::ParticipantBase::readFile(const std::string& filepath) -> dat::Containe
     ss << innFile.rdbuf();    // Swapping buffers
     innFile.close();
   };
+  
   fileToStream();
 
   // Reading number of objects.

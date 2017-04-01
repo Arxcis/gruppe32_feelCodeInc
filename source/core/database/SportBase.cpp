@@ -51,12 +51,15 @@ auto db::SportBase::readFile(const std::string& filepath) -> dat::Container
     stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
     stream::readInt    (ss, thisProto[3].second);
 
-    for (auto j=4; j < (4+std::stoi(thisProto[3].second)); j++)
+    for (auto j=4; j < (4 + (std::stoi(thisProto[3].second)*3)); j+=3 )
     { 
-      thisProto.push_back(
-        { std::to_string(j-4), "" });
+      thisProto.push_back({ "Dicipline", "" });
+      thisProto.push_back({ "Time",      "" });
+      thisProto.push_back({ "Date",      "" });
 
-      stream::readString(ss, thisProto[j].second); 
+      stream::readString(ss, thisProto[j].second);
+      stream::readTime  (ss,   thisProto[j+1].second); 
+      stream::readDate  (ss,   thisProto[j+2].second); 
       //std::cout << thisProto[j].second << std::endl;  // @debug
     }
     tempContainer.push_back(thisProto);

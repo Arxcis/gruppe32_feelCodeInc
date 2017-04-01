@@ -13,15 +13,18 @@ namespace dat
 {
   struct Contact 
   {
-    std::string name;
-    std::string address;
-    std::string phone;
+    std::string name = "";
+    std::string address = "";
+    std::string phone = "";
 
-    Contact();
     Contact(
       std::string name_, 
       std::string address_, 
-      std::string phone_);
+      std::string phone_)
+    :name(name_)
+    ,address(address_)
+    ,phone(phone_)
+    {}
 
     void display();
   };

@@ -24,7 +24,7 @@ namespace menu
 
   void ConsoleMenu::newPage() const
   {
-    for(int i=0; i<40; i++)
+    for(int i=0; i < 40; i++)
     {
       std::cout << "\n";
     }
@@ -171,7 +171,7 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NationMenu
+  //  @class menu::ParticipantMenu
   //
   ParticipantMenu::ParticipantMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
@@ -194,7 +194,7 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::NationMenu
+  //  @class menu::SportMenu
   //
   SportMenu::SportMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
@@ -206,12 +206,32 @@ namespace menu
     header(type_);
 
     illegalOption(object[1].first + ": " + object[1].second);
+
+    // Binding edit sport options
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     illegalOption(object[3].first + ": " + object[3].second);
-    illegalOption(object[4].first + ": " + object[4].second);
-    illegalOption(object[5].first + ": " + object[5].second);
+      
+    // Binding select dicipline options
+    for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
+      { bindDynamicOption(map, (i/3)+1, nextState_[2], object[i].second, object[i].first + ": " + object[i].second); }
 
     bindStaticOption(map, 0, nextState_[0], "Back     ");
+    footer();
+  }
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::DiciplineMenu
+  //
+  DiciplineMenu::DiciplineMenu(const std::string& type, const std::vector<int>& nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& object) 
+  {
+    newPage();
+    header(type_);
+
     footer();
   }
 

@@ -35,6 +35,7 @@ namespace db
       ss << innFile.rdbuf();    // Swapping buffers
       innFile.close();
     };
+    
     fileToStream();
 
     // Reading number of objects.
