@@ -17,3 +17,4 @@ int  Medals::castToInt()
 {
   return ((gold*1001*1001) + (silver*1001) + bronze);
 }
+

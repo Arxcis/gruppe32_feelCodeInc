@@ -34,7 +34,7 @@ public:
 private:
   
   static bool instantiated_;
-  static const int maxMenus_ = 16;
+  static const int maxMenus_ = 23;
 
   //
   // Static state variables
