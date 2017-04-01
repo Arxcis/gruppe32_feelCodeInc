@@ -45,7 +45,8 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) {}
+    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object, const int index){}
 
     //
     // @class funciton - small helper functions
@@ -178,7 +179,7 @@ namespace menu
   public:
     DiciplineMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~DiciplineMenu(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key);
+    virtual void view(dat::TransitionMap& map, dat::Object& object, const int index); 
   };
 
 

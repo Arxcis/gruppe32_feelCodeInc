@@ -203,20 +203,14 @@ namespace menu
     newPage();
     header(type_);
 
-    illegalOption(object[1].first + ": " + object[1].second);
-
     // 1. Binding options which edit the sport
-    bindDynamicOption(map, 1, nextState_[1], object[2].first, 
-                                              (object[2].first + ": " + object[2].second));
-
-    illegalOption(object[3].first + ": " + object[3].second);
+    illegalOption(object[1].first + ": " +   object[1].second);
+    bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
+    illegalOption(object[3].first + ": " +   object[3].second);
       
     // 2. Binding opitons which selects a dicipline
-    for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
-    { 
-      bindDynamicOption(map, (i/3)+1, nextState_[2], object[i].second, 
-                                                      object[i].second); 
-    }
+    for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3)
+      { bindDynamicOption(map, (i/3)+1, nextState_[2], object[i].second, object[i].second); }
 
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -232,23 +226,18 @@ namespace menu
 
   //
   // @funciton menu::DiciplineMenu::view
-  //  @param object - The selected sport, which also contains meta-information about selected dicipline
+  //  @param sportObject - The selected sport, which also contains meta-information about selected dicipline
   //
-  void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& object, const std::string& key) 
+  void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& sportObject, const int index) 
   {
     newPage();
     header(type_);
 
-    // @for @brief advance iterator, until we get to the content about the selected dicipline
-    int it = 0;
-    while (object[it].second != key)
-      { it++; }
-
-    illegalOption(object[it].second);
-    bindDynamicOption(map, 1, nextState_[0], object[it+1].first, object[it+1].first + ": " + object[it+1].second);
-    bindDynamicOption(map, 2, nextState_[0], object[it+2].first, object[it+2].first + ": " + object[it+2].second);
-    bindDynamicOption(map, 3, nextState_[2], object[it].second, "Start list");
-    bindDynamicOption(map, 4, nextState_[3], object[it].second, "Result List");
+    illegalOption(sportObject[index].second);
+    bindDynamicOption(map, 1, nextState_[1], sportObject[index+1].first, sportObject[index+1].first + ": " + sportObject[index+1].second);
+    bindDynamicOption(map, 2, nextState_[1], sportObject[index+2].first, sportObject[index+2].first + ": " + sportObject[index+2].second);
+    bindDynamicOption(map, 3, nextState_[2], sportObject[index].second, "Start list");
+    bindDynamicOption(map, 4, nextState_[3], sportObject[index].second, "Result List");
 
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
