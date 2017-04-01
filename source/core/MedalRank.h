@@ -1,5 +1,7 @@
 #pragma once
 
+// POTENTIALLY DELETEABLE AND VERY REDUNDANT
+
 #include "Rank.h"
 #include "../tool/Medals.h"
 

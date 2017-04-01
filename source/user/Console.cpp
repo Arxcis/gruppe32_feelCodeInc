@@ -31,7 +31,7 @@ Console::Console()
   //
   // Registring Advanced menus
   //
-  allMenus_[DICI_SELECT] = new menu::EditField       ("Sport"      ,    { SPORT_SELECT});
+  allMenus_[DICI_SELECT] = new menu::DiciplineMenu     ("Dicipline"  ,    { SPORT_SELECT});
 }
 
 Console::~Console() 

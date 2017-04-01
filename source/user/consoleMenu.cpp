@@ -207,11 +207,11 @@ namespace menu
 
     illegalOption(object[1].first + ": " + object[1].second);
 
-    // Binding edit sport options
+    // 1. Binding options which edit the sport
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     illegalOption(object[3].first + ": " + object[3].second);
       
-    // Binding select dicipline options
+    // 2. Binding opitons which selects a dicipline
     for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
       { bindDynamicOption(map, (i/3)+1, nextState_[2], object[i].second, object[i].first + ": " + object[i].second); }
 
@@ -232,6 +232,9 @@ namespace menu
     newPage();
     header(type_);
 
+   // bindStaticOption(map, 1, nextState_[1], );
+
+    bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
 

@@ -1,4 +1,4 @@
-3;
+4;
 Participant;
 1002;                   //PK
 Petter Northug;
@@ -16,6 +16,13 @@ Male;
 Participant;
 1006;                   //PK
 David Beckham;
++452000864;
+jonas.solsvik@gmail.com;
+NOR;
+Male;     
+Participant;
+1006;                   //PK
+David Beckham2;
 +452000864;
 jonas.solsvik@gmail.com;
 NOR;
