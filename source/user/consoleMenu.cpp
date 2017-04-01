@@ -8,7 +8,7 @@ namespace menu
   //
   //  @base class menu::ConsoleMenu
   //
-  ConsoleMenu::ConsoleMenu(const std::string type, const std::vector<int> nextState)
+  ConsoleMenu::ConsoleMenu(const std::string& type, const std::vector<int>& nextState)
   :type_(type)
   ,nextState_(nextState)
   {}
@@ -78,7 +78,7 @@ namespace menu
   //
   //  @class menu::Start
   //
-  StartMenu::StartMenu(const std::string type, const std::vector<int> nextState)
+  StartMenu::StartMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {}
 
@@ -100,7 +100,7 @@ namespace menu
   //
   //  @class menu::Base
   //
-  BaseMenu::BaseMenu(const std::string type, const std::vector<int> nextState)
+  BaseMenu::BaseMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {}
 
@@ -126,7 +126,7 @@ namespace menu
   //
   //  @class menu::Stats
   //
-  RankMenu::RankMenu(const std::string type, const std::vector<int> nextState)
+  RankMenu::RankMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
@@ -149,7 +149,7 @@ namespace menu
   //
   //  @class menu::NationMenu
   //
-  NationMenu::NationMenu(const std::string type, const std::vector<int> nextState)
+  NationMenu::NationMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
@@ -173,7 +173,7 @@ namespace menu
   //
   //  @class menu::NationMenu
   //
-  ParticipantMenu::ParticipantMenu(const std::string type, const std::vector<int> nextState)
+  ParticipantMenu::ParticipantMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
@@ -196,7 +196,7 @@ namespace menu
   //
   //  @class menu::NationMenu
   //
-  SportMenu::SportMenu(const std::string type, const std::vector<int> nextState)
+  SportMenu::SportMenu(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
@@ -220,7 +220,7 @@ namespace menu
   //
   //  @class menu::NewObject
   //
-  NewObject::NewObject(const std::string type, const std::vector<int> nextState)
+  NewObject::NewObject(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {}
 
@@ -237,7 +237,7 @@ namespace menu
   //
   //  @class menu::EditField 
   //
-  EditField::EditField(const std::string type, const std::vector<int> nextState)
+  EditField::EditField(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {}
 
@@ -254,7 +254,7 @@ namespace menu
   //
   //  @class menu::Error 
   //
-  Error::Error(const std::string type, const std::vector<int> nextState)
+  Error::Error(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {}
 

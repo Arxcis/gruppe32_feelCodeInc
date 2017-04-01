@@ -33,7 +33,7 @@ namespace menu
   class ConsoleMenu 
   {
   public:
-    ConsoleMenu(const std::string type, const std::vector<int> nextState);
+    ConsoleMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~ConsoleMenu(){};
     //
     // @function view() 
@@ -96,7 +96,7 @@ namespace menu
   class StartMenu : public ConsoleMenu
   {
   public:
-    StartMenu(const std::string type, const std::vector<int> nextState);
+    StartMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~StartMenu(){};
     virtual void view(dat::TransitionMap& map) override;
   };
@@ -109,7 +109,7 @@ namespace menu
   class BaseMenu : public ConsoleMenu
   {
   public:
-    BaseMenu(const std::string type, const std::vector<int> nextState);
+    BaseMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~BaseMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
 
@@ -123,7 +123,7 @@ namespace menu
   class RankMenu : public ConsoleMenu
   {
   public:
-    RankMenu(const std::string type, const std::vector<int> nextState);
+    RankMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~RankMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Container& container) override;
   };
@@ -136,7 +136,7 @@ namespace menu
   class NationMenu : public ConsoleMenu
   {
   public:
-    NationMenu(const std::string type, const std::vector<int> nextState);
+    NationMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~NationMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
 
@@ -150,7 +150,7 @@ namespace menu
   class ParticipantMenu: public ConsoleMenu
   {
   public:
-    ParticipantMenu(const std::string type, const std::vector<int> nextState);
+    ParticipantMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~ParticipantMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
@@ -163,7 +163,7 @@ namespace menu
   class SportMenu : public ConsoleMenu
   {
   public:
-    SportMenu(const std::string type, const std::vector<int> nextState);
+    SportMenu(const std::string& type, const std::vector<int>& nextState);
     virtual ~SportMenu(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object) override;
   };
@@ -176,7 +176,7 @@ namespace menu
   class NewObject : public ConsoleMenu
   {
   public:
-    NewObject(const std::string type, const std::vector<int> nextState);
+    NewObject(const std::string& type, const std::vector<int>& nextState);
     virtual ~NewObject(){}
     virtual void view(dat::TransitionMap& map, dat::Object& newObject) override;
   };
@@ -189,7 +189,7 @@ namespace menu
   class EditField : public ConsoleMenu
   {
   public:
-    EditField(const std::string type, const std::vector<int> nextState);
+    EditField(const std::string& type, const std::vector<int>& nextState);
     virtual ~EditField(){}
     virtual void view(dat::TransitionMap& map, dat::Field& field) override;
   };
@@ -201,7 +201,7 @@ namespace menu
   class Error : public ConsoleMenu
   {
   public:
-    Error(const std::string type, const std::vector<int> nextState);
+    Error(const std::string& type, const std::vector<int>& nextState);
     virtual ~Error(){}
     virtual void view() override;
   };
