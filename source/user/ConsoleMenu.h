@@ -184,6 +184,20 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
+  // @class menu::ListMenu
+  //
+  class ListMenu : public ConsoleMenu
+  {
+  public:
+    ListMenu(const std::string& type, const std::vector<int>& nextState);
+    virtual ~ListMenu(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key);
+  };
+
+
+
+  //////////////////////////////////////////////////////////////////
+  //
   //  NEW MENU classes
   //
   class NewObject : public ConsoleMenu

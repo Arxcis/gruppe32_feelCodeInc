@@ -53,4 +53,5 @@ private:
   dat::Object        selectedObject;
   dat::Field         selectedField;
   std::string        selectedID = "";
+  std::string        selectedDiciplineID = "";
 };

@@ -31,7 +31,10 @@ Console::Console()
   //
   // Registring Advanced menus
   //
-  allMenus_[DICI_SELECT] = new menu::DiciplineMenu     ("Dicipline"  ,    { SPORT_SELECT });
+  allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Dicipline"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT});
+  allMenus_[DICI_EDIT]    = new menu::EditField       ("Dicipline"  ,  { DICI_SELECT });
+  allMenus_[SLIST_SELECT] = new menu::ListMenu        ("Starts"     ,  { DICI_SELECT });
+  allMenus_[RLIST_SELECT] = new menu::ListMenu        ("Results"    ,  { DICI_SELECT });
 }
 
 Console::~Console() 
@@ -207,7 +210,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[NATION_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(NATION, selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(NATION, selectedObject); 
       break;
 
 
@@ -217,7 +220,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[PART_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(PARTICIPANT, selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(PARTICIPANT, selectedObject); 
       break;
 
 
@@ -227,7 +230,30 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[SPORT_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(SPORT, selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(SPORT, selectedObject); 
+      break;
+
+    case DICI_EDIT:
+      for(auto& field: selectedObject)
+      {
+        if (field.first == selectedID) 
+          { allMenus_[DICI_EDIT]->view(currentMap, field); }
+      }
+      selectedObject = api_.update(DICIPLINE, selectedObject); 
+      break;
+
+
+//  ----------- DICIPLINE LIST  -----------------
+    //
+    // 1. Ask API for a specific list from a specific dicipline
+    // 2. View the list.
+    //
+    case RLIST_SELECT:
+      allMenus_[RLIST_SELECT]->view(currentMap, selectedObject, selectedID);
+      break;
+
+    case SLIST_SELECT:
+      allMenus_[SLIST_SELECT]->view(currentMap, selectedObject, selectedID);
       break;
 
 
