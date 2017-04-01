@@ -3,16 +3,23 @@
 namespace db
 { 
   //
-  // @class function Rankbase::unpack
+  // @class function RankBase::unpack
   //
   Rank * RankBase::unpack(dat::Object * object)
   { 
-    // @missing implementatino
+    dat::Object obj = *object;
+    //@SUGGESTED IMPLEMENTATION
+    /*
+    if(obj[0].second.compare("Medal"))
+    { dat::unpacking::medal(obj); }
+    else
+    { dat::unpacking::point(obj); }
+    */
     return nullptr;
   }
 
   //
-  // @class function Rankbase::unpack
+  // @class function Rankbase::readFile
   //
   auto RankBase::readFile(const std::string& filepath) -> dat::Container
   {

@@ -11,6 +11,9 @@
 
 class Sport : TextElement
 {
+public:
+  enum ScoreType { MEDAL, POINT}; // are we suupposed to do scores like this?
+
 private:
 	std::string name_;
 	//ScoreType scoreType_;

@@ -4,8 +4,12 @@ db::ParticipantBase::ParticipantBase() : participants(*elements) {}
 
 Participant * db::ParticipantBase::unpack(dat::Object * object)
 {
-  //UNPACK UR STUFF PLS
-  return nullptr;
+  dat::Object obj = *object;
+  int ID = stoi(obj[1].second);
+  dat::Contact contact = *dat::unpacking::contact(obj[2], obj[3], obj[4]);
+  dat::char3 shortName = obj[5].second.c_str();
+  Participant::Gender gender = (Participant::Gender)stoi(obj[6].second);
+  return new Participant(ID,contact,shortName, gender);
 }
 
 //
