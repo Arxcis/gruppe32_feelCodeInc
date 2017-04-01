@@ -47,14 +47,11 @@ private:
   //
   int input = 0;
   int selectedMenu = START;
-  int diciplineIndex = 0;
-  bool activeObject = false;
 
   dat::TransitionMap currentMap;
   dat::Container     selectedContainer;
   dat::Object        selectedObject;
-  dat::Object        selectedList;
   dat::Field         selectedField;
   std::string        selectedID = "";
-
+  std::string        selectedDiciplineID = "";
 };

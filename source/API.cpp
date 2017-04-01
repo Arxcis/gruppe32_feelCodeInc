@@ -86,8 +86,10 @@ bool API::remove(const Entity entity, const std::string& id)
 //
 auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
-  assert(entity == NATION || entity == PARTICIPANT || entity == SPORT);
-  return dbContainerCache[entity][0];
+  if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
+    { return dbContainerCache[entity][0]; }
+  else
+    { assert(false);}  
 }
 
 //
@@ -95,8 +97,10 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 //
 auto API::getAll(const Entity entity)  -> const dat::Container
 {
-  assert(entity == NATION || entity == PARTICIPANT || entity == SPORT);
-  return dbContainerCache[entity];
+  if(entity == NATION || entity == PARTICIPANT || entity == SPORT)
+    { return dbContainerCache[entity]; }
+  else
+    { assert(false);}  
 }
 
 auto API::getStarts (const std::string& id)  -> const dat::Object

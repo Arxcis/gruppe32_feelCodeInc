@@ -96,7 +96,7 @@ int Console::run()
 
 void Console::displayMenu()
 { 
-  int it=0;
+
   switch(selectedMenu)
   {
     case EXIT: exit(0); 
@@ -114,22 +114,17 @@ void Console::displayMenu()
     //  2. Feed the objects into the selected menu, so they can be listed, and key-bound.
     //  
     case NATION_BASE: 
-      activeObject = false;
       selectedContainer = api_.getAll(NATION);
       allMenus_[NATION_BASE]->view(currentMap, selectedContainer);
       break;
 
-    case PART_BASE:
-      activeObject = false;  
-      selectedContainer = api_.getAll(PARTICIPANT);
-      activeObject = true; 
+    case PART_BASE:  
+      selectedContainer = api_.getAll(PARTICIPANT); 
       allMenus_[PART_BASE]->view(currentMap, selectedContainer); 
       break;
 
-    case SPORT_BASE:
-      activeObject = false;   
+    case SPORT_BASE:   
       selectedContainer = api_.getAll(SPORT); 
-      
       allMenus_[SPORT_BASE]->view(currentMap, selectedContainer);
       break;
 
@@ -159,40 +154,22 @@ void Console::displayMenu()
     //  3. Feeding the object to the menu, where keys are mapped to edit-able fields.
     // 
     case NATION_SELECT:
-      if(!activeObject)
-      { 
-        selectedObject = api_.get(NATION, currentMap[input].second);
-        activeObject = true;
-      }
+      selectedObject = api_.get(NATION, currentMap[input].second);
       allMenus_[NATION_SELECT]->view(currentMap, selectedObject);
       break;
 
     case PART_SELECT:
-      if(!activeObject)
-      { 
-        selectedObject = api_.get(PARTICIPANT, currentMap[input].second);
-        activeObject = true;
-      }
+      selectedObject = api_.get(PARTICIPANT, currentMap[input].second);
       allMenus_[PART_SELECT]->view(currentMap, selectedObject);
       break;
 
     case SPORT_SELECT:
-      diciplineIndex = 0;  // Resetting the selected dicipline
-      if(!activeObject)
-      { 
-        selectedObject = api_.get(SPORT, currentMap[input].second);
-        activeObject = true;
-      }
+      selectedObject = api_.get(SPORT, currentMap[input].second);
       allMenus_[SPORT_SELECT]->view(currentMap, selectedObject);
       break;
 
     case DICI_SELECT:
-      if(!diciplineIndex) 
-      {
-        while (selectedObject[diciplineIndex].second != selectedID) // Finding the index to the desired dicipline in the selected sport object
-          { diciplineIndex++; }
-      }
-      allMenus_[DICI_SELECT]->view(currentMap, selectedObject, diciplineIndex);
+      allMenus_[DICI_SELECT]->view(currentMap, selectedObject, selectedID);
       break;
 
 //  ----------- NEW  -----------------
@@ -235,7 +212,7 @@ void Console::displayMenu()
       }
       selectedObject = api_.update(NATION, selectedObject); 
       break;
-      
+
 
     case PART_EDIT:
       for(auto& field: selectedObject)
@@ -256,14 +233,13 @@ void Console::displayMenu()
       selectedObject = api_.update(SPORT, selectedObject); 
       break;
 
-
     case DICI_EDIT:
       for(auto& field: selectedObject)
       {
-        if (field.first == selectedID)
+        if (field.first == selectedID) 
           { allMenus_[DICI_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(SPORT, selectedObject); 
+      selectedObject = api_.update(DICIPLINE, selectedObject); 
       break;
 
 
