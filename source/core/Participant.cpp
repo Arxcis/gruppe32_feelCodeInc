@@ -1,5 +1,8 @@
 #include "Participant.h"
 
+Participant::Participant(int ID, dat::Contact contact, dat::char3 nation, Participant::Gender gender) :
+ID_(ID), contact_(contact), nation_(nation), gender_(gender){}
+
 int Participant::getID()
 { return ID_; }
 
@@ -8,6 +11,9 @@ auto Participant::getContact() -> dat::Contact
 
 auto Participant::getNation() -> dat::char3
 {	return nation_; }
+
+Participant::Gender Participant::getGender()
+{ return gender_; }
 
 void Participant::display()
 {
