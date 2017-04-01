@@ -25,7 +25,7 @@ class API
 { 
 public:
   bool add       (const dat::Object& object);
-  auto update    (const dat::Object& object) -> const dat::Object;
+  auto update    (const Entity entity, const dat::Object& object) -> const dat::Object;
   bool remove    (const Entity entity, const std::string& id);
   auto get       (const Entity entity, const std::string& id) -> const dat::Object;
   auto getAll    (const Entity entity)                 -> const dat::Container;
@@ -39,15 +39,16 @@ public:
   API();
   ~API(){}
 private:
+  void loadAllBases();
+
   //
   // All the bases
   //
-  db::NationBase      nationBase_;
-  db::ParticipantBase participantBase_;
-  db::SportBase       sportBase_;
-  db::RankBase        pointBase_;
-  db::RankBase        medalBase_;
+  db::NationBase      nationBase_;     
+  db::ParticipantBase participantBase_;         
+  db::SportBase       sportBase_;        
+  db::RankBase        pointBase_;     
+  db::RankBase        medalBase_;      
+  dat::Container      dbContainerCache[6];
 
-  dat::Container dbContainerCache[6];
-  void loadAllBases();
 };

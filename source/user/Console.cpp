@@ -1,7 +1,6 @@
 #include "Console.h"
 
-bool Console::instantiated_ = false;
-
+bool Console::instantiated_ = false;    // @static
 
 Console::Console()
 { 
@@ -38,7 +37,7 @@ Console::~Console()
 { 
   instantiated_ = false; 
 
-  for (int i=0; i < maxMenus_; i++)
+  for (auto i=0; i < maxMenus_; i++)
     { delete allMenus_[i]; }
 }
 
@@ -48,7 +47,7 @@ Console::~Console()
 //
 int Console::clamp(const int input, const int max) const
 { 
-  const int min = 0;
+  const auto min = 0;
 
   if(input > max)
     { return min; }
@@ -65,7 +64,8 @@ int Console::clamp(const int input, const int max) const
 //
 int Console::run()
 { 
-  bool running = true;
+  auto running      = true;
+  auto clampedInput = 0;
 
   allMenus_[START]->view(currentMap);
 
@@ -202,7 +202,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[NATION_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(NATION, selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
@@ -212,7 +212,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[PART_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(PARTICIPANT, selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 
@@ -222,7 +222,7 @@ void Console::displayMenu()
         if (field.first == selectedID) 
           { allMenus_[SPORT_EDIT]->view(currentMap, field); }
       }
-      selectedObject = api_.update(selectedObject);  //@error - undefined symbol API::update(blablabla)
+      selectedObject = api_.update(SPORT, selectedObject);  //@error - undefined symbol API::update(blablabla)
       break;
 
 

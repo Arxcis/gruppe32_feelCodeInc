@@ -70,13 +70,9 @@ bool API::add(const dat::Object& object )
 //
 // @class function update()
 //
-auto API::update (const dat::Object& object) -> const dat::Object
+auto API::update (const Entity entity, const dat::Object& object) -> const dat::Object
 {  
-  //if (object[0].second == "Nation")      return test::nation;
-  //if (object[0].second == "Participant") return test::participant;
-  //if (object[0].second == "Sport")       return test::sport;
-  //else
-    return {};
+  return dbContainerCache[entity][0];
 }
 
 //

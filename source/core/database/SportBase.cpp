@@ -12,11 +12,11 @@ Sport * db::SportBase::unpack(dat::Object * object)
 // @funciton db::SportBase::readFile()
 //    Used to fill the database with data;
 //
-dat::Container db::SportBase::readFile(const std::string& filepath)
+auto db::SportBase::readFile(const std::string& filepath) -> dat::Container
 {
-  dat::Container tempContainer; // @delete @temp @testing
+  auto tempContainer = dat::Container{}; // @delete @temp @testing
 
-  dat::Object prototype =
+  auto prototype = dat::Object
   {
     {"Type",         ""},  // Sport
     {"Name",         ""},  // PK
@@ -24,24 +24,26 @@ dat::Container db::SportBase::readFile(const std::string& filepath)
     {"#Diciplines",  ""}
   };
 
-  std::ifstream innFile(filepath);
-
-  // Crashing the program if file not found.
-  assert(innFile);
-  std::cout << "Opening "<< filepath << "...\n";  // @debug
-      
-  // Flushing filebuffer into a stringstream and closing the file
-  ss << innFile.rdbuf();
-  innFile.close();
+  auto fileToStream  = [filepath, this]()
+  { 
+    auto innFile = std::ifstream { filepath };
+    assert(innFile);
+    std::cout << "Opening "<< filepath << "...\n";  // @debug
+          
+    ss << innFile.rdbuf();    // Swapping buffers
+    innFile.close();
+  };
+  
+  fileToStream();
 
   // Reading number of objects.
-  std::string objectCount;
+  auto objectCount = std::string{};
   stream::readInt(ss,objectCount);
 
     // Loop through all objects
-  for(int i=0; i < std::stoi(objectCount); i++)
+  for (auto i=0; i < std::stoi(objectCount); i++)
   {
-    dat::Object thisProto = prototype;
+    auto thisProto = prototype;
     std::cout << "Sport " << i << "\n";
 
     stream::readString (ss, thisProto[0].second);
@@ -49,10 +51,10 @@ dat::Container db::SportBase::readFile(const std::string& filepath)
     stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
     stream::readInt    (ss, thisProto[3].second);
 
-    for(int j=4; j < (4+std::stoi(thisProto[3].second)); j++)
+    for (auto j=4; j < (4+std::stoi(thisProto[3].second)); j++)
     { 
       thisProto.push_back(
-        {std::to_string(j-4), ""});
+        { std::to_string(j-4), "" });
 
       stream::readString(ss, thisProto[j].second); 
       //std::cout << thisProto[j].second << std::endl;  // @debug

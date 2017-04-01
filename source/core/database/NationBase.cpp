@@ -17,11 +17,11 @@ Nation * db::NationBase::unpack(dat::Object * object)
 // @funciton db::Nationbase::readFile()
 //    Used to fill the database with data;
 //
-dat::Container db::NationBase::readFile(const std::string& filepath)
+auto db::NationBase::readFile(const std::string& filepath) -> dat::Container
 {
-  dat::Container tempContainer; // @delete @temp @testing
+  auto tempContainer = dat::Container {}; // @delete @temp @testing
 
-  dat::Object prototype = 
+  auto prototype = dat::Object 
   {
     {"type",           ""},   // Nation
     {"Code",           ""},   //PK              
@@ -32,18 +32,20 @@ dat::Container db::NationBase::readFile(const std::string& filepath)
     {"#Participants",  ""}
   };
 
-  std::ifstream innFile(filepath);
+  auto fileToStream  = [filepath, this]()
+  { 
+    auto innFile = std::ifstream { filepath };
+    assert(innFile);
+    std::cout << "Opening "<< filepath << "...\n";  // @debug
+          
+    ss << innFile.rdbuf();    // Swapping buffers
+    innFile.close();
+  };
 
-  // Crashing the program if file not found.
-  assert(innFile);
-  std::cout << "Opening "<< filepath << "...\n";  // @debug
-      
-  // Flushing filebuffer into a stringstream and closing the file
-  ss << innFile.rdbuf();
-  innFile.close();
+  fileToStream();
 
   // Reading number of objects.
-  std::string objectCount;
+  auto objectCount = std::string{};
   stream::readInt(ss,objectCount);
 
   // Loop through all objects

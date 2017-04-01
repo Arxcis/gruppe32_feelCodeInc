@@ -12,11 +12,11 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
 // @funciton db::ParticipantBase::readFile()
 //    Used to fill the database with data;
 //
-dat::Container db::ParticipantBase::readFile(const std::string& filepath)
+auto db::ParticipantBase::readFile(const std::string& filepath) -> dat::Container
 { 
-  dat::Container tempContainer; // @delete @temp @testing
+  auto tempContainer = dat::Container{}; // @delete @temp @testing
 
-  dat::Object prototype =
+  auto prototype = dat::Object
   {
       {"Type",        ""},  // Participant
       {"ID",          ""},
@@ -27,18 +27,19 @@ dat::Container db::ParticipantBase::readFile(const std::string& filepath)
       {"Gender",      ""}
   };
 
-  std::ifstream innFile(filepath);
-
-  // Crashing the program if file not found.
-  assert(innFile);
-  std::cout << "Opening "<< filepath << "...\n";  // @debug
-      
-  // Flushing filebuffer into a stringstream and closing the file
-  ss << innFile.rdbuf();
-  innFile.close();
+  auto fileToStream  = [filepath, this]()
+  { 
+    auto innFile = std::ifstream { filepath };
+    assert(innFile);
+    std::cout << "Opening "<< filepath << "...\n";  // @debug
+          
+    ss << innFile.rdbuf();    // Swapping buffers
+    innFile.close();
+  };
+  fileToStream();
 
   // Reading number of objects.
-  std::string objectCount;
+  auto objectCount = std::string{};
   stream::readInt(ss,objectCount);
 
     // Loop through all objects
