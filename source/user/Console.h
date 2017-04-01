@@ -11,7 +11,7 @@
 #include <string>
 
 // @local files
-#include "../enum.h"
+#include "MenuEnum.h"
 #include "../tool/typedef.h"
 #include "../tool/stream.h"
 #include "../API.h"

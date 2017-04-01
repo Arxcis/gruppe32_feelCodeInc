@@ -20,7 +20,7 @@
 #include <utility>
 
 #include "../tool/typedef.h"
-#include "../enum.h"
+#include "MenuEnum.h"
 #include "consoleForm.h"
 
 namespace menu 
