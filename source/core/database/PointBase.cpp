@@ -17,11 +17,10 @@ namespace db
   //
   auto PointBase::unpack(dat::Object& object) -> Rank*
   {
-    dat::Object obj = *object;
-    dat::char3 nationCode = obj[1].second.c_str();
-    if(obj[0].secont.compare)
-    int value = std::stoi(obj[2].second);
-    return new Rank(value, );
+    //dat::char3 nationCode = object[1].second.c_str();
+    //if (object[0].second.compare)
+    //int value = std::stoi(object[2].second);
+    return nullptr; //new Rank(value, nationCode);
   }
 
   //

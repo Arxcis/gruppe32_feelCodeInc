@@ -7,10 +7,9 @@ namespace db
   // @class function unpack()
   //
   auto MedalBase::unpack(dat::Object& object) -> Rank*
-  { 
-    dat::Object obj = *object;
-    dat::char3 nationCode = obj[1].second.c_str();
-    int value = dat::packing::unpackMedals(obj[2])->castToInt();
+  {
+    dat::char3 nationCode = object[1].second.c_str();
+    int value = dat::packing::unpackMedals(object[2])->castToInt();
     return new Rank(value,nationCode);
   }
 
