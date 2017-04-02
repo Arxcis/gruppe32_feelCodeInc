@@ -18,21 +18,37 @@ namespace test
   };
 
   const dat::Object
+  start
+  {
+    {"Type", "Start"},
+    {"ID", "1001"},
+    {"Name", "Jonas Styggardson"},
+  };
+
+  const dat::Container
   startList
   {
-    {"Type", "StartList"},
-    {"#Entries", "2"},
-    {"1", "1001"},
-    {"2", "1002"},
+    start,
+    start,
+    start,
+    start,
   };
 
   const dat::Object
+  result
+  {
+    {"Type", "Result"},
+    {"ID",   "1001"},
+    {"Value", "00:03:58"},
+  };
+
+  const dat::Container
   resultList
   {
-    {"Type", "ResultList"},
-    {"#Entries", "2"},
-    {"1001", "00:48:01"},
-    {"1002", "00:28:55"},
+    result,
+    result,
+    result,
+    result,
   };
 
 
@@ -99,21 +115,21 @@ auto API::getAll(const Entity entity)  -> const dat::Container
   return dbContainerCache[entity];
 }
 
-auto API::getStarts (const std::string& id)  -> const dat::Object
+auto API::getStarts (const std::string& id)  -> const dat::Container
 {
   return test::startList;
 }
 
-auto API::getResults(const std::string& id)  -> const dat::Object
+auto API::getResults(const std::string& id)  -> const dat::Container
 {
  return test::resultList;
 }
 
-void API::setStarts (const std::string& id, const dat::Object& list)
+void API::setStarts (const std::string& id, const dat::Container& list)
 {
 }
 
-void API::setResults(const std::string& id, const dat::Object& list)
+void API::setResults(const std::string& id, const dat::Container& list)
 {
 }
 
