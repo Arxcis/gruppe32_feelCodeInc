@@ -12,6 +12,22 @@ Participant * db::ParticipantBase::unpack(dat::Object * object)
   return new Participant(ID,contact,shortName, gender);
 }
 
+dat::Object * db::ParticipantBase::pack(Participant * participant)
+{
+  dat::Contact contact = participant->getContact();
+  auto participantObj = new dat::Object
+  {
+    { "Type",        "Participant" },  // Participant
+    { "ID",          std::to_string(participant->getID())},
+    { "Name",        contact.name },  // PK
+    { "Phone",       contact.phone },
+    { "Email",       contact.mailAddress },
+    { "CountryCode", participant->getNation() },  // FK
+    { "Gender",      participant->getGender() ? "Male" : "Female" }
+  };
+  return participantObj;
+}
+
 //
 // @funciton db::ParticipantBase::readFile()
 //    Used to fill the database with data;
@@ -64,20 +80,4 @@ auto db::ParticipantBase::readFile(const std::string& filepath) -> dat::Containe
   } 
   writeFile(filepath, tempContainer);   // @testing @debug @delete me
   return tempContainer;
-}
-
-dat::Object * db::ParticipantBase::pack(Participant * participant)
-{
-  dat::Contact contact = participant->getContact();
-  auto = new dat::Object
-  {
-    { "Type",        "Participant" },  // Participant
-    { "ID",          participant->getID() },
-    { "Name",        contact.name },  // PK
-    { "Phone",       contact.phone },
-    { "Email",       contact.mailAddress },
-    { "CountryCode", participant->getNation() },  // FK
-    { "Gender",      participant->getGender() ? "Male": "Female"}
-  };
-  return nullptr;
 }

@@ -12,17 +12,16 @@
 class Sport : TextElement
 {
 public:
-  enum ScoreType { MEDAL, POINT}; // are we suupposed to do scores like this?
+  enum ScoreType { POINT, MEDAL};
 
 private:
 	std::string name_;
-	//ScoreType scoreType_;
+	ScoreType scoreType_;
 	//BetterArray dicipline;
 
 public:
 	//	GETTERS
-
     auto getName() -> std::string;
-	//ScoreType getScoreType();
+	  ScoreType getScoreType();
 	//BetterArray getDiciplines();
 };

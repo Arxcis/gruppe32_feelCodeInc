@@ -19,10 +19,10 @@ namespace dat
 
     Contact(
       std::string name_, 
-      std::string mailAdress_, 
+      std::string mailAddress_, 
       std::string phone_)
     :name(name_)
-    ,mailAddress(mailAdress_)
+    ,mailAddress(mailAddress_)
     ,phone(phone_)
     {}
 

@@ -10,6 +10,18 @@ Sport * db::SportBase::unpack(dat::Object * object)
   return nullptr;
 }
 
+dat::Object * db::SportBase::pack(Sport * sport)
+{
+  auto sportObj = new dat::Object
+  {
+    { "Type",         "Sport" },  // Sport
+    { "Name",         sport->getName() },  // PK
+    { "ScoreType",    sport->getScoreType() ? "Point" : "Medal" },
+    { "#Diciplines",  ""/*@TODO*/ }
+  };
+  return sportObj;
+}
+
 //
 // @funciton db::SportBase::readFile()
 //    Used to fill the database with data;
@@ -69,3 +81,4 @@ auto db::SportBase::readFile(const std::string& filepath) -> dat::Container
   writeFile(filepath, tempContainer);  // @testing @debug @delete me
   return tempContainer;
 }
+
