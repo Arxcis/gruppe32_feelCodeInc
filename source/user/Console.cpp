@@ -153,12 +153,12 @@ void Console::displayMenu()
     //  2. Feed container to the menu, for dynamic display
     //  
     case POINT_STATS: 
-      selectedContainer = api_.getPoints();
+      selectedContainer = api_.getAll(POINT);
       allMenus_[POINT_STATS]->view(currentMap, selectedContainer);
       break;
 
     case MEDAL_STATS:  
-      selectedContainer = api_.getMedals();
+      selectedContainer = api_.getAll(MEDAL);
       allMenus_[MEDAL_STATS]->view(currentMap, selectedContainer);
       break;
 
@@ -257,22 +257,18 @@ void Console::displayMenu()
     // 4. Update API if user has made a list.
     //
     case SLIST_SELECT:
-      selectedStarts = api_.getStarts(selectedID);
-      shouldUpdate = selectedStarts.empty();        // Means that the user should now fill in starts
-
+      selectedStarts = api_.getAll(STARTS, selectedID);
+      
       allMenus_[SLIST_SELECT]->view(currentMap, selectedStarts, selectedID);
-      if (shouldUpdate)
-        { api_.setStarts(selectedID, selectedStarts); }
+      api_.updateAll(STARTS, selectedStarts, selectedID);
       break;
 
     case RLIST_SELECT:
-      selectedStarts  = api_.getStarts(selectedID);
-      selectedResults = api_.getResults(selectedID);
-      shouldUpdate    = (!selectedStarts.empty()) && selectedResults.empty();        // Means that the user should now fill in starts
+      selectedStarts  = api_.getAll(STARTS,  selectedID);
+      selectedResults = api_.getAll(RESULTS, selectedID);
 
       allMenus_[RLIST_SELECT]->view(currentMap, selectedStarts, selectedResults, selectedID);
-      if (shouldUpdate)
-        { api_.setResults(selectedID, selectedResults); }
+      api_.updateAll(RESULTS, selectedResults, selectedID);
       break;
 
 //  ----------- SILENT delete commands  -----------------
@@ -283,21 +279,21 @@ void Console::displayMenu()
     // 3. Print debug info
     case SLIST_DELETE:
       silentCommand = true;
-      api_.deleteStarts(selectedID);
+      api_.remove(STARTS, selectedID);
       std::cout << "Starts " + selectedID + " deleted...\n";  // @debug
       selectedMenu = DICI_SELECT;
       break;
 
     case RLIST_DELETE:
       silentCommand = true;
-      api_.deleteResults(selectedID);
+      api_.remove(RESULTS, selectedID);
       std::cout << "Reults " + selectedID + " deleted...\n";  // @debug
       selectedMenu = DICI_SELECT;
       break;
 
     case DICI_DELETE:
       silentCommand = true;
-      api_.deleteDicipline(selectedID);
+      api_.remove(DICIPLINE, selectedID);
       std::cout << "Dicipline " + selectedID + " deleted...\n";  // @debug
       selectedMenu = SPORT_SELECT;
       selectedID = selectedID.substr(0, (selectedID.find("_")));   // picking out the ID of the sport from the sport_dicipline ID

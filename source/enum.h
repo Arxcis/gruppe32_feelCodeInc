@@ -14,4 +14,6 @@ enum Entity
   DICIPLINE,
   POINT,
   MEDAL,
+  STARTS,
+  RESULTS,
 };
