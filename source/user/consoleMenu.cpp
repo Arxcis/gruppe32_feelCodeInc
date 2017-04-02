@@ -43,7 +43,7 @@ namespace menu
   // @class functions - bind menu option functions
   //
 
-  inline void ConsoleMenu::illegalOption(
+  inline void ConsoleMenu::printIllegalOption(
     const std::string& text) const
   {  
     std::cout << "  " << " --- " << text << " \n";  // 1. Write option to screen
@@ -135,7 +135,7 @@ namespace menu
     header(type_ + " stats");
 
     for(const auto& object: container)
-      { illegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
+      { printIllegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
 
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -155,9 +155,9 @@ namespace menu
     newPage();
     header(type_);
 
-    illegalOption(object[1].first + ": " + object[1].second);
+    printIllegalOption(object[1].first + ": " + object[1].second);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
-    illegalOption(object[3].first + ": " + object[3].second);
+    printIllegalOption(object[3].first + ": " + object[3].second);
     bindDynamicOption(map, 2, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
     bindDynamicOption(map, 3, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second));
     bindDynamicOption(map, 4, nextState_[1], object[6].first, (object[6].first + ": " + object[6].second));
@@ -179,7 +179,7 @@ namespace menu
     newPage();
     header(type_);
 
-    illegalOption(object[1].first + ": " + object[1].second);
+    printIllegalOption(object[1].first + ": " + object[1].second);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     bindDynamicOption(map, 2, nextState_[1], object[3].first, (object[3].first + ": " + object[3].second));
     bindDynamicOption(map, 3, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
@@ -202,13 +202,13 @@ namespace menu
     newPage();
     header(type_);
 
-    illegalOption(object[1].first + ": " + object[1].second);
+    printIllegalOption(object[1].first + ": " + object[1].second);
 
     // 1. Binding options which edit the sport
     bindDynamicOption(map, 1, nextState_[1], object[2].first, 
                                               (object[2].first + ": " + object[2].second));
 
-    illegalOption(object[3].first + ": " + object[3].second);
+    printIllegalOption(object[3].first + ": " + object[3].second);
       
     // 2. Binding opitons which selects a dicipline
     for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
@@ -243,7 +243,7 @@ namespace menu
     while (object[it].second != key)
       { it++; }
 
-    illegalOption(object[it].second);
+    printIllegalOption(object[it].second);
     bindDynamicOption(map, 1, nextState_[1], object[it+1].first, object[it+1].first + ": " + object[it+1].second);
     bindDynamicOption(map, 2, nextState_[1], object[it+2].first, object[it+2].first + ": " + object[it+2].second);
     bindDynamicOption(map, 3, nextState_[2], object[it].second, "Start list");
@@ -312,11 +312,13 @@ namespace menu
     if (starts.empty())
     {
       form::startList();
-    }
+    } 
 
+    // entry[1] == name
+    // entry[2] == ID
     for (const auto& entry: starts)
     {
-      //illegalOption()
+      printIllegalOption(entry[1].second + ": " + entry[2].second);
     }
 
     bindDynamicOption(map, 1, nextState_[0], key, "Delete    ");

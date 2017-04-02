@@ -82,7 +82,7 @@ namespace menu
     //
     // @class function immutableOption
     //
-    inline void illegalOption(
+    inline void printIllegalOption(
       const std::string& text) const;
 
     protected:
