@@ -84,6 +84,11 @@ int Console::run()
     // 3. Use input to find next menu
     selectedMenu = currentMap[clampedInput].first;
     selectedID   = currentMap[clampedInput].second;
+
+    if (selectedID.find("_") != std::string::npos) // @hack
+      { selectedDiciplineID = selectedID; }
+                                                          std::cout << "Selected ID: " << selectedID << std::endl; // @debug
+                                                          std::cout << "Dicipline ID: " << selectedDiciplineID << std::endl; // @debug
     // 4. Reset current map
     currentMap = {};
 
@@ -96,6 +101,7 @@ int Console::run()
 
 void Console::displayMenu()
 { 
+  bool shouldUpdate = false;
 
   switch(selectedMenu)
   {
@@ -169,7 +175,7 @@ void Console::displayMenu()
       break;
 
     case DICI_SELECT:
-      allMenus_[DICI_SELECT]->view(currentMap, selectedObject, selectedID);
+      allMenus_[DICI_SELECT]->view(currentMap, selectedObject, selectedDiciplineID);  // @hack
       break;
 
 //  ----------- NEW  -----------------
@@ -200,60 +206,50 @@ void Console::displayMenu()
 //  ----------- EDIT  -----------------
     //
     // @case *_EDIT
-    //  1. Match the user-selected key(ID) with a field in the selected object.
-    //  2. Give the user access to edit that specific field.
-    //  3. Tell the API to update the database, with the added information.
+    //  1. Give user the object which is beiing edited, an the key to the field to edit
+    //  2. Tell the API to update the database, with the added information.
     // 
     case NATION_EDIT:
-      for(auto& field: selectedObject)
-      {
-        if (field.first == selectedID) 
-          { allMenus_[NATION_EDIT]->view(currentMap, field); }
-      }
+      allMenus_[NATION_EDIT]->view(currentMap, selectedObject, selectedID);
       selectedObject = api_.update(NATION, selectedObject); 
       break;
 
-
     case PART_EDIT:
-      for(auto& field: selectedObject)
-      {
-        if (field.first == selectedID) 
-          { allMenus_[PART_EDIT]->view(currentMap, field); }
-      }
+      allMenus_[PART_EDIT]->view(currentMap, selectedObject, selectedID); 
       selectedObject = api_.update(PARTICIPANT, selectedObject); 
       break;
 
-
     case SPORT_EDIT:
-      for(auto& field: selectedObject)
-      {
-        if (field.first == selectedID) 
-          { allMenus_[SPORT_EDIT]->view(currentMap, field); }
-      }
+      allMenus_[SPORT_EDIT]->view(currentMap, selectedObject, selectedID);
       selectedObject = api_.update(SPORT, selectedObject); 
       break;
 
     case DICI_EDIT:
-      for(auto& field: selectedObject)
-      {
-        if (field.first == selectedID) 
-          { allMenus_[DICI_EDIT]->view(currentMap, field); }
-      }
-      selectedObject = api_.update(DICIPLINE, selectedObject); 
+      allMenus_[DICI_EDIT]->view(currentMap, selectedObject, selectedID);
+      selectedObject = api_.update(SPORT, selectedObject); 
       break;
 
 
 //  ----------- DICIPLINE LIST  -----------------
     //
     // 1. Ask API for a specific list from a specific dicipline
-    // 2. View the list.
+    // 2. Check if list is empty. if so, menu should fill the list, and the API should update
+    //    the list.
+    // 3. Fill menu with list, or 
     //
     case RLIST_SELECT:
-      allMenus_[RLIST_SELECT]->view(currentMap, selectedObject, selectedID);
+      selectedList = api_.getResults(selectedID);
+      shouldUpdate = selectedList.empty();        // Means that the user should now fill in starts
+
+      allMenus_[RLIST_SELECT]->view(currentMap, selectedList, selectedID);
+      if (shouldUpdate)
+        { api_.setStarts(selectedID, selectedList); }
       break;
 
     case SLIST_SELECT:
-      allMenus_[SLIST_SELECT]->view(currentMap, selectedObject, selectedID);
+      selectedList = api_.getStarts(selectedID);
+      allMenus_[SLIST_SELECT]->view(currentMap, selectedList, selectedID);
+
       break;
 
 

@@ -218,7 +218,7 @@ namespace menu
   public:
     EditField(const std::string& type, const std::vector<int>& nextState);
     virtual ~EditField(){}
-    virtual void view(dat::TransitionMap& map, dat::Field& field) override;
+    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) override;
   };
 
   /////////////////////////////////////////////////////////////////

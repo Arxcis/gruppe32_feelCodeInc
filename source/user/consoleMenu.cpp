@@ -32,7 +32,6 @@ namespace menu
 
   void ConsoleMenu::header(const std::string name) const
   {   
-    newPage();
     std::cout << "\n"
               << "--------------------------------------------------------------\n" 
               << "|    " << name << "               \n"
@@ -245,12 +244,13 @@ namespace menu
       { it++; }
 
     illegalOption(object[it].second);
-    bindDynamicOption(map, 1, nextState_[0], object[it+1].first, object[it+1].first + ": " + object[it+1].second);
-    bindDynamicOption(map, 2, nextState_[0], object[it+2].first, object[it+2].first + ": " + object[it+2].second);
+    bindDynamicOption(map, 1, nextState_[1], object[it+1].first, object[it+1].first + ": " + object[it+1].second);
+    bindDynamicOption(map, 2, nextState_[1], object[it+2].first, object[it+2].first + ": " + object[it+2].second);
     bindDynamicOption(map, 3, nextState_[2], object[it].second, "Start list");
     bindDynamicOption(map, 4, nextState_[3], object[it].second, "Result List");
 
-    bindStaticOption(map, 0, nextState_[0], "Back     ");
+    std::string sportKey = key.substr(0, (key.find("_")));  // @hack
+    bindDynamicOption(map, 0, nextState_[0], sportKey, "Back     ");
     footer();
   }
 
@@ -298,12 +298,22 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {}
 
-  void EditField::view(dat::TransitionMap& map, dat::Field& field)
-  {
-    footer();
-    std::cout << "New " << field.first << ": ";
-    stream::readString(std::cin, field.second);
-    bindStaticOption(map, 0, nextState_[0], "Back");
+  void EditField::view(dat::TransitionMap& map, dat::Object& object, const std::string& key) 
+  { 
+    newPage();
+    header(type_ + " edit");
+
+    // Finding the chosen field to edit
+    std::cout << key << ": " << std::endl; 
+    for(auto& field: object)
+    { 
+      if (field.first == key)
+      {
+        stream::readString(std::cin, field.second);
+        break;
+      }
+    }
+    bindDynamicOption(map, 0, nextState_[0], key, "Back");
     footer();
   }
 
