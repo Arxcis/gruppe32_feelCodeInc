@@ -309,11 +309,21 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void StartList::view(dat::TransitionMap& map, dat::Object& starts, const std::string& key)
+  void StartList::view(dat::TransitionMap& map, dat::Container& starts, const std::string& key)
   {
     newPage();
     header(type_);
+    if (starts.empty())
+    {
 
+    }
+
+    for (const auto& entry: starts)
+    {
+      //illegalOption()
+    }
+
+    bindDynamicOption(map, 1, nextState_[0], key, "Delete    ");
     bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
     footer();
   }
@@ -326,12 +336,13 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void ResList::view(dat::TransitionMap& map, dat::Object& starts, dat::Object& results, const std::string& key)
+  void ResList::view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key)
   {
     newPage();
     header(type_);
-    
-    bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
+
+    bindDynamicOption(map, 1, nextState_[0], key, "Delete    ");
+    bindDynamicOption(map, 0, nextState_[0], key, "Back      ");
     footer();
   }
 
@@ -342,7 +353,7 @@ namespace menu
   //
   Error::Error(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
-  {
+  {}
 
   void Error::view()
   {

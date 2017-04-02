@@ -51,8 +51,8 @@ private:
   dat::TransitionMap currentMap;
   dat::Container     selectedContainer;
   dat::Object        selectedObject;
-  dat::Object        selectedStarts;
-  dat::Object        selectedResults;
+  dat::Container        selectedStarts;
+  dat::Container        selectedResults;
 
   dat::Field         selectedField;
   std::string        selectedID = "";
