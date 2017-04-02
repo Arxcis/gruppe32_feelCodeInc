@@ -8,7 +8,7 @@
 
 namespace dat { namespace unpacking
 {
-  Contact* contact(const Field & name_, const Field & phone_, const Field & address_);
+  Contact* contact(const Field & name_, const Field & phone_, const Field & mailAdress_);
   Time* time(const Field & time_);
   Date* date(const Field & date_);
   Medals* medals(const Field & medals);

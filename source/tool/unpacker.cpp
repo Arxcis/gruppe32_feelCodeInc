@@ -2,8 +2,8 @@
 
 namespace dat { namespace unpacking
 {
-  Contact* contact(const Field & name_, const Field & phone_, const Field & address_)
-  { return new Contact(name_.second, phone_.second, address_.second); }
+  Contact* contact(const Field & name_, const Field & phone_, const Field & mailAdress_)
+  { return new Contact(name_.second, phone_.second, mailAdress_.second); }
 
   Time * time(const Field & time_)
   {
@@ -21,5 +21,9 @@ namespace dat { namespace unpacking
       std::stoi(time->substr(0, 2)),
       std::stoi(time->substr(3, 2)),
       std::stoi(time->substr(6, 2)));
+  }
+  Medals * medals(const Field & medals)
+  {
+    return nullptr;
   }
 }}

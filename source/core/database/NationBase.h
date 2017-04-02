@@ -13,7 +13,10 @@ namespace db
     virtual ~NationBase(){}
     // Inherited via DataBase
     virtual Nation * unpack(dat::Object * object) override;
+    // Inherited via DataBase
+    virtual dat::Object * pack(Nation * object) override;
     virtual dat::Container readFile(const std::string& filepath) override;
+
   };
 
 }

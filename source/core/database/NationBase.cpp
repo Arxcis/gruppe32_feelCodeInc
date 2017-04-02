@@ -13,6 +13,22 @@ Nation * db::NationBase::unpack(dat::Object * object)
   return new Nation(shortName, name, contact, participants);
 }
 
+dat::Object * db::NationBase::pack(Nation * nation)
+{
+  dat::Contact contact = nation->getContact();
+  auto nationObj = new dat::Object
+  {
+    {"Type",           "Nation"},   // Nation
+    {"Code",           (char*)nation->getShortName()},   //PK              
+    {"Name",           nation->getName()},                    
+    {"ContactName",    contact.name},                    
+    {"ContactPhone",   contact.phone},             
+    {"ContactEmail",   contact.mailAddress},
+    {"#Participants",  std::to_string(nation->getParticipantCount())}
+  };
+  return nationObj;
+}
+
 //
 // @funciton db::Nationbase::readFile()
 //    Used to fill the database with data;
@@ -23,7 +39,7 @@ auto db::NationBase::readFile(const std::string& filepath) -> dat::Container
 
   auto prototype = dat::Object 
   {
-    {"type",           ""},   // Nation
+    {"Type",           ""},   // Nation
     {"Code",           ""},   //PK              
     {"Name",           ""},                    
     {"ContactName",    ""},                    

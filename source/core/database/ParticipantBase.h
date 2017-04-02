@@ -13,6 +13,9 @@ namespace db
     virtual ~ParticipantBase(){}
     // Inherited via DataBase
     virtual Participant * unpack(dat::Object * object) override;
+    // Inherited via DataBase
+    virtual dat::Object * pack(Participant * participant) override;
     virtual dat::Container readFile(const std::string& filepath) override;
+
   };
 }

@@ -12,7 +12,7 @@ using namespace dat;
 
 void dat::Contact::display()
 {
-  printf("Name:\t%s\nAddress:\t%s\nPhone:\t%s\n", name.c_str(), address.c_str(), phone.c_str());
+  printf("Name:\t%s\nAddress:\t%s\nPhone:\t%s\n", name.c_str(), mailAdress.c_str(), phone.c_str());
 }
 
 

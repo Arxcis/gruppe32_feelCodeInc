@@ -64,4 +64,20 @@ auto db::ParticipantBase::readFile(const std::string& filepath) -> dat::Containe
   } 
   writeFile(filepath, tempContainer);   // @testing @debug @delete me
   return tempContainer;
-} 
+}
+
+dat::Object * db::ParticipantBase::pack(Participant * participant)
+{
+  dat::Contact contact = participant->getContact();
+  auto = new dat::Object
+  {
+    { "Type",        "Participant" },  // Participant
+    { "ID",          participant->getID() },
+    { "Name",        contact.name },  // PK
+    { "Phone",       contact.phone },
+    { "Email",       contact.mailAddress },
+    { "CountryCode", participant->getNation() },  // FK
+    { "Gender",      participant->getGender() ? "Male": "Female"}
+  };
+  return nullptr;
+}

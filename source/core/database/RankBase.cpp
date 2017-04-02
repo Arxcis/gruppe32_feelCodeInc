@@ -2,21 +2,21 @@
 
 namespace db
 { 
-  //
-  // @class function RankBase::unpack
-  //
-  Rank * RankBase::unpack(dat::Object * object)
-  { 
-    dat::Object obj = *object;
-    //@SUGGESTED IMPLEMENTATION
-    /*
-    if(obj[0].second.compare("Medal"))
-    { dat::unpacking::medal(obj); }
-    else
-    { dat::unpacking::point(obj); }
-    */
-    return nullptr;
-  }
+  ////
+  //// @class function RankBase::unpack
+  ////
+  //Rank * RankBase::unpack(dat::Object * object)
+  //{ 
+  //  dat::Object obj = *object;
+  //  //@SUGGESTED IMPLEMENTATION
+  //  /*
+  //  if(obj[0].second.compare("Medal"))
+  //  { dat::unpacking::medal(obj); }
+  //  else
+  //  { dat::unpacking::point(obj); }
+  //  */
+  //  return 
+  //}
 
   //
   // @class function Rankbase::readFile
@@ -28,9 +28,9 @@ namespace db
     auto prototype = dat::Object
     {
       {"Type",        ""},  // Medal/Point
-      {"Rank",        ""},  // FK
-      {"Code",        ""},  // PPK
-      {"Value",       ""},  // PPK
+      {"Rank",        ""},  // Position
+      {"Code",        ""},  // NationCode        
+      {"Value",       ""},  // Medal values [GOLD-SILVER-BRONZE]
     };
 
     auto fileToStream  = [filepath, this]()
