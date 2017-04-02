@@ -236,21 +236,26 @@ void Console::displayMenu()
     // 2. Check if list is empty. if so, menu should fill the list, and the API should update
     //    the list.
     // 3. Fill menu with list, or 
+    // 4. Update API if user has made a list.
     //
+    case SLIST_SELECT:
+      selectedList = api_.getStarts(selectedID);
+      shouldUpdate = selectedList.empty();        // Means that the user should now fill in starts
+
+      allMenus_[SLIST_SELECT]->view(currentMap, selectedList, selectedID);
+      if (shouldUpdate)
+        { api_.setStarts(selectedID, selectedList); }
+      break;
+
     case RLIST_SELECT:
       selectedList = api_.getResults(selectedID);
       shouldUpdate = selectedList.empty();        // Means that the user should now fill in starts
 
       allMenus_[RLIST_SELECT]->view(currentMap, selectedList, selectedID);
       if (shouldUpdate)
-        { api_.setStarts(selectedID, selectedList); }
+        { api_.setResults(selectedID, selectedList); }
       break;
 
-    case SLIST_SELECT:
-      selectedList = api_.getStarts(selectedID);
-      allMenus_[SLIST_SELECT]->view(currentMap, selectedList, selectedID);
-
-      break;
 
 
     default:
