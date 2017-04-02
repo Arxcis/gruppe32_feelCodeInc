@@ -38,6 +38,8 @@ public:
   void deleteStarts(const std::string& id);
   void deleteResults(const std::string& id);
 
+  void deleteDicipline(const std::string& id);
+
   auto getPoints () -> const dat::Container;
   auto getMedals () -> const dat::Container;
   void quit();
