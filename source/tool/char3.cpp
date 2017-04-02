@@ -14,7 +14,7 @@ namespace dat {
       
   }
   inline char & char3::operator[](int i)
-  { return str[i]; }
+    { return str[i]; }
   char3::operator char*() const
-  {return (char*)str; }
+    { return (char*)str; }
 }

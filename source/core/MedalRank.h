@@ -8,9 +8,10 @@
 class MedalRank : public Rank
 {
 private:
-  dat::Medals medals;
+  dat::Medals medals_;
+
 public:
-  MedalRank(int value);
-  auto GetMedals() -> dat::Medals;
+  MedalRank(dat::Medals medals, dat::char3 nation);
+  auto getMedals() -> dat::Medals;
 };
 

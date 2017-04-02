@@ -3,16 +3,6 @@
 
 namespace db 
 {
-
-  //
-  // @class function unpack()
-  //
-  auto SportBase::unpack(dat::Object& object) -> Sport*
-  {
-    //dat:: ????
-    return nullptr;
-  }
-
   //
   // @class function pack()
   //
@@ -27,6 +17,16 @@ namespace db
     };
     return sportObj;
   }
+
+  //
+  // @class function unpack()
+  //
+  auto SportBase::unpack(dat::Object& object) -> Sport*
+  {
+    //dat:: ????
+    return nullptr;
+  }
+
 
   //
   // @class funciton readFile()

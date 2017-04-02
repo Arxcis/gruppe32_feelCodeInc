@@ -6,10 +6,15 @@ namespace db
   //
   // @class function pack()
   //
-  auto PointBase::pack(Rank* object) -> dat::Object
+  auto PointBase::pack(Rank* rank) -> dat::Object
   {
-    //@incomplete
-    return {};
+    auto prototype = dat::Object
+    {
+      {"Type",   "Point"},                          // Medal/Point
+      {"Nation", (char*)(rank->getNation()) },      // Nation char3
+      {"Value",  std::to_string(rank->getValue())        }, 
+    };
+    return prototype;
   };
 
   //
@@ -33,9 +38,8 @@ namespace db
     auto prototype = dat::Object
     {
       {"Type",        ""},  // Medal/Point
-      {"Rank",        ""},  // FK
-      {"Code",        ""},  // PPK
-      {"Value",       ""},  // PPK
+      {"Nation",      ""}, // Nation char3
+      {"Value",       ""},  
     };
 
     auto fileToStream  = [filepath, this]()
@@ -58,10 +62,8 @@ namespace db
     for(int i=0; i < std::stoi(objectCount); i++)
     {
       stream::readEnum(ss, prototype[0].second, {"Medal", "Point"});
-      stream::readInt(ss, prototype[1].second);
-      stream::readChar3(ss, prototype[2].second);
-
-      stream::readInt(ss, prototype[3].second); 
+      stream::readChar3(ss, prototype[1].second);
+      stream::readInt(ss,    prototype[2].second); 
       std::cout << "Points" << i << "\n";
       
 

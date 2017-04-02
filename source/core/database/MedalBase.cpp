@@ -2,6 +2,20 @@
 
 namespace db
 { 
+  //
+  // @class function pack()
+  //
+  auto MedalBase::pack(Rank* rank) -> dat::Object
+  { 
+    dat::Medals medals = ((MedalRank*)rank)->getMedals();
+    auto rankObj = dat::Object
+    {
+      { "Type",    "Medal" },    
+      { "Nation",  (char*)rank->getNation() },                      // NationCode  
+      { "Value",   dat::packing::packMedals( medals ) }, // Medal values [GOLD-SILVER-BRONZE]
+    };
+    return rankObj;
+  }
 
   //
   // @class function unpack()
@@ -10,22 +24,7 @@ namespace db
   {
     dat::char3 nationCode = object[1].second.c_str();
     int value = dat::packing::unpackMedals(object[2])->castToInt();
-    return new Rank(value,nationCode);
-  }
-
-  //
-  // @class function pack()
-  //
-  auto MedalBase::pack(Rank* rank) -> dat::Object
-  {
-    auto rankObj = dat::Object
-    {
-      { "Type",        "Medal" },  // Medal/Point
-      { "Rank",        "NULL" },  // Position - not assigned by database
-      { "Code",        ""},//rank->getNation() },  // NationCode      //@incomplete
-      { "Value",       ""},//dat::packing::unpackMedals( rank->getValue() ) }  // Medal values [GOLD-SILVER-BRONZE]
-    };
-    return rankObj;
+    return new Rank(value, nationCode);
   }
 
 
@@ -38,9 +37,8 @@ namespace db
     auto prototype = dat::Object
     {
       {"Type",        ""},  // Medal/Point
-      {"Rank",        ""},  // FK
-      {"Code",        ""},  // PPK
-      {"Value",       ""},  // PPK
+      {"Nation",      ""},  
+      {"Value",       ""},  
     };
 
     auto fileToStream  = [filepath, this]()
@@ -63,12 +61,10 @@ namespace db
     for(int i=0; i < std::stoi(objectCount); i++)
     {
       stream::readEnum(ss, prototype[0].second, {"Medal", "Point"});
-      stream::readInt(ss, prototype[1].second);
-      stream::readChar3(ss, prototype[2].second);
+      stream::readChar3(ss, prototype[1].second);
+      stream::readMedals(ss, prototype[2].second); 
 
-      stream::readMedals(ss, prototype[3].second); 
       std::cout << "Medals" << i << "\n";
-
       tempContainer.push_back(prototype);
     }
     return tempContainer;

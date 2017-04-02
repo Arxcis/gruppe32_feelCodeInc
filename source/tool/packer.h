@@ -8,8 +8,8 @@
 
 namespace dat { namespace packing
 {
-  Object * packContact(const std::string & name_, const std::string & phone_, const std::string & mailAddress_);
-  Object * packTime(const Field & time_);
-  Object * packDate(const Field & date_);
-  Object * packMedals(const int & medals);
+  Object* packContact(const std::string & name_, const std::string & phone_, const std::string & mailAddress_);
+  auto packTime(const Time& time)       -> std::string;
+  auto packDate(const Date& date)       -> std::string;
+  auto packMedals(const Medals& medals) -> std::string;
 }}
