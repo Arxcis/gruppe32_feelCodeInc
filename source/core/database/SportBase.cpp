@@ -1,72 +1,83 @@
 #include "SportBase.h"
 
-
-db::SportBase::SportBase() : sports(*elements) {}
-
-Sport * db::SportBase::unpack(dat::Object * object)
+namespace db 
 {
-  dat::Object obj = *object;
-  //dat:: ????
-  return nullptr;
-}
+  SportBase::SportBase():
+  sports(*elements)
+  {}
 
-//
-// @funciton db::SportBase::readFile()
-//    Used to fill the database with data;
-//
-auto db::SportBase::readFile(const std::string& filepath) -> dat::Container
-{
-  auto tempContainer = dat::Container{}; // @delete @temp @testing
-
-  auto prototype = dat::Object
+  Sport * db::SportBase::unpack(dat::Object * object)
   {
-    {"Type",         ""},  // Sport
-    {"Name",         ""},  // PK
-    {"ScoreType",    ""},
-    {"#Diciplines",  ""}
-  };
+    dat::Object obj = *object;
+    //dat:: ????
+    return nullptr;
+  }
 
-  auto fileToStream  = [filepath, this]()
-  { 
-    auto innFile = std::ifstream { filepath };
-    assert(innFile);
-    std::cout << "Opening "<< filepath << "...\n";  // @debug
-          
-    ss << innFile.rdbuf();    // Swapping buffers
-    innFile.close();
-  };
-  
-  fileToStream();
 
-  // Reading number of objects.
-  auto objectCount = std::string{};
-  stream::readInt(ss,objectCount);
+  //
+  // @funciton db::SportBase::getContainer
+  //  @brief returns a container of all sports in base
+  //
+  auto SportBase::getContainer() -> const dat::Container
+    { return readFile(baseFile); }
 
-    // Loop through all objects
-  for (auto i=0; i < std::stoi(objectCount); i++)
+  //
+  // @funciton db::SportBase::readFile()
+  //    Used to fill the database with data;
+  //
+  auto SportBase::readFile(const std::string& filepath) -> dat::Container
   {
-    auto thisProto = prototype;
-    std::cout << "Sport " << i << "\n";
+    auto tempContainer = dat::Container{}; // @delete @temp @testing
 
-    stream::readString (ss, thisProto[0].second);
-    stream::readString (ss, thisProto[1].second);
-    stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
-    stream::readInt    (ss, thisProto[3].second);
+    auto prototype = dat::Object
+    {
+      {"Type",         ""},  // Sport
+      {"Name",         ""},  // PK
+      {"ScoreType",    ""},
+      {"#Diciplines",  ""}
+    };
 
-    for (auto j=4, i=0; j < (4 + (std::stoi(thisProto[3].second)*3)); j+=3,i++ )
-    {   
-      std::string it = std::to_string(i);
-      thisProto.push_back({ "Dicipline " + it, "" });
-      thisProto.push_back({ "Time "      + it, "" });
-      thisProto.push_back({ "Date "      + it, "" });
+    auto fileToStream  = [filepath, this]()
+    { 
+      auto innFile = std::ifstream { filepath };
+      assert(innFile);
+      std::cout << "Opening "<< filepath << "...\n";  // @debug
+            
+      ss << innFile.rdbuf();    // Swapping buffers
+      innFile.close();
+    };
+    
+    fileToStream();
 
-      stream::readString(ss, thisProto[j].second);
-      stream::readTime  (ss,   thisProto[j+1].second); 
-      stream::readDate  (ss,   thisProto[j+2].second); 
-      //std::cout << thisProto[j].second << std::endl;  // @debug
-    }
-    tempContainer.push_back(thisProto);
-  } 
-  writeFile(filepath, tempContainer);  // @testing @debug @delete me
-  return tempContainer;
+    // Reading number of objects.
+    auto objectCount = std::string{};
+    stream::readInt(ss,objectCount);
+
+      // Loop through all objects
+    for (auto i=0; i < std::stoi(objectCount); i++)
+    {
+      auto thisProto = prototype;
+      std::cout << "Sport " << i << "\n";
+
+      stream::readString (ss, thisProto[0].second);
+      stream::readString (ss, thisProto[1].second);
+      stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
+      stream::readInt    (ss, thisProto[3].second);
+
+      for (auto j=4, i=0; j < (4 + (std::stoi(thisProto[3].second)*3)); j+=3,i++ )
+      {   
+        std::string it = std::to_string(i);
+        thisProto.push_back({ "Dicipline " + it, "" });
+        thisProto.push_back({ "Time "      + it, "" });
+        thisProto.push_back({ "Date "      + it, "" });
+
+        stream::readString(ss, thisProto[j].second);
+        stream::readTime  (ss,   thisProto[j+1].second); 
+        stream::readDate  (ss,   thisProto[j+2].second); 
+        //std::cout << thisProto[j].second << std::endl;  // @debug
+      }
+      tempContainer.push_back(thisProto);
+    } 
+    return tempContainer;
+  }
 }

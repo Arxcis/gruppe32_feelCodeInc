@@ -19,6 +19,13 @@ namespace db
   }
 
   //
+  // @funciton db::ParticipantBase::getContainer
+  //  @brief returns a container of all participants in base
+  //
+  auto RankBase::getContainer(const std::string& filepath) -> const dat::Container
+    { return readFile(filepath); }
+
+  //
   // @class function Rankbase::readFile
   //
   auto RankBase::readFile(const std::string& filepath) -> dat::Container

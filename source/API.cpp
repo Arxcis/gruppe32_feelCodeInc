@@ -68,11 +68,11 @@ API::API()
 void API::loadAllBases()
 {
   std::cout << "loading all bases...\n";        // @debug
-  dbContainerCache[NATION]      = nationBase_.readFile("data/nation.format");
-  dbContainerCache[PARTICIPANT] = participantBase_.readFile("data/participant.format");
-  dbContainerCache[SPORT]       = sportBase_.readFile("data/sport.format");
-  dbContainerCache[POINT]       = pointBase_.readFile("data/point.format");
-  dbContainerCache[MEDAL]       = medalBase_.readFile("data/medal.format");
+  dbContainerCache[NATION]      = nationBase_.getContainer();
+  dbContainerCache[PARTICIPANT] = participantBase_.getContainer();
+  dbContainerCache[SPORT]       = sportBase_.getContainer();
+  dbContainerCache[POINT]       = pointBase_.getContainer("data/point.format");
+  dbContainerCache[MEDAL]       = medalBase_.getContainer("data/medal.format");
 }
 
 //

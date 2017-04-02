@@ -31,14 +31,13 @@ namespace db
     bool add(dat::Object * object)
     {
       T* unpackedObject = unpack(object);
-      if (elements->add(unpackedObject))//if added
+      if (elements->add(unpackedObject)) //if added
       { return true; }
       else
       { delete object; return false; }
     }
     virtual T * unpack(dat::Object * object) = 0;
     virtual dat::Container readFile(const std::string& filepath)=0;
-
 
     // 
     // @funciton // Only implemented in base class
@@ -52,7 +51,8 @@ namespace db
       assert(outFile);
 
       for(const auto& object: container)
-      { for(const auto& field: object)
+      { 
+        for(const auto& field: object)
           { outFile << field.second << ";\n"; } 
       }
 

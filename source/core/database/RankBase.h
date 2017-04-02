@@ -15,7 +15,16 @@ namespace db
   public:
     RankBase(){}
     virtual ~RankBase(){}
-    virtual Rank * unpack(dat::Object * object) override;
-    virtual dat::Container readFile(const std::string& filepath) override;
+    virtual Rank* unpack(dat::Object * object) override;
+    auto getContainer(const std::string& filepath) -> const dat::Container;
+    
+    
+  private:
+    virtual auto readFile(const std::string& filepath) -> dat::Container override;
+    const std::string baseFile[2] = 
+    { 
+      "data/point.format",
+      "data/medal.format",
+    };
   };
 }

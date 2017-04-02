@@ -7,12 +7,16 @@ namespace db
 {
   class ParticipantBase : public DataBase<Participant>
   {
-    List& participants; //aliasing the list
   public:
     ParticipantBase();
     virtual ~ParticipantBase(){}
     // Inherited via DataBase
-    virtual Participant * unpack(dat::Object * object) override;
-    virtual dat::Container readFile(const std::string& filepath) override;
+    virtual Participant *  unpack(dat::Object * object) override;
+    auto getContainer() -> const dat::Container;
+
+  private:
+    virtual auto readFile(const std::string& filepath) -> dat::Container override;
+    List& participants; //aliasing the list
+    const std::string baseFile = "data/participant.format";
   };
 }

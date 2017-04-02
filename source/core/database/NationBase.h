@@ -7,13 +7,17 @@ namespace db
 {
   class NationBase : public DataBase<Nation>
   {
-    List& nations; //aliasing the list
   public:
     NationBase();
     virtual ~NationBase(){}
     // Inherited via DataBase
     virtual Nation * unpack(dat::Object * object) override;
-    virtual dat::Container readFile(const std::string& filepath) override;
+    auto getContainer() -> const dat::Container;
+
+  private:
+    virtual auto readFile(const std::string& filepath) -> dat::Container override;
+    List& nations; //aliasing the list
+    const std::string baseFile = "data/nation.format";
   };
 
 }

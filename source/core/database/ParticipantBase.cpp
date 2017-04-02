@@ -1,67 +1,79 @@
 #include "ParticipantBase.h"
 
-db::ParticipantBase::ParticipantBase() : participants(*elements) {}
 
-Participant * db::ParticipantBase::unpack(dat::Object * object)
+namespace db 
 {
-  dat::Object obj = *object;
-  int ID = stoi(obj[1].second);
-  dat::Contact contact = *dat::unpacking::contact(obj[2], obj[3], obj[4]);
-  dat::char3 shortName = obj[5].second.c_str();
-  Participant::Gender gender = (Participant::Gender)stoi(obj[6].second);
-  return new Participant(ID,contact,shortName, gender);
-}
+  ParticipantBase::ParticipantBase()
+  :participants(*elements)
+  {}
 
-//
-// @funciton db::ParticipantBase::readFile()
-//    Used to fill the database with data;
-//
-auto db::ParticipantBase::readFile(const std::string& filepath) -> dat::Container
-{ 
-  auto tempContainer = dat::Container{}; // @delete @temp @testing
-
-  auto prototype = dat::Object
+  Participant * ParticipantBase::unpack(dat::Object * object)
   {
-      {"Type",        ""},  // Participant
-      {"ID",          ""},
-      {"Name",        ""},  // PK
-      {"Phone",       ""},
-      {"Email",       ""},
-      {"CountryCode", ""},  // FK
-      {"Gender",      ""}
-  };
+    dat::Object obj = *object;
+    int ID = stoi(obj[1].second);
+    dat::Contact contact = *dat::unpacking::contact(obj[2], obj[3], obj[4]);
+    dat::char3 shortName = obj[5].second.c_str();
+    Participant::Gender gender = (Participant::Gender)stoi(obj[6].second);
+    return new Participant(ID,contact,shortName, gender);
+  }
 
-  auto fileToStream  = [filepath, this]()
+  //
+  // @funciton db::ParticipantBase::getContainer
+  //  @brief returns a container of all participants in base
+  //
+  auto ParticipantBase::getContainer() -> const dat::Container
+    { return readFile(baseFile); }
+
+  //
+  // @funciton db::ParticipantBase::readFile()
+  //    Used to fill the database with data;
+  //
+  auto ParticipantBase::readFile(const std::string& filepath) -> dat::Container
   { 
-    auto innFile = std::ifstream { filepath };
-    assert(innFile);
-    std::cout << "Opening "<< filepath << "...\n";  // @debug
-          
-    ss << innFile.rdbuf();    // Swapping buffers
-    innFile.close();
-  };
-  
-  fileToStream();
+    auto tempContainer = dat::Container{}; // @delete @temp @testing
 
-  // Reading number of objects.
-  auto objectCount = std::string{};
-  stream::readInt(ss,objectCount);
+    auto prototype = dat::Object
+    {
+        {"Type",        ""},  // Participant
+        {"ID",          ""},
+        {"Name",        ""},  // PK
+        {"Phone",       ""},
+        {"Email",       ""},
+        {"CountryCode", ""},  // FK
+        {"Gender",      ""}
+    };
 
-    // Loop through all objects
-  for(int i=0; i < std::stoi(objectCount); i++)
-  {
-    std::cout << "Participant " << i << "\n";
+    auto fileToStream  = [filepath, this]()
+    { 
+      auto innFile = std::ifstream { filepath };
+      assert(innFile);
+      std::cout << "Opening "<< filepath << "...\n";  // @debug
+            
+      ss << innFile.rdbuf();    // Swapping buffers
+      innFile.close();
+    };
+    
+    fileToStream();
 
-    stream::readString (ss, prototype[0].second);
-    stream::readInt    (ss, prototype[1].second);
-    stream::readString (ss, prototype[2].second);
-    stream::readPhone  (ss, prototype[3].second);
-    stream::readEmail  (ss, prototype[4].second);
-    stream::readChar3  (ss, prototype[5].second);
-    stream::readEnum   (ss, prototype[6].second, {"Male", "Female"});
+    // Reading number of objects.
+    auto objectCount = std::string{};
+    stream::readInt(ss,objectCount);
 
-    tempContainer.push_back(prototype);
-  } 
-  writeFile(filepath, tempContainer);   // @testing @debug @delete me
-  return tempContainer;
-} 
+      // Loop through all objects
+    for(int i=0; i < std::stoi(objectCount); i++)
+    {
+      std::cout << "Participant " << i << "\n";
+
+      stream::readString (ss, prototype[0].second);
+      stream::readInt    (ss, prototype[1].second);
+      stream::readString (ss, prototype[2].second);
+      stream::readPhone  (ss, prototype[3].second);
+      stream::readEmail  (ss, prototype[4].second);
+      stream::readChar3  (ss, prototype[5].second);
+      stream::readEnum   (ss, prototype[6].second, {"Male", "Female"});
+
+      tempContainer.push_back(prototype);
+    }
+    return tempContainer;
+  }
+}
