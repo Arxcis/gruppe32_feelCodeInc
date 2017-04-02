@@ -63,9 +63,7 @@ namespace test
 
 
 API::API()
-{ 
-  loadAllBases();
-}
+  { loadAllBases();}
 
 void API::loadAllBases()
 {
@@ -85,6 +83,10 @@ bool API::add(const dat::Object& object )
 
 //
 // @class function update()
+//  @param entity valid values
+//       : NATION
+//       : PARTICIPANT
+//       : SPORT
 //
 auto API::update (const Entity entity, const dat::Object& object) -> const dat::Object
 {  
@@ -92,68 +94,81 @@ auto API::update (const Entity entity, const dat::Object& object) -> const dat::
 }
 
 //
+// @class function updateAll()
+//  @param entity valid values
+//        : STARTS
+//        : RESULTS
+//
+void API::updateAll (const Entity entity, const dat::Container& list, const std::string& id) 
+  {}
+
+//
 // @class function remove()
+//  @param entity valid values:
+//      : DICIPLINE
+//      : STARTS
+//      : RESULTS
 //
 bool API::remove(const Entity entity, const std::string& id)
-{  return 1;  }
+  {  return 1;  }
+
 
 //
 // @class function get()
+//  @param entity valid values:
+//      : NATION       
+//      : PARTICIPANT
+//      : SPORT
 //
 auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
-  assert(entity == NATION || entity == PARTICIPANT || entity == SPORT);
-  return dbContainerCache[entity][0];
+
+  switch(entity)
+  {
+    case NATION:
+    case PARTICIPANT:
+    case SPORT:
+      return dbContainerCache[entity][0];
+
+    default:
+      assert(false);    // Not a valid command.. abort mission
+  }
 }
 
 //
 // @class function getAll()
+//  @param entity - valid values
+//       : NATION
+//       : PARTICIPANT
+//       : SPORT
+//       : POINT
+//       : MEDAL
+//       : STARTS
+//       : RESULTS
 //
-auto API::getAll(const Entity entity)  -> const dat::Container
+auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Container
 {
-  assert(entity == NATION || entity == PARTICIPANT || entity == SPORT);
-  return dbContainerCache[entity];
+  switch(entity)
+  {
+    case NATION:
+    case PARTICIPANT:
+    case SPORT:
+    case POINT:
+    case MEDAL:
+      return dbContainerCache[entity];
+      break;
+    
+    case STARTS:
+      return test::startList;
+
+    case RESULTS:
+      return test::resultList;
+
+    default:
+      assert(false);     // Not a valid command.. abort mission
+  }
 }
 
-auto API::getStarts (const std::string& id)  -> const dat::Container
-{
-  return test::startList;
-}
-
-auto API::getResults(const std::string& id)  -> const dat::Container
-{
- return test::resultList;
-}
-
-void API::setStarts (const std::string& id, const dat::Container& starts)
-{
-}
-
-void API::setResults(const std::string& id, const dat::Container& results)
-{
-}
-
-// DELETE FUNCTIONS
-void API::deleteStarts(const std::string& id)
-{
-}
-
-void API::deleteResults(const std::string& id)
-{
-}
-
-void API::deleteDicipline(const std::string& id){}
-
-
-auto API::getPoints () -> const dat::Container
-{
-  return dbContainerCache[POINT];
-}
-
-auto API::getMedals () -> const dat::Container
-{
- return dbContainerCache[MEDAL];
-}
 //
 // @class function quit()
 //

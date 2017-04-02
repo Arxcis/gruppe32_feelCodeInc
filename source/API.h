@@ -10,13 +10,13 @@
 #include <stdlib.h>
 #include "tool/typedef.h"
 
-//#include "core/file.h"   // file::readNations...
 #include "enum.h"
 #include "core/database/NationBase.h"
 #include "core/database/ParticipantBase.h"
 #include "core/database/SportBase.h"
 #include "core/database/RankBase.h"
 
+//
 // @class API - Application Layer Interface
 // @brief     API that the user-level code can use to communicate with,
 //              database.
@@ -25,27 +25,17 @@ class API
 { 
 public:
   bool add       (const dat::Object& object);
-  auto update    (const Entity entity, const dat::Object& object) -> const dat::Object;
   bool remove    (const Entity entity, const std::string& id);
-  auto get       (const Entity entity, const std::string& id) -> const dat::Object;
-  auto getAll    (const Entity entity)                 -> const dat::Container;
+  auto update    (const Entity entity, const dat::Object& object) -> const dat::Object;
+  void updateAll (const Entity entity, const dat::Container& list, const std::string& id="");
+  auto get       (const Entity entity, const std::string& id)     -> const dat::Object;
+  auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
 
-  // STARTS and RESULTS
-  auto getStarts (const std::string& id)  -> const dat::Container;
-  auto getResults(const std::string& id)  -> const dat::Container;
-  void setStarts (const std::string& id, const dat::Container& list);
-  void setResults(const std::string& id, const dat::Container& list);
-  void deleteStarts(const std::string& id);
-  void deleteResults(const std::string& id);
-
-  void deleteDicipline(const std::string& id);
-
-  auto getPoints () -> const dat::Container;
-  auto getMedals () -> const dat::Container;
   void quit();
 
   API();
   ~API(){}
+
 private:
   void loadAllBases();
 
