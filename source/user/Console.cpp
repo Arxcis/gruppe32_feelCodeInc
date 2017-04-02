@@ -106,7 +106,6 @@ int Console::run()
     // 5. Display next menu
     displayMenu();
   }
-
   return 0;
 }
 
@@ -229,22 +228,22 @@ void Console::displayMenu()
     // 
     case NATION_EDIT:
       allMenus_[NATION_EDIT]->view(currentMap, selectedObject, selectedID);
-      selectedObject = api_.update(NATION, selectedObject); 
+      api_.update(selectedObject); 
       break;
 
     case PART_EDIT:
       allMenus_[PART_EDIT]->view(currentMap, selectedObject, selectedID); 
-      selectedObject = api_.update(PARTICIPANT, selectedObject); 
+      api_.update(selectedObject); 
       break;
 
     case SPORT_EDIT:
       allMenus_[SPORT_EDIT]->view(currentMap, selectedObject, selectedID);
-      selectedObject = api_.update(SPORT, selectedObject); 
+      api_.update(selectedObject); 
       break;
 
     case DICI_EDIT:
       allMenus_[DICI_EDIT]->view(currentMap, selectedObject, selectedID);
-      selectedObject = api_.update(SPORT, selectedObject); 
+      api_.update(selectedObject); 
       break;
 
 
@@ -260,7 +259,7 @@ void Console::displayMenu()
       selectedStarts = api_.getAll(STARTS, selectedID);
       
       allMenus_[SLIST_SELECT]->view(currentMap, selectedStarts, selectedID);
-      api_.updateAll(STARTS, selectedStarts, selectedID);
+      api_.updateAll(selectedStarts, selectedID);
       break;
 
     case RLIST_SELECT:
@@ -268,7 +267,7 @@ void Console::displayMenu()
       selectedResults = api_.getAll(RESULTS, selectedID);
 
       allMenus_[RLIST_SELECT]->view(currentMap, selectedStarts, selectedResults, selectedID);
-      api_.updateAll(RESULTS, selectedResults, selectedID);
+      api_.updateAll(selectedResults, selectedID);
       break;
 
 //  ----------- SILENT delete commands  -----------------

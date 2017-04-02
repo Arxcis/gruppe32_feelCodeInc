@@ -77,37 +77,46 @@ void API::loadAllBases()
 
 //
 // @class function add()
-//
+//  @param object
+//      example {   
+//                  {"Type", "Sport"}, 
+//                  {"Name", "Fotball"},
+//                  {...},
+//               }
 bool API::add(const dat::Object& object )
 {  return 1;  }
 
 //
 // @class function update()
-//  @param entity valid values
-//       : NATION
-//       : PARTICIPANT
-//       : SPORT
+//  @param dat::Object object
+//     example {   
+//                  {"Type", "Sport"}, 
+//                  {"Name", "Fotball"},
+//                  {...},
+//             }
 //
-auto API::update (const Entity entity, const dat::Object& object) -> const dat::Object
-{  
-  return dbContainerCache[entity][0];
-}
+void API::update (const dat::Object& object)
+{  }
 
 //
 // @class function updateAll()
-//  @param entity valid values
-//        : STARTS
-//        : RESULTS
+//  @param dat::Container list 
+//     example {
+//                {{"Type", "Start"}, {....}, ..}, 
+//                {{"Type", "Start"}, {....}, ..},
+//             }
+//  @param std::string id
+//     example  "<sport>_<dicipline>"   or   "fotball_semi-final
 //
-void API::updateAll (const Entity entity, const dat::Container& list, const std::string& id) 
+void API::updateAll(const dat::Container& list, const std::string& id) 
   {}
 
 //
 // @class function remove()
-//  @param entity valid values:
-//      : DICIPLINE
-//      : STARTS
-//      : RESULTS
+//  @param  <entity>   + <id>
+//        : DICIPLINE  + "<sport>_<dicipline>"
+//        : STARTS     + "<sport>_<dicipline>"
+//        : RESULTS    + "fotball_1/4-finale"
 //
 bool API::remove(const Entity entity, const std::string& id)
   {  return 1;  }
@@ -119,6 +128,8 @@ bool API::remove(const Entity entity, const std::string& id)
 //      : NATION       
 //      : PARTICIPANT
 //      : SPORT
+//  @param std::string id
+//        example   "NOR"  or "Petter Northug"  or "Soccer"
 //
 auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
@@ -145,6 +156,9 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 //       : MEDAL
 //       : STARTS
 //       : RESULTS
+//
+//  @optional parameter std::string id
+//        example "<sport>_<dicipline>" for getting STARTS and RESULTS
 //
 auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Container
 {
