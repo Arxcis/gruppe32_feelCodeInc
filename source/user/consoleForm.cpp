@@ -133,20 +133,20 @@ namespace form
   //
   void startList(dat::Container& starts)
   {
-    for (int i=0; i<1; i++)
+    int size = stream::readInt("How many participants do you want to add?\n");
+    for (int it = 0; it < size; it++)
     {
       dat::Object startProto = protos[START_P];
-
       printKey(startProto[1].first);   stream::readInt(std::cin, startProto[1].second);
       // printKey(startProto[2].first);   stream::readString(std::cin, startProto[2].second);
-    
+
       starts.push_back(startProto);
     }
   }
 
-  void resultList(dat::Container& results)
+  void resultList(dat::Container& results, const int size)
   {
-    for (int i=0; i<1; i++)
+    for (int it=0; it < size; it++)
     {
       dat::Object resultProto = protos[RESULT_P];
 
@@ -156,5 +156,4 @@ namespace form
       results.push_back(resultProto);
     }
   }
-
 }

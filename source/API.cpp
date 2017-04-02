@@ -125,11 +125,11 @@ auto API::getResults(const std::string& id)  -> const dat::Container
  return test::resultList;
 }
 
-void API::setStarts (const std::string& id, const dat::Container& list)
+void API::setStarts (const std::string& id, const dat::Container& starts)
 {
 }
 
-void API::setResults(const std::string& id, const dat::Container& list)
+void API::setResults(const std::string& id, const dat::Container& results)
 {
 }
 

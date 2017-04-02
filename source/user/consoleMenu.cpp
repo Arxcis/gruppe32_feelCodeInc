@@ -309,9 +309,10 @@ namespace menu
   {
     newPage();
     header(type_);
+    starts.clear();   //@debug
     if (starts.empty())
     {
-      form::startList();
+      form::startList(starts);
     } 
 
     // entry[1] == name
@@ -321,7 +322,7 @@ namespace menu
       printIllegalOption(entry[1].second + ": " + entry[2].second);
     }
 
-    bindDynamicOption(map, 1, nextState_[0], key, "Delete    ");
+    bindDynamicOption(map, 1, nextState_[0], key, "Delete start-list");
     bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
     footer();
   }
@@ -334,12 +335,29 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void ResultList::view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key)
+  void ResultList::view(
+    dat::TransitionMap& map,
+    dat::Container& starts, 
+    dat::Container& results, 
+    const std::string& key)
   {
     newPage();
     header(type_);
+    starts.clear(); //@debug
+    if (!(starts.empty()))
+    { 
+      if(results.empty()) 
+        { form::resultList(results, starts.size()); }
+      
+      for (int it=0; it < starts.size(); it++)
+      {
+        printIllegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second);
+      }
+      bindDynamicOption(map, 1, nextState_[0], key, "Delete results");
+    }
+    else
+      { std::cout << "ERROR: You have to create a start-list first\n"; }
 
-    bindDynamicOption(map, 1, nextState_[0], key, "Delete    ");
     bindDynamicOption(map, 0, nextState_[0], key, "Back      ");
     footer();
   }

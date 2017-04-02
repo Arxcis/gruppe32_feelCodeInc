@@ -12,7 +12,7 @@
 enum MenuState : int
 {
   EXIT = -1,
-  START =  0,
+  START_MENU =  0,
 
   NATION_BASE   = 1,
   NATION_SELECT = 2,
