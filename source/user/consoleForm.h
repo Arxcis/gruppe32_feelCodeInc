@@ -11,7 +11,6 @@
 
 #include "../tool/stream.h"
 #include "../tool/typedef.h"
-#include "../enum.h"
 
 
 namespace form
@@ -19,7 +18,7 @@ namespace form
   auto object(const std::string type) ->dat::Object&;
   void field(dat::Field& field);
 
-  void startList();
-  void resultList();    
+  void startList(dat::Container& starts);
+  void resultList(dat::Container& starts);    
 }
 
