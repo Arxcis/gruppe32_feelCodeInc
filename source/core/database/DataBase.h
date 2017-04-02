@@ -42,7 +42,7 @@ namespace db
 
     bool add(dat::Object * object)
     {
-      T* unpackedObject = unpack(object);
+      T* unpackedObject = unpack(*object);
       if (elements->add(unpackedObject)) //if added
       { return true; }
       else
