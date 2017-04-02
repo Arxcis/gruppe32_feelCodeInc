@@ -12,12 +12,12 @@ Console::Console()
   // Registring basic menus
   //
   allMenus_[ERROR]         = new menu::Error           ("Wrong input...\n", {});
-  allMenus_[START]         = new menu::StartMenu       ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
-  allMenus_[NATION_BASE]   = new menu::BaseMenu        ("Nation Base",      { START, NATION_NEW, NATION_SELECT});     
-  allMenus_[PART_BASE]     = new menu::BaseMenu        ("Participant Base", { START, PART_NEW,   PART_SELECT});     
-  allMenus_[SPORT_BASE]    = new menu::BaseMenu        ("Sport Base" ,      { START, SPORT_NEW,  SPORT_SELECT});     
-  allMenus_[POINT_STATS]   = new menu::RankMenu        ("Points"     ,      { START} ); 
-  allMenus_[MEDAL_STATS]   = new menu::RankMenu        ("Medals"     ,      { START} ); 
+  allMenus_[START_MENU]    = new menu::StartMenu       ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
+  allMenus_[NATION_BASE]   = new menu::BaseMenu        ("Nation Base",      { START_MENU, NATION_NEW, NATION_SELECT});     
+  allMenus_[PART_BASE]     = new menu::BaseMenu        ("Participant Base", { START_MENU, PART_NEW,   PART_SELECT});     
+  allMenus_[SPORT_BASE]    = new menu::BaseMenu        ("Sport Base" ,      { START_MENU, SPORT_NEW,  SPORT_SELECT});     
+  allMenus_[POINT_STATS]   = new menu::RankMenu        ("Points"     ,      { START_MENU} ); 
+  allMenus_[MEDAL_STATS]   = new menu::RankMenu        ("Medals"     ,      { START_MENU} ); 
   allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nation"     ,      { NATION_BASE , NATION_EDIT });
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Participant",      { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Sport"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_SELECT });
@@ -71,7 +71,7 @@ int Console::run()
   auto running      = true;
   auto clampedInput = 0;
 
-  allMenus_[START]->view(currentMap);
+  allMenus_[START_MENU]->view(currentMap);
 
   while (running) 
   {
@@ -108,8 +108,8 @@ void Console::displayMenu()
     case EXIT: exit(0); 
       break;
 
-    case START:       
-      allMenus_[START]->view(currentMap); 
+    case START_MENU:       
+      allMenus_[START_MENU]->view(currentMap); 
       break;
 
 //  ----------- BASES  -----------------

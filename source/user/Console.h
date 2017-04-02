@@ -46,7 +46,7 @@ private:
   // Dynamic state variables. Keeps track of the state of the front-end.
   //
   int input = 0;
-  int selectedMenu = START;
+  int selectedMenu = START_MENU;
 
   dat::TransitionMap currentMap;
   dat::Container     selectedContainer;
