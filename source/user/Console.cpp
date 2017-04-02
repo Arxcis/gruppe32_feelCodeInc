@@ -78,7 +78,7 @@ int Console::run()
     if (!silentCommand) 
     {
       // 1. Read input
-      input = stream::readInt("0-" + std::to_string(currentMap.size()-1));
+      input = stream::readInt("0-" + std::to_string(currentMap.size()-1) + "\n");
 
       // 2. Make sure input is within bounds.
       clampedInput = clamp(input, (int)currentMap.size()-1);
@@ -262,9 +262,12 @@ void Console::displayMenu()
         { api_.setResults(selectedID, selectedResults); }
       break;
 
-//  ----------- SILENT commands  -----------------
+//  ----------- SILENT delete commands  -----------------
 
     // COMMANDS that happend without asking the user
+    // 1. Set the silentCommand flag to true, such that command is executed without asking for user input.
+    // 2. ASK API to perform a delete.
+    // 3. Print debug info
     case SLIST_DELETE:
       silentCommand = true;
       api_.deleteStarts(selectedID);
