@@ -250,6 +250,7 @@ namespace menu
     bindDynamicOption(map, 4, nextState_[3], object[it].second, "Result List");
 
     std::string sportKey = key.substr(0, (key.find("_")));  // @hack
+    bindDynamicOption(map, 5, nextState_[4], key, "Delete");
     bindDynamicOption(map, 0, nextState_[0], sportKey, "Back     ");
     footer();
   }
@@ -322,7 +323,7 @@ namespace menu
       printIllegalOption(entry[1].second + ": " + entry[2].second);
     }
 
-    bindDynamicOption(map, 1, nextState_[0], key, "Delete start-list");
+    bindDynamicOption(map, 1, nextState_[1], key, "Delete start-list");
     bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
     footer();
   }
@@ -343,7 +344,7 @@ namespace menu
   {
     newPage();
     header(type_);
-    starts.clear(); //@debug
+    // starts.clear(); //@debug
     if (!(starts.empty()))
     { 
       if(results.empty()) 
@@ -353,7 +354,7 @@ namespace menu
       {
         printIllegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second);
       }
-      bindDynamicOption(map, 1, nextState_[0], key, "Delete results");
+      bindDynamicOption(map, 1, nextState_[1], key, "Delete results");
     }
     else
       { std::cout << "ERROR: You have to create a start-list first\n"; }

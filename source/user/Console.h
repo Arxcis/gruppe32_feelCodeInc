@@ -47,6 +47,7 @@ private:
   //
   int input = 0;
   int selectedMenu = START_MENU;
+  bool silentCommand = false;
 
   dat::TransitionMap currentMap;
   dat::Container     selectedContainer;

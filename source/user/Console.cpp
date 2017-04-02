@@ -31,10 +31,10 @@ Console::Console()
   //
   // Registring Advanced menus
   //
-  allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Dicipline"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT});
+  allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Dicipline"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT, DICI_DELETE});
   allMenus_[DICI_EDIT]    = new menu::EditField       ("Dicipline"  ,  { DICI_SELECT });
-  allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT });
-  allMenus_[RLIST_SELECT] = new menu::ResultList      ("Results"    ,  { DICI_SELECT });
+  allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT, SLIST_DELETE });
+  allMenus_[RLIST_SELECT] = new menu::ResultList      ("Results"    ,  { DICI_SELECT, RLIST_DELETE });
 }
 
 Console::~Console() 
@@ -75,23 +75,28 @@ int Console::run()
 
   while (running) 
   {
-    // 1. Read input
-    input = stream::readInt("0-" + std::to_string(currentMap.size()-1));
+    if (!silentCommand) 
+    {
+      // 1. Read input
+      input = stream::readInt("0-" + std::to_string(currentMap.size()-1));
 
-    // 2. Make sure input is within bounds.
-    clampedInput = clamp(input, (int)currentMap.size()-1);
+      // 2. Make sure input is within bounds.
+      clampedInput = clamp(input, (int)currentMap.size()-1);
 
-    // 3. Use input to find next menu
-    selectedMenu = currentMap[clampedInput].first;
-    selectedID   = currentMap[clampedInput].second;
+      // 3. Use input to find next menu
+      selectedMenu = currentMap[clampedInput].first;
+      selectedID   = currentMap[clampedInput].second;
 
-    if (selectedID.find("_") != std::string::npos) // @hack
-      { selectedDiciplineID = selectedID; }
-                                                          std::cout << "Selected ID: " << selectedID << std::endl; // @debug
-                                                          std::cout << "Dicipline ID: " << selectedDiciplineID << std::endl; // @debug
-    // 4. Reset current map
-    currentMap = {};
+      if (selectedID.find("_") != std::string::npos) // @hack
+        { selectedDiciplineID = selectedID; }
+                                                            std::cout << "Selected ID: " << selectedID << std::endl; // @debug
+                                                            std::cout << "Dicipline ID: " << selectedDiciplineID << std::endl; // @debug
+      // 4. Reset current map
+      currentMap = {};
 
+    }
+    else 
+      { silentCommand = false; }
     // 5. Display next menu
     displayMenu();
   }
@@ -257,6 +262,30 @@ void Console::displayMenu()
         { api_.setResults(selectedID, selectedResults); }
       break;
 
+//  ----------- SILENT commands  -----------------
+
+    // COMMANDS that happend without asking the user
+    case SLIST_DELETE:
+      silentCommand = true;
+      api_.deleteStarts(selectedID);
+      std::cout << "Starts " + selectedID + " deleted...\n";  // @debug
+      selectedMenu = DICI_SELECT;
+      break;
+
+    case RLIST_DELETE:
+      silentCommand = true;
+      api_.deleteResults(selectedID);
+      std::cout << "Reults " + selectedID + " deleted...\n";  // @debug
+      selectedMenu = DICI_SELECT;
+      break;
+
+    case DICI_DELETE:
+      silentCommand = true;
+      api_.deleteDicipline(selectedID);
+      std::cout << "Dicipline " + selectedID + " deleted...\n";  // @debug
+      selectedMenu = SPORT_SELECT;
+      selectedID = selectedID.substr(0, (selectedID.find("_")));   // picking out the ID of the sport from the sport_dicipline ID
+      break;
 
 
     default:
