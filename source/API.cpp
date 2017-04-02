@@ -7,17 +7,6 @@
 namespace test 
 {
   const dat::Object
-  dicipline 
-  {
-      {"Type","Dicipline"},
-      {"Name", "Finale"},     //PK
-      {"Time", "19:00"}, 
-      {"Date","29.03.18"},
-      {"#Starts", "2"},
-      {"#Results","2"},
-  };
-
-  const dat::Object
   start
   {
     {"Type", "Start"},
@@ -50,15 +39,6 @@ namespace test
     result,
     result,
   };
-
-
-  const dat::Container
-  diciplines 
-  {
-    dicipline, 
-    dicipline, 
-    dicipline,
-  };  
 }
 
 
