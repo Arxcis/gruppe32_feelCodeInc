@@ -15,15 +15,19 @@ Console::Console()
   allMenus_[START_MENU]    = new menu::StartMenu       ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
   allMenus_[NATION_BASE]   = new menu::BaseMenu        ("Nation Base",      { START_MENU, NATION_NEW, NATION_SELECT});     
   allMenus_[PART_BASE]     = new menu::BaseMenu        ("Participant Base", { START_MENU, PART_NEW,   PART_SELECT});     
-  allMenus_[SPORT_BASE]    = new menu::BaseMenu        ("Sport Base" ,      { START_MENU, SPORT_NEW,  SPORT_SELECT});     
+  allMenus_[SPORT_BASE]    = new menu::BaseMenu        ("Sport Base" ,      { START_MENU, SPORT_NEW,  SPORT_SELECT});    
+
   allMenus_[POINT_STATS]   = new menu::RankMenu        ("Points"     ,      { START_MENU} ); 
   allMenus_[MEDAL_STATS]   = new menu::RankMenu        ("Medals"     ,      { START_MENU} ); 
+
   allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nation"     ,      { NATION_BASE , NATION_EDIT });
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Participant",      { PART_BASE   , PART_EDIT   });
-  allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Sport"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_SELECT });
+  allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Sport"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_NEW, DICI_SELECT });
+
   allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE , NATION_NEW });
   allMenus_[PART_NEW]      = new menu::NewObject       ("Participant",      { PART_BASE   , PART_NEW   });
   allMenus_[SPORT_NEW]     = new menu::NewObject       ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
+
   allMenus_[NATION_EDIT]   = new menu::EditField       ("Nation"     ,      { NATION_SELECT});
   allMenus_[PART_EDIT]     = new menu::EditField       ("Participant",      { PART_SELECT});
   allMenus_[SPORT_EDIT]    = new menu::EditField       ("Sport"      ,      { SPORT_SELECT});
@@ -33,6 +37,8 @@ Console::Console()
   //
   allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Dicipline"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT, DICI_DELETE});
   allMenus_[DICI_EDIT]    = new menu::EditField       ("Dicipline"  ,  { DICI_SELECT });
+  allMenus_[DICI_NEW]     = new menu::NewDicipline    ("Dicipline"  ,  { SPORT_SELECT});
+
   allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT, SLIST_DELETE });
   allMenus_[RLIST_SELECT] = new menu::ResultList      ("Results"    ,  { DICI_SELECT, RLIST_DELETE });
 }
@@ -207,6 +213,13 @@ void Console::displayMenu()
       allMenus_[SPORT_NEW]->view(currentMap, selectedObject);
       api_.add(selectedObject);
       break;
+
+    case DICI_NEW:
+      selectedObject = {};
+      allMenus_[DICI_NEW]->view(currentMap, selectedObject, selectedID);
+      api_.add(selectedObject);
+      break;
+
 
 //  ----------- EDIT  -----------------
     //

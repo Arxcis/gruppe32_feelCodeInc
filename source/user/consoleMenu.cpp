@@ -202,20 +202,22 @@ namespace menu
     newPage();
     header(type_);
 
-    printIllegalOption(object[1].first + ": " + object[1].second);
-
+    //
     // 1. Binding options which edit the sport
+    //
+    printIllegalOption(object[1].first + ": " + object[1].second);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, 
                                               (object[2].first + ": " + object[2].second));
 
-    printIllegalOption(object[3].first + ": " + object[3].second);
-      
+    //
     // 2. Binding opitons which selects a dicipline
+    //
+    std::cout << "\n";
+    printIllegalOption(object[3].first + ": " + object[3].second);
+    bindDynamicOption(map, 2, nextState_[2], object[1].second,"New dicipline");
+      
     for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
-    { 
-      bindDynamicOption(map, (i/3)+1, nextState_[2], object[i].second, 
-                                                      object[i].second); 
-    }
+      { bindDynamicOption(map, (i/3)+2, nextState_[3], object[i].second, object[i].second); }
 
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -256,7 +258,6 @@ namespace menu
   }
 
 
-
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::NewObject
@@ -267,11 +268,30 @@ namespace menu
 
   void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
   {
+   newPage();
+   header(type_ + " new");
    newObject = form::object(type_);
    bindStaticOption(map, 1, nextState_[1], "New  " + type_);
    bindStaticOption(map, 0, nextState_[0], "Back");
   }
 
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::NewDicipline
+  //
+  NewDicipline::NewDicipline(const std::string& type, const std::vector<int>& nextState)
+  :ConsoleMenu(type, nextState)
+  {}
+
+  void NewDicipline::view(dat::TransitionMap& map, dat::Object& newObject, const std::string& key)
+  { 
+    newPage();
+    header(type_ + " new");
+    newObject = form::object(type_);
+    footer();
+    bindDynamicOption(map, 0, nextState_[0], key, "Back");
+    footer();
+  }
   
   
   ////////////////////////////////////////////////////////////////

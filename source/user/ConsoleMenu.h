@@ -185,7 +185,7 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  //  NEW MENU classes
+  //  @class menu::NewObject
   //
   class NewObject : public ConsoleMenu
   {
@@ -193,6 +193,18 @@ namespace menu
     NewObject(const std::string& type, const std::vector<int>& nextState);
     virtual ~NewObject(){}
     virtual void view(dat::TransitionMap& map, dat::Object& newObject) override;
+  };
+
+  //////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::NewDicipline
+  //
+  class NewDicipline : public ConsoleMenu
+  {
+  public:
+    NewDicipline(const std::string& type, const std::vector<int>& nextState);
+    virtual ~NewDicipline(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& newObject, const std::string& key) override;
   };
 
 
