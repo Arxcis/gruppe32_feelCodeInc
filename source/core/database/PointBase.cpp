@@ -10,9 +10,9 @@ namespace db
   {
     auto prototype = dat::Object
     {
-      {"Type",   "Point"},                          // Medal/Point
+      {"Type",   "Point"  },                        // Medal/Point
       {"Nation", (char*)(rank->getNation()) },      // Nation char3
-      {"Value",  std::to_string(rank->getValue())        }, 
+      {"Value",  std::to_string(rank->getValue())}, 
     };
     return prototype;
   };
@@ -22,10 +22,9 @@ namespace db
   //
   auto PointBase::unpack(dat::Object& object) -> Rank*
   {
-    //dat::char3 nationCode = object[1].second.c_str();
-    //if (object[0].second.compare)
-    //int value = std::stoi(object[2].second);
-    return nullptr; //new Rank(value, nationCode);
+    dat::char3 nationCode = dat::char3{ object[1].second.c_str() };
+    int value = std::stoi(object[2].second);
+    return new Rank(value, nationCode);
   }
 
   //
