@@ -223,13 +223,13 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  // @class menu::ResList
+  // @class menu::ResultList
   //
-  class ResList : public ConsoleMenu
+  class ResultList : public ConsoleMenu
   {
   public:
-    ResList(const std::string& type, const std::vector<int>& nextState);
-    virtual ~ResList(){}
+    ResultList(const std::string& type, const std::vector<int>& nextState);
+    virtual ~ResultList(){}
     virtual void view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key) override;
   };
 

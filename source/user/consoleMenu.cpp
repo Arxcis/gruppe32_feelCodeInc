@@ -303,7 +303,7 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::ListMenu
+  //  @class menu::StartLIst
   //
   StartList::StartList(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
@@ -330,13 +330,13 @@ namespace menu
 
   ////////////////////////////////////////////////////////////////
   //
-  //  @class menu::ListMenu
+  //  @class menu::ResultList
   //
-  ResList::ResList(const std::string& type, const std::vector<int>& nextState)
+  ResultList::ResultList(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
   {} 
 
-  void ResList::view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key)
+  void ResultList::view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key)
   {
     newPage();
     header(type_);
