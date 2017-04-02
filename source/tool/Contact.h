@@ -14,15 +14,15 @@ namespace dat
   struct Contact 
   {
     std::string name = "";
-    std::string address = "";
+    std::string mailAddress = "";
     std::string phone = "";
 
     Contact(
       std::string name_, 
-      std::string address_, 
+      std::string mailAddress_, 
       std::string phone_)
     :name(name_)
-    ,address(address_)
+    ,mailAddress(mailAddress_)
     ,phone(phone_)
     {}
 

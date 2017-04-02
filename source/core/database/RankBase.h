@@ -3,7 +3,7 @@
 // @file    core/database/StatBase.h
 // @repo    gruppe32
 // @created 31.03.17 by Jonas
-// @brief   A database for point and medal ranks
+// @brief   A database for generic ranks
 //
 #include "../Rank.h"
 #include "DataBase.h"
@@ -15,16 +15,8 @@ namespace db
   public:
     RankBase(){}
     virtual ~RankBase(){}
-    virtual Rank* unpack(dat::Object * object) override;
-    auto getContainer(const std::string& filepath) -> const dat::Container;
-    
-    
-  private:
-    virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    const std::string baseFile[2] = 
-    { 
-      "data/point.format",
-      "data/medal.format",
-    };
+    virtual Rank*          unpack(dat::Object * object);
+    virtual dat::Object*   pack(Rank * object);
+    virtual dat::Container readFile(const std::string& filepath);
   };
 }

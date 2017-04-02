@@ -1,28 +1,50 @@
 #include "SportBase.h"
 
+
 namespace db 
 {
-  SportBase::SportBase():
-  sports(*elements)
+
+  //
+  // @constructor
+  //
+  SportBase::SportBase()
+  :sports(*elements)
   {}
 
-  Sport * db::SportBase::unpack(dat::Object * object)
+  //
+  // @class function db::SportBase::unpack
+  //
+  auto SportBase::unpack(dat::Object * object) -> Sport*
   {
     dat::Object obj = *object;
     //dat:: ????
     return nullptr;
   }
 
+  //
+  // @class function db::SportBase::pack
+  //
+  auto SportBase::pack(Sport * sport) -> dat::Object* 
+  {
+    auto sportObj = new dat::Object
+    {
+      { "Type",         "Sport" },  // Sport
+      { "Name",         sport->getName() },  // PK
+      { "ScoreType",    sport->getScoreType() ? "Point" : "Medal" },
+      { "#Diciplines",  ""/*@TODO*/ }
+    };
+    return sportObj;
+  }
 
   //
-  // @funciton db::SportBase::getContainer
+  // @class funciton db::SportBase::getContainer
   //  @brief returns a container of all sports in base
   //
   auto SportBase::getContainer() -> const dat::Container
     { return readFile(baseFile); }
 
   //
-  // @funciton db::SportBase::readFile()
+  // @class funciton db::SportBase::readFile()
   //    Used to fill the database with data;
   //
   auto SportBase::readFile(const std::string& filepath) -> dat::Container
@@ -81,3 +103,4 @@ namespace db
     return tempContainer;
   }
 }
+

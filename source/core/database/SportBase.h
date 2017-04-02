@@ -12,6 +12,8 @@ namespace db
     virtual ~SportBase(){}
     // Inherited via DataBase
     virtual Sport * unpack(dat::Object * object) override;
+    // Inherited via DataBase
+    virtual dat::Object * pack(Sport * object) override;
     //List& sports = *elements; //aliasing the list
     auto getContainer() -> const dat::Container;
 

@@ -12,6 +12,7 @@ namespace db
     virtual ~NationBase(){}
     // Inherited via DataBase
     virtual Nation * unpack(dat::Object * object) override;
+    virtual dat::Object * pack(Nation * object) override;
     auto getContainer() -> const dat::Container;
 
   private:

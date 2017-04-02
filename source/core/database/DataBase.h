@@ -18,7 +18,7 @@ namespace db
   protected: 
     List * elements;                     // Container for the databases core data
     std::stringstream ss;                // Buffer for reading from files
-    
+   
   public:
     DataBase()
     { elements = new List(Sorted); }
@@ -37,6 +37,7 @@ namespace db
       { delete object; return false; }
     }
     virtual T * unpack(dat::Object * object) = 0;
+    virtual dat::Object * pack(T * object) = 0;
     virtual dat::Container readFile(const std::string& filepath)=0;
 
     // 

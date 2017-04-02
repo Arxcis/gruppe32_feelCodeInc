@@ -5,7 +5,11 @@
 
 class Rank : public NumElement
 {
-private:
-    dat::char3 nation_;
-    int value;
+protected:
+  int value_;         //poeng/medaljer
+  dat::char3 nation_;
+public:
+  Rank(int value, dat::char3 nation);
+  int   getValue();
+  auto  getNation() -> dat::char3;
 };

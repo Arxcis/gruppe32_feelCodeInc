@@ -14,7 +14,8 @@
 #include "core/database/NationBase.h"
 #include "core/database/ParticipantBase.h"
 #include "core/database/SportBase.h"
-#include "core/database/RankBase.h"
+#include "core/database/MedalBase.h"
+#include "core/database/PointBase.h"
 
 //
 // @class API - Application Layer Interface
@@ -45,8 +46,8 @@ private:
   db::NationBase      nationBase_;     
   db::ParticipantBase participantBase_;         
   db::SportBase       sportBase_;        
-  db::RankBase        pointBase_;     
-  db::RankBase        medalBase_;      
+  db::PointBase       pointBase_;
+  db::MedalBase       medalBase_;
   dat::Container      dbContainerCache[6];
 
 };

@@ -51,8 +51,8 @@ void API::loadAllBases()
   dbContainerCache[NATION]      = nationBase_.getContainer();
   dbContainerCache[PARTICIPANT] = participantBase_.getContainer();
   dbContainerCache[SPORT]       = sportBase_.getContainer();
-  dbContainerCache[POINT]       = pointBase_.getContainer("data/point.format");
-  dbContainerCache[MEDAL]       = medalBase_.getContainer("data/medal.format");
+  dbContainerCache[POINT]       = pointBase_.getContainer();
+  dbContainerCache[MEDAL]       = medalBase_.getContainer();
 }
 
 //

@@ -7,6 +7,25 @@ namespace db
   {}
 
   //
+  // @class function pack
+  //
+  dat::Object * NationBase::pack(Nation * nation)
+  {
+    dat::Contact contact = nation->getContact();
+    auto nationObj = new dat::Object
+    {
+      {"Type",           "Nation"},   // Nation
+      {"Code",           (char*)nation->getShortName()},   //PK              
+      {"Name",           nation->getName()},                    
+      {"ContactName",    contact.name},                    
+      {"ContactPhone",   contact.phone},             
+      {"ContactEmail",   contact.mailAddress},
+      {"#Participants",  std::to_string(nation->getParticipantCount())}
+    };
+    return nationObj;
+  }
+
+  //
   // @funciton db::Nationbase::unpack()
   //
   Nation * NationBase::unpack(dat::Object * object)
@@ -15,7 +34,7 @@ namespace db
     dat::char3 shortName = obj[1].second.c_str();
     std::string name = obj[2].second;
     int participants = std::stoi(obj[3].second);
-    dat::Contact contact = *dat::unpacking::contact(obj[4], obj[5], obj[6]);
+      dat::Contact contact = *dat::packing::unpackContact(obj[4], obj[5], obj[6]);
     return new Nation(shortName, name, contact, participants);
   }
 
@@ -26,17 +45,18 @@ namespace db
   auto NationBase::getContainer() -> const dat::Container
     { return readFile(baseFile); }
 
+
   //
   // @funciton db::Nationbase::readFile()
   //    Used to fill the database with data;
   //
   auto NationBase::readFile(const std::string& filepath) -> dat::Container
   {
-    auto tempContainer = dat::Container {}; // @delete @temp @testing
 
+    auto tempContainer = dat::Container {}; // @delete @temp @testing
     auto prototype = dat::Object 
     {
-      {"type",           ""},   // Nation
+      {"Type",           ""},   // Nation
       {"Code",           ""},   //PK              
       {"Name",           ""},                    
       {"ContactName",    ""},                    

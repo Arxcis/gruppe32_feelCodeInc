@@ -3,15 +3,34 @@
 
 namespace db 
 {
+
   ParticipantBase::ParticipantBase()
   :participants(*elements)
   {}
+
+
+  dat::Object * ParticipantBase::pack(Participant * participant)
+  {
+    dat::Contact contact = participant->getContact();
+    auto participantObj = new dat::Object
+    {
+      { "Type",        "Participant" },  // Participant
+      { "ID",          std::to_string(participant->getID())},
+      { "Name",        contact.name },  // PK
+      { "Phone",       contact.phone },
+      { "Email",       contact.mailAddress },
+      { "CountryCode", ""},//participant->getNation() },  // FK
+      { "Gender",      participant->getGender() ? "Male" : "Female" }
+    };
+    return participantObj;
+  }
+
 
   Participant * ParticipantBase::unpack(dat::Object * object)
   {
     dat::Object obj = *object;
     int ID = stoi(obj[1].second);
-    dat::Contact contact = *dat::unpacking::contact(obj[2], obj[3], obj[4]);
+    dat::Contact contact = *dat::packing::unpackContact(obj[2], obj[3], obj[4]);
     dat::char3 shortName = obj[5].second.c_str();
     Participant::Gender gender = (Participant::Gender)stoi(obj[6].second);
     return new Participant(ID,contact,shortName, gender);
@@ -77,3 +96,4 @@ namespace db
     return tempContainer;
   }
 }
+
