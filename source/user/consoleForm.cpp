@@ -102,7 +102,7 @@ auto form::object(const std::string type) ->dat::Object&
 //
 void form::field(dat::Field& field)
 {
-    std::cout << std::get<0>(field) << " : ";
+    std::cout << std::get<0>(field) << " : " << std::endl;
     stream::readString(std::cin, std::get<1>(field)); }
 
 

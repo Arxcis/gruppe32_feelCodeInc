@@ -287,14 +287,10 @@ namespace menu
     header(type_ + " edit");
 
     // Finding the chosen field to edit
-    std::cout << key << ": " << std::endl; 
     for(auto& field: object)
     { 
       if (field.first == key)
-      {
-        stream::readString(std::cin, field.second);
-        break;
-      }
+        { form::field(field); break; }
     }
     bindDynamicOption(map, 0, nextState_[0], key, "Back");
     footer();
@@ -315,7 +311,7 @@ namespace menu
     header(type_);
     if (starts.empty())
     {
-
+      form::startList();
     }
 
     for (const auto& entry: starts)
