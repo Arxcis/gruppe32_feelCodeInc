@@ -33,8 +33,8 @@ Console::Console()
   //
   allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Dicipline"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT});
   allMenus_[DICI_EDIT]    = new menu::EditField       ("Dicipline"  ,  { DICI_SELECT });
-  allMenus_[SLIST_SELECT] = new menu::ListMenu        ("Starts"     ,  { DICI_SELECT });
-  allMenus_[RLIST_SELECT] = new menu::ListMenu        ("Results"    ,  { DICI_SELECT });
+  allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT });
+  allMenus_[RLIST_SELECT] = new menu::ResList         ("Results"    ,  { DICI_SELECT });
 }
 
 Console::~Console() 
@@ -239,21 +239,22 @@ void Console::displayMenu()
     // 4. Update API if user has made a list.
     //
     case SLIST_SELECT:
-      selectedList = api_.getStarts(selectedID);
-      shouldUpdate = selectedList.empty();        // Means that the user should now fill in starts
+      selectedStarts = api_.getStarts(selectedID);
+      shouldUpdate = selectedStarts.empty();        // Means that the user should now fill in starts
 
-      allMenus_[SLIST_SELECT]->view(currentMap, selectedList, selectedID);
+      allMenus_[SLIST_SELECT]->view(currentMap, selectedStarts, selectedID);
       if (shouldUpdate)
-        { api_.setStarts(selectedID, selectedList); }
+        { api_.setStarts(selectedID, selectedStarts); }
       break;
 
     case RLIST_SELECT:
-      selectedList = api_.getResults(selectedID);
-      shouldUpdate = selectedList.empty();        // Means that the user should now fill in starts
+      selectedStarts  = api_.getStarts(selectedID);
+      selectedResults = api_.getResults(selectedID);
+      shouldUpdate    = (!selectedStarts.empty()) && selectedResults.empty();        // Means that the user should now fill in starts
 
-      allMenus_[RLIST_SELECT]->view(currentMap, selectedList, selectedID);
+      allMenus_[RLIST_SELECT]->view(currentMap, selectedStarts, selectedResults, selectedID);
       if (shouldUpdate)
-        { api_.setResults(selectedID, selectedList); }
+        { api_.setResults(selectedID, selectedResults); }
       break;
 
 
