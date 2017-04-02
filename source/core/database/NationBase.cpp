@@ -34,14 +34,12 @@ namespace db
     return new Nation(shortName, name, contact, participants);
   }
 
-
   //
   // @class function readFile()
   //    Used to fill the database with data;
   //
   auto NationBase::readFile(const std::string& filepath) -> dat::Container
   {
-
     auto tempContainer = dat::Container {}; // @delete @temp @testing
     auto prototype = dat::Object 
     {

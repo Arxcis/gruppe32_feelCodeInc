@@ -72,6 +72,7 @@ namespace db
       tempContainer.push_back(prototype);
     }
     return tempContainer;
+
   }
   /*
   FORMAT: (POSITION/RANK is given by the list sorting)
