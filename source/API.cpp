@@ -133,6 +133,14 @@ void API::setResults(const std::string& id, const dat::Container& results)
 {
 }
 
+void API::deleteStarts(const std::string& id)
+{
+}
+
+void API::deleteResults(const std::string& id)
+{
+}
+
 
 auto API::getPoints () -> const dat::Container
 {
