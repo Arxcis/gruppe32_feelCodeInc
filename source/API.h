@@ -32,6 +32,8 @@ public:
 
   auto getStarts (const std::string& id)  -> const dat::Object;
   auto getResults(const std::string& id)  -> const dat::Object;
+  void setStarts (const std::string& id, const dat::Object& list);
+  void setResults(const std::string& id, const dat::Object& list);
   auto getPoints () -> const dat::Container;
   auto getMedals () -> const dat::Container;
   void quit();

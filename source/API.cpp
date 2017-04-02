@@ -109,6 +109,15 @@ auto API::getResults(const std::string& id)  -> const dat::Object
  return test::resultList;
 }
 
+void API::setStarts (const std::string& id, const dat::Object& list)
+{
+}
+
+void API::setResults(const std::string& id, const dat::Object& list)
+{
+}
+
+
 auto API::getPoints () -> const dat::Container
 {
   return dbContainerCache[POINT];
