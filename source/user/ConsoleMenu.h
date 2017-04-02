@@ -46,7 +46,7 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
     virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) {}
-
+    virtual void view(dat::TransitionMap& map, dat::Object& starts, dat::Object& results, const std::string& key){}
     //
     // @class funciton - small helper functions
     //
@@ -184,20 +184,6 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  // @class menu::ListMenu
-  //
-  class ListMenu : public ConsoleMenu
-  {
-  public:
-    ListMenu(const std::string& type, const std::vector<int>& nextState);
-    virtual ~ListMenu(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key);
-  };
-
-
-
-  //////////////////////////////////////////////////////////////////
-  //
   //  NEW MENU classes
   //
   class NewObject : public ConsoleMenu
@@ -211,7 +197,7 @@ namespace menu
 
   //////////////////////////////////////////////////////////////////
   //
-  //  EDIT MENU classes
+  //  @class EditField
   //
   class EditField : public ConsoleMenu
   {
@@ -220,6 +206,32 @@ namespace menu
     virtual ~EditField(){}
     virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) override;
   };
+
+
+  //////////////////////////////////////////////////////////////////
+  //
+  // @class menu::StartList
+  //
+  class StartList : public ConsoleMenu
+  {
+  public:
+    StartList(const std::string& type, const std::vector<int>& nextState);
+    virtual ~StartList(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& starts, const std::string& key) override;
+  };
+
+  //////////////////////////////////////////////////////////////////
+  //
+  // @class menu::ResList
+  //
+  class ResList : public ConsoleMenu
+  {
+  public:
+    ResList(const std::string& type, const std::vector<int>& nextState);
+    virtual ~ResList(){}
+    virtual void view(dat::TransitionMap& map, dat::Object& starts, dat::Object& results, const std::string& key) override;
+  };
+
 
   /////////////////////////////////////////////////////////////////
   //

@@ -255,23 +255,6 @@ namespace menu
   }
 
 
-  ////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::ListMenu
-  //
-  ListMenu::ListMenu(const std::string& type, const std::vector<int>& nextState)
-  :ConsoleMenu(type, nextState)
-  {} 
-
-  void ListMenu::view(dat::TransitionMap& map, dat::Object& object, const std::string& key)
-  {
-    newPage();
-    header(type_);
-
-    bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
-    footer();
-  }
-
 
   ////////////////////////////////////////////////////////////////
   //
@@ -317,13 +300,49 @@ namespace menu
     footer();
   }
 
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::ListMenu
+  //
+  StartList::StartList(const std::string& type, const std::vector<int>& nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void StartList::view(dat::TransitionMap& map, dat::Object& starts, const std::string& key)
+  {
+    newPage();
+    header(type_);
+
+    bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
+    footer();
+  }
+
+  ////////////////////////////////////////////////////////////////
+  //
+  //  @class menu::ListMenu
+  //
+  ResList::ResList(const std::string& type, const std::vector<int>& nextState)
+  :ConsoleMenu(type, nextState)
+  {} 
+
+  void ResList::view(dat::TransitionMap& map, dat::Object& starts, dat::Object& results, const std::string& key)
+  {
+    newPage();
+    header(type_);
+    
+    bindDynamicOption(map, 0, nextState_[0], key, "Back     ");
+    footer();
+  }
+
+
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Error 
   //
   Error::Error(const std::string& type, const std::vector<int>& nextState)
   :ConsoleMenu(type, nextState)
-  {}
+  {
 
   void Error::view()
   {

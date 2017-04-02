@@ -112,13 +112,20 @@ void form::field(dat::Field& field)
 void form::startList()
 {
   std::string buffer = "";
-    std::cout << "ParticipantID: ";
+
+  while ( buffer != "x")
+  {
+    std::cout << "ParticipantID: " << std::endl;
     stream::readString(std::cin, buffer);
+  }
 }
 
 void form::resultList()
 {
   std::string buffer = "";
-    std::cout << "Result: ";
+  while ( buffer != "x")
+  {
+    std::cout << "ParticipantID: " << std::endl;
     stream::readString(std::cin, buffer);
+  }
 }
