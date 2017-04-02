@@ -1,11 +1,12 @@
 #include "MedalBase.h"
 
 namespace db
-{
+{ 
+
   //
-  // @class function MedalBase::unpack
+  // @class function unpack()
   //
-  auto MedalBase::unpack(dat::Object * object) -> Rank*
+  auto MedalBase::unpack(dat::Object& object) -> Rank*
   { 
     dat::Object obj = *object;
     dat::char3 nationCode = obj[1].second.c_str();
@@ -13,7 +14,10 @@ namespace db
     return new Rank(value,nationCode);
   }
 
-  auto MedalBase::pack(Rank * rank) -> dat::Object*
+  //
+  // @class function pack()
+  //
+  auto MedalBase::pack(Rank* rank) -> dat::Object
   {
     auto rankObj = dat::Object
     {
@@ -22,18 +26,12 @@ namespace db
       { "Code",        ""},//rank->getNation() },  // NationCode      //@incomplete
       { "Value",       ""},//dat::packing::unpackMedals( rank->getValue() ) }  // Medal values [GOLD-SILVER-BRONZE]
     };
+    return rankObj;
   }
 
-  //
-  // @class funciton db::MedalBase::getContainer
-  //  @brief returns a container of all points in base
-  //
-  auto MedalBase::getContainer() -> const dat::Container
-  { return readFile(baseFile); }
-
 
   //
-  // @class function Rankbase::readFile
+  // @class function readFile()
   //
   auto MedalBase::readFile(const std::string& filepath) -> dat::Container
   {

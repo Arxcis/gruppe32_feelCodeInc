@@ -5,16 +5,9 @@ namespace db
 {
 
   //
-  // @constructor
+  // @class function unpack()
   //
-  SportBase::SportBase()
-  :sports(*elements)
-  {}
-
-  //
-  // @class function db::SportBase::unpack
-  //
-  auto SportBase::unpack(dat::Object * object) -> Sport*
+  auto SportBase::unpack(dat::Object& object) -> Sport*
   {
     dat::Object obj = *object;
     //dat:: ????
@@ -22,11 +15,11 @@ namespace db
   }
 
   //
-  // @class function db::SportBase::pack
+  // @class function pack()
   //
-  auto SportBase::pack(Sport * sport) -> dat::Object* 
+  auto SportBase::pack(Sport* sport) -> dat::Object
   {
-    auto sportObj = new dat::Object
+    auto sportObj = dat::Object
     {
       { "Type",         "Sport" },  // Sport
       { "Name",         sport->getName() },  // PK
@@ -37,14 +30,7 @@ namespace db
   }
 
   //
-  // @class funciton db::SportBase::getContainer
-  //  @brief returns a container of all sports in base
-  //
-  auto SportBase::getContainer() -> const dat::Container
-    { return readFile(baseFile); }
-
-  //
-  // @class funciton db::SportBase::readFile()
+  // @class funciton readFile()
   //    Used to fill the database with data;
   //
   auto SportBase::readFile(const std::string& filepath) -> dat::Container

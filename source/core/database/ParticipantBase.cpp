@@ -4,15 +4,13 @@
 namespace db 
 {
 
-  ParticipantBase::ParticipantBase()
-  :participants(*elements)
-  {}
-
-
-  dat::Object * ParticipantBase::pack(Participant * participant)
+  //
+  // @class function pack()
+  //
+  auto ParticipantBase::pack(Participant* participant) -> dat::Object
   {
     dat::Contact contact = participant->getContact();
-    auto participantObj = new dat::Object
+    auto participantObj = dat::Object
     {
       { "Type",        "Participant" },  // Participant
       { "ID",          std::to_string(participant->getID())},
@@ -25,8 +23,10 @@ namespace db
     return participantObj;
   }
 
-
-  Participant * ParticipantBase::unpack(dat::Object * object)
+  //
+  // @class function unpack()
+  //
+  auto ParticipantBase::unpack(dat::Object& object) -> Participant*
   {
     dat::Object obj = *object;
     int ID = stoi(obj[1].second);
@@ -36,16 +36,10 @@ namespace db
     return new Participant(ID,contact,shortName, gender);
   }
 
-  //
-  // @funciton db::ParticipantBase::getContainer
-  //  @brief returns a container of all participants in base
-  //
-  auto ParticipantBase::getContainer() -> const dat::Container
-    { return readFile(baseFile); }
 
   //
-  // @funciton db::ParticipantBase::readFile()
-  //    Used to fill the database with data;
+  // @class funciton readFile()
+  //    @brief Used to fill the database with data;
   //
   auto ParticipantBase::readFile(const std::string& filepath) -> dat::Container
   { 

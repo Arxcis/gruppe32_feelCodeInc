@@ -1,5 +1,9 @@
 #pragma once
 
+//
+// @file    core/database/NationBase.h
+//
+
 #include "../Nation.h"
 #include "../../tool/Unpacker.h"
 #include "DataBase.h"
@@ -8,17 +12,18 @@ namespace db
   class NationBase : public DataBase<Nation>
   {
   public:
-    NationBase();
+    NationBase() 
+    :DataBase("data/nation.format")
+    ,nations(*elements)
+    {}
+
     virtual ~NationBase(){}
-    // Inherited via DataBase
-    virtual Nation * unpack(dat::Object * object) override;
-    virtual dat::Object * pack(Nation * object) override;
-    auto getContainer() -> const dat::Container;
+    virtual auto pack  (Nation*      object) -> dat::Object override;
+    virtual auto unpack(dat::Object& object) -> Nation*     override;
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List& nations; //aliasing the list
-    const std::string baseFile = "data/nation.format";
   };
 
 }

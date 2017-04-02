@@ -2,17 +2,14 @@
 
 namespace db 
 {
-  NationBase::NationBase() 
-  :nations(*elements)
-  {}
 
   //
-  // @class function pack
+  // @class function pack()
   //
-  dat::Object * NationBase::pack(Nation * nation)
+  auto NationBase::pack(Nation* nation) -> dat::Object
   {
     dat::Contact contact = nation->getContact();
-    auto nationObj = new dat::Object
+    auto nationObj = dat::Object
     {
       {"Type",           "Nation"},   // Nation
       {"Code",           (char*)nation->getShortName()},   //PK              
@@ -26,9 +23,9 @@ namespace db
   }
 
   //
-  // @funciton db::Nationbase::unpack()
+  // @class function unpack()
   //
-  Nation * NationBase::unpack(dat::Object * object)
+  auto NationBase::unpack(dat::Object& object) -> Nation*
   {
     dat::Object obj = *object;
     dat::char3 shortName = obj[1].second.c_str();
@@ -38,16 +35,9 @@ namespace db
     return new Nation(shortName, name, contact, participants);
   }
 
-  //
-  // @funciton db::NationBase::getContainer
-  //  @brief returns a container of all nations in base
-  //
-  auto NationBase::getContainer() -> const dat::Container
-    { return readFile(baseFile); }
-
 
   //
-  // @funciton db::Nationbase::readFile()
+  // @class function readFile()
   //    Used to fill the database with data;
   //
   auto NationBase::readFile(const std::string& filepath) -> dat::Container

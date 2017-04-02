@@ -16,17 +16,29 @@ namespace db
   class DataBase
   {
   protected: 
-    List * elements;                     // Container for the databases core data
+    List* elements;                     // Container for the databases core data
     std::stringstream ss;                // Buffer for reading from files
+    const std::string baseFile;
    
   public:
-    DataBase()
+    DataBase(const std::string file)
+    :baseFile(file)
     { elements = new List(Sorted); }
+
     virtual ~DataBase()
     { delete elements; }
 
+    //
+    // Virtual abstract (not-implemented) functions
+    //
+    virtual dat::Object pack  (T*           object)             = 0;
+    virtual T*          unpack(dat::Object& object)             = 0;
+    virtual dat::Container readFile(const std::string& filepath) = 0;
+    
+
     void display()
     { return elements->displayList(); }
+
 
     bool add(dat::Object * object)
     {
@@ -36,9 +48,14 @@ namespace db
       else
       { delete object; return false; }
     }
-    virtual T * unpack(dat::Object * object) = 0;
-    virtual dat::Object * pack(T * object) = 0;
-    virtual dat::Container readFile(const std::string& filepath)=0;
+
+    //
+    // @class funciton db::DataBase::getContainer
+    //  @brief returns a container of all points in base
+    //
+    auto getContainer() -> const dat::Container
+      { return readFile(baseFile); }
+
 
     // 
     // @funciton // Only implemented in base class

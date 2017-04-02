@@ -2,10 +2,20 @@
 
 namespace db
 {
+
   //
-  // @class function MedalBase::unpack
+  // @class function pack()
   //
-  auto PointBase::unpack(dat::Object * object) -> Rank*
+  auto PointBase::pack(Rank* object) -> dat::Object
+  {
+    //@incomplete
+    return {};
+  };
+
+  //
+  // @class function unpack()
+  //
+  auto PointBase::unpack(dat::Object& object) -> Rank*
   {
     dat::Object obj = *object;
     dat::char3 nationCode = obj[1].second.c_str();
@@ -14,24 +24,8 @@ namespace db
     return new Rank(value, );
   }
 
-  auto PointBase::pack(Rank * object) -> dat::Object*
-  {
-    //@incomplete
-    return nullptr;
-  };
-
-
   //
-  // @class funciton db::PointBase::getContainer
-  //  @brief returns a container of all points in base
-  //
-  auto PointBase::getContainer() -> const dat::Container
-  { return RankBase::readFile(baseFile); }
-
-
-
-  //
-  // @class function Rankbase::readFile
+  // @class function readFile()
   //
   auto PointBase::readFile(const std::string& filepath) -> dat::Container
   {

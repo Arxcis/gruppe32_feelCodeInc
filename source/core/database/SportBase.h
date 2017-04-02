@@ -8,19 +8,18 @@ namespace db
   class SportBase : public DataBase<Sport>
   {
   public:
-    SportBase();
+    SportBase()
+    :DataBase("data/sport.format")
+    ,sports(*elements)
+    {}
+
     virtual ~SportBase(){}
-    // Inherited via DataBase
-    virtual Sport * unpack(dat::Object * object) override;
-    // Inherited via DataBase
-    virtual dat::Object * pack(Sport * object) override;
-    //List& sports = *elements; //aliasing the list
-    auto getContainer() -> const dat::Container;
+    virtual auto pack  (Sport*       object) -> dat::Object override;
+    virtual auto unpack(dat::Object& object) -> Sport*      override; 
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List& sports;
-    const std::string baseFile = "data/sport.format";
   };
 }
 

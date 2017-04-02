@@ -5,7 +5,8 @@
 // @created 31.03.17 by Halvor
 // @brief   A database for medal ranks
 //
-#include "RankBase.h"
+#include "DataBase.h"
+#include "../Rank.h"
 #include "../../tool/unpacker.h"
 
 namespace db
@@ -13,14 +14,17 @@ namespace db
   class MedalBase : public DataBase<Rank>
   {
   public:
-    MedalBase() {}
+    MedalBase()
+    :DataBase("data/medal.format")
+    ,medals(elements)
+    {}
+
     virtual ~MedalBase() {}
-    virtual auto unpack(dat::Object * object) -> Rank*        override;
-    virtual auto pack(Rank * object)          -> dat::Object* override;
-    auto getContainer() -> const dat::Container;
+    virtual auto pack  (Rank*        object) -> dat::Object override;
+    virtual auto unpack(dat::Object& object) -> Rank*       override;
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    const std::string baseFile = "data/medal.format";
+    List* medals;
   };
 }
