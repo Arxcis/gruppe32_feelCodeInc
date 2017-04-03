@@ -43,11 +43,11 @@ private:
   //
   // All the bases
   //
-  db::NationBase      nationBase_;     
-  db::ParticipantBase participantBase_;         
-  db::SportBase       sportBase_;        
-  db::PointBase       pointBase_;
-  db::MedalBase       medalBase_;
+    db::NationBase      nationBase_{"data/nation.format"};
+    db::ParticipantBase participantBase_{"data/participant.format"};
+    db::SportBase       sportBase_{"data/sport.format"};
+  db::PointBase       pointBase_{"data/point.format"};
+  db::MedalBase       medalBase_{"data/medal.format"};
   dat::Container      dbContainerCache[6];
 
 };

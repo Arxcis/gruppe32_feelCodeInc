@@ -68,13 +68,23 @@
     { "Value", "80"  },
   };
 
-void testPacking()
+
+void printObject(const dat::Object& obj)
 {
-  db::NationBase       nationBase;     
-  db::ParticipantBase  participantBase;         
-  db::SportBase        sportBase;        
-  db::PointBase        pointBase;
-  db::MedalBase        medalBase;
+  std::cout << "\n\n";
+  for (const auto& field: obj) 
+  {
+    std::cout << field.first << ": " << field.second << "\n";
+  }
+}
+
+void testPackingAndOtherRelatedFunctions()
+{
+  db::NationBase       nationBase     {"data/nation.format"};     
+  db::ParticipantBase  participantBase{"data/participant.format"};         
+  db::SportBase        sportBase      {"data/sport.format"};        
+  db::PointBase        pointBase      {"data/point.format"};
+  db::MedalBase        medalBase      {"data/medal.format"};
 
 
   // Test ADD
@@ -92,14 +102,39 @@ void testPacking()
   medalBase.display();*/
 
   // Test FIND FUNCTIONS
-  nationBase.findID("Norge");
+  nationBase.findID("NOR");
   participantBase.findID(1001);
   sportBase.findID("Fotball");
+
+
+  // Test GETID functions
+  dat::Object getNation;
+  dat::Object getPart;
+  dat::Object getSport;
+
+  nationBase.getID(getNation, "NOR");
+  participantBase.getID(getPart, 1001);
+  sportBase.getID(getSport, "Fotball");
+
+
+  // PRINTING OBJECTS --
+  std::cout << "\n-----PRINTING OBJECTS----\n";
+  printObject(getNation);
+  printObject(getPart);
+  printObject(getSport);
+
+  dat::Container getPoints = pointBase.getContainer();
+  dat::Container getMedals = medalBase.getContainer();
+
+  for (auto& obj: getPoints) 
+    { printObject(obj); }
+  for (auto& obj: getMedals) 
+    { printObject(obj); }
 }
 
 int main()
 {
-  testPacking();
+  testPackingAndOtherRelatedFunctions();
   printf("\n\n=======================" );
   printf("\n\nHello from core module\n");
   return 0;

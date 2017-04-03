@@ -15,8 +15,8 @@ namespace db
   class MedalBase : public DataBase<Rank>
   {
   public:
-    MedalBase()
-    :DataBase("data/medal.format")
+    MedalBase(const std::string& filepath)
+    :DataBase(filepath)
     ,medals(elements)
     {}
 
