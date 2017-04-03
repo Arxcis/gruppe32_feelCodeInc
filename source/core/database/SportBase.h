@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DataBase.h"
-#include <array>
 #include "../Sport.h"
 
 namespace db

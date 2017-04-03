@@ -8,14 +8,26 @@ namespace db
   //
   auto SportBase::pack(Sport* sport) -> dat::Object
   {
-    auto sportObj = dat::Object
+    auto sportProto = dat::Object
     {
       { "Type",         "Sport" },  // Sport
       { "Name",         sport->getName() },  // PK
       { "ScoreType",    sport->getScoreType() ? "Point" : "Medal" },
-      { "#Diciplines",  ""/*@TODO*/ }
+      {"#Diciplines",   ""},
     };
-    return sportObj;
+
+    std::vector<Dicipline> diciplines = sport->getDiciplines();
+    sportProto[3].second = std::to_string(diciplines.size());   // Setting number of diciplines
+    
+    for (int i=0; i < diciplines.size(); i++)
+    { 
+      std::string it = std::to_string(i);
+      sportProto.push_back( { "Dicipline" + it, diciplines[i].name } );
+      sportProto.push_back( { "Time"      + it, dat::packing::packTime(diciplines[i].time ) });
+      sportProto.push_back( { "Date"      + it, dat::packing::packDate(diciplines[i].date ) });
+    }
+
+    return sportProto;
   }
 
   //

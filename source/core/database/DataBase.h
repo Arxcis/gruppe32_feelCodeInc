@@ -3,6 +3,8 @@
 #include "../../enum.h"
 #include "../../tool/typedef.h"
 #include "../../tool/stream.h"
+#include "../../tool/packer.h"
+#include "../../tool/unpacker.h"
 #include "../Nation.h"
 #include <string>
 #include <fstream>
@@ -31,8 +33,8 @@ namespace db
     //
     // Virtual abstract (not-implemented) functions
     //
-    virtual dat::Object pack  (T*           object)             = 0;
-    virtual T*          unpack(dat::Object& object)             = 0;
+    virtual dat::Object pack  (T*           object)              = 0;
+    virtual T*          unpack(dat::Object& object)              = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
     
 
