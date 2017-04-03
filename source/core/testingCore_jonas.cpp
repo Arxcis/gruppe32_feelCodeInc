@@ -92,19 +92,33 @@ void testPackingAndOtherRelatedFunctions()
   participantBase.add(testparticipant);
   sportBase.add(testsport);
   pointBase.add(testpoint);
+  pointBase.add(testpoint);
+  pointBase.add(testpoint);
+  pointBase.add(testpoint);
   medalBase.add(testmedal);
 
   // Test DISPLAY
 /*  nationBase.display();
   participantBase.display();
   sportBase.display();
-  pointBase.display();
+  
   medalBase.display();*/
 
   // Test FIND FUNCTIONS
-  nationBase.findID("NOR");
-  participantBase.findID(1001);
-  sportBase.findID("Fotball");
+  if (nationBase.findID("SWE"))
+    { std::cout << "\n Found Nation!"; }
+  else
+    { std::cout << "\n No found........."; }
+
+  if (participantBase.findID(1002))
+    { std::cout << "\n Found Participant!"; }
+  else
+    { std::cout << "\n No found........."; }
+
+  if (sportBase.findID("Fotball"))
+   { std::cout << "\n Found Sport!"; }
+  else
+    { std::cout << "\n No found........."; }
 
 
   // Test GETID functions
@@ -130,6 +144,8 @@ void testPackingAndOtherRelatedFunctions()
     { printObject(obj); }
   for (auto& obj: getMedals) 
     { printObject(obj); }
+
+  pointBase.display();
 }
 
 int main()
