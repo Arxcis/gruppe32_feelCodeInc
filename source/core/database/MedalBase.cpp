@@ -5,7 +5,7 @@ namespace db
   //
   // @class function pack()
   //
-  auto MedalBase::pack(Rank* rank) -> dat::Object
+  auto MedalBase::pack(const Rank* rank) -> dat::Object
   { 
     dat::Medals medals = ((MedalRank*)rank)->getMedals();
     auto rankObj = dat::Object
@@ -70,6 +70,7 @@ namespace db
     return tempContainer;
 
   }
+
   /*
   FORMAT: (POSITION/RANK is given by the list sorting)
       Medal;  TYPE

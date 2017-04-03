@@ -14,7 +14,7 @@ namespace db
     {}
 
     virtual ~SportBase(){}
-    virtual auto pack  (Sport*       object) -> dat::Object override;
+    virtual auto pack  (const Sport*       object) -> dat::Object override;
     virtual auto unpack(dat::Object& object) -> Sport*      override; 
 
   private:

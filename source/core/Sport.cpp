@@ -1,10 +1,10 @@
 #include "Sport.h"
 
-auto Sport::getName() -> std::string
+auto Sport::getName() const -> std::string
 {
   return name_;
 }
-auto Sport::getScoreType() -> std::string
+auto Sport::getScoreType() const -> std::string
 {
   return scoreType_;
 }
@@ -20,7 +20,7 @@ bool Sport::addDicipline(Dicipline dici)
     { return false; }
 }
 
-auto Sport::getDiciplines() -> const std::vector<Dicipline>
+auto Sport::getDiciplines() const -> std::vector<Dicipline>
 {
   return diciplines_;
 }

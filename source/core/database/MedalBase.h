@@ -21,7 +21,7 @@ namespace db
     {}
 
     virtual ~MedalBase() {}
-    virtual auto pack  (Rank*        object) -> dat::Object override;
+    virtual auto pack  (const Rank*  object) -> dat::Object override;
     virtual auto unpack(dat::Object& object) -> Rank*       override;
 
   private:

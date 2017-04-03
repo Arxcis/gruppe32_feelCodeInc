@@ -6,7 +6,7 @@ namespace db
   //
   // @class function pack()
   //
-  auto PointBase::pack(Rank* rank) -> dat::Object
+  auto PointBase::pack(const Rank* rank) -> dat::Object
   {
     auto prototype = dat::Object
     {

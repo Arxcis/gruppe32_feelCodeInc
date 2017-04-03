@@ -13,7 +13,7 @@ namespace db
     {}
 
     virtual ~ParticipantBase(){}
-    virtual auto pack  (Participant* participant) -> dat::Object  override;
+    virtual auto pack  (const Participant* participant) -> dat::Object  override;
     virtual auto unpack(dat::Object& object)      -> Participant* override;
 
   private:

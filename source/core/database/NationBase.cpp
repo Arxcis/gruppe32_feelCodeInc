@@ -6,7 +6,7 @@ namespace db
   //
   // @class function pack()
   //
-  auto NationBase::pack(Nation* nation) -> dat::Object
+  auto NationBase::pack(const Nation* nation) -> dat::Object
   {
     dat::Contact contact = nation->getContact();
     auto nationObj = dat::Object

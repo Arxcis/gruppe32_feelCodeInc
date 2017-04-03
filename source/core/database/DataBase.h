@@ -33,21 +33,45 @@ namespace db
     //
     // Virtual abstract (not-implemented) functions
     //
-    virtual dat::Object pack  (T*           object)              = 0;
-    virtual T*          unpack(dat::Object& object)              = 0;
+    virtual dat::Object    pack  (const T*     object)              = 0;
+    virtual T*             unpack(dat::Object& object)              = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
-    bool findID(const std::string & id)
+
+    bool findID(const std::string& id)
     {
       Element* e = elements->remove(id.c_str());
       if (e)
       { elements->add(e); }
       return e != nullptr;
     }
-    bool findID(const int & id)
+
+    bool findID(const int id)
     {
       Element* e = elements->remove(id);
       if (e)
       { elements->add(e); }
+      return e != nullptr;
+    }
+
+    bool getID(dat::Object& object, const std::string& id)
+    {
+      Element* e = elements->remove(id.c_str());
+      if (e)
+      { 
+        object = pack(e);     // e should not change here
+        elements->add(e); 
+      }
+      return e != nullptr;
+    }
+
+    bool getID(dat::Object& object, const int id)
+    {
+      Element* e = elements->remove(id);
+      if (e)
+      { 
+        object = pack(e);     // e should not change here
+        elements->add(e); 
+      }
       return e != nullptr;
     }
 
