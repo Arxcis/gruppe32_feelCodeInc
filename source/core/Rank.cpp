@@ -1,10 +1,5 @@
 #include "Rank.h"
 
-Rank::Rank(int value, dat::char3 nation)
-:value_(value)
-,nation_(nation)
-{}
-
 int Rank::getValue()
   { return value_; }
 

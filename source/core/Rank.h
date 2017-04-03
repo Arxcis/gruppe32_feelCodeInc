@@ -11,7 +11,12 @@ protected:
   dat::char3 nation_;
 
 public:
-  Rank(int value, dat::char3 nation);
+  Rank(int value, dat::char3 nation)
+  :NumElement(value)
+  ,value_(value)
+  ,nation_(nation)
+  {}
+  
   int  getValue();
   auto getNation() -> dat::char3;
 

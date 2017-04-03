@@ -11,7 +11,11 @@ private:
   dat::Medals medals_;
 
 public:
-  MedalRank(dat::Medals medals, dat::char3 nation);
+  MedalRank(dat::Medals medals, dat::char3 nation)
+  :Rank(medals.castToInt(), nation)
+  ,medals_(medals)
+  {}
+  
   auto getMedals() -> dat::Medals;
 };
 

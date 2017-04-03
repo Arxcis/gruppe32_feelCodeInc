@@ -20,7 +20,7 @@
     { "Name",          "Norge" },
     { "#Participants", "150" },
     { "ContactName",   "Jonas" },
-    { "ContactPhone",  "452000864" },
+    { "ContactPhone",  "+47452000864" },
     { "ContactEmail",  "jonas.solsvik@gmail.com" },
   };
 
@@ -30,7 +30,7 @@
     { "type", "Participant" },
     { "ID"  , "1002" },     //PK
     { "Name", "Jonas" },
-    { "Phone", "452000864" },
+    { "Phone", "+47452000864" },
     { "Email", "jonas.solsvik@gmail.com" },
     { "CountryCode", "NOR" },
     { "Sex", "Male" },
@@ -41,8 +41,8 @@
   {
     { "Type", "Sport" },
     { "Name", "Fotball" },     //PK
-    { "ScoreType", "Points" },
-    { "#Diciplines", "3" },
+    { "ScoreType", "Point" },
+    { "#Diciplines", "2" },
     { "Dicipline1", "Final" },
     { "Time1", "10:00:12" },
     { "Date1", "12.03.91" },
@@ -57,7 +57,7 @@
   {
     { "Type", "Medal" },
     { "Code",  "NOR"},
-    { "Value", "1-2-3" },
+    { "Value", "01-02-03" },
   };
 
   dat::Object
@@ -76,11 +76,21 @@ void testPacking()
   db::PointBase       pointBase;
   db::MedalBase       medalBase;
 
+
+  // Test ADD
   nationBase.add(testnation);
   participantBase.add(testparticipant);
   sportBase.add(testsport);
   pointBase.add(testpoint);
   medalBase.add(testmedal);
+
+  // Test DISPLAY
+  nationBase.display();
+  //participantBase.display();
+  //sportBase.display();
+  //pointBase.display();
+  //medalBase.display();
+
 }
 
 int main()

@@ -19,7 +19,8 @@ private:
 
 public:
   Participant(int ID, dat::Contact contact, dat::char3 nation, std::string sex)
-  :ID_(ID)
+  :NumElement(ID)
+  ,ID_(ID)
   ,contact_(contact)
   ,nation_(nation)
   ,sex_(sex)

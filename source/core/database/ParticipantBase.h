@@ -19,5 +19,7 @@ namespace db
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List& participants;         //aliasing the list
+
+    int participantCount = 1000;
   };
 }

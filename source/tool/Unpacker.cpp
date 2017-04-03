@@ -10,7 +10,7 @@ namespace dat { namespace packing
               mailAddress_.second); 
 }
 
-  Time unpackTime(const Field & time_)
+  Time unpackTime(const Field& time_)
   {
     const std::string time = time_.second;
     return Time(
@@ -19,7 +19,7 @@ namespace dat { namespace packing
       std::stoi(time.substr(6, 2)));
   }
 
-  Date unpackDate(const Field & date_)
+  Date unpackDate(const Field& date_)
   {
     const std::string date = date_.second;
     return Date(
@@ -27,7 +27,7 @@ namespace dat { namespace packing
       std::stoi(date.substr(3, 2)),
       std::stoi(date.substr(6)));
   }
-  Medals unpackMedals(const Field & medals_)
+  Medals unpackMedals(const Field& medals_)
   { 
     const std::string medals = medals_.second;
     return Medals(
