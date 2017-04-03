@@ -33,4 +33,6 @@ public:
 
   auto getName() -> std::string;
   auto getScoreType() -> std::string;
+
+  virtual void display() override;
 };

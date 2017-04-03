@@ -1,5 +1,8 @@
 #pragma once
 
+
+// @remove MAYBE REDUDANT !!!! @TODO
+
 // @file    core/Participant.h
 // @repo    gruppe32
 // @created 28.03.17 by Halvor

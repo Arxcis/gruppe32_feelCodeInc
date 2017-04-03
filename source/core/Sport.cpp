@@ -39,3 +39,8 @@ bool Sport::removeDicipline(const std::string& id)
   return false;
 }
 
+void Sport::display()
+{
+  printf("SportName:\t%s\nScoreType:%s\n", name_.c_str(), scoreType_.c_str());
+}
+
