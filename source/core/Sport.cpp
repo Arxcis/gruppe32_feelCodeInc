@@ -1,13 +1,9 @@
 #include "Sport.h"
 
 auto Sport::getName() const -> std::string
-{
-  return name_;
-}
+{ return name_; }
 auto Sport::getScoreType() const -> std::string
-{
-  return scoreType_;
-}
+{ return scoreType_; }
 
 bool Sport::addDicipline(Dicipline dici)
 {
@@ -21,9 +17,7 @@ bool Sport::addDicipline(Dicipline dici)
 }
 
 auto Sport::getDiciplines() const -> std::vector<Dicipline>
-{
-  return diciplines_;
-}
+{ return diciplines_; }
 
 bool Sport::removeDicipline(const std::string& id)
 {
@@ -50,4 +44,3 @@ void Sport::display()
     printf("Dicipline:\t%s   Time:\t%s\n", name_.c_str(), dat::packing::packTime(dici.time).c_str());
   }
 }
-
