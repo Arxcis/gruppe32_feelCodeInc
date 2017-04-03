@@ -17,14 +17,14 @@ namespace db
   template<class T>
   class DataBase
   {
-  protected: 
+  protected:
     List* elements;                     // Container for the databases core data
     std::stringstream ss;                // Buffer for reading from files
     const std::string baseFile;
-   
+
   public:
     DataBase(const std::string file)
-    :baseFile(file)
+      :baseFile(file)
     { elements = new List(Sorted); }
 
     virtual ~DataBase()
@@ -33,8 +33,8 @@ namespace db
     //
     // Virtual abstract (not-implemented) functions
     //
-    virtual dat::Object    pack  (const T*     object)                 = 0;
-    virtual T*             unpack(dat::Object& object)           = 0;
+    virtual dat::Object    pack(const T*     object) = 0;
+    virtual T*             unpack(dat::Object& object) = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
 
     bool findID(const std::string& id)
@@ -47,9 +47,9 @@ namespace db
     {
       T* e = (T*)elements->remove(id.c_str());
       if (e)
-      { 
+      {
         object = pack(e);     // e should not change here
-        elements->add(e); 
+        elements->add(e);
       }
       return e != nullptr;
     }
@@ -58,19 +58,19 @@ namespace db
     {
       T* e = (T*)elements->remove(id);
       if (e)
-      { 
+      {
         object = pack(e);     // e should not change here
-        elements->add(e); 
+        elements->add(e);
       }
       return e != nullptr;
     }
 
     void display()
-    { 
-      printf("\n\n=============================="); 
-      printf("\n           DATABASE           "); 
+    {
+      printf("\n\n==============================");
+      printf("\n           DATABASE           ");
       printf("\n==============================");
-      return elements->displayList(); 
+      return elements->displayList();
     }
 
 
@@ -78,18 +78,43 @@ namespace db
     {
       T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added
+<<<<<<< HEAD
         { return true; }
       else
         { return false; }
+=======
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+>>>>>>> 10eb7be818b619ea994de48fb890ad5830e13465
     }
+
+    //
+    // @class funciton db::DataBase::readContainer
+    //  @brief returns a container of all points in file
+    //
+    auto readContainer() -> const dat::Container
+    { return readFile(baseFile); }
 
     //
     // @class funciton db::DataBase::getContainer
     //  @brief returns a container of all points in base
     //
     auto getContainer() -> const dat::Container
-      { return readFile(baseFile); }
-
+    { 
+      const dat::Container container;
+      for (int i = 0; elements->noOfElements(); i++)
+      { 
+        Element* e = elements->removeNo(i);
+        container.push_back(pack(e));
+        elements->add(unpack(container[i]));
+      }
+      return container;
+    }
 
     // 
     // @funciton // Only implemented in base class
@@ -97,19 +122,20 @@ namespace db
     void writeFile(const std::string& filepath, const dat::Container& container)
     {
       std::cout << "Writing to " << filepath << "\n";  // @debug
-      std::ofstream outFile(filepath+"_out");
+      std::ofstream outFile(filepath + "_out");
 
       outFile << container.size() << ";\n";
       assert(outFile);
 
-      for(const auto& object: container)
-      { 
-        for(const auto& field: object)
-          { outFile << field.second << ";\n"; } 
+      for (const auto& object : container)
+      {
+        for (const auto& field : object)
+        {
+          outFile << field.second << ";\n";
+        }
       }
 
       outFile.close();
     }
   };
-
 }
