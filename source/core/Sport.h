@@ -19,10 +19,15 @@ public:
 private:
   std::string name_;
   ScoreType scoreType_;                     // Can be 
-  std::array <Dicipline, 20> diciplines;    // A sport can have maximum 20 diciplines each.
+  std::array <Dicipline, 20> diciplines_;    // A sport can have maximum 20 diciplines each.
 
 public:
+  Sport(std::string name, ScoreType type)
+  :name_(name),
+  scoreType_(type)
+  {}
 
+  bool addDicipline(Dicipline dici);
   auto getName() -> std::string;
   ScoreType getScoreType();
 };
