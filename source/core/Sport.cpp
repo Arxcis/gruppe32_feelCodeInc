@@ -2,9 +2,9 @@
 
 auto Sport::getName() -> std::string
 {
-	return name_;
+  return name_;
 }
-Sport::ScoreType Sport::getScoreType()
+auto Sport::getScoreType() -> Sport::ScoreType
 {
   return scoreType_;
 }
@@ -19,6 +19,12 @@ bool Sport::addDicipline(Dicipline dici)
   else 
     { return false; }
 }
+
+auto Sport::getDiciplines() -> const std::array<Dicipline, 20>
+{
+  return diciplines_;
+}
+
 /*
 ScoreType Sport::getScoreType()
 {
