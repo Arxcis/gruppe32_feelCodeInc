@@ -11,21 +11,24 @@
 
 class Participant : public NumElement
 {
-public:
-  enum Gender
-  { MALE, FEMALE, OTHER };
 private:
   int ID_;
   dat::Contact contact_;
   dat::char3 nation_;
-  Gender gender_;
+  std::string sex_;
+
 public:
-  Participant(int ID, dat::Contact contact, dat::char3 nation, Gender gender);
+  Participant(int ID, dat::Contact contact, dat::char3 nation, std::string sex)
+  :ID_(ID)
+  ,contact_(contact)
+  ,nation_(nation)
+  ,sex_(sex)
+  {}
 
   int getID();
   auto getContact() -> dat::Contact;
   auto getNation() -> dat::char3;
-  Gender getGender();
+  auto getSex()   -> std::string;
 
   // Inherited via TextElement
   virtual void display() override;
