@@ -11,16 +11,16 @@ auto Sport::getScoreType() -> Sport::ScoreType
 
 bool Sport::addDicipline(Dicipline dici)
 {
-  if (diciplines_.size() < diciplines_.max_size())
+  if (lastDicipline < maxDiciplines)
   {
-    diciplines_[diciplines_.size()] = dici;
+    diciplines_[++lastDicipline] = dici;
     return true;
   }
   else 
     { return false; }
 }
 
-auto Sport::getDiciplines() -> const std::array<Dicipline, 20>
+auto Sport::getDiciplines() -> Dicipline*
 {
   return diciplines_;
 }

@@ -15,11 +15,13 @@ class Sport : TextElement
 {
 public:
   enum ScoreType { POINT, MEDAL };
+  static const int maxDiciplines = 20;
 
 private:
   std::string name_;
   ScoreType scoreType_;                     // Can be 
-  std::array<Dicipline, 20> diciplines_;    // A sport can have maximum 20 diciplines each.
+  Dicipline diciplines_[maxDiciplines+1];    // A sport can have maximum 20 diciplines each.
+  int lastDicipline = 0;
 
 public:
   Sport(std::string name, ScoreType type)
@@ -28,7 +30,8 @@ public:
   {}
 
   bool addDicipline(Dicipline dici);
-  auto getDiciplines() -> const std::array<Dicipline, 20>;
+  auto getDiciplines() -> Dicipline*;
+
   auto getName() -> std::string;
   auto getScoreType() -> ScoreType;
 };
