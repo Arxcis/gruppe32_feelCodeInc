@@ -23,11 +23,7 @@ private:
   std::vector<Dicipline> diciplines_;    // A sport can have maximum 20 diciplines each.
 
 public:
-  Sport(std::string name, std::string type)
-  :TextElement(name.c_str())
-  ,name_(name)
-  ,scoreType_(type)
-  {}
+  Sport(std::string name, std::string type);
 
   bool addDicipline(Dicipline dici);
   auto getDiciplines() -> const std::vector<Dicipline>;

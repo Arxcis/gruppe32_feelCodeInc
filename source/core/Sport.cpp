@@ -1,13 +1,16 @@
 #include "Sport.h"
 
+Sport::Sport(std::string name, std::string type)
+:TextElement(name.c_str())
+, name_(name)
+, scoreType_(type)
+{}
+
+
 auto Sport::getName() -> std::string
-{
-  return name_;
-}
+{ return name_; }
 auto Sport::getScoreType() -> std::string
-{
-  return scoreType_;
-}
+{ return scoreType_; }
 
 bool Sport::addDicipline(Dicipline dici)
 {
