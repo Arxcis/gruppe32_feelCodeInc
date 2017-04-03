@@ -6,14 +6,14 @@
 //          components of the core-module.
 //
 
-#include "core/database/NationBase.h"
-#include "core/database/ParticipantBase.h"
-#include "core/database/SportBase.h"
-#include "core/database/MedalBase.h"
-#include "core/database/PointBase.h"
+#include "database/NationBase.h"
+#include "database/ParticipantBase.h"
+#include "database/SportBase.h"
+#include "database/MedalBase.h"
+#include "database/PointBase.h"
 
   dat::Object
-    nation0
+  testnation
   {
     { "Type",          "Nation" },
     { "Code",          "NOR" },       //PK              
@@ -24,8 +24,8 @@
     { "ContactEmail",  "jonas.solsvik@gmail.com" },
   };
 
-    dat::Object
-    participant
+  dat::Object
+  testparticipant
   {
     { "type", "Participant" },
     { "ID"  , "1002" },     //PK
@@ -33,50 +33,59 @@
     { "Phone", "452000864" },
     { "Email", "jonas.solsvik@gmail.com" },
     { "CountryCode", "NOR" },
-    { "Gender", "Male" },
+    { "Sex", "Male" },
   };
 
   dat::Object
-  sport
+  testsport
   {
     { "Type", "Sport" },
     { "Name", "Fotball" },     //PK
     { "ScoreType", "Points" },
     { "#Diciplines", "3" },
-    { "1", "Final" },
-    { "2", "Semi-final" },
-    { "3", "1/4-final" },
+    { "Dicipline1", "Final" },
+    { "Time1", "10:00:12" },
+    { "Date1", "12.03.91" },
+    { "Dicipline2", "Semi-final" },
+    { "Time2", "10:00:12" },
+    { "Date2", "12.03.02" },
   };
 
 
   dat::Object
-  medalStats
+  testmedal
   {
-    { "Type", "MedalStats" },
-    { "#Entries", "3" },
-    { "NOR", "1-2-3" },
-    { "SWE", "0-2-3" },
-    { "DAN", "0-0-5" },
+    { "Type", "Medal" },
+    { "Code",  "NOR"},
+    { "Value", "1-2-3" },
   };
 
   dat::Object
-  pointStats
+  testpoint
   {
-    { "Type", "PointStats" },
-    { "#Entries", "3" },
-    { "NOR", "100" },
-    { "SWE", "90" },
-    { "DAN", "80" },
+    { "Type", "Point"},
+    { "Code",  "NOR" },
+    { "Value", "80"  },
   };
 
 void testPacking()
 {
+  db::NationBase      nationBase;     
+  db::ParticipantBase participantBase;         
+  db::SportBase       sportBase;        
+  db::PointBase       pointBase;
+  db::MedalBase       medalBase;
 
+  nationBase.add(testnation);
+  participantBase.add(testparticipant);
+  sportBase.add(testsport);
+  pointBase.add(testpoint);
+  medalBase.add(testmedal);
 }
 
 int main()
 {
-    
+  testPacking();
   printf("Hello from core module\n");
   return 0;
 }

@@ -11,7 +11,7 @@
 #include "Dicipline.h"
 #include <vector>
 
-class Sport : TextElement
+class Sport : public TextElement
 {
 public:
   static const int maxDiciplines = 20;
@@ -23,8 +23,9 @@ private:
 
 public:
   Sport(std::string name, std::string type)
-  :name_(name),
-  scoreType_(type)
+  :TextElement(name.c_str())
+  ,name_(name)
+  ,scoreType_(type)
   {}
 
   bool addDicipline(Dicipline dici);

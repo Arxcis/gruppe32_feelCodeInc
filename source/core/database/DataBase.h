@@ -55,13 +55,13 @@ namespace db
     { return elements->displayList(); }
 
 
-    bool add(dat::Object * object)
+    bool add(dat::Object& object)
     {
-      T* unpackedObject = unpack(*object);
+      T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added
       { return true; }
       else
-      { delete object; return false; }
+      { return false; }
     }
 
     //
