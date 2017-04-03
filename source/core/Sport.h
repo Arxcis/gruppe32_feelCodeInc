@@ -9,7 +9,7 @@
 #include <string>
 #include "ListTool2B.h"
 #include "Dicipline.h"
-#include <array>
+#include <vector>
 
 class Sport : TextElement
 {
@@ -20,8 +20,7 @@ public:
 private:
   std::string name_;
   ScoreType scoreType_;                     // Can be 
-  Dicipline diciplines_[maxDiciplines+1];    // A sport can have maximum 20 diciplines each.
-  int lastDicipline = 0;
+  std::vector<Dicipline> diciplines_;    // A sport can have maximum 20 diciplines each.
 
 public:
   Sport(std::string name, ScoreType type)
@@ -30,7 +29,8 @@ public:
   {}
 
   bool addDicipline(Dicipline dici);
-  auto getDiciplines() -> Dicipline*;
+  auto getDiciplines() -> const std::vector<Dicipline>;
+  bool removeDicipline(std::string id);
 
   auto getName() -> std::string;
   auto getScoreType() -> ScoreType;

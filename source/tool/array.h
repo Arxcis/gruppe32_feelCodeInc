@@ -14,7 +14,7 @@ namespace dat
     struct array
     {
     private:
-        size_t count_;
+        size_t count_ = 0;
         T values[];
     public:
         array(size_t arr_sizeLimit);
