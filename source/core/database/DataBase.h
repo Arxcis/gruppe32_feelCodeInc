@@ -59,7 +59,7 @@ namespace db
 
     bool getID(dat::Object& object, const std::string& id)
     {
-      Element* e = elements->remove(id.c_str());
+      T* e = (T*)elements->remove(id.c_str());
       if (e)
       {
         object = pack(e);     // e should not change here
@@ -70,7 +70,7 @@ namespace db
 
     bool getID(dat::Object& object, const int id)
     {
-      Element* e = elements->remove(id);
+      T* e = (T*)elements->remove(id);
       if (e)
       {
         object = pack(e);     // e should not change here

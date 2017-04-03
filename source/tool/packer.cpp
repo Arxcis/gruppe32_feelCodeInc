@@ -12,17 +12,22 @@ dat::Object* dat::packing::packContact( const std::string & name_,
   };
 }
 
+auto dat::packing::packInt(const int myint) -> const std::string 
+{
+  return (myint < 10) ? "0" + std::to_string(myint) : std::to_string(myint);
+}
+
 auto dat::packing::packTime(const dat::Time& time) -> std::string
-{ 
-    return std::to_string(time.hour) + ":" + std::to_string(time.minute) + ":" + std::to_string(time.second);
+{   
+  return  packInt(time.hour) + ":" + packInt(time.minute) + ":" + packInt(time.second);
 }
 
 auto dat::packing::packDate(const dat::Date& date) -> std::string
 { 
-  return std::to_string(date.year) + "." + std::to_string(date.month) + "." + std::to_string(date.day);
+  return packInt(date.year) + "." + packInt(date.month) + "." + packInt(date.day);
 }
 
 auto dat::packing::packMedals(const dat::Medals& medals) -> std::string
 { 
-  return  std::to_string(medals.gold) + "-" + std::to_string(medals.silver) + "-" + std::to_string(medals.bronze);
+  return  packInt(medals.gold) + "-" + packInt(medals.silver) + "-" + packInt(medals.bronze);
 }

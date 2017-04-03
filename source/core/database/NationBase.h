@@ -11,8 +11,8 @@ namespace db
   class NationBase : public DataBase<Nation>
   {
   public:
-    NationBase() 
-    :DataBase("data/nation.format")
+    NationBase(const std::string& filepath) 
+    :DataBase(filepath)
     ,nations(*elements)
     {}
 

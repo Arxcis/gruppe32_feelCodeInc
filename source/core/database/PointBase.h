@@ -13,8 +13,8 @@ namespace db
   class PointBase : public DataBase<Rank>
   {
   public:
-    PointBase()
-    :DataBase("data/point.format")
+    PointBase(const std::string& filepath)
+    :DataBase(filepath)
     ,points(elements)
     {}
     

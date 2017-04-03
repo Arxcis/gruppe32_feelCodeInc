@@ -8,8 +8,8 @@ namespace db
   class SportBase : public DataBase<Sport>
   {
   public:
-    SportBase()
-    :DataBase("data/sport.format")
+    SportBase(const std::string& filepath)
+    :DataBase(filepath)
     ,sports(*elements)
     {}
 

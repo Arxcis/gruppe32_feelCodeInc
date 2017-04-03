@@ -7,8 +7,8 @@ namespace db
   class ParticipantBase : public DataBase<Participant>
   {
   public:
-    ParticipantBase()
-    :DataBase("data/participant.format")
+    ParticipantBase(const std::string& filepath)
+    :DataBase(filepath)
     ,participants(*elements)
     {}
 
