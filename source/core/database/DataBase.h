@@ -52,7 +52,12 @@ namespace db
     }
 
     void display()
-    { return elements->displayList(); }
+    { 
+      printf("\n\n=============================="); 
+      printf("\n           DATABASE           "); 
+      printf("\n==============================");
+      return elements->displayList(); 
+    }
 
 
     bool add(dat::Object& object)

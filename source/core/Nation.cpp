@@ -24,6 +24,7 @@ int Nation::getParticipantCount()
 
 void Nation::display()
 {
-  printf("Nation Code:\t%s\nNation Name:\t%s\nParticipants:\t%d\n", (char*)shortName_, name_.c_str(), participantCount_);
+  printf("\n   =====   Nation   =====    "); 
+  printf("\nNation Code:\t%s\nNation Name:\t%s\nParticipants:\t%d\n", (char*)shortName_, name_.c_str(), participantCount_);
   contact_.display();
 }

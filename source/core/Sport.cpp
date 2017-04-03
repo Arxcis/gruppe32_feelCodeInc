@@ -40,7 +40,14 @@ bool Sport::removeDicipline(const std::string& id)
 }
 
 void Sport::display()
-{
-  printf("SportName:\t%s\nScoreType:%s\n", name_.c_str(), scoreType_.c_str());
+
+{ 
+  printf("\n   =====   Sport   =====    "); 
+  printf("\nSportName:\t%s\nScoreType:\t%s\n", name_.c_str(), scoreType_.c_str());
+
+  for (auto& dici: diciplines_)
+  {
+    printf("Dicipline:\t%s   Time:\t%s\n", name_.c_str(), dat::packing::packTime(dici.time).c_str());
+  }
 }
 

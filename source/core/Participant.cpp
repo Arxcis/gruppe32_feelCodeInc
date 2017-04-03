@@ -14,6 +14,9 @@ auto Participant::getSex() -> std::string
 
 void Participant::display()
 {
+
+  printf("\n   =====   Participant   =====    ");  
+
+  printf("\n\nNationality:\t%s\nParitcipantID:\t%d", (char*)nation_, ID_);
   contact_.display();
-  printf("Nationality:\t%s\nParitcipantID:\t%d\n", (char*)nation_, ID_);
 }

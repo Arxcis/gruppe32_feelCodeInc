@@ -15,7 +15,7 @@ struct Dicipline
   std::string name = 0;
   dat::Time   time = {0,0,0};
   dat::Date   date = {0,0,0};
-  
+
   Dicipline(std::string name_, dat::Time time_, dat::Date date_)
   :name(name_)
   ,time(time_)

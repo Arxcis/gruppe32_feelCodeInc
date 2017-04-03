@@ -9,5 +9,6 @@ auto Rank::getNation() -> dat::char3
 
 void Rank::display()
 {
-    printf("RankValue:\t%d\nNation:%s\n", value_, (char*)nation_);
+  printf("\n   =====   Rank   =====    "); 
+    printf("\n\nRankValue:\t%d\nNation:\t%s\n", value_, (char*)nation_);
 }

@@ -70,11 +70,11 @@
 
 void testPacking()
 {
-  db::NationBase      nationBase;     
-  db::ParticipantBase participantBase;         
-  db::SportBase       sportBase;        
-  db::PointBase       pointBase;
-  db::MedalBase       medalBase;
+  db::NationBase       nationBase;     
+  db::ParticipantBase  participantBase;         
+  db::SportBase        sportBase;        
+  db::PointBase        pointBase;
+  db::MedalBase        medalBase;
 
 
   // Test ADD
@@ -96,6 +96,7 @@ void testPacking()
 int main()
 {
   testPacking();
-  printf("Hello from core module\n");
+  printf("\n\n=======================" );
+  printf("\n\nHello from core module\n");
   return 0;
 }
