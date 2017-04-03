@@ -1,19 +1,16 @@
 #include "Participant.h"
 
-Participant::Participant(int ID, dat::Contact contact, dat::char3 nation, Participant::Gender gender) :
-ID_(ID), contact_(contact), nation_(nation), gender_(gender){}
-
 int Participant::getID()
-{ return ID_; }
+  { return ID_; }
 
 auto Participant::getContact() -> dat::Contact
-{	return contact_; }
+  {	return contact_; }
 
 auto Participant::getNation() -> dat::char3
-{	return nation_; }
+  {	return nation_; }
 
-Participant::Gender Participant::getGender()
-{ return gender_; }
+auto Participant::getSex() -> std::string
+  { return sex_; }
 
 void Participant::display()
 {

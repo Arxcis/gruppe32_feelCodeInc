@@ -2,20 +2,40 @@
 
 auto Sport::getName() -> std::string
 {
-	return name_;
+  return name_;
 }
-Sport::ScoreType Sport::getScoreType()
+auto Sport::getScoreType() -> std::string
 {
   return scoreType_;
 }
-/*
-ScoreType Sport::getScoreType()
+
+bool Sport::addDicipline(Dicipline dici)
 {
-	return scoreType_;
+  if (diciplines_.size() < maxDiciplines)
+  { 
+    diciplines_.push_back(dici);
+    return true;
+  }
+  else 
+    { return false; }
 }
 
-BetterArray Sport::getDiciplines()
+auto Sport::getDiciplines() -> const std::vector<Dicipline>
 {
-	return events_;
+  return diciplines_;
 }
-*/
+
+bool Sport::removeDicipline(const std::string& id)
+{
+  int i = 0;
+  for (auto it = diciplines_.begin(); it < diciplines_.end(); i++, it++)
+  {
+    if (diciplines_[i].name == id) 
+    { 
+      diciplines_.erase(it); 
+      return true;
+    }
+  }
+  return false;
+}
+

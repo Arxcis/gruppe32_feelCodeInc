@@ -12,13 +12,13 @@ namespace db
     dat::Contact contact = participant->getContact();
     auto participantObj = dat::Object
     {
-      { "Type",        "Participant" },  // Participant
-      { "ID",          std::to_string(participant->getID())}, // PK
-      { "Name",        contact.name },  
+      { "Type",        "Participant" },                
+      { "ID",          std::to_string(participant->getID())},   // PK
+      { "Name",        contact.name }, 
       { "Phone",       contact.phone },
       { "Email",       contact.mailAddress },
-      { "CountryCode", ""},//participant->getNation() },  // FK
-      { "Gender",      participant->getGender() ? "Male" : "Female" }
+      { "CountryCode", (char*)participant->getNation() },       // FK
+      { "Sex",         participant->getSex()},
     };
     return participantObj;
   }
@@ -28,11 +28,12 @@ namespace db
   //
   auto ParticipantBase::unpack(dat::Object& object) -> Participant*
   {
-    int ID = stoi(object[1].second);
-    dat::Contact contact = *dat::packing::unpackContact(object[2], object[3], object[4]);
+    int ID               = stoi(object[1].second);
+    dat::Contact contact = dat::packing::unpackContact(object[2], object[3], object[4]);
     dat::char3 shortName = object[5].second.c_str();
-    Participant::Gender gender = (Participant::Gender)stoi(object[6].second);
-    return new Participant(ID,contact,shortName, gender);
+    std::string sex      = object[6].second;
+
+    return new Participant(ID, contact, shortName, sex);
   }
 
 

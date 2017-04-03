@@ -8,20 +8,29 @@
 
 #include <string>
 #include "ListTool2B.h"
+#include "Dicipline.h"
+#include <vector>
 
 class Sport : TextElement
 {
 public:
-  enum ScoreType { POINT, MEDAL};
+  static const int maxDiciplines = 20;
 
 private:
-	std::string name_;
-	ScoreType scoreType_;
-	//BetterArray dicipline;
+  std::string name_;
+  std::string scoreType_;                     // Can be 
+  std::vector<Dicipline> diciplines_;    // A sport can have maximum 20 diciplines each.
 
 public:
-	//	GETTERS
-    auto getName() -> std::string;
-	  ScoreType getScoreType();
-	//BetterArray getDiciplines();
+  Sport(std::string name, std::string type)
+  :name_(name),
+  scoreType_(type)
+  {}
+
+  bool addDicipline(Dicipline dici);
+  auto getDiciplines() -> const std::vector<Dicipline>;
+  bool removeDicipline(const std::string& id);
+
+  auto getName() -> std::string;
+  auto getScoreType() -> std::string;
 };
