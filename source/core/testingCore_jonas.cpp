@@ -86,10 +86,10 @@ void testPacking()
 
   // Test DISPLAY
   nationBase.display();
-  //participantBase.display();
-  //sportBase.display();
-  //pointBase.display();
-  //medalBase.display();
+  participantBase.display();
+  sportBase.display();
+  pointBase.display();
+  medalBase.display();
 
 }
 
