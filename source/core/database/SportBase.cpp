@@ -95,7 +95,7 @@ namespace db
 
       stream::readString (ss, thisProto[0].second);
       stream::readString (ss, thisProto[1].second);
-      stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
+      stream::readEnum   (ss, thisProto[2].second, {"Point", "Time"});
       stream::readInt    (ss, thisProto[3].second);
 
       int numberOfDiciplines = std::stoi(thisProto[3].second);
