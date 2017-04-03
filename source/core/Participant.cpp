@@ -1,7 +1,11 @@
 #include "Participant.h"
 
-Participant::Participant(int ID, dat::Contact contact, dat::char3 nation, Participant::Gender gender) :
-ID_(ID), contact_(contact), nation_(nation), gender_(gender){}
+Participant::Participant(int ID, dat::Contact contact, dat::char3 nation, Participant::Gender gender)
+:ID_(ID)
+,contact_(contact)
+,nation_(nation)
+,gender_(gender)
+{}
 
 int Participant::getID()
 { return ID_; }

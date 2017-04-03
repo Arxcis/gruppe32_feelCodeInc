@@ -23,8 +23,8 @@ namespace db
   auto MedalBase::unpack(dat::Object& object) -> Rank*
   {
     dat::char3 nationCode = object[1].second.c_str();
-    dat::Medals* medals = dat::packing::unpackMedals(object[2]);
-    return new MedalRank(*medals, nationCode);
+    dat::Medals medals = dat::packing::unpackMedals(object[2]);
+    return new MedalRank(medals, nationCode);
   }
 
 

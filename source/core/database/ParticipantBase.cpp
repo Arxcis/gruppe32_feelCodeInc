@@ -29,10 +29,10 @@ namespace db
   auto ParticipantBase::unpack(dat::Object& object) -> Participant*
   {
     int ID = stoi(object[1].second);
-    dat::Contact contact = *dat::packing::unpackContact(object[2], object[3], object[4]);
+    dat::Contact contact = dat::packing::unpackContact(object[2], object[3], object[4]);
     dat::char3 shortName = object[5].second.c_str();
     Participant::Gender gender = (Participant::Gender)stoi(object[6].second);
-    return new Participant(ID,contact,shortName, gender);
+    return new Participant(ID, contact, shortName, gender);
   }
 
 

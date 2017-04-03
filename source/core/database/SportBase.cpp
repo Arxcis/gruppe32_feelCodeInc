@@ -11,8 +11,8 @@ namespace db
     auto sportProto = dat::Object
     {
       { "Type",         "Sport" },  // Sport
-      { "Name",         sport->getName() },  // PK
-      { "ScoreType",    sport->getScoreType() ? "Point" : "Medal" },
+      { "Name",         sport->getName()      },  // PK
+      { "ScoreType",    sport->getScoreType() },
       {"#Diciplines",   ""},
     };
 
@@ -35,8 +35,23 @@ namespace db
   //
   auto SportBase::unpack(dat::Object& object) -> Sport*
   {
-    //dat:: ????
-    return nullptr;
+    std::string name = object[1].second;                        // Sport name
+    std::string scoreType = object[2].second;                   // Sport scoreType
+    Sport* protoSport = new Sport(name, scoreType);             // new Sport element
+
+    int numberOfDiciplines = std::stoi(object[3].second);               // number of diciplines
+
+    for (auto j = 4, i = 0; j < (4 + numberOfDiciplines * 3); j += 3, i++ )
+    {
+      std::string dname = object[j].second;                               // Dicipline+i name
+      dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // Dicipline+i time
+      dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // Dicipline+i date
+
+      Dicipline newDicipline{ dname, dtime, ddate }; 
+      protoSport->addDicipline( newDicipline );
+    }
+
+    return protoSport;
   }
 
 
@@ -83,7 +98,8 @@ namespace db
       stream::readEnum   (ss, thisProto[2].second, {"Point", "Medal"});
       stream::readInt    (ss, thisProto[3].second);
 
-      for (auto j=4, i=0; j < (4 + (std::stoi(thisProto[3].second)*3)); j+=3,i++ )
+      int numberOfDiciplines = std::stoi(thisProto[3].second);
+      for (auto j = 4, i = 0; j < (4 + numberOfDiciplines * 3); j += 3, i++ )
       {   
         std::string it = std::to_string(i);
         thisProto.push_back({ "Dicipline " + it, "" });
@@ -91,8 +107,8 @@ namespace db
         thisProto.push_back({ "Date "      + it, "" });
 
         stream::readString(ss, thisProto[j].second);
-        stream::readTime  (ss,   thisProto[j+1].second); 
-        stream::readDate  (ss,   thisProto[j+2].second); 
+        stream::readTime  (ss, thisProto[j+1].second); 
+        stream::readDate  (ss, thisProto[j+2].second); 
         //std::cout << thisProto[j].second << std::endl;  // @debug
       }
       tempContainer.push_back(thisProto);

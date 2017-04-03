@@ -4,7 +4,7 @@ auto Sport::getName() -> std::string
 {
   return name_;
 }
-auto Sport::getScoreType() -> Sport::ScoreType
+auto Sport::getScoreType() -> std::string
 {
   return scoreType_;
 }
@@ -27,7 +27,7 @@ auto Sport::getDiciplines() -> const std::vector<Dicipline>
 
 bool Sport::removeDicipline(const std::string& id)
 {
-  int i=0;
+  int i = 0;
   for (auto it = diciplines_.begin(); it < diciplines_.end(); i++, it++)
   {
     if (diciplines_[i].name == id) 
