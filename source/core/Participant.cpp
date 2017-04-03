@@ -1,15 +1,15 @@
 #include "Participant.h"
 
-int Participant::getID()
+int Participant::getID() const
   { return ID_; }
 
-auto Participant::getContact() -> dat::Contact
+auto Participant::getContact() const -> dat::Contact
   {	return contact_; }
 
-auto Participant::getNation() -> dat::char3
+auto Participant::getNation() const -> dat::char3 
   {	return nation_; }
 
-auto Participant::getSex() -> std::string
+auto Participant::getSex() const -> std::string 
   { return sex_; }
 
 void Participant::display()

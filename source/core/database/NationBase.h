@@ -17,8 +17,8 @@ namespace db
     {}
 
     virtual ~NationBase(){}
-    virtual auto pack  (Nation*      object) -> dat::Object override;
-    virtual auto unpack(dat::Object& object) -> Nation*     override;
+    virtual auto pack  (const Nation* object) -> dat::Object override;
+    virtual auto unpack(dat::Object&  object) -> Nation*     override;
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;

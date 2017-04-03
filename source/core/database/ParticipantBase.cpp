@@ -7,7 +7,7 @@ namespace db
   //
   // @class function pack()
   //
-  auto ParticipantBase::pack(Participant* participant) -> dat::Object
+  auto ParticipantBase::pack(const Participant* participant) -> dat::Object
   {
     dat::Contact contact = participant->getContact();
     auto participantObj = dat::Object

@@ -28,10 +28,10 @@ public:
   ~Nation();
 
 	//	GETTERS
-	auto getShortName() -> dat::char3;
-	auto getName() -> std::string;
-	auto getContact() -> dat::Contact;
-	int getParticipantCount();
+	auto getShortName() const -> dat::char3;
+	auto getName()      const -> std::string;
+	auto getContact()   const -> dat::Contact;
+	int getParticipantCount() const;
 
   // Inherited via TextElement
   virtual void display() override;

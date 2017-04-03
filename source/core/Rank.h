@@ -17,8 +17,8 @@ public:
   ,nation_(nation)
   {}
   
-  int  getValue();
-  auto getNation() -> dat::char3;
+  int  getValue() const ;
+  auto getNation() const -> dat::char3;
 
   virtual void display() override;
 };

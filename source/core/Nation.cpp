@@ -10,16 +10,16 @@ Nation::Nation(dat::char3 shortName, std::string name, dat::Contact contact, int
 Nation::~Nation()
 {}
 
-auto Nation::getShortName() -> dat::char3
+auto Nation::getShortName() const -> dat::char3
 { return shortName_; }
 
-auto Nation::getName() -> std::string
+auto Nation::getName() const -> std::string
 { return name_; }
 
-auto Nation::getContact() -> dat::Contact
+auto Nation::getContact() const -> dat::Contact
 {	return contact_; }
 
-int Nation::getParticipantCount()
+int Nation::getParticipantCount() const
 {	return participantCount_; }
 
 void Nation::display()

@@ -6,7 +6,7 @@ namespace db
   //
   // @class function pack()
   //
-  auto SportBase::pack(Sport* sport) -> dat::Object
+  auto SportBase::pack(const Sport* sport) -> dat::Object
   {
     auto sportProto = dat::Object
     {

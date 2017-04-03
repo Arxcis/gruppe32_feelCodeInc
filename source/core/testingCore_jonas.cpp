@@ -28,7 +28,7 @@
   testparticipant
   {
     { "type", "Participant" },
-    { "ID"  , "1002" },     //PK
+    { "ID"  , "" },     //PK
     { "Name", "Jonas" },
     { "Phone", "+47452000864" },
     { "Email", "jonas.solsvik@gmail.com" },
@@ -85,12 +85,16 @@ void testPacking()
   medalBase.add(testmedal);
 
   // Test DISPLAY
-  nationBase.display();
+/*  nationBase.display();
   participantBase.display();
   sportBase.display();
   pointBase.display();
-  medalBase.display();
+  medalBase.display();*/
 
+  // Test FIND FUNCTIONS
+  nationBase.findID("Norge");
+  participantBase.findID(1001);
+  sportBase.findID("Fotball");
 }
 
 int main()

@@ -1,9 +1,9 @@
 #include "Rank.h"
 
-int Rank::getValue()
+int Rank::getValue() const
   { return value_; }
 
-auto Rank::getNation() -> dat::char3
+auto Rank::getNation() const -> dat::char3 
   { return dat::char3(); }
 
 

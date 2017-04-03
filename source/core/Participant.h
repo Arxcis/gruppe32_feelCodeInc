@@ -26,10 +26,10 @@ public:
   ,sex_(sex)
   {}
 
-  int getID();
-  auto getContact() -> dat::Contact;
-  auto getNation() -> dat::char3;
-  auto getSex()   -> std::string;
+  int getID() const;
+  auto getContact() const -> dat::Contact;
+  auto getNation()  const -> dat::char3;
+  auto getSex()     const -> std::string;
 
   // Inherited via TextElement
   virtual void display() override;
