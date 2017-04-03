@@ -34,7 +34,20 @@ namespace db
     virtual dat::Object pack  (T*           object)             = 0;
     virtual T*          unpack(dat::Object& object)             = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
-    
+    bool findID(const std::string & id)
+    {
+      Element* e = elements->remove(id.c_str());
+      if (e)
+      { elements->add(e); }
+      return e != nullptr;
+    }
+    bool findID(const int & id)
+    {
+      Element* e = elements->remove(id);
+      if (e)
+      { elements->add(e); }
+      return e != nullptr;
+    }
 
     void display()
     { return elements->displayList(); }

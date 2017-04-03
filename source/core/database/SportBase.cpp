@@ -23,7 +23,7 @@ namespace db
   //
   auto SportBase::unpack(dat::Object& object) -> Sport*
   {
-    //dat:: ????
+    //Sport * sport = new Sport()
     return nullptr;
   }
 

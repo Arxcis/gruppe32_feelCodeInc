@@ -13,8 +13,8 @@ namespace db
     auto participantObj = dat::Object
     {
       { "Type",        "Participant" },  // Participant
-      { "ID",          std::to_string(participant->getID())},
-      { "Name",        contact.name },  // PK
+      { "ID",          std::to_string(participant->getID())}, // PK
+      { "Name",        contact.name },  
       { "Phone",       contact.phone },
       { "Email",       contact.mailAddress },
       { "CountryCode", ""},//participant->getNation() },  // FK

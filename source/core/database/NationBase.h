@@ -23,7 +23,8 @@ namespace db
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    List& nations; //aliasing the list
+    List& nations;
+    //aliasing the list
   };
 
 }

@@ -14,11 +14,35 @@
 // @local files
 
   dat::Object
-    nation
+    nation0
   {
     { "Type",          "Nation" },
     { "Code",          "NOR" },       //PK              
     { "Name",          "Norge" },
+    { "#Participants", "150" },
+    { "ContactName",   "Jonas" },
+    { "ContactPhone",  "452000864" },
+    { "ContactEmail",   "jonas.solsvik@gmail.com" },
+  };
+
+  dat::Object
+    nation1
+  {
+    { "Type",          "Nation" },
+    { "Code",          "SWE" },       //PK              
+    { "Name",          "Sverige" },
+    { "#Participants", "150" },
+    { "ContactName",   "Jonas" },
+    { "ContactPhone",  "452000864" },
+    { "ContactEmail",   "jonas.solsvik@gmail.com" },
+  };
+  
+  dat::Object
+    nation2
+  {
+    { "Type",          "Nation" },
+    { "Code",          "DAN" },       //PK              
+    { "Name",          "Danmark" },
     { "#Participants", "150" },
     { "ContactName",   "Jonas" },
     { "ContactPhone",  "452000864" },
@@ -102,9 +126,9 @@
   dat::Container
     nations
   {
-    nation,
-    nation,
-    nation,
+    nation0,
+    nation1,
+    nation2,
   };
 
   dat::Container
@@ -138,7 +162,14 @@ int main()
 {
   //sprintf("%s", test::nation[1].second.c_str());
   db::NationBase base;
-  base.add(&nation);
+  base.add(&nations[0]);
+  base.add(&nations[1]);
+  base.add(&nations[2]);
+  
+  if (base.findID("SWE")) { printf("\n\tSWE was found!\n"); }
+  
+  
   base.display();
+
   return 0;
 }
