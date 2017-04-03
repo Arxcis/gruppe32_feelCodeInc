@@ -30,7 +30,7 @@ public:
 
   bool addDicipline(Dicipline dici);
   auto getDiciplines() -> const std::vector<Dicipline>;
-  bool removeDicipline(std::string id);
+  bool removeDicipline(const std::string& id);
 
   auto getName() -> std::string;
   auto getScoreType() -> ScoreType;

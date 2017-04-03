@@ -25,8 +25,17 @@ auto Sport::getDiciplines() -> const std::vector<Dicipline>
   return diciplines_;
 }
 
-bool removeDicipline(std::string id)
+bool Sport::removeDicipline(const std::string& id)
 {
-  
+  int i=0;
+  for (auto it = diciplines_.begin(); it < diciplines_.end(); i++, it++)
+  {
+    if (diciplines_[i].name == id) 
+    { 
+      diciplines_.erase(it); 
+      return true;
+    }
+  }
+  return false;
 }
 
