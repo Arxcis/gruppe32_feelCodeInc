@@ -8,6 +8,8 @@
 
 #include <string>
 #include "ListTool2B.h"
+#include "Dicipline.h"
+#include <array>
 
 class Sport : TextElement
 {
@@ -15,13 +17,12 @@ public:
   enum ScoreType { POINT, MEDAL};
 
 private:
-	std::string name_;
-	ScoreType scoreType_;
-	//BetterArray dicipline;
+  std::string name_;
+  ScoreType scoreType_;                     // Can be 
+  std::array <Dicipline, 20> diciplines;    // A sport can have maximum 20 diciplines each.
 
 public:
-	//	GETTERS
-    auto getName() -> std::string;
-	  ScoreType getScoreType();
-	//BetterArray getDiciplines();
+
+  auto getName() -> std::string;
+  ScoreType getScoreType();
 };
