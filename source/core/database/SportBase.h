@@ -1,7 +1,9 @@
 #pragma once
 
 #include "DataBase.h"
+#include <array>
 #include "../Sport.h"
+#include "../Dicipline.h"
 
 namespace db
 {
@@ -20,6 +22,7 @@ namespace db
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List& sports;
+    std::array <Dicipline, 20> diciplines;
   };
 }
 

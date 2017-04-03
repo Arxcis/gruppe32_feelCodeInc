@@ -9,19 +9,10 @@
 #include <string>
 #include "../tool/Time.h"
 #include "../tool/Date.h"
-#include "../tool/array.h"
-#include "Participant.h"
-#include "Result.h"
 
-class Dicipline
+struct Dicipline
 {
-private:
-	std::string name_;
-  dat::Time time_;
-  dat::Date date_;
-
-	dat::array<Participant> participants;
-  dat::array<Result> result;
-public:
-    // getters and setters
+  std::string name = 0;
+  dat::Time time   = {0,0,0};
+  dat::Date date   = {0,0,0};
 };
