@@ -9,8 +9,9 @@ namespace test
   const dat::Object
   start
   {
-    {"Type", "Start"},
-    { "ID", "1001" },
+    { "Type",     "Start"},
+    { "ID",      "1001" },
+    { "StartNR", "1" },
   };
 
   const dat::Container

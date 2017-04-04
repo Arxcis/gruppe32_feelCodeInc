@@ -7,6 +7,12 @@ class TimeResult : public Result
 {
 private:
   dat::Time timeStamp_;
+    
 public:
-  auto GetTimeStamp() -> dat::Time;
+  TimeResult(const int ID, dat::Time time)
+  :Result(ID, time.castToInt())
+  ,timeStamp_(time)
+  {}
+
+  auto getTimeStamp() -> dat::Time;
 };

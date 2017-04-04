@@ -10,6 +10,11 @@
 
 namespace db
 {
+  //
+  // @class PointBase
+  //  @brief
+  //   After every resultList, the 6 first Nations get 7,5,4,3,2,1 points.
+  //
   class PointBase : public DataBase<Rank>
   {
   public:
