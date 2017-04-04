@@ -53,6 +53,7 @@ namespace menu
     //
            void newPage() const;
     inline void footer()  const;
+    inline void divider(const int length, bool tight=false)  const;
     inline void header(const std::string) const;
     
 

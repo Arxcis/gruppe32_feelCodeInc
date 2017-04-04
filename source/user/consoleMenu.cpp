@@ -18,8 +18,19 @@ namespace menu
 
   inline void ConsoleMenu::footer() const
   {
-    std::cout << "\n"
-              << "--------------------------------------------------------------\n";
+    std::cout << "\n";
+    divider(62, true);
+  }
+
+  inline void ConsoleMenu::divider(const int length, bool tight) const
+  {
+    if (!tight)
+      { std::cout << "  "; }
+
+    for (int i = 0; i < length; i++)
+      { std::cout << "-"; }
+
+    std::cout << "\n";
   }
 
   void ConsoleMenu::newPage() const
@@ -32,11 +43,11 @@ namespace menu
 
   void ConsoleMenu::header(const std::string name) const
   {   
-    std::cout << "\n"
-              << "--------------------------------------------------------------\n" 
-              << "|    " << name << "               \n"
-              << "--------------------------------------------------------------\n"
-              << "\n";
+    std::cout << "\n";
+    divider(62, true); 
+    std::cout << "|    " << name << "               \n";
+    divider(62, true); 
+    std::cout << "\n";
   }
 
   //
@@ -84,13 +95,14 @@ namespace menu
   void StartMenu::view(dat::TransitionMap& map)
   {
     newPage();
-    header("Main Menu");
-    bindStaticOption(map, 1, nextState_[1], "Nations     ");
-    bindStaticOption(map, 2, nextState_[2], "Participants");
-    bindStaticOption(map, 3, nextState_[3], "Sports      ");
-    bindStaticOption(map, 4, nextState_[4],  "Points      ");
-    bindStaticOption(map, 5, nextState_[5], "Medals      ");
-    bindStaticOption(map, 0, nextState_[0],  "Exit        ");
+    header(type_);
+    bindStaticOption(map, 1, nextState_[1], "Nasjoner     ");
+    bindStaticOption(map, 2, nextState_[2], "Deltaker");
+    bindStaticOption(map, 3, nextState_[3], "Grener      ");
+    bindStaticOption(map, 4, nextState_[4], "Poeng      ");
+    bindStaticOption(map, 5, nextState_[5], "Medaljer      ");
+    divider(15);
+    bindStaticOption(map, 0, nextState_[0], "Exit        ");
     footer();
   }
 
@@ -108,7 +120,7 @@ namespace menu
     newPage();
     header(type_);
     bindStaticOption(map, 1, nextState_[1], "New      ");
-
+    divider(50);
     int it = 2;
     for(const auto& object: container)
     {
@@ -116,6 +128,7 @@ namespace menu
                         (object[1].first + ":  " + object[1].second) + "\t " + (object[2].first + ":  " + object[2].second));
       it++;
     }
+    divider(50);
     bindStaticOption(map, 0, nextState_[0], "Back      ");
     footer();
   }
@@ -136,7 +149,7 @@ namespace menu
 
     for(const auto& object: container)
       { printIllegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
-
+    divider(30);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -156,12 +169,14 @@ namespace menu
     header(type_);
 
     printIllegalOption(object[1].first + ": " + object[1].second);
+    divider(45);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     printIllegalOption(object[3].first + ": " + object[3].second);
     bindDynamicOption(map, 2, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
     bindDynamicOption(map, 3, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second));
     bindDynamicOption(map, 4, nextState_[1], object[6].first, (object[6].first + ": " + object[6].second));
     
+    divider(45);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -180,11 +195,13 @@ namespace menu
     header(type_);
 
     printIllegalOption(object[1].first + ": " + object[1].second);
+    divider(40);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     bindDynamicOption(map, 2, nextState_[1], object[3].first, (object[3].first + ": " + object[3].second));
     bindDynamicOption(map, 3, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
     bindDynamicOption(map, 4, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second)); // @robustness check if country exists
 
+    divider(40);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -206,6 +223,7 @@ namespace menu
     // 1. Binding options which edit the sport
     //
     printIllegalOption(object[1].first + ": " + object[1].second);
+    divider(40);
     bindDynamicOption(map, 1, nextState_[1], object[2].first, 
                                               (object[2].first + ": " + object[2].second));
 
@@ -219,6 +237,7 @@ namespace menu
     for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
       { bindDynamicOption(map, (i/3)+2, nextState_[3], object[i].second, object[i].second); }
 
+    divider(40);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -246,12 +265,15 @@ namespace menu
       { it++; }
 
     printIllegalOption(object[it].second);
+    divider(40);
     bindDynamicOption(map, 1, nextState_[1], object[it+1].first, object[it+1].first + ": " + object[it+1].second);
     bindDynamicOption(map, 2, nextState_[1], object[it+2].first, object[it+2].first + ": " + object[it+2].second);
     bindDynamicOption(map, 3, nextState_[2], object[it].second, "Start list");
     bindDynamicOption(map, 4, nextState_[3], object[it].second, "Result List");
 
     std::string sportKey = key.substr(0, (key.find("_")));  // @hack
+
+    divider(40);
     bindDynamicOption(map, 5, nextState_[4], key, "Delete");
     bindDynamicOption(map, 0, nextState_[0], sportKey, "Back     ");
     footer();
