@@ -39,10 +39,10 @@ namespace db
     virtual dat::Container readFile(const std::string& filepath) = 0;
 
     bool findID(const std::string& id)
-      { return elements->inList(id.c_str()); }
+    { return elements->inList(id.c_str()); }
 
     bool findID(const int id)
-      { return elements->inList(id); }
+    { return elements->inList(id); }
 
     bool getID(dat::Object& object, const std::string& id)
     {
@@ -63,6 +63,14 @@ namespace db
         object = pack(e);     // e should not change here
         elements->add(e);
       }
+      return e != nullptr;
+    }
+
+    bool updateID(const dat::Object& object)
+    {
+      T* e = (T*)elements->remove(object[1].second.c_str());
+      if (e) //object[1] is PK
+      { elements->add(unpack(object)); }
       return e != nullptr;
     }
 

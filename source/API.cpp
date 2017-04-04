@@ -92,7 +92,22 @@ bool API::add(const dat::Object& object )
 //             }
 //
 void API::update (const dat::Object& object)
-{  }
+{ 
+   if(!object[0].second.compare("Nation"))
+  { nationBase_.updateID(object); }
+
+  else if(!object[0].second.compare("Participant"))
+  { participantBase_.updateID(object); }
+
+  else if(!object[0].second.compare("Sport"))
+  { sportBase_.updateID(object); }
+
+  else if(!object[0].second.compare("Medal"))
+  { medalBase_.updateID(object); }
+
+  else if(!object[0].second.compare("Point"))
+  { pointBase_.updateID(object); }
+}
 
 //
 // @class function updateAll()
