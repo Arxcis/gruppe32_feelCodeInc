@@ -5,6 +5,8 @@
 #include "Time.h"
 #include "Date.h"
 #include "Medals.h"
+#include "TimeResult.h"
+#include "Result.h"
 
 namespace dat { namespace packing
 {
