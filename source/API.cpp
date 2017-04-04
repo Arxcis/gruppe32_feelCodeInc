@@ -118,12 +118,19 @@ void API::updateAll(const Entity entity, const dat::Container& list, const std::
 // @class function remove()
 //  @param  <entity>   + <id>
 //        : DICIPLINE  + "<sport>_<dicipline>"
-//        : STARTS     + "<sport>_<dicipline>"
+//        : STARTS     + "<sport>_<dicipline>" 
 //        : RESULTS    + "fotball_1/4-finale"
 //
-bool API::remove(const Entity entity, const std::string& id)
+void API::remove(const Entity entity, const std::string& id)
 {  
-  return 1;  
+  dat::Container empty;
+  switch (entity)
+  {
+    case DICIPLINE: sportBase_.removeDicipline(id);     break;
+    case STARTS:    sportBase_.writeStarts(id, empty);  break;
+    case RESULTS:   sportBase_.writeResults(id, empty); break;
+    default: assert(false); //
+  }
 }
 
 

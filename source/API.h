@@ -26,7 +26,7 @@ class API
 { 
 public:
   bool add       (const dat::Object& object); //Add object to the base of objects type
-  bool remove    (const Entity entity, const std::string& id); //Remove the Object with the given ID of type entity
+  void remove    (const Entity entity, const std::string& id); //Remove the Object with the given ID of type entity
   void update    (const dat::Object& object);
   
   /*

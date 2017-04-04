@@ -57,6 +57,15 @@ namespace db
     return protoSport;
   }
 
+  bool SportBase::removeDicipline(const std::string& fullID )
+  {
+    const std::string sportID = fullID.substr(0, (fullID.find("_")));
+
+    if (Sport* sport = (Sport*)sports->remove(sportID.c_str()))
+    { return sport->removeDicipline(fullID); }
+    return false;
+  }
+
 
   //
   // @class function createFileIfNotExits()
