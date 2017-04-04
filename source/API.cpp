@@ -10,8 +10,7 @@ namespace test
   start
   {
     {"Type", "Start"},
-    {"ID", "1001"},
-    {"Name", "Jonas Styggardson"},
+    { "ID", "1001" },
   };
 
   const dat::Container
@@ -26,9 +25,9 @@ namespace test
   const dat::Object
   result
   {
-    {"Type", "Result"},
-    {"ID",   "1001"},
-    {"Value", "00:03:58"},
+    { "Type", "Result"},
+    { "ID",   "1001"},
+    { "Value", "00:03:58"},
   };
 
   const dat::Container
