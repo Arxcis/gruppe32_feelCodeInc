@@ -85,13 +85,13 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    stream::readInt(ss,objectCount);
+    stream::readInt(ss, objectCount);
 
       // Loop through all objects
     for (auto i=0; i < std::stoi(objectCount); i++)
     {
       auto thisProto = prototype;
-      std::cout << "Sport " << i << "\n";
+      std::cout << "Sport " << i+1 << " of " << objectCount << "\n";
 
       stream::readString (ss, thisProto[0].second);
       stream::readString (ss, thisProto[1].second);
@@ -111,7 +111,9 @@ namespace db
         stream::readDate  (ss, thisProto[j+2].second); 
         //std::cout << thisProto[j].second << std::endl;  // @debug
       }
-      tempContainer.push_back(thisProto);
+
+      add(thisProto);                       // Add to internal list
+      tempContainer.push_back(thisProto);   // Add to optional return container
     } 
     return tempContainer;
   }

@@ -15,10 +15,10 @@ namespace db
   class MedalBase : public DataBase<Rank>
   {
   public:
-    MedalBase(const std::string& filepath)
-    :DataBase(filepath)
+    MedalBase()
+    :DataBase(medalsFile)
     ,medals(elements)
-    {}
+      { readContainer(); }
 
     virtual ~MedalBase() {}
     virtual auto pack  (const Rank*  object) -> dat::Object override;

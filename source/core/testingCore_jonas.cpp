@@ -80,11 +80,11 @@ void printObject(const dat::Object& obj)
 
 void testPackingAndOtherRelatedFunctions()
 {
-  db::NationBase       nationBase     {"data/nation.format"};     
-  db::ParticipantBase  participantBase{"data/participant.format"};         
-  db::SportBase        sportBase      {"data/sport.format"};        
-  db::PointBase        pointBase      {"data/point.format"};
-  db::MedalBase        medalBase      {"data/medal.format"};
+  db::NationBase       nationBase     ;     
+  db::ParticipantBase  participantBase;         
+  db::SportBase        sportBase      ;        
+  db::PointBase        pointBase      ;
+  db::MedalBase        medalBase      ;
 
 
   // Test ADD
@@ -98,11 +98,11 @@ void testPackingAndOtherRelatedFunctions()
   medalBase.add(testmedal);
 
   // Test DISPLAY
-/*  nationBase.display();
+  nationBase.display();
   participantBase.display();
   sportBase.display();
   
-  medalBase.display();*/
+  medalBase.display();
 
   // Test FIND FUNCTIONS
   if (nationBase.findID("SWE"))
@@ -121,7 +121,7 @@ void testPackingAndOtherRelatedFunctions()
     { std::cout << "\n No found........."; }
 
 
-  // Test GETID functions
+/*  // Test GETID functions
   dat::Object getNation;
   dat::Object getPart;
   dat::Object getSport;
@@ -145,7 +145,7 @@ void testPackingAndOtherRelatedFunctions()
   for (auto& obj: getMedals) 
     { printObject(obj); }
 
-  pointBase.display();
+  pointBase.display();*/
 }
 
 int main()

@@ -63,10 +63,11 @@ namespace db
       stream::readEnum(ss, prototype[0].second, {"Medal", "Point"});
       stream::readChar3(ss, prototype[1].second);
       stream::readInt(ss,    prototype[2].second); 
-      std::cout << "Points" << i << "\n";
+      std::cout << "Points" << i+1 << " of " << objectCount << "\n";
       
 
-      tempContainer.push_back(prototype);
+      add(prototype);                       // Add to internal list
+      tempContainer.push_back(prototype);   // Add to optional return container
     }
     return tempContainer;
   }

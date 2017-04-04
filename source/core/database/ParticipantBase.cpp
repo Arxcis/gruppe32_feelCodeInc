@@ -75,7 +75,7 @@ namespace db
       // Loop through all objects
     for(int i=0; i < std::stoi(objectCount); i++)
     {
-      std::cout << "Participant " << i << "\n";
+      std::cout << "Participant " << i+1 << " of " << objectCount << "\n";
 
       stream::readString (ss, prototype[0].second);
       stream::readInt    (ss, prototype[1].second);
@@ -85,7 +85,8 @@ namespace db
       stream::readChar3  (ss, prototype[5].second);
       stream::readEnum   (ss, prototype[6].second, {"Male", "Female"});
 
-      tempContainer.push_back(prototype);
+      add(prototype);                       // Add to internal list
+      tempContainer.push_back(prototype);   // Add to optional return container
     }
     return tempContainer;
   }

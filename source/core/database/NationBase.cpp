@@ -14,10 +14,10 @@ namespace db
       {"Type",           "Nation"},   // Nation
       {"Code",           (char*)nation->getShortName()},   //PK              
       {"Name",           nation->getName()},                    
+      {"#Participants",  std::to_string(nation->getParticipantCount())},
       {"ContactName",    contact.name},                    
       {"ContactPhone",   contact.phone},             
       {"ContactEmail",   contact.mailAddress},
-      {"#Participants",  std::to_string(nation->getParticipantCount())}
     };
     return nationObj;
   }
@@ -71,7 +71,7 @@ namespace db
     // Loop through all objects
     for(int i=0; i < std::stoi(objectCount); i++)
     {
-      std::cout << "Nation " << i << "\n";      // @debug
+      std::cout << "Nation " << i+1 << " of " << objectCount << "\n";      // @debug
 
       stream::readString(ss, prototype[0].second);
       stream::readChar3 (ss, prototype[1].second);
@@ -79,9 +79,10 @@ namespace db
       stream::readInt   (ss, prototype[3].second);
       stream::readString(ss, prototype[4].second);
       stream::readPhone (ss, prototype[5].second);
-      stream::readEmail  (ss, prototype[6].second);
+      stream::readEmail (ss, prototype[6].second);
 
-      tempContainer.push_back(prototype);
+      add(prototype);                       // Add to internal list
+      tempContainer.push_back(prototype);   // Add to optional return container
     } 
     return tempContainer;
   }

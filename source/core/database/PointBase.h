@@ -13,10 +13,10 @@ namespace db
   class PointBase : public DataBase<Rank>
   {
   public:
-    PointBase(const std::string& filepath)
-    :DataBase(filepath)
+    PointBase()
+    :DataBase(pointsFile)
     ,points(elements)
-    {}
+      { readContainer(); }
     
     virtual ~PointBase() {}
     virtual auto pack  (const Rank* object)        -> dat::Object override;

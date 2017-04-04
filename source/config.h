@@ -16,3 +16,5 @@ const std::string sportsFile       = "data/oblig/grener.dta";
 const std::string medalsFile       = "data/oblig/poeng.dta";
 const std::string pointsFile       = "data/oblig/medaljer.dta";
 const std::string diciplinePath    = "data/oblig/";
+
+const int maxDiciplines = 20;         // Max diciplines per sport

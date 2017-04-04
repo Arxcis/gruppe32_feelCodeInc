@@ -64,8 +64,10 @@ namespace db
       stream::readChar3(ss, prototype[1].second);
       stream::readMedals(ss, prototype[2].second); 
 
-      std::cout << "Medals" << i << "\n";
-      tempContainer.push_back(prototype);
+      std::cout << "Medals" << i+1 << " of " << objectCount << "\n";
+
+      add(prototype);                       // Add to internal list
+      tempContainer.push_back(prototype);   // Add to optional return container
     }
     return tempContainer;
 

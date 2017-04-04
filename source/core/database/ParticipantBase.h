@@ -7,10 +7,10 @@ namespace db
   class ParticipantBase : public DataBase<Participant>
   {
   public:
-    ParticipantBase(const std::string& filepath)
-    :DataBase(filepath)
-    ,participants(*elements)
-    {}
+    ParticipantBase()
+    :DataBase(participantsFile)
+    ,participants(elements)
+      { readContainer(); }
 
     virtual ~ParticipantBase(){}
     virtual auto pack  (const Participant* participant) -> dat::Object  override;
@@ -18,7 +18,7 @@ namespace db
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    List& participants;         //aliasing the list
+    List* participants;         //aliasing the list
 
     int participantCount = 1000;
   };

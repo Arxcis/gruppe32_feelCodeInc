@@ -8,10 +8,10 @@ namespace db
   class SportBase : public DataBase<Sport>
   {
   public:
-    SportBase(const std::string& filepath)
-    :DataBase(filepath)
-    ,sports(*elements)
-    {}
+    SportBase()
+    :DataBase(sportsFile)
+    ,sports(elements)
+      { readContainer(); }
 
     virtual ~SportBase(){}
     virtual auto pack  (const Sport*       object) -> dat::Object override;
@@ -19,7 +19,7 @@ namespace db
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    List& sports;
+    List* sports;
   };
 }
 

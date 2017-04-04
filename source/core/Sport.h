@@ -9,14 +9,13 @@
 #include <string>
 #include "ListTool2B.h"
 #include "Dicipline.h"
-#include "../tool/packer.h"
 #include <vector>
+
+#include "../tool/packer.h"
+#include "../config.h"
 
 class Sport : public TextElement
 {
-public:
-  static const int maxDiciplines = 20;
-
 private:
   std::string name_;
   std::string scoreType_;                     // Can be 

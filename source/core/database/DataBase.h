@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../../enum.h"
+#include "../../enum.h"             // Unsure if this include is needed
+#include "../../config.h"           // Filepaths
 #include "../../tool/typedef.h"
 #include "../../tool/stream.h"
 #include "../../tool/packer.h"
@@ -78,19 +79,9 @@ namespace db
     {
       T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added
-<<<<<<< HEAD
         { return true; }
       else
         { return false; }
-=======
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
->>>>>>> 10eb7be818b619ea994de48fb890ad5830e13465
     }
 
     //
@@ -106,13 +97,14 @@ namespace db
     //
     auto getContainer() -> const dat::Container
     { 
-      const dat::Container container;
-      for (int i = 0; elements->noOfElements(); i++)
-      { 
-        Element* e = elements->removeNo(i);
-        container.push_back(pack(e));
-        elements->add(unpack(container[i]));
-      }
+      dat::Container container;
+      T* e;
+      int i = 0;
+      while((e = (T*)elements->removeNo(0)))// Sorry men den nydelige for-loopen her funka ikkje hos meg --> for (int i = 0; elements->noOfElements(); i++)
+        { container.push_back(pack(e)); }
+
+      for (auto& obj: container)
+        { elements->add(unpack(obj)); }
       return container;
     }
 

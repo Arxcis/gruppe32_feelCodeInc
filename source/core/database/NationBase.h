@@ -11,10 +11,10 @@ namespace db
   class NationBase : public DataBase<Nation>
   {
   public:
-    NationBase(const std::string& filepath) 
-    :DataBase(filepath)
-    ,nations(*elements)
-    {}
+    NationBase() 
+    :DataBase(nationsFile)
+    ,nations(elements)
+      { readContainer(); }
 
     virtual ~NationBase(){}
     virtual auto pack  (const Nation* object) -> dat::Object override;
@@ -22,7 +22,7 @@ namespace db
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
-    List& nations;
+    List* nations;
     //aliasing the list
   };
 

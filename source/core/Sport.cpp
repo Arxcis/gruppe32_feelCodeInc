@@ -41,6 +41,8 @@ void Sport::display()
 
   for (auto& dici: diciplines_)
   {
-    printf("Dicipline:\t%s   Time:\t%s\n", name_.c_str(), dat::packing::packTime(dici.time).c_str());
+    std::cout << "Dicipline:\t" << dici.name
+              << "\tTime:\t"    << dat::packing::packTime(dici.time)
+              <<"\n";
   }
 }
