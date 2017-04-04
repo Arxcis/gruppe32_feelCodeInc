@@ -166,7 +166,6 @@ namespace db
           outFile << field.second << ";\n";
         }
       }
-
       outFile.close();
     }
   };

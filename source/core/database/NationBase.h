@@ -25,5 +25,4 @@ namespace db
     List* nations;
     //aliasing the list
   };
-
 }
