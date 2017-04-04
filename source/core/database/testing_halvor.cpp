@@ -162,13 +162,18 @@ int main()
 {
   //sprintf("%s", test::nation[1].second.c_str());
   db::NationBase base;
-  base.add(&nations[0]);
-  base.add(&nations[1]);
-  base.add(&nations[2]);
+  base.add(nations[0]);
+  base.add(nations[1]);
+  base.add(nations[2]);
   
-  if (base.findID("SWE")) { printf("\n\tSWE was found!\n"); }
+  dat::Container c = base.getContainer();
   
-  
+  for (auto& obj : c)
+  {
+    for (auto& element : obj)
+    { printf("%s\t:\t%s\n", element.first.c_str(), element.second.c_str()); }
+  }
+
   base.display();
 
   return 0;
