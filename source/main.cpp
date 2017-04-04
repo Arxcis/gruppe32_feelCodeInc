@@ -10,8 +10,11 @@
 
 int main()
 { 
-  Console console;
-  console.run();
+  //Console console;
+  //console.run();
+
+  
+  
   printf("Hei main.cpp\n");
   return 0;
 }

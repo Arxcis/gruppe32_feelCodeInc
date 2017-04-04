@@ -26,5 +26,5 @@ public:
 
   int getID();
   int getValue();
-  
+  void display();
 };
