@@ -19,6 +19,7 @@ namespace form
   void field(dat::Field& field);
 
   void startList(dat::Container& starts);
-  void resultList(dat::Container& results, const int size);    
+  void resultList(dat::Container& results, const int size);   
+  void appendDicipline(dat::Object sport); 
 }
 

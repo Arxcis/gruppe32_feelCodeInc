@@ -14,10 +14,17 @@
 
 class Result : public NumElement 
 {
-private:
-	std::string name_;
-	int score_;
+protected:
+	int ID_;
+	int value_;
+
 public:
-	auto getName()->std::string;
-  int getScore();
+  Result(const int ID, const int value)
+  :ID_(ID)
+  ,value_(value)
+  {}
+
+  int getID();
+  int getValue();
+  
 };

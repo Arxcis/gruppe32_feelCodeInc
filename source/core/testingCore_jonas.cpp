@@ -43,10 +43,10 @@
     { "Name", "Fotball" },     //PK
     { "ScoreType", "Point" },
     { "#Diciplines", "2" },
-    { "Dicipline1", "Final" },
+    { "Name1", "Final" },
     { "Time1", "10:00:12" },
     { "Date1", "12.03.91" },
-    { "Dicipline2", "Semi-final" },
+    { "Name2", "Semi-final" },
     { "Time2", "10:00:12" },
     { "Date2", "12.03.02" },
   };
@@ -57,7 +57,7 @@
   {
     { "Type", "Medal" },
     { "Code",  "NOR"},
-    { "Value", "01-02-03" },
+    { "Medals", "01-02-03" },
   };
 
   dat::Object
@@ -65,7 +65,7 @@
   {
     { "Type", "Point"},
     { "Code",  "NOR" },
-    { "Value", "80"  },
+    { "#Points", "80"  },
   };
 
 

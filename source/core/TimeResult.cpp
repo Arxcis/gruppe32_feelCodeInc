@@ -1,4 +1,7 @@
 #include "TimeResult.h"
 
-auto TimeResult::GetTimeStamp() -> dat::Time
+auto TimeResult::getTimeStamp() -> dat::Time
 { return timeStamp_; }
+
+
+

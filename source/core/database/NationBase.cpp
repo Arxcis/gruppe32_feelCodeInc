@@ -54,10 +54,10 @@ namespace db
       {"Type",           ""},   // Nation
       {"Code",           ""},   //PK              
       {"Name",           ""},                    
+      {"#Participants",  ""},
       {"ContactName",    ""},                    
       {"ContactPhone",   ""},             
       {"ContactEmail",   ""},
-      {"#Participants",  ""}
     };
 
     auto fileToStream  = [filepath, this]()

@@ -18,47 +18,39 @@ namespace form
       {"type",     "Nation"},
       {"Code",           ""},   //PK              
       {"Name",           ""},                    
+      {"#Participants", "0"},  
       {"ContactName",    ""},                    
       {"ContactPhone",   ""},             
       {"ContactEmail",   ""},
-      {"#Participants", "0"},  
     },
 
     {
       {"Type", "Participant"},
-      {"Name",            ""},  // PK
-      {"Phone",           ""},
-      {"Email",           ""},
-      {"CountryCode",     ""},  // FK
-      {"Gender",          ""},
+      {"ID"  ,         ""},
+      {"Name",         ""},  // PK
+      {"Phone",        ""},
+      {"Email",        ""},
+      {"CountryCode",  ""},  // FK
+      {"Sex",          ""},
     },
 
     {
-       {"Type",    "Sport"},
-       {"Name",         ""},    // PK
-       {"ScoreType",    ""},
+       {"Type",   "Sport"},
+       {"Name",        ""},    // PK
+       {"ScoreType",   ""},
        {"#Diciplines", "0"},
     },
 
     {
-      {"Type","Dicipline"},
-      {"#Starts",     "0"},
-      {"#Results",    "0"},
-      {"Name",         ""},     // PK
-      {"Time",         ""}, 
-      {"Date",         ""},
+      {"Type",    "Start"},
+      {"ID",      ""},        // PPK
+      {"StartNR", ""},
     },
 
     {
-      {"Type", "Start"},
-      {"ID",   ""},
-      {"Name", ""},
-    },
-
-    {
-      {"Type", "Result"},
-      {"ID",   ""},
-      {"Value", ""},
+      {"Type",  "Result"},
+      {"ID",    ""},        // PPK
+      {"", ""},
     },
   };
   dat::Object submit;     // Temp-object which is used to send data.
@@ -80,11 +72,11 @@ namespace form
     {
       proto = form::protos[NATION_P];
 
-      printKey(proto[1].first);  stream::readChar3(std::cin, proto[1].second);   // @robustness - PK code check if Nation-code already exists
+      printKey(proto[1].first);  stream::readChar3(std::cin,  proto[1].second);   // @robustness - PK code check if Nation-code already exists
       printKey(proto[2].first);  stream::readString(std::cin, proto[2].second); 
       printKey(proto[3].first);  stream::readString(std::cin, proto[3].second);
-      printKey(proto[4].first);  stream::readPhone(std::cin, proto[4].second);
-      printKey(proto[5].first);  stream::readEmail(std::cin, proto[5].second);
+      printKey(proto[4].first);  stream::readPhone(std::cin,  proto[4].second);
+      printKey(proto[5].first);  stream::readEmail(std::cin,  proto[5].second);
     }
     else if (type == "Participant")
     {
@@ -103,29 +95,62 @@ namespace form
       printKey(proto[1].first);  stream::readString(std::cin, proto[1].second);  // @robustness - PK should be checked if exst
       printKey(proto[2].first);  stream::readEnum(std::cin,   proto[2].second, {"Point", "Time"});
     }
-    else if (type == "Dicipline")  
-    {
-      proto = form::protos[DICIPLINE_P];
-
-      printKey(proto[3].first);  stream::readString(std::cin, proto[3].second);  // @robustness - PK should be checked if exst
-      printKey(proto[4].first);  stream::readTime(std::cin,   proto[4].second);  
-      printKey(proto[5].first);  stream::readDate(std::cin,   proto[5].second);  
-      
-    }
 
     form::submit = proto;
     return form::submit;
   }
 
+  //
+  // @funciton appendDicipline()
+  //  Appends a new dicipline to existing sport
+  //
+  void appendDicipline(dat::Object sport)
+  {
+    
+  }
 
   //
   // @function form::field
   //  @brief - A function that changes a specific field of a dat::object
+  //     1. Print info about field to be changed
+  //     2. Type check, and call correct input-function for the job.
   //
   void field(dat::Field& field)
   {
-      std::cout << field.first << " : " << std::endl;
-      stream::readString(std::cin, field.second); }
+
+    const std::string fieldType = field.first;
+    std::cout << fieldType << " : " << std::endl;         // 1. 
+
+    if (fieldType.find("Code")  != std::string::npos)     // 2. 
+      { stream::readChar3 (std::cin, field.second); }
+
+    else if (fieldType.find("Name")  != std::string::npos) 
+      { stream::readString(std::cin, field.second); }
+
+    else if (fieldType.find("Phone") != std::string::npos) 
+      { stream::readPhone (std::cin, field.second); }
+
+    else if (fieldType.find("Email") != std::string::npos) 
+      { stream::readEmail (std::cin, field.second); }
+
+    else if (fieldType.find("Time")  != std::string::npos) 
+      { stream::readTime  (std::cin, field.second); }
+
+    else if (fieldType.find("Point") != std::string::npos) 
+      { stream::readInt (std::cin, field.second); }
+
+    else if (fieldType.find("Medal") != std::string::npos) 
+      { stream::readMedals (std::cin, field.second); }
+
+    else if (fieldType.find("Date")  != std::string::npos) 
+      { stream::readDate  (std::cin, field.second); }
+
+    else if (fieldType.find("Sex")   != std::string::npos) 
+      { stream::readEnum  (std::cin, field.second, { "Point", "Time"   }); }
+
+    else if (fieldType.find("ScoreType") != std::string::npos) 
+      { stream::readEnum  (std::cin, field.second, { "Male" , "Female" }); }
+  }
 
 
   //

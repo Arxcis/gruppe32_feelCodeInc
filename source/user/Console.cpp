@@ -214,7 +214,6 @@ void Console::displayMenu()
       break;
 
     case DICI_NEW:
-      selectedObject = {};
       allMenus_[DICI_NEW]->view(currentMap, selectedObject, selectedID);
       api_.add(selectedObject);
       break;
