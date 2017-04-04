@@ -12,7 +12,7 @@ namespace db
     {
       {"Type",   "Point"  },                        // Medal/Point
       {"Nation", (char*)(rank->getNation()) },      // Nation char3
-      {"Value",  std::to_string(rank->getValue())}, 
+      {"Point",  std::to_string(rank->getValue())}, 
     };
     return prototype;
   };
@@ -38,7 +38,7 @@ namespace db
     {
       {"Type",        ""},  // Medal/Point
       {"Nation",      ""}, // Nation char3
-      {"Value",       ""},  
+      {"Point",       ""},  
     };
 
     auto fileToStream  = [filepath, this]()

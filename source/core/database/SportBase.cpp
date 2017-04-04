@@ -197,20 +197,22 @@ namespace db
   }
 
   bool SportBase::readResults (dat::Container& results, const std::string& diciplineID)
-  { 
+  {  
+
+    // @commenting this out because 
      // Here I have to find out the ScoreType for the selected Sport 
     const std::string sportID = diciplineID.substr(0, (diciplineID.find("_")));
-    Sport* selectedSport = (Sport*)elements->remove(sportID.c_str());
+    Sport* selectedSport = (Sport*)sports->remove(sportID.c_str());
     assert(selectedSport);                              // List tool does not have the sport requested!
     const std::string scoreType = selectedSport->getScoreType();
     assert(scoreType == "Time" || scoreType == "Point"); // Has to be an enum of these two values
-    elements->add(selectedSport);
+    sports->add(selectedSport);
 
     const auto protoObj = dat::Object
     {
-      { "Type",       ""  },  // Result
-      { "ID",         ""  },
-      { scoreType ,   ""  },
+      { "Type",    ""  },  // Result
+      { "ID",      ""  },
+      { scoreType, ""  },
     };
     std::string path = diciplinePath + diciplineID + ".res";
 

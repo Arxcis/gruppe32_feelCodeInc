@@ -53,7 +53,7 @@ namespace db
         {"Phone",       ""},
         {"Email",       ""},
         {"CountryCode", ""},  // FK
-        {"Gender",      ""}
+        {"Sex",         ""},
     };
 
     auto fileToStream  = [filepath, this]()
