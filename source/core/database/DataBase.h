@@ -151,9 +151,8 @@ namespace db
     // 
     // @funciton // Only implemented in base class
     //
-    void writeFile(const std::string& filepath)
+    void writeFile(const std::string& filepath, const dat::Container& container)
     {
-      dat::Container container = getContainer();
       std::cout << "Writing to " << filepath << "\n";  // @debug
       std::ofstream outFile(filepath + "_out");
 

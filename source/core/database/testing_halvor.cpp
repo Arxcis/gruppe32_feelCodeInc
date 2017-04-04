@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "NationBase.h"
+#include "SportBase.h"
 
 // @local files
 
@@ -160,21 +160,35 @@
 
 int main() 
 {
-  //sprintf("%s", test::nation[1].second.c_str());
-  db::NationBase base;
-  base.add(nations[0]);
-  base.add(nations[1]);
-  base.add(nations[2]);
+  db::SportBase base;
   
-  dat::Container c = base.getContainer();
+  dat::Container baseContainer = base.getContainer();
   
-  for (auto& obj : c)
+  dat::Container in
   {
-    for (auto& element : obj)
-    { printf("%s\t:\t%s\n", element.first.c_str(), element.second.c_str()); }
-  }
+    {
+      { "type",  "time"     },
+      { "id",    "1"        },
+      { "value", "12:43:04" }
+    },
+    {
+      { "type",  "time"     },
+      { "id",    "2"        },
+      { "value", "12:43:08" }
+    }
+  };
 
-  base.display();
+  base.writeResults("Langrenn_10km-fri", in);
+
+  dat::Container res; 
+  if (base.readResults(res, "Langrenn_10km-fri"))
+  {
+    for (size_t i = 0; i < res.size(); i++)
+    {
+      for (size_t j = 0; j < 3; )
+      { printf("%s\t\t\t%s\n", res[i][j].first, res[i][j].second); }
+    }
+  }
 
   return 0;
 }
