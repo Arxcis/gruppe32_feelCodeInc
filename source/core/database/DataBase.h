@@ -66,15 +66,44 @@ namespace db
       return e != nullptr;
     }
 
-    void display()
+    //
+    // @class function update with string id
+    //  @brief updating by removing existing object, and replacing by updated one.
+    //
+    bool update(const std::string& id, const dat::Object& object)
     {
-      printf("\n\n==============================");
-      printf("\n           DATABASE           ");
-      printf("\n==============================");
-      return elements->displayList();
+      if (findID(id))
+      { 
+        elements->destroy(id.c_str());
+        T* e = unpack(object);
+        elements->add(e);
+        return true;
+      }
+      else
+        { return false; }
     }
 
+    //
+    // @class function update with string id
+    //  @brief updating by removing existing object, and replacing by updated one.
+    //
+    bool update(const int id, const dat::Object& object)
+    {
+      if (findID(id))
+      {
+        elements->destroy(id);
+        T* e = unpack(object);
+        elements->add(e);
+        return true;
+      }
+      else
+        { return false; }
+    }  
+      
 
+    //
+    // @class function add
+    //
     bool add(dat::Object& object)
     {
       T* unpackedObject = unpack(object);
@@ -82,6 +111,17 @@ namespace db
         { return true; }
       else
         { return false; }
+    }
+
+    //
+    // @class function display
+    //
+    void display()
+    {
+      printf("\n\n==============================");
+      printf("\n           DATABASE           ");
+      printf("\n==============================");
+      return elements->displayList();
     }
 
     //
