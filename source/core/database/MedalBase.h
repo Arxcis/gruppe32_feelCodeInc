@@ -22,7 +22,7 @@ namespace db
 
     virtual ~MedalBase() {}
     virtual auto pack  (const Rank*  object) -> dat::Object override;
-    virtual auto unpack(dat::Object& object) -> Rank*       override;
+    virtual auto unpack(const dat::Object& object) -> Rank*       override;
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "SportBase.h"
+#include "API.h"
 
 // @local files
 
@@ -160,33 +160,14 @@
 
 int main() 
 {
-  db::SportBase base;
-  
-  dat::Container baseContainer = base.getContainer();
-  
-  dat::Container in
-  {
-    {
-      { "type",  "time"     },
-      { "id",    "1"        },
-      { "value", "12:43:04" }
-    },
-    {
-      { "type",  "time"     },
-      { "id",    "2"        },
-      { "value", "12:43:08" }
-    }
-  };
+  API api;
+  dat::Container c = api.getAll(PARTICIPANT);
 
-  base.writeResults("Langrenn_10km-fri", in);
-
-  dat::Container res; 
-  if (base.readResults(res, "Langrenn_10km-fri"))
+  for (size_t i = 0; i < c.size(); i++)
   {
-    for (size_t i = 0; i < res.size(); i++)
+    for (size_t j = 0; j < c[i].size(); j++)
     {
-      for (size_t j = 0; j < 3; )
-      { printf("%s\t\t\t%s\n", res[i][j].first, res[i][j].second); }
+      printf("%s\t\t\t%s\n", c[i][j].first.c_str() , c[i][j].second.c_str());
     }
   }
 

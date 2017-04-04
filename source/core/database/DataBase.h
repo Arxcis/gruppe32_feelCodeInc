@@ -35,7 +35,7 @@ namespace db
     // Virtual abstract (not-implemented) functions
     //
     virtual dat::Object    pack(const T*     object) = 0;
-    virtual T*             unpack(dat::Object& object) = 0;
+    virtual T*             unpack(const dat::Object& object) = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
 
     bool findID(const std::string& id)
@@ -104,7 +104,7 @@ namespace db
     //
     // @class function add
     //
-    virtual bool add(dat::Object& object)
+    virtual bool add(const dat::Object& object)
     {
       T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added

@@ -20,7 +20,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto PointBase::unpack(dat::Object& object) -> Rank*
+  auto PointBase::unpack(const dat::Object& object) -> Rank*
   {
     dat::char3 nationCode = dat::char3{ object[1].second.c_str() };
     int value = std::stoi(object[2].second);

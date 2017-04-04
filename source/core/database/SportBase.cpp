@@ -33,7 +33,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto SportBase::unpack(dat::Object& object) -> Sport*
+  auto SportBase::unpack(const dat::Object& object) -> Sport*
   {
     std::string name = object[1].second;                        // Sport name
     std::string scoreType = object[2].second;                   // Sport scoreType

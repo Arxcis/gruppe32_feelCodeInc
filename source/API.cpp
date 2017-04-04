@@ -63,7 +63,24 @@ void API::loadAllBases()
 //                  {...},
 //               }
 bool API::add(const dat::Object& object )
-{  return 1;  }
+{
+  if(!object[0].second.compare("Nation"))
+  { return nationBase_.add(object); }
+
+  else if(!object[0].second.compare("Participant"))
+  { return participantBase_.add(object); }
+
+  else if(!object[0].second.compare("Sport"))
+  { return sportBase_.add(object); }
+
+  else if(!object[0].second.compare("Medal"))
+  { return medalBase_.add(object); }
+
+  else if(!object[0].second.compare("Point"))
+  { return pointBase_.add(object); }
+
+  return false;
+}
 
 //
 // @class function update()
@@ -87,8 +104,15 @@ void API::update (const dat::Object& object)
 //  @param std::string id
 //     example  "<sport>_<dicipline>"   or   "fotball_semi-final
 //
-void API::updateAll(const dat::Container& list, const std::string& id) 
-  {}
+void API::updateAll(const Entity entity, const dat::Container& list, const std::string& id) 
+{
+  assert(entity == STARTS || entity == RESULTS);// Only these are allowed in updateAll
+  switch (entity)
+  {
+    case STARTS:  sportBase_.writeStarts(id, list);   break;
+    case RESULTS: sportBase_.writeResults(id, list);  break;
+  }
+}
 
 //
 // @class function remove()
@@ -98,7 +122,9 @@ void API::updateAll(const dat::Container& list, const std::string& id)
 //        : RESULTS    + "fotball_1/4-finale"
 //
 bool API::remove(const Entity entity, const std::string& id)
-  {  return 1;  }
+{  
+  return 1;  
+}
 
 
 //
@@ -112,17 +138,18 @@ bool API::remove(const Entity entity, const std::string& id)
 //
 auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
-
+  dat::Object tempObj;
   switch(entity)
   {
-    case NATION:
-    case PARTICIPANT:
-    case SPORT:
-      return dbContainerCache[entity][0];
+    case NATION:      nationBase_.getID(tempObj, id); break;
+    case PARTICIPANT: participantBase_.getID(tempObj, std::stoi(id)); break;
+    case SPORT:       sportBase_.getID(tempObj, id); break;
+    case POINT:       pointBase_.getID(tempObj, std::stoi(id)); break;
+    case MEDAL:       medalBase_.getID(tempObj, std::stoi(id)); break;
 
-    default:
-      assert(false);    // Not a valid command.. abort mission
+    default: assert(false);// Not a valid command.. abort mission
   }
+  return tempObj;
 }
 
 //
@@ -141,25 +168,26 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 //
 auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Container
 {
+  dat::Container tempContainer;
   switch(entity)
   {
-    case NATION:
-    case PARTICIPANT:
-    case SPORT:
-    case POINT:
-    case MEDAL:
-      return dbContainerCache[entity];
-      break;
+    case NATION:      tempContainer = nationBase_.getContainer();      break;
+    case PARTICIPANT: tempContainer = participantBase_.getContainer(); break;
+    case SPORT:       tempContainer = sportBase_.getContainer();       break;
+    case POINT:       tempContainer = pointBase_.getContainer();       break;
+    case MEDAL:       tempContainer = medalBase_.getContainer();       break;
     
     case STARTS:
-      return test::startList;
+      if (!sportBase_.readStarts(tempContainer, id))
+      { assert(false); }
 
     case RESULTS:
-      return test::resultList;
+      if (!sportBase_.readResults(tempContainer, id))
+      { assert(false); }
 
-    default:
-      assert(false);     // Not a valid command.. abort mission
+    default: assert(false);  // Not a valid command.. abort mission
   }
+  return tempContainer;
 }
 
 //
