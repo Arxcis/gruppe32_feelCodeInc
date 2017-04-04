@@ -66,29 +66,16 @@ namespace db
       return e != nullptr;
     }
 
-    bool updateID(const dat::Object& object)
+    //
+    // @class function update with string id
+    //  @brief updating by removing existing object, and replacing by updated one.
+    //
+    bool update(const dat::Object& object)
     {
       T* e = (T*)elements->remove(object[1].second.c_str());
       if (e) //object[1] is PK
       { elements->add(unpack(object)); }
       return e != nullptr;
-    }
-
-    //
-    // @class function update with string id
-    //  @brief updating by removing existing object, and replacing by updated one.
-    //
-    bool update(const std::string& id, const dat::Object& object)
-    {
-      if (findID(id))
-      { 
-        elements->destroy(id.c_str());
-        T* e = unpack(object);
-        elements->add(e);
-        return true;
-      }
-      else
-        { return false; }
     }
 
     //

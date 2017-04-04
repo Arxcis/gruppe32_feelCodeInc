@@ -94,19 +94,19 @@ bool API::add(const dat::Object& object )
 void API::update (const dat::Object& object)
 { 
    if(!object[0].second.compare("Nation"))
-  { nationBase_.updateID(object); }
+  { nationBase_.update(object); }
 
   else if(!object[0].second.compare("Participant"))
-  { participantBase_.updateID(object); }
+  { participantBase_.update(object); }
 
   else if(!object[0].second.compare("Sport"))
-  { sportBase_.updateID(object); }
+  { sportBase_.update(object); }
 
   else if(!object[0].second.compare("Medal"))
-  { medalBase_.updateID(object); }
+  { medalBase_.update(object); }
 
   else if(!object[0].second.compare("Point"))
-  { pointBase_.updateID(object); }
+  { pointBase_.update(object); }
 }
 
 //
@@ -119,13 +119,23 @@ void API::update (const dat::Object& object)
 //  @param std::string id
 //     example  "<sport>_<dicipline>"   or   "fotball_semi-final
 //
+
+
+/*
+
+
+
+*/
 void API::updateAll(const Entity entity, const dat::Container& list, const std::string& id) 
 {
   assert(entity == STARTS || entity == RESULTS);// Only these are allowed in updateAll
-  switch (entity)
+  if (list.size() > 0)
   {
-    case STARTS:  sportBase_.writeStarts(id, list);   break;
-    case RESULTS: sportBase_.writeResults(id, list);  break;
+    switch (entity)
+    {
+      case STARTS:  sportBase_.writeStarts(id, list);   break;
+      case RESULTS: sportBase_.writeResults(id, list); updateMedals(); updatePoints(); break;
+    }
   }
 }
 
@@ -210,6 +220,24 @@ auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Cont
     default: assert(false);  // Not a valid command.. abort mission
   }
   return tempContainer;
+}
+
+void API::updateMedals()
+{
+  const dat::Container participants = participantBase_.getContainer();
+  const dat::Container medals = medalBase_.getContainer();
+  
+
+
+}
+
+void API::updatePoints()
+{
+  const dat::Container participants = participantBase_.getContainer();
+  const dat::Container points = pointBase_.getContainer();
+
+
+
 }
 
 //

@@ -45,6 +45,9 @@ public:
   */
   auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
 
+  void updateMedals();
+  void updatePoints();
+
   void quit();
 
   API();
