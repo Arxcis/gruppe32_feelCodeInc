@@ -11,3 +11,5 @@
 # Mac specific stuff
 *.DS_Store
 *.dSYM*
+*.res_out
+*.sta_out

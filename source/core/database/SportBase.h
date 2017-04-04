@@ -21,9 +21,8 @@ namespace db
 
     bool readStarts  (dat::Container& starts,  const std::string& diciplineID);
     bool readResults (dat::Container& results, const std::string& diciplineID);
-    bool writeStarts (const std::string& diciplineID);
-    bool writeResults(const std::string& diciplineID);
-
+    void writeStarts (const std::string& diciplineID, const dat::Container& starts);
+    void writeResults(const std::string& diciplineID, const dat::Container& results );
     bool createFilesIfNotExist(const std::string& id);
 
   private:

@@ -57,20 +57,21 @@ namespace db
     return protoSport;
   }
 
+
   //
   // @class function createFileIfNotExits()
   //
   bool SportBase::createFilesIfNotExist(const std::string& id)
   {
-    const std::string staPath = diciplinePath + "dici_" + id + ".sta";
-    const std::string resPath = diciplinePath + "dici_" + id + ".res";
+    const std::string staPath = diciplinePath + id + ".sta";
+    const std::string resPath = diciplinePath + id + ".res";
     auto insta = std::ifstream{ staPath };
 
     if (!insta)
     {
       insta.close();
-      auto outsta = std::ofstream { staPath };
-      auto outres = std::ofstream { resPath };
+      auto outsta = std::ofstream{ staPath };
+      auto outres = std::ofstream{ resPath };
       if (outsta && outres)
       {
         outsta << "0;";
@@ -80,7 +81,7 @@ namespace db
         outsta.close();
         outres.close();
       }
-      else 
+      else
       {
         outsta.close();
         outres.close();
@@ -100,7 +101,7 @@ namespace db
   {
     auto tempContainer = dat::Container{}; // @delete @temp @testing
 
-    auto prototype = dat::Object
+    const auto prototype = dat::Object
     {
       {"Type",         ""},  // Sport
       {"Name",         ""},  // PK
@@ -124,6 +125,8 @@ namespace db
     auto objectCount = std::string{};
     stream::readInt(ss, objectCount);
 
+    size_t protoSize = prototype.size();
+    size_t diciplineSize = 3;
       // Loop through all objects
     for (auto i=0; i < std::stoi(objectCount); i++)
     {
@@ -136,7 +139,8 @@ namespace db
       stream::readInt    (ss, thisProto[3].second);
 
       int numberOfDiciplines = std::stoi(thisProto[3].second);
-      for (auto j = 4, i = 0; j < (4 + numberOfDiciplines * 3); j += 3, i++ )
+      
+      for (size_t j = protoSize, i = 0; j < (protoSize + numberOfDiciplines * diciplineSize); j += diciplineSize, i++ )
       {   
         std::string it = std::to_string(i);
         thisProto.push_back({ "Dicipline " + it, "" });
@@ -155,16 +159,88 @@ namespace db
     return tempContainer;
   }
 
-  bool readStarts  (dat::Container& starts,  const std::string& diciplineID)
-        { return true; } // @TODO
+  bool SportBase::readStarts  (dat::Container& starts,  const std::string& diciplineID)
+  { 
+    const auto protoObj = dat::Object
+    {
+      { "Type",         "" },  // Start
+      { "ID",           "" },
+      { "StartNR",      "" },
+    };
+    std::string path = diciplinePath + diciplineID + ".sta";
 
-  bool readResults (dat::Container& results, const std::string& diciplineID)
-       { return true; } // @TODO
+    auto fileToStream = [path, this]()
+    {
+      auto innFile = std::ifstream{ path };
+      assert(innFile);
+      std::cout << "Opening " << path << "...\n";  // @debug
+      ss.clear();
+      ss << innFile.rdbuf();    // Swapping buffers
+      innFile.close();
+    };
 
-  bool writeStarts (const std::string& diciplineID)
-      { return true; } // @TODO
+    fileToStream();
 
-  bool writeResults(const std::string& diciplineID)
-      { return true; } // @TODO
+    // Reading number of objects.
+    auto objectCount = std::string{};
+    stream::readInt(ss, objectCount);
+    if (std::stoi(objectCount) < 1) //if no starts are registered
+    { return false; }
+    for (size_t i = 0; i < std::stoi(objectCount); i++)
+    {
+      auto tempObj = protoObj;
+      for (size_t j = 0; j < protoObj.size(); j++)
+      { stream::readString(ss, tempObj[j].second); }
+      starts.push_back(tempObj);
+    }
+    return true; 
+  }
+
+  bool SportBase::readResults (dat::Container& results, const std::string& diciplineID)
+  { 
+    const auto protoObj = dat::Object
+    {
+      { "Type",       ""  },  // Result
+      { "ID",         ""  },
+      { "Value",      ""  },
+    };
+    std::string path = diciplinePath + diciplineID + ".res";
+
+    auto fileToStream = [path, this]()
+    {
+      auto innFile = std::ifstream{ path };
+      assert(innFile);
+      std::cout << "Opening " << path << "...\n";  // @debug
+      ss.clear();
+      ss << innFile.rdbuf();    // Swapping buffers
+      innFile.close();
+    };
+
+    fileToStream();
+
+    // Reading number of objects.
+    auto objectCount = std::string{};
+    stream::readInt(ss, objectCount);
+    if (std::stoi(objectCount) < 1) //if no starts are registered
+    {
+      return false;
+    }
+    for (size_t i = 0; i < std::stoi(objectCount); i++)
+    {
+      auto tempObj = protoObj;
+      for (size_t j = 0; j < protoObj.size(); j++)
+      {
+        stream::readString(ss, tempObj[j].second);
+      }
+      results.push_back(tempObj);
+    }
+    return true; 
+  }
+
+  void SportBase::writeStarts (const std::string& diciplineID, const dat::Container& container)
+  { writeFile(diciplinePath + diciplineID + ".sta", container); }
+
+  void SportBase::writeResults(const std::string& diciplineID, const dat::Container& container)
+  { writeFile(diciplinePath + diciplineID + ".res", container); }
 }
 
