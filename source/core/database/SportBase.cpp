@@ -42,18 +42,55 @@ namespace db
     int numberOfDiciplines = std::stoi(object[3].second);               // number of diciplines
 
     for (auto j = 4, i = 0; j < (4 + numberOfDiciplines * 3); j += 3, i++ )
-    {
-      std::string dname = object[j].second;                               // Dicipline+i name
-      dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // Dicipline+i time
-      dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // Dicipline+i date
+    { 
+
+      std::string dname = object[j].second;                         // { Dicipline+i, id   }
+      dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // { Dicipline+i, time }
+      dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // { Dicipline+i, date }
 
       Dicipline newDicipline{ dname, dtime, ddate }; 
       protoSport->addDicipline( newDicipline );
+
+      createFilesIfNotExist(object[j].second);
     }
 
     return protoSport;
   }
 
+  //
+  // @class function createFileIfNotExits()
+  //
+  bool SportBase::createFilesIfNotExist(const std::string& id)
+  {
+    const std::string staPath = diciplinePath + "dici_" + id + ".sta";
+    const std::string resPath = diciplinePath + "dici_" + id + ".res";
+    auto insta = std::ifstream{ staPath };
+
+    if (!insta)
+    {
+      insta.close();
+      auto outsta = std::ofstream { staPath };
+      auto outres = std::ofstream { resPath };
+      if (outsta && outres)
+      {
+        outsta << "0;";
+        outres << "0;";
+        std::cout << "\n" << staPath << "  created.....";
+        std::cout << "\n" << resPath << "  created.....";
+        outsta.close();
+        outres.close();
+      }
+      else 
+      {
+        outsta.close();
+        outres.close();
+        assert(false);
+      }
+      return true;
+    }
+    insta.close();
+    return false;
+  }
 
   //
   // @class funciton readFile()
@@ -117,5 +154,17 @@ namespace db
     } 
     return tempContainer;
   }
+
+  bool readStarts  (dat::Container& starts,  const std::string& diciplineID)
+        { return true; } // @TODO
+
+  bool readResults (dat::Container& results, const std::string& diciplineID)
+       { return true; } // @TODO
+
+  bool writeStarts (const std::string& diciplineID)
+      { return true; } // @TODO
+
+  bool writeResults(const std::string& diciplineID)
+      { return true; } // @TODO
 }
 

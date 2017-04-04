@@ -17,6 +17,15 @@ namespace db
     virtual auto pack  (const Sport*       object) -> dat::Object override;
     virtual auto unpack(dat::Object& object) -> Sport*      override; 
 
+    bool addDicipline();
+
+    bool readStarts  (dat::Container& starts,  const std::string& diciplineID);
+    bool readResults (dat::Container& results, const std::string& diciplineID);
+    bool writeStarts (const std::string& diciplineID);
+    bool writeResults(const std::string& diciplineID);
+
+    bool createFilesIfNotExist(const std::string& id);
+
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List* sports;

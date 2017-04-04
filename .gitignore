@@ -5,6 +5,7 @@
 
 *.dta
 *.res
+*.sta
 *.pdf
 
 # Mac specific stuff

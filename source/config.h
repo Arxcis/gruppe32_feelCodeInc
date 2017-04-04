@@ -9,12 +9,12 @@
 
 #include <string>
 
-const std::string nationsFile      = "data/oblig/nasjoner.dta";
-const std::string participantsFile = "data/oblig/deltagere.dta";
-const std::string sportsFile       = "data/oblig/grener.dta";
+const std::string nationsFile      = "data/oblig/nations.dta";
+const std::string participantsFile = "data/oblig/participants.dta";
+const std::string sportsFile       = "data/oblig/sports.dta";
 
-const std::string medalsFile       = "data/oblig/poeng.dta";
-const std::string pointsFile       = "data/oblig/medaljer.dta";
+const std::string medalsFile       = "data/oblig/medals.dta";
+const std::string pointsFile       = "data/oblig/points.dta";
 const std::string diciplinePath    = "data/oblig/";
 
 const int maxDiciplines = 20;         // Max diciplines per sport
