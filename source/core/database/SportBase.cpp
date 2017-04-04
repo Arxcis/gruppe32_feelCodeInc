@@ -22,7 +22,7 @@ namespace db
     for (int i=0; i < diciplines.size(); i++)
     { 
       std::string it = std::to_string(i);
-      sportProto.push_back( { "Dicipline" + it, diciplines[i].name } );
+      sportProto.push_back( { "Name" + it, diciplines[i].name } );
       sportProto.push_back( { "Time"      + it, dat::packing::packTime(diciplines[i].time ) });
       sportProto.push_back( { "Date"      + it, dat::packing::packDate(diciplines[i].date ) });
     }
@@ -143,9 +143,9 @@ namespace db
       for (size_t j = protoSize, i = 0; j < (protoSize + numberOfDiciplines * diciplineSize); j += diciplineSize, i++ )
       {   
         std::string it = std::to_string(i);
-        thisProto.push_back({ "Dicipline " + it, "" });
-        thisProto.push_back({ "Time "      + it, "" });
-        thisProto.push_back({ "Date "      + it, "" });
+        thisProto.push_back({ "Name" + it, "" });
+        thisProto.push_back({ "Time" + it, "" });
+        thisProto.push_back({ "Date" + it, "" });
 
         stream::readString(ss, thisProto[j].second);
         stream::readTime  (ss, thisProto[j+1].second); 
@@ -198,11 +198,19 @@ namespace db
 
   bool SportBase::readResults (dat::Container& results, const std::string& diciplineID)
   { 
+     // Here I have to find out the ScoreType for the selected Sport 
+    const std::string sportID = diciplineID.substr(0, (diciplineID.find("_")));
+    Sport* selectedSport = (Sport*)elements->remove(sportID.c_str());
+    assert(selectedSport);                              // List tool does not have the sport requested!
+    const std::string scoreType = selectedSport->getScoreType();
+    assert(scoreType == "Time" || scoreType == "Point"); // Has to be an enum of these two values
+    elements->add(selectedSport);
+
     const auto protoObj = dat::Object
     {
       { "Type",       ""  },  // Result
       { "ID",         ""  },
-      { "Value",      ""  },
+      { scoreType ,   ""  },
     };
     std::string path = diciplinePath + diciplineID + ".res";
 

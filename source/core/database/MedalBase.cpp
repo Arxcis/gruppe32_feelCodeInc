@@ -12,7 +12,7 @@ namespace db
     {
       { "Type",    "Medal" },    
       { "Nation",  (char*)rank->getNation() },                      // NationCode  
-      { "Value",   dat::packing::packMedals( medals ) }, // Medal values [GOLD-SILVER-BRONZE]
+      { "Medals",   dat::packing::packMedals( medals ) }, // Medal values [GOLD-SILVER-BRONZE]
     };
     return rankObj;
   }
@@ -38,7 +38,7 @@ namespace db
     {
       {"Type",        ""},  // Medal/Point
       {"Nation",      ""},  
-      {"Value",       ""},  
+      {"#Points",       ""},  
     };
 
     auto fileToStream  = [filepath, this]()
