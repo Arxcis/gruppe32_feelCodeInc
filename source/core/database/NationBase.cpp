@@ -34,6 +34,14 @@ namespace db
     return new Nation(shortName, name, contact, participants);
   }
 
+  bool NationBase::add(dat::Object & nationObj)
+  {
+    if (nations->noOfElements() >= maxNations)
+    { return false; }
+    else
+    { return DataBase<Nation>::add(nationObj); }
+  }
+
   //
   // @class function readFile()
   //    Used to fill the database with data;

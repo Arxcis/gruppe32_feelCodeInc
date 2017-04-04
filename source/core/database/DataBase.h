@@ -104,7 +104,7 @@ namespace db
     //
     // @class function add
     //
-    bool add(dat::Object& object)
+    virtual bool add(dat::Object& object)
     {
       T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added

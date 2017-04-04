@@ -18,3 +18,4 @@ const std::string pointsFile       = "data/oblig/points.dta";
 const std::string diciplinePath    = "data/oblig/dici_";
 
 const int maxDiciplines = 20;         // Max diciplines per sport
+const int maxNations = 200;           // Max Nations registered in the system
