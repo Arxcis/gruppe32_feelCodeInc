@@ -26,7 +26,7 @@ public:
   //   2 = Silver
   //   3 = Bronze
   //
-  void takeMedal(int valor);
-  void giveMedal(int valor);
+  void takeMedal(size_t valor);
+  void giveMedal(size_t valor);
 };
 

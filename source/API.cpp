@@ -240,7 +240,7 @@ void API::updateMedals(const dat::Container& results)
       for (size_t i = 0; i < results.size(); i++)
       { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
       for (size_t i = listSize-1; i >= listSize-3; i--)
-      {  top[i] = (Result*)resultList.removeNo(i); } 
+      {  top[i] = (Result*)resultList.removeNo(i); }
     }
     else
     {

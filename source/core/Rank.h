@@ -23,6 +23,6 @@ public:
 
   virtual void display() override;
 
-  void givePoint(int point);
-  void takePoint(int point);
+  void givePoint(size_t point);
+  void takePoint(size_t point);
 };
