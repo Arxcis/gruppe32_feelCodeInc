@@ -50,6 +50,9 @@ namespace menu
     std::cout << "\n";
   }
 
+  void ConsoleMenu::newLine()
+    { std::cout << "\n"; }
+
   //
   // @class functions - bind menu option functions
   //
@@ -119,16 +122,15 @@ namespace menu
   { 
     newPage();
     header(type_);
-    bindStaticOption(map, 1, nextState_[1], "New      ");
-    divider(50);
-    int it = 2;
+    int it = 1;
     for(const auto& object: container)
     {
-      bindDynamicOption(map, it, nextState_[2], object[1].second, 
+      bindDynamicOption(map, it++, nextState_[2], object[1].second, 
                         (object[1].first + ":  " + object[1].second) + "\t " + (object[2].first + ":  " + object[2].second));
-      it++;
     }
-    divider(50);
+    newLine();
+    divider(40);
+    bindStaticOption(map, it, nextState_[1],"Ny " + type_.substr(0, type_.find(" ")));
     bindStaticOption(map, 0, nextState_[0], "Back      ");
     footer();
   }
@@ -194,13 +196,24 @@ namespace menu
     newPage();
     header(type_);
 
+    //
+    // 1. Header with ID
+    //
     printIllegalOption(object[1].first + ": " + object[1].second);
-    divider(40);
+    newLine();
+
+    //
+    // 2. Fields to edit
+    //
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     bindDynamicOption(map, 2, nextState_[1], object[3].first, (object[3].first + ": " + object[3].second));
     bindDynamicOption(map, 3, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
     bindDynamicOption(map, 4, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second)); // @robustness check if country exists
 
+    //
+    // 3. Menu options
+    //
+    newLine();
     divider(40);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -222,22 +235,23 @@ namespace menu
     //
     // 1. Binding options which edit the sport
     //
-    printIllegalOption(object[1].first + ": " + object[1].second);
-    divider(40);
-    bindDynamicOption(map, 1, nextState_[1], object[2].first, 
-                                              (object[2].first + ": " + object[2].second));
+    bindDynamicOption(map, 1, nextState_[1], object[1].first, object[1].first + ": " + object[1].second);
+    printIllegalOption(object[2].first + ": " + object[2].second);
 
     //
     // 2. Binding opitons which selects a dicipline
-    //
-    std::cout << "\n";
-    printIllegalOption(object[3].first + ": " + object[3].second);
-    bindDynamicOption(map, 2, nextState_[2], object[1].second,"New dicipline");
-      
-    for (auto i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
-      { bindDynamicOption(map, (i/3)+2, nextState_[3], object[i].second, object[i].second); }
+    // 
+    newLine();
+    printIllegalOption("Øvelser" + (": " + object[3].second));
+    
+    size_t optionIt = 2;
+    for (size_t i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )
+      { bindDynamicOption(map, optionIt++, nextState_[3], object[i].second, object[i].second); }
 
+    newLine();
     divider(40);
+    newLine();
+    bindDynamicOption(map, optionIt, nextState_[2], object[1].second,"Ny Øvelse");
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -380,22 +394,23 @@ namespace menu
 
   void ResultList::view(
     dat::TransitionMap& map,
-    dat::Container& starts, 
-    dat::Container& results, 
-    const std::string& key)
+    dat::Object&        sport, 
+    dat::Container&     starts, 
+    dat::Container&     results, 
+    const std::string&  key)
   {
     newPage();
     header(type_);
-    // starts.clear(); //@debug
+    results.clear();   //@debug
     if (!(starts.empty()))
-    { 
+    {  
+      std::cout << "SCORETYPE : " <<  sport[2].second << std::endl; // @debug
+      divider(40);
       if(results.empty()) 
-        { form::resultList(results, starts.size()); }
+        { form::resultList(sport, starts, results); }
       
       for (int it=0; it < starts.size(); it++)
-      {
-        printIllegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second);
-      }
+        { printIllegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second); }
       bindDynamicOption(map, 1, nextState_[1], key, "Delete results");
     }
     else

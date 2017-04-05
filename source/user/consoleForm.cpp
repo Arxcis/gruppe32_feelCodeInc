@@ -12,47 +12,7 @@ enum ProtoForms
 
 namespace form
 {
-  dat::Container protos = 
-  {
-    {
-      {"type",     "Nation"},
-      {"Code",           ""},   //PK              
-      {"Name",           ""},                    
-      {"#Participants", "0"},  
-      {"ContactName",    ""},                    
-      {"ContactPhone",   ""},             
-      {"ContactEmail",   ""},
-    },
 
-    {
-      {"Type", "Participant"},
-      {"ID"  ,         ""},
-      {"Name",         ""},  // PK
-      {"Phone",        ""},
-      {"Email",        ""},
-      {"CountryCode",  ""},  // FK
-      {"Sex",          ""},
-    },
-
-    {
-       {"Type",   "Sport"},
-       {"Name",        ""},    // PK
-       {"ScoreType",   ""},
-       {"#Diciplines", "0"},
-    },
-
-    {
-      {"Type",    "Start"},
-      {"ID",      ""},        // PPK
-      {"StartNR", ""},
-    },
-
-    {
-      {"Type",  "Result"},
-      {"ID",    ""},        // PPK
-      {"", ""},
-    },
-  };
   dat::Object submit;     // Temp-object which is used to send data.
 
   auto printKey = [](const std::string key)
@@ -67,33 +27,55 @@ namespace form
   auto object(const std::string type) ->dat::Object&
   {
     dat::Object proto;
-
     if (type == "Nation")     
     {
-      proto = form::protos[NATION_P];
+      proto =     
+      {                           // dat::Object
+        {"Type",     "Nation"},
+        {"Code",           ""},   //PK              
+        {"Name",           ""},                    
+        {"#Participants", "0"},  
+        {"ContactName",    ""},                    
+        {"ContactPhone",   ""},             
+        {"ContactEmail",   ""},
+      };
 
-      printKey(proto[1].first);  stream::readChar3(std::cin,  proto[1].second);   // @robustness - PK code check if Nation-code already exists
-      printKey(proto[2].first);  stream::readString(std::cin, proto[2].second); 
-      printKey(proto[3].first);  stream::readString(std::cin, proto[3].second);
-      printKey(proto[4].first);  stream::readPhone(std::cin,  proto[4].second);
-      printKey(proto[5].first);  stream::readEmail(std::cin,  proto[5].second);
+      field(proto[1]);   // @robustness - PK code check if Nation-code already exists
+      field(proto[2]); 
+
+      field(proto[4]);
+      field(proto[5]);
+      field(proto[6]);
     }
     else if (type == "Participant")
     {
-      proto = form::protos[PARTICIPANT_P];
+      proto =     
+      {
+        {"Type", "Participant"},
+        {"ID"  ,         ""},
+        {"Name",         ""},  // PK
+        {"Phone",        ""},
+        {"Email",        ""},
+        {"CountryCode",  ""},  // FK
+        {"Sex",          ""},
+      };
 
-      printKey(proto[1].first);  stream::readString(std::cin, proto[1].second); // @robustness - PK name, check if already exist 
-      printKey(proto[2].first);  stream::readPhone(std::cin,  proto[2].second);
-      printKey(proto[3].first);  stream::readEmail(std::cin,  proto[3].second);
-      printKey(proto[4].first);  stream::readChar3(std::cin,  proto[4].second);  // @robustness - FK NationCode - check if already exist
-      printKey(proto[5].first);  stream::readEnum(std::cin,   proto[5].second, {"Male", "Female"});
+      field(proto[2]);    
+      field(proto[3]);  
+      field(proto[4]);    // @robustness - FK NationCode - check if already exist
+      field(proto[5]);
     }
     else if (type == "Sport")      
     {
-      proto = form::protos[SPORT_P];
-
-      printKey(proto[1].first);  stream::readString(std::cin, proto[1].second);  // @robustness - PK should be checked if exst
-      printKey(proto[2].first);  stream::readEnum(std::cin,   proto[2].second, {"Point", "Time"});
+      proto =
+      { 
+        {"Type",   "Sport"},
+        {"Name",        ""},    // PK
+        {"ScoreType",   ""},
+        {"#Diciplines", "0"},
+      };
+      field(proto[1]);  // @robustness - PK should be checked if exst
+      field(proto[2]); 
     }
 
     form::submit = proto;
@@ -106,7 +88,13 @@ namespace form
   //
   void appendDicipline(dat::Object sport)
   {
-    
+    dat::Object proto = 
+    {
+      {"Type", "Dicipline"},
+      {"Name",  ""},
+      {"Time",  ""},
+      {"Date",  ""},
+    };
   }
 
   //
@@ -119,7 +107,7 @@ namespace form
   {
 
     const std::string fieldType = field.first;
-    std::cout << fieldType << " : " << std::endl;         // 1. 
+    std::cout << fieldType << ":  " << std::endl;         // 1. 
 
     if (fieldType.find("Code")  != std::string::npos)     // 2. 
     { 
@@ -149,10 +137,13 @@ namespace form
       { stream::readDate  (std::cin, field.second); }
 
     else if (fieldType.find("Sex")   != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Point", "Time"   }); }
+      { stream::readEnum  (std::cin, field.second, { "Male", "Female"   }); }
 
     else if (fieldType.find("ScoreType") != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Male" , "Female" }); }
+      { stream::readEnum  (std::cin, field.second, { "Point" , "Time" }); }
+
+    else 
+      { assert(false); } // Field-types should be one of the listed above.
   }
 
 
@@ -164,7 +155,12 @@ namespace form
     int size = stream::readInt("How many participants do you want to add?\n");
     for (int it = 0; it < size; it++)
     {
-      dat::Object startProto = protos[START_P];
+      dat::Object startProto =
+      {
+        {"Type",    "Start"},
+        {"ID",      ""},        // PPK
+        {"StartNR", ""},
+      };
       printKey(startProto[1].first);   stream::readInt(std::cin, startProto[1].second);
       // printKey(startProto[2].first);   stream::readString(std::cin, startProto[2].second);
 
@@ -172,15 +168,25 @@ namespace form
     }
   }
 
-  void resultList(dat::Container& results, const int size)
-  {
-    for (int it=0; it < size; it++)
-    {
-      dat::Object resultProto = protos[RESULT_P];
+  void resultList(
+    dat::Object&       sport, 
+    dat::Container&    starts, 
+    dat::Container&    results)
+  { 
+    const std::string& scoreType = sport[2].second;
+    const size_t size = starts.size();
 
-      printKey(resultProto[1].first + resultProto[2].first);  // stream::readInt(std::cin, resultProto[1].second); // ID may not be necessarry
-      printKey(resultProto[2].first);   stream::readString(std::cin, resultProto[2].second);
-    
+    for (size_t it=0; it < size; it++)
+    {
+      dat::Object resultProto = 
+      {
+        {"Type",  "Result"},
+        {"ID",    ""},        // PPK
+        {scoreType, ""},     // @TODO , here we need either Time-result or Point-result
+      };
+
+      printKey(starts[it][1].first + " - " + starts[it][1].second + "      " + starts[it][2].first + " - " +  starts[it][2].second); 
+      field(resultProto[2]);
       results.push_back(resultProto);
     }
   }

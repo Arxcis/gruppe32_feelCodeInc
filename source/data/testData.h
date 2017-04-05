@@ -19,123 +19,61 @@
 //
 namespace test 
 {
-  dat::Object 
-  nation
+  dat::Object
+  testnation
   {
-      {"Type",          "Nation"},               
-      {"Code",          "NOR"},       //PK              
-      {"Name",          "Norge"},                    
-      {"#Participants", "150"},  
-      {"ContactName",   "Jonas"},                    
-      {"ContactPhone",  "452000864"},             
-      {"ContactEmail",   "jonas.solsvik@gmail.com"},  
+    { "Type",          "Nation" },
+    { "Code",          "NOR" },       //PK              
+    { "Name",          "Norge" },
+    { "#Participants", "150" },
+    { "ContactName",   "Jonas" },
+    { "ContactPhone",  "+47452000864" },
+    { "ContactEmail",  "jonas.solsvik@gmail.com" },
   };
 
   dat::Object
-  participant 
+  testparticipant
   {
-      {"type", "Participant"},
-      {"ID"  , "1002"},     //PK
-      {"Name", "Jonas"},
-      {"Phone", "452000864"},
-      {"Email", "jonas.solsvik@gmail.com"},
-      {"CountryCode", "NOR"},
-      {"Gender", "Male"},
+    { "type", "Participant" },
+    { "ID"  , "" },     //PK
+    { "Name", "Jonas" },
+    { "Phone", "+47452000864" },
+    { "Email", "jonas.solsvik@gmail.com" },
+    { "CountryCode", "NOR" },
+    { "Sex", "Male" },
   };
 
   dat::Object
-  sport 
-  {   
-      {"Type", "Sport"},
-      {"Name", "Fotball"},     //PK
-      {"ScoreType", "Points"},
-      {"#Diciplines", "3"},
-      {"1", "Final"},
-      {"2", "Semi-final"},
-      {"3", "1/4-final"},
+  testsport
+  {
+    { "Type", "Sport" },
+    { "Name", "Fotball" },     //PK
+    { "ScoreType", "Point" },
+    { "#Diciplines", "2" },
+    { "Name1", "Final" },
+    { "Time1", "10:00:12" },
+    { "Date1", "12.03.91" },
+    { "Name2", "Semi-final" },
+    { "Time2", "10:00:12" },
+    { "Date2", "12.03.02" },
+  };
+
+
+  dat::Object
+  testmedal
+  {
+    { "Type", "Medal" },
+    { "Code",  "NOR"},
+    { "Medals", "01-02-03" },
   };
 
   dat::Object
-  dicipline 
+  testpoint
   {
-      {"Type","Dicipline"},
-      {"#Starts", "2"},
-      {"#Results","2"},
-      {"Name", "Finale"},     //PK
-      {"Time", "19:00"}, 
-      {"Date","29.03.18"},
+    { "Type", "Point"},
+    { "Code",  "NOR" },
+    { "#Points", "80"  },
   };
-
-  dat::Object
-  medalStats
-  {
-      {"Type", "MedalStats"},
-      {"#Entries", "3"},
-      {"NOR", "1-2-3"},
-      {"SWE", "0-2-3"},
-      {"DAN", "0-0-5"},
-  };
-
-  dat::Object
-  pointStats
-  {
-      {"Type", "PointStats"},
-      {"#Entries", "3"},
-      {"NOR", "100"},
-      {"SWE", "90"},
-      {"DAN", "80"},
-  };
-
-  dat::Object
-  startList
-  {
-    {"Type", "StartList"},
-    {"ID", "Final"},
-    {"1001",""},
-    {"1002",""},
-  };
-
-  dat::Object
-  resultList
-  {
-    {"Type", "ResultList"},
-    {"ID", "Final"},
-    {"1001", "00:48:01"},
-    {"1002", "00:28:55"},
-  };
-
-
-  dat::Container
-  nations 
-  {
-    nation, 
-    nation, 
-    nation,
-  };  
-
-  dat::Container
-  participants 
-  {
-    participant, 
-    participant, 
-    participant,
-  };  
-
-  dat::Container
-  sports 
-  {
-    sport, 
-    sport, 
-    sport,
-  };  
-
-  dat::Container
-  diciplines 
-  {
-    dicipline, 
-    dicipline, 
-    dicipline,
-  };  
 
   dat::Object* nulldata = nullptr;
   dat::Container* nulldatas = nullptr;

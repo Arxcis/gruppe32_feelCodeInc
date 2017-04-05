@@ -17,9 +17,13 @@ namespace form
 {
   auto object(const std::string type) ->dat::Object&;
   void field(dat::Field& field);
+  void appendDicipline(dat::Object sport); 
 
   void startList(dat::Container& starts);
-  void resultList(dat::Container& results, const int size);   
-  void appendDicipline(dat::Object sport); 
+  void resultList(
+    dat::Object&       sport, 
+    dat::Container&    starts, 
+    dat::Container&    results);
+
 }
 

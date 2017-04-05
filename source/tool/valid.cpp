@@ -17,7 +17,7 @@ bool valid::isEnum(const std::string& value, const std::vector<std::string>& val
 
 bool valid::isChar3(const std::string& value)
 {
-  return (value.size() == 3);
+  return std::regex_match(value, regChar3);
 }
 
 //
@@ -25,19 +25,7 @@ bool valid::isChar3(const std::string& value)
 //
 bool valid::isInt(const std::string& value)
 {
-  try
-  {
-    int test = stoi(value); // @warning, unused var. Used to provoke exception if the convert to int fails.
-    return true;
-  }
-  catch (const std::invalid_argument& e)
-  {
-    return false;
-  }
-  catch (const std::out_of_range& e)
-  {
-    return false;
-  }
+  return std::regex_match(value, regInt);
 }
 
 //
@@ -45,19 +33,7 @@ bool valid::isInt(const std::string& value)
 //
 bool valid::isDouble(const std::string& value)
 {
-  try
-  {
-    float test = stof(value); // @warning - unused var. Used to provoke exception if the convert to float fails.
-    return true;
-  }
-  catch (const std::invalid_argument& e)
-  {
-    return false;
-  }
-  catch (const std::out_of_range& e)
-  {
-    return false;
-  }
+  return std::regex_match(value, regDouble);
 }
 
 //
@@ -65,7 +41,7 @@ bool valid::isDouble(const std::string& value)
 //
 bool valid::isEmail(const std::string& value)
 {
-  return (value.find("@") != std::string::npos);
+  return std::regex_match(value, regEmail);
 }
 
 //
@@ -73,7 +49,8 @@ bool valid::isEmail(const std::string& value)
 //
 bool valid::isPhone(const std::string& value)
 {
-  return (value.find("+") != std::string::npos);
+  return std::regex_match(value, regPhone);
+  //return (value.find("+") != std::string::npos);
 }
 
 //
@@ -81,8 +58,7 @@ bool valid::isPhone(const std::string& value)
 //
 bool valid::isTime(const std::string& value)
 {
-  return (value.find(":",2) != std::string::npos) && 
-         (value.find(":",4) != std::string::npos);
+  return std::regex_match(value, regTime);
 }
 
 //
@@ -90,8 +66,7 @@ bool valid::isTime(const std::string& value)
 //
 bool valid::isDate(const std::string& value)
 {
-  return (value.find(".",2) != std::string::npos) &&
-         (value.find(".",4) != std::string::npos);
+  return std::regex_match(value, regDate);
 }
 
 //
@@ -99,5 +74,5 @@ bool valid::isDate(const std::string& value)
 //
 bool valid::isMedals(const std::string& value)
 {
-  return (value.find("-") != std::string::npos);
+  return std::regex_match(value, regMedals);
 }

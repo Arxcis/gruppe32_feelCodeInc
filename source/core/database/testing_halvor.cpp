@@ -161,15 +161,6 @@
 int main() 
 {
   API api;
-  dat::Container c = api.getAll(PARTICIPANT);
-
-  for (size_t i = 0; i < c.size(); i++)
-  {
-    for (size_t j = 0; j < c[i].size(); j++)
-    {
-      printf("%s\t\t\t%s\n", c[i][j].first.c_str() , c[i][j].second.c_str());
-    }
-  }
 
   return 0;
 }

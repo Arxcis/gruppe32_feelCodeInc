@@ -65,22 +65,22 @@ void API::loadAllBases()
 //               }
 bool API::add(const dat::Object& object )
 {
-  if(!object[0].second.compare("Nation"))
+  if(object[0].second == "Nation")
   { return nationBase_.add(object); }
 
-  else if(!object[0].second.compare("Participant"))
+  else if(!object[0].second == "Participant")
   { return participantBase_.add(object); }
 
-  else if(!object[0].second.compare("Sport"))
+  else if(!object[0].second == "Sport")
   { return sportBase_.add(object); }
 
-  else if(!object[0].second.compare("Medal"))
+  else if(!object[0].second == "Medal")
   { return medalBase_.add(object); }
 
-  else if(!object[0].second.compare("Point"))
+  else if(!object[0].second == "Point")
   { return pointBase_.add(object); }
 
-  return false;
+  return false; //type was unreccognized or CANCELED; DON'T ADD.
 }
 
 //
@@ -134,7 +134,7 @@ void API::updateAll(const Entity entity, const dat::Container& list, const std::
   {
     switch (entity)
     {
-      case STARTS:  sportBase_.writeStarts(id, list);   break;
+      case STARTS:  sportBase_.writeStarts(id, list);  break;
       case RESULTS: sportBase_.writeResults(id, list); updateMedals(list); updatePoints(list); break;
     }
   }
@@ -174,12 +174,12 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
   dat::Object tempObj;
   switch(entity)
   {
-    case NATION:      nationBase_.getID(tempObj, id); break;
-    case PARTICIPANT: participantBase_.getID(tempObj, std::stoi(id)); break;
-    case SPORT:       sportBase_.getID(tempObj, id); break;
-    case POINT:       pointBase_.getID(tempObj, std::stoi(id)); break;
-    case MEDAL:       medalBase_.getID(tempObj, std::stoi(id)); break;
-
+    case NATION:      nationBase_.getID(tempObj, id); break;                  //   ID TextElement
+    case PARTICIPANT: participantBase_.getID(tempObj, std::stoi(id)); break;  //      Numelement
+    case SPORT:       sportBase_.getID(tempObj, id); break;                   //      textElement
+    case POINT:       pointBase_.getID(tempObj, std::stoi(id)); break;        //      Numelement
+    case MEDAL:       medalBase_.getID(tempObj, std::stoi(id)); break;        //      Numelement
+ 
     default: assert(false);// Not a valid command.. abort mission
   }
   return tempObj;
@@ -238,48 +238,74 @@ void API::updateMedals(const dat::Container& results)
     if(results[0][2].first.compare("Point"))
     {
       for (size_t i = 0; i < results.size(); i++)
-      {
-          resultList.add(&dat::packing::unpackPointResult(results[i]));
-      }
-      for (size_t i = listSize-1; i > listSize-4; i--)
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
+      for (size_t i = listSize-1; i >= listSize-3; i--)
       {  top[i] = (Result*)resultList.removeNo(i); }
     }
     else
     {
       for (size_t i = 0; i < results.size(); i++)
-      { resultList.add(&dat::packing::unpackTimeResult(results[i])); }
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
       for (size_t i = 0; i < 3; i++)
-      { 
-        top[i] = (Result*)resultList.removeNo(i);
-      }
+      { top[i] = (Result*)resultList.removeNo(i); }
     }
     for (size_t i = 0; i < 3; i++)
     {
-      assert(participantBase_.getID(temp, std::to_string(top[i]->getID())));
-      for (size_t j = 0; j < medals.size(); j++)
+      assert(participantBase_.getID(temp, std::to_string(top[i]->getID()))); //pull the participant in the resultlist at top[i] -> dat:Object 
+      for (size_t j = 0; j < medals.size(); j++) //loop on medalranks (per nation)
       {
-        if (!medals[j][1].second.compare(temp[5].second)) //the CODE matches
+        if (!medals[j][1].second.compare(temp[5].second)) //find the medalrank where CODE matches the new top[i]-participant
         {
-          MedalRank* m = (MedalRank*)medalBase_.unpack(medals[j]);
-          m->giveMedal(i+1);
-          medalBase_.update(medalBase_.pack(m));
+          MedalRank* nationMedals = (MedalRank*)medalBase_.unpack(medals[j]);
+          nationMedals->giveMedal(i+1);
+          medalBase_.update(medalBase_.pack(nationMedals));
         }
       }
+      resultList.add(top[i]);
     }
   }
 }
 
 void API::updatePoints(const dat::Container& results)
 {
-  //const dat::Container participants = participantBase_.getContainer();
-  //const dat::Container points = pointBase_.getContainer();
+  dat::Container points = pointBase_.getContainer();
+  List resultList(Sorted);
+  
+  dat::Object temp;
 
-  //List resultList(Sorted);
-
-
-  //for (size_t i = 0; i < results.size(); i++)
-  //{ resultList.add(dat::packing::unpackResult(results[i])); }
- 
+  if(results.size() > 0)
+  { 
+    Result* top[6];
+    size_t listSize = resultList.noOfElements();
+    if(results[0][2].first.compare("Point"))
+    {
+      for (size_t i = 0; i < results.size(); i++)
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
+      for (size_t i = listSize-1; i >= listSize-6; i--)
+      {  top[i] = (Result*)resultList.removeNo(i); } 
+    }
+    else
+    {
+      for (size_t i = 0; i < results.size(); i++)
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
+      for (size_t i = 0; i < 6; i++)
+      { top[i] = (Result*)resultList.removeNo(i); }
+    }
+    for (size_t i = 0; i < 6; i++)
+    {
+      assert(participantBase_.getID(temp, std::to_string(top[i]->getID()))); //pull the participant in the resultlist at top[i] -> dat:Object 
+      for (size_t j = 0; j < points.size(); j++) //loop on medalranks (per nation)
+      {
+        if (!points[j][1].second.compare(temp[5].second)) //find the medalrank where CODE matches the new top[i]-participant
+        {
+          Rank* nationPoints = pointBase_.unpack(points[j]);
+          nationPoints->givePoint(i + 1);
+          pointBase_.update(medalBase_.pack(nationPoints));
+        }
+      }
+      resultList.add(top[i]);
+    }
+  }
 }
 
 //
