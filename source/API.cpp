@@ -65,22 +65,22 @@ void API::loadAllBases()
 //               }
 bool API::add(const dat::Object& object )
 {
-  if(!object[0].second.compare("Nation"))
+  if(object[0].second == "Nation")
   { return nationBase_.add(object); }
 
-  else if(!object[0].second.compare("Participant"))
+  else if(!object[0].second == "Participant")
   { return participantBase_.add(object); }
 
-  else if(!object[0].second.compare("Sport"))
+  else if(!object[0].second == "Sport")
   { return sportBase_.add(object); }
 
-  else if(!object[0].second.compare("Medal"))
+  else if(!object[0].second == "Medal")
   { return medalBase_.add(object); }
 
-  else if(!object[0].second.compare("Point"))
+  else if(!object[0].second == "Point")
   { return pointBase_.add(object); }
 
-  return false;
+  return false; //type was unreccognized or CANCELED; DON'T ADD.
 }
 
 //
