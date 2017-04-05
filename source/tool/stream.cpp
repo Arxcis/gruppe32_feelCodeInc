@@ -34,7 +34,7 @@ namespace stream
   {
     std::string myInt;
     std::cout << message << ": \n";
-    readInt(myInt, std::cin, '\n');
+    readInt(myInt, std::cin);
     return std::stoi(myInt);
   }
 }
