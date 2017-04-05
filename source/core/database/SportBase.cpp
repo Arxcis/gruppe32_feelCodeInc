@@ -48,9 +48,9 @@ namespace db
       dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // { Dicipline+i, time }
       dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // { Dicipline+i, date }
 
+      // Logic for adding a new dicipline to existing sport object.
       Dicipline newDicipline{ dname, dtime, ddate }; 
       protoSport->addDicipline( newDicipline );
-
       createFilesIfNotExist(object[j].second);
     }
 
