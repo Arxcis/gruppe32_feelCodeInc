@@ -130,7 +130,7 @@ namespace menu
     }
     newLine();
     divider(40);
-    bindStaticOption(map, it, nextState_[1], "New      ");
+    bindStaticOption(map, it, nextState_[1],"Ny " + type_.substr(0, type_.find(" ")));
     bindStaticOption(map, 0, nextState_[0], "Back      ");
     footer();
   }
@@ -251,7 +251,7 @@ namespace menu
     newLine();
     divider(40);
     newLine();
-    bindDynamicOption(map, optionIt, nextState_[2], object[1].second,"New dicipline");
+    bindDynamicOption(map, optionIt, nextState_[2], object[1].second,"Ny Øvelse");
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }

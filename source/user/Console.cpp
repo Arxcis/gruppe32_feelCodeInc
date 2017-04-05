@@ -170,17 +170,17 @@ void Console::displayMenu()
     //  3. Feeding the object to the menu, where keys are mapped to edit-able fields.
     // 
     case NATION_SELECT:
-      selectedObject = api_.get(NATION, currentMap[input].second);
+      selectedObject = api_.get(NATION, selectedID);
       allMenus_[NATION_SELECT]->view(currentMap, selectedObject);
       break;
 
     case PART_SELECT:
-      selectedObject = api_.get(PARTICIPANT, currentMap[input].second);
+      selectedObject = api_.get(PARTICIPANT, selectedID);
       allMenus_[PART_SELECT]->view(currentMap, selectedObject);
       break;
 
     case SPORT_SELECT:
-      selectedObject = api_.get(SPORT, currentMap[input].second);
+      selectedObject = api_.get(SPORT, selectedID);
       allMenus_[SPORT_SELECT]->view(currentMap, selectedObject);
       break;
 

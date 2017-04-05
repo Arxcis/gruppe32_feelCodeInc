@@ -174,12 +174,12 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
   dat::Object tempObj;
   switch(entity)
   {
-    case NATION:      nationBase_.getID(tempObj, id); break;
-    case PARTICIPANT: participantBase_.getID(tempObj, std::stoi(id)); break;
-    case SPORT:       sportBase_.getID(tempObj, id); break;
-    case POINT:       pointBase_.getID(tempObj, std::stoi(id)); break;
-    case MEDAL:       medalBase_.getID(tempObj, std::stoi(id)); break;
-
+    case NATION:      nationBase_.getID(tempObj, id); break;                  //   ID TextElement
+    case PARTICIPANT: participantBase_.getID(tempObj, std::stoi(id)); break;  //      Numelement
+    case SPORT:       sportBase_.getID(tempObj, id); break;                   //      textElement
+    case POINT:       pointBase_.getID(tempObj, std::stoi(id)); break;        //      Numelement
+    case MEDAL:       medalBase_.getID(tempObj, std::stoi(id)); break;        //      Numelement
+ 
     default: assert(false);// Not a valid command.. abort mission
   }
   return tempObj;

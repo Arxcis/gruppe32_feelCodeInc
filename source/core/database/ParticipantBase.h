@@ -20,6 +20,6 @@ namespace db
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
     List* participants;         //aliasing the list
 
-    int participantCount = 1000;
+    int participantCount = 100;
   };
 }

@@ -18,7 +18,7 @@ private:
   std::string sex_;
 
 public:
-  Participant(int ID, dat::Contact contact, dat::char3 nation, std::string sex)
+  Participant(size_t ID, dat::Contact contact, dat::char3 nation, std::string sex)
   :NumElement(ID)
   ,ID_(ID)
   ,contact_(contact)
