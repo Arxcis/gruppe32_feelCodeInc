@@ -80,20 +80,20 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    assert(stream::readInt(objectCount, ss));
+    assert(stream::readInt(objectCount, ss, ';'));
 
       // Loop through all objects
     for(int i=0; i < std::stoi(objectCount); i++)
     {
       std::cout << "Participant " << i+1 << " of " << objectCount << "\n";
 
-      assert(stream::readName (prototype[0].second, ss));
-      assert(stream::readInt    (prototype[1].second, ss));
-      assert(stream::readName (prototype[2].second, ss));
-      assert(stream::readPhone  (prototype[3].second, ss));
-      assert(stream::readEmail  (prototype[4].second, ss));
-      assert(stream::readChar3  (prototype[5].second, ss));
-      assert(stream::readEnum   (prototype[6].second, ss, {"Male", "Female"}));
+      assert(stream::readName   (prototype[0].second, ss, ';'));
+      assert(stream::readInt    (prototype[1].second, ss, ';'));
+      assert(stream::readName   (prototype[2].second, ss, ';'));
+      assert(stream::readPhone  (prototype[3].second, ss, ';'));
+      assert(stream::readEmail  (prototype[4].second, ss, ';'));
+      assert(stream::readChar3  (prototype[5].second, ss, ';'));
+      assert(stream::readEnum   (prototype[6].second, ss, {"Male", "Female"}, ';'));
 
       add(prototype);                       // Add to internal list
       tempContainer.push_back(prototype);   // Add to optional return container
