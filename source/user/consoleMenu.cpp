@@ -347,7 +347,10 @@ namespace menu
     for(auto& field: object)
     { 
       if (field.first == key)
-        { form::field(field); break; }
+      { 
+        form::thisField(field); 
+        break; 
+      }
     }
     bindDynamicOption(map, 0, nextState_[0], key, "Back");
     footer();

@@ -14,16 +14,20 @@
 
 
 namespace form
-{
+{ 
+
   auto object(const std::string type) ->dat::Object&;
-  void field(dat::Field& field);
+  bool thisField(dat::Field& field);
+  
+  bool askAgain(bool valid, const std::string& value, const std::string& errorMessage);
+
   void appendDicipline(dat::Object sport); 
 
   void startList(dat::Container& starts);
   void resultList(
-    dat::Object&       sport, 
-    dat::Container&    starts, 
-    dat::Container&    results);
+    dat::Object&    sport, 
+    dat::Container& starts, 
+    dat::Container& results);
 
 }
 

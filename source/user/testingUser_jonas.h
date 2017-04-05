@@ -25,15 +25,15 @@ void testFormField()
     dat::Field email1_ = {"Email",      ""};
     dat::Field email2_ = {"UserEmail",  ""};
     
-    form::field(phone_);
-    form::field(sex_);
-    form::field(scoreType_);
-    form::field(date_);
-    form::field(time1_);
-    form::field(time2_);
+    form::thisField(phone_);
+    form::thisField(sex_);
+    form::thisField(scoreType_);
+    form::thisField(date_);
+    form::thisField(time1_);
+    form::thisField(time2_);
     
-    form::field(email1_);
-    form::field(email2_);
+    form::thisField(email1_);
+    form::thisField(email2_);
 
 }
 

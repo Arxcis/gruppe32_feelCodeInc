@@ -40,12 +40,12 @@ namespace form
         {"ContactEmail",   ""},
       };
 
-      field(proto[1]);   // @robustness - PK code check if Nation-code already exists
-      field(proto[2]); 
+      thisField(proto[1]);   // @robustness - PK code check if Nation-code already exists
+      thisField(proto[2]); 
 
-      field(proto[4]);
-      field(proto[5]);
-      field(proto[6]);
+      thisField(proto[4]);
+      thisField(proto[5]);
+      thisField(proto[6]);
     }
     else if (type == "Participant")
     {
@@ -60,10 +60,10 @@ namespace form
         {"Sex",          ""},
       };
 
-      field(proto[2]);    
-      field(proto[3]);  
-      field(proto[4]);    // @robustness - FK NationCode - check if already exist
-      field(proto[5]);
+      thisField(proto[2]);    
+      thisField(proto[3]);  
+      thisField(proto[4]);    // @robustness - FK NationCode - check if already exist
+      thisField(proto[5]);
     }
     else if (type == "Sport")      
     {
@@ -74,8 +74,8 @@ namespace form
         {"ScoreType",   ""},
         {"#Diciplines", "0"},
       };
-      field(proto[1]);  // @robustness - PK should be checked if exst
-      field(proto[2]); 
+      thisField(proto[1]);  // @robustness - PK should be checked if exst
+      thisField(proto[2]); 
     }
 
     form::submit = proto;
@@ -98,53 +98,117 @@ namespace form
   }
 
   //
-  // @function form::field
+  // @function form::thisField
   //  @brief - A function that changes a specific field of a dat::object
   //     1. Print info about field to be changed
   //     2. Type check, and call correct input-function for the job.
+  //  
+  //   This functions is where we give the user userfull error messages.
   //
-  void field(dat::Field& field)
+  bool thisField(dat::Field& field)
   {
 
+    bool valid = false;
     const std::string fieldType = field.first;
     std::cout << fieldType << ":  " << std::endl;         // 1. 
 
     if (fieldType.find("Code")  != std::string::npos)     // 2. 
     { 
-        stream::readChar3 (field.second, std::cin);
+      do 
+      { valid = stream::readChar3 (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type Code..."));
     }
 
     else if (fieldType.find("Name")  != std::string::npos) 
-      { stream::readName(field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readName (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type navn..."));
+    }
 
     else if (fieldType.find("Phone") != std::string::npos) 
-      { stream::readPhone (field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readPhone (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type telefon..."));
+    }
 
     else if (fieldType.find("Email") != std::string::npos) 
-      { stream::readEmail (field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readEmail (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type email..."));
+    }
 
     else if (fieldType.find("Time")  != std::string::npos) 
-      { stream::readTime  (field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readTime (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type tid..."));
+    }
 
     else if (fieldType.find("Point") != std::string::npos) 
-      { stream::readInt (field.second, std::cin); }
+    {  
+      do 
+      { valid = stream::readInt (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type poeng..."));
+    }
 
     else if (fieldType.find("Medal") != std::string::npos) 
-      { stream::readMedals (field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readMedals (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type medaljer..."));
+    }
 
     else if (fieldType.find("Date")  != std::string::npos) 
-      { stream::readDate  (field.second, std::cin); }
+    { 
+      do 
+      { valid = stream::readDate (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type dato..."));
+    }
 
     else if (fieldType.find("Sex")   != std::string::npos) 
-      { stream::readEnum  (field.second, std::cin, { "Male", "Female"   }); }
+    { 
+      do 
+      { valid = stream::readEnum (field.second, std::cin, { "Male", "Female" }); }
+      while (askAgain(valid, field.second, "Feil type kjonn..."));
+    }
 
     else if (fieldType.find("ScoreType") != std::string::npos) 
-      { stream::readEnum  (field.second, std::cin, { "Point" , "Time" }); }
+    { 
+      do 
+      { valid = stream::readEnum(field.second, std::cin, { "Point" , "Time" }); }
+      while (askAgain(valid, field.second, "Feil type score type..."));
+    }
 
     else 
-      { assert(false); } // Field-types should be one of the listed above.
+    { assert(false); } // Field-types should be one of the listed above.
+
+    if (field.second == "0")
+    { return false; }       // Aborting filling in field.
+    
+    else 
+    { return true; } 
   }
 
+
+  //
+  // @function askAgain - asks again unless input was '0', or it was valid.
+  //
+  bool askAgain(bool valid, const std::string& value, const std::string& errorMessage)
+  {
+    if (value == "0") 
+    { return false; }
+
+    else if (!valid)
+    {
+      std::cout << errorMessage << std::endl; 
+      return true;
+    }
+    else
+    { return false; }
+  }
 
   //
   // Add to list @functions
@@ -185,7 +249,7 @@ namespace form
       };
 
       printKey(starts[it][1].first + " - " + starts[it][1].second + "      " + starts[it][2].first + " - " +  starts[it][2].second); 
-      field(resultProto[2]);
+      thisField(resultProto[2]);
       results.push_back(resultProto);
     }
   }
