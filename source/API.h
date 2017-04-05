@@ -16,6 +16,7 @@
 #include "core/database/SportBase.h"
 #include "core/database/MedalBase.h"
 #include "core/database/PointBase.h"
+#include "tool/Unpacker.h"
 
 //
 // @class API - Application Layer Interface
@@ -45,8 +46,8 @@ public:
   */
   auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
 
-  void updateMedals();
-  void updatePoints();
+  void updateMedals(const dat::Container& results);
+  void updatePoints(const dat::Container& resulretList);
 
   void quit();
 

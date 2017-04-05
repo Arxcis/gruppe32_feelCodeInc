@@ -94,7 +94,6 @@ namespace db
       else
         { return false; }
     }  
-      
 
     //
     // @class function add
