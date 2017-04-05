@@ -196,21 +196,18 @@ void Console::displayMenu()
     //  3. Pass the object to the API.
     //
     case NATION_NEW:
-      selectedObject = {};
+      selectedObject = {{"Type", "Nation"}};
       allMenus_[NATION_NEW]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
       break;
 
     case PART_NEW:
-      selectedObject = {};
+      selectedObject = {{"Type", "Participant"}};
       allMenus_[PART_NEW]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
       break;
 
     case SPORT_NEW:
-      selectedObject = {};
+      selectedObject = {{"Type", "Sport"}};
       allMenus_[SPORT_NEW]->view(currentMap, selectedObject);
-      api_.add(selectedObject);
       break;
 
     case DICI_NEW:

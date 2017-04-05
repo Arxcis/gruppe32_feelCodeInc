@@ -292,7 +292,7 @@ namespace menu
   {
    newPage();
    header(type_ + " new");
-   newObject = form::object(type_);
+   newObject = form::object(newObject[0].second);
    bindStaticOption(map, 1, nextState_[1], "New  " + type_);
    bindStaticOption(map, 0, nextState_[0], "Back");
   }

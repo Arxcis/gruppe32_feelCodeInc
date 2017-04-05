@@ -10,6 +10,13 @@
 #include <iostream>
 #include <string>
 
+// SLeep include cross platform
+#ifdef WIN32
+  #include "stdlib.h"
+#else
+  #include "unistd.h"
+#endif
+
 // @local files
 #include "MenuEnum.h"
 #include "../tool/typedef.h"
