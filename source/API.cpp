@@ -238,46 +238,74 @@ void API::updateMedals(const dat::Container& results)
     if(results[0][2].first.compare("Point"))
     {
       for (size_t i = 0; i < results.size(); i++)
-      { resultList.add(&dat::packing::unpackPointResult(results[i])); }
-      for (size_t i = listSize-1; i > listSize-4; i--)
-      {  top[i] = (Result*)resultList.removeNo(i); }
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
+      for (size_t i = listSize-1; i >= listSize-3; i--)
+      {  top[i] = (Result*)resultList.removeNo(i); } 
     }
     else
     {
       for (size_t i = 0; i < results.size(); i++)
       { resultList.add(&dat::packing::unpackTimeResult(results[i])); }
       for (size_t i = 0; i < 3; i++)
-      { 
-        top[i] = (Result*)resultList.removeNo(i);
-      }
+      { top[i] = (Result*)resultList.removeNo(i); }
     }
     for (size_t i = 0; i < 3; i++)
     {
-      assert(participantBase_.getID(temp, std::to_string(top[i]->getID())));
-      for (size_t j = 0; j < medals.size(); j++)
+      assert(participantBase_.getID(temp, std::to_string(top[i]->getID()))); //pull the participant in the resultlist at top[i] -> dat:Object 
+      for (size_t j = 0; j < medals.size(); j++) //loop on medalranks (per nation)
       {
-        if (!medals[j][1].second.compare(temp[5].second)) //the CODE matches
+        if (!medals[j][1].second.compare(temp[5].second)) //find the medalrank where CODE matches the new top[i]-participant
         {
-          MedalRank* m = (MedalRank*)medalBase_.unpack(medals[j]);
-          m->addMedal(i+1);
-          medalBase_.update(medalBase_.pack(m));
+          MedalRank* nationMedals = (MedalRank*)medalBase_.unpack(medals[j]);
+          nationMedals->giveMedal(i+1);
+          medalBase_.update(medalBase_.pack(nationMedals));
         }
       }
+      resultList.add(top[i]);
     }
   }
 }
 
 void API::updatePoints(const dat::Container& results)
 {
-  //const dat::Container participants = participantBase_.getContainer();
-  //const dat::Container points = pointBase_.getContainer();
+  dat::Container points = pointBase_.getContainer();
+  List resultList(Sorted);
+  
+  dat::Object temp;
 
-  //List resultList(Sorted);
-
-
-  //for (size_t i = 0; i < results.size(); i++)
-  //{ resultList.add(dat::packing::unpackResult(results[i])); }
- 
+  if(results.size() > 0)
+  { 
+    Result* top[6];
+    size_t listSize = resultList.noOfElements();
+    if(results[0][2].first.compare("Point"))
+    {
+      for (size_t i = 0; i < results.size(); i++)
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
+      for (size_t i = listSize-1; i >= listSize-6; i--)
+      {  top[i] = (Result*)resultList.removeNo(i); } 
+    }
+    else
+    {
+      for (size_t i = 0; i < results.size(); i++)
+      { resultList.add(&dat::packing::unpackTimeResult(results[i])); }
+      for (size_t i = 0; i < 6; i++)
+      { top[i] = (Result*)resultList.removeNo(i); }
+    }
+    for (size_t i = 0; i < 6; i++)
+    {
+      assert(participantBase_.getID(temp, std::to_string(top[i]->getID()))); //pull the participant in the resultlist at top[i] -> dat:Object 
+      for (size_t j = 0; j < points.size(); j++) //loop on medalranks (per nation)
+      {
+        if (!points[j][1].second.compare(temp[5].second)) //find the medalrank where CODE matches the new top[i]-participant
+        {
+          Rank* nationPoints = pointBase_.unpack(points[j]);
+          nationPoints->givePoint(i + 1);
+          pointBase_.update(medalBase_.pack(nationPoints));
+        }
+      }
+      resultList.add(top[i]);
+    }
+  }
 }
 
 //
