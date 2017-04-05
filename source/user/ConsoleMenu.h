@@ -48,6 +48,13 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
     virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) {}
+    virtual void view(
+      dat::TransitionMap& map,
+      dat::Object&  sport, 
+      dat::Container&     starts, 
+      dat::Container&     results, 
+      const std::string&  key){}
+
     //
     // @class funciton - small helper functions
     //
@@ -55,6 +62,7 @@ namespace menu
     inline void footer()  const;
     inline void divider(const int length, bool tight=false)  const;
     inline void header(const std::string) const;
+    inline void newLine();
     
 
     //
@@ -243,7 +251,12 @@ namespace menu
   public:
     ResultList(const std::string& type, const std::vector<int>& nextState);
     virtual ~ResultList(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key) override;
+    virtual void view(
+      dat::TransitionMap& map,
+      dat::Object&  sport, 
+      dat::Container&     starts, 
+      dat::Container&     results, 
+      const std::string&  key) override;
   };
 
 

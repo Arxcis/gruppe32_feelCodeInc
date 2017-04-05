@@ -265,7 +265,13 @@ void Console::displayMenu()
       selectedStarts  = api_.getAll(STARTS,  selectedID);
       selectedResults = api_.getAll(RESULTS, selectedID);
 
-      allMenus_[RLIST_SELECT]->view(currentMap, selectedStarts, selectedResults, selectedID);
+      allMenus_[RLIST_SELECT]->view(
+        currentMap, 
+        selectedObject,
+        selectedStarts, 
+        selectedResults, 
+        selectedID);
+
       api_.updateAll(selectedResults, selectedID);
       break;
 

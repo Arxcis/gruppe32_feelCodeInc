@@ -165,20 +165,25 @@ namespace form
     }
   }
 
-  void resultList(dat::Container& results, const int size)
-  {
-    for (int it=0; it < size; it++)
+  void resultList(
+    dat::Object&       sport, 
+    dat::Container&    starts, 
+    dat::Container&    results)
+  { 
+    const std::string& scoreType = sport[2].second;
+    const size_t size = starts.size();
+
+    for (size_t it=0; it < size; it++)
     {
       dat::Object resultProto = 
       {
         {"Type",  "Result"},
         {"ID",    ""},        // PPK
-        {"", ""},     // @TODO , here we need either Time-result or Point-result
+        {scoreType, ""},     // @TODO , here we need either Time-result or Point-result
       };
 
-      printKey(resultProto[1].first + resultProto[2].first);  // stream::readInt(std::cin, resultProto[1].second); // ID may not be necessarry
-      printKey(resultProto[2].first);   stream::readString(std::cin, resultProto[2].second);
-    
+      printKey(starts[it][1].first + " - " + starts[it][1].second + "      " + starts[it][2].first + " - " +  starts[it][2].second); 
+      field(resultProto[2]);
       results.push_back(resultProto);
     }
   }
