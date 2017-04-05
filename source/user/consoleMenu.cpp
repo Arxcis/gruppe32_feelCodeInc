@@ -150,7 +150,8 @@ namespace menu
     header(type_ + " stats");
 
     for(const auto& object: container)
-      { printIllegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
+    { printIllegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
+    
     divider(30);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -348,7 +349,8 @@ namespace menu
     { 
       if (field.first == key)
       { 
-        form::thisField(field); 
+        if (!form::thisField(field)) 
+        { object[0].second == "Cancel"; }
         break; 
       }
     }
