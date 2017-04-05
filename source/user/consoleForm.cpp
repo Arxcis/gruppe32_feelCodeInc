@@ -12,8 +12,7 @@ enum ProtoForms
 
 namespace form
 {
-
-  dat::Object submit;     // Temp-object which is used to send data.
+  static dat::Object cancelObject = {{ "Type", "Cancel" }};
 
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };
@@ -24,8 +23,9 @@ namespace form
   // @function form::object - Based on type information, this function queries for a object-prototype.
   //             It then loops through this prototype, and fills in the blanks.
   //
-  auto object(const std::string type) ->dat::Object&
+  auto object(const std::string type) ->dat::Object
   {
+    bool submit = true;
     dat::Object proto;
     if (type == "Nation")     
     {
@@ -40,12 +40,12 @@ namespace form
         {"ContactEmail",   ""},
       };
 
-      thisField(proto[1]);   // @robustness - PK code check if Nation-code already exists
-      thisField(proto[2]); 
-
-      thisField(proto[4]);
-      thisField(proto[5]);
-      thisField(proto[6]);
+      submit = thisField(proto[1], submit);   // @robustness - PK code check if Nation-code already exists
+      submit = thisField(proto[2], submit); 
+      submit = // #Participants
+      submit = thisField(proto[4], submit);
+      submit = thisField(proto[5], submit);
+      submit = thisField(proto[6], submit);
     }
     else if (type == "Participant")
     {
@@ -60,10 +60,10 @@ namespace form
         {"Sex",          ""},
       };
 
-      thisField(proto[2]);    
-      thisField(proto[3]);  
-      thisField(proto[4]);    // @robustness - FK NationCode - check if already exist
-      thisField(proto[5]);
+      submit = thisField(proto[2], submit);    
+      submit = thisField(proto[3], submit);  
+      submit = thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
+      submit = thisField(proto[5], submit);
     }
     else if (type == "Sport")      
     {
@@ -74,12 +74,14 @@ namespace form
         {"ScoreType",   ""},
         {"#Diciplines", "0"},
       };
-      thisField(proto[1]);  // @robustness - PK should be checked if exst
-      thisField(proto[2]); 
+      submit = thisField(proto[1], submit);  // @robustness - PK should be checked if exst
+      submit = thisField(proto[2], submit); 
     }
 
-    form::submit = proto;
-    return form::submit;
+    if (submit)
+    { return proto; }
+    else 
+    { return cancelObject; }
   }
 
   //
@@ -88,6 +90,9 @@ namespace form
   //
   void appendDicipline(dat::Object sport)
   {
+
+    size_t suffixNumber = (std::stoi(sport[3].second)+1);
+
     dat::Object proto = 
     {
       {"Type", "Dicipline"},
@@ -104,10 +109,12 @@ namespace form
   //     2. Type check, and call correct input-function for the job.
   //  
   //   This functions is where we give the user userfull error messages.
+  //  As long as the submit value statys 'true', program will continue to read fields.
   //
-  bool thisField(dat::Field& field)
+  bool thisField(dat::Field& field, bool submit)
   {
-
+    if (!submit) 
+    { return false; }
     bool valid = false;
     const std::string fieldType = field.first;
     std::cout << fieldType << ":  " << std::endl;         // 1. 
@@ -186,7 +193,10 @@ namespace form
     { assert(false); } // Field-types should be one of the listed above.
 
     if (field.second == "0")
-    { return false; }       // Aborting filling in field.
+    { 
+      submit = false;     // Aborting filling in field or object.
+      return false; 
+    }     
     
     else 
     { return true; } 

@@ -306,7 +306,10 @@ namespace menu
   void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
   {
    newPage();
-   header(type_ + " new");
+   header(type_ + " ny");
+   newLine();
+   printIllegalOption("Avbryt == 0");
+   newLine();
    newObject = form::object(newObject[0].second);
    bindStaticOption(map, 1, nextState_[1], "New  " + type_);
    bindStaticOption(map, 0, nextState_[0], "Back");

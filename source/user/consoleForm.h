@@ -16,13 +16,11 @@
 namespace form
 { 
 
-  auto object(const std::string type) ->dat::Object&;
-  bool thisField(dat::Field& field);
+  auto object(const std::string type) ->dat::Object;
+  bool thisField(dat::Field& field, bool submit=true);
   
   bool askAgain(bool valid, const std::string& value, const std::string& errorMessage);
-
   void appendDicipline(dat::Object sport); 
-
   void startList(dat::Container& starts);
   void resultList(
     dat::Object&    sport, 
