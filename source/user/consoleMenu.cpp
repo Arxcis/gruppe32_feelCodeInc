@@ -196,13 +196,24 @@ namespace menu
     newPage();
     header(type_);
 
+    //
+    // 1. Header with ID
+    //
     printIllegalOption(object[1].first + ": " + object[1].second);
-    divider(40);
+    newLine();
+
+    //
+    // 2. Fields to edit
+    //
     bindDynamicOption(map, 1, nextState_[1], object[2].first, (object[2].first + ": " + object[2].second));
     bindDynamicOption(map, 2, nextState_[1], object[3].first, (object[3].first + ": " + object[3].second));
     bindDynamicOption(map, 3, nextState_[1], object[4].first, (object[4].first + ": " + object[4].second));
     bindDynamicOption(map, 4, nextState_[1], object[5].first, (object[5].first + ": " + object[5].second)); // @robustness check if country exists
 
+    //
+    // 3. Menu options
+    //
+    newLine();
     divider(40);
     bindStaticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -225,15 +236,13 @@ namespace menu
     // 1. Binding options which edit the sport
     //
     bindDynamicOption(map, 1, nextState_[1], object[1].first, object[1].first + ": " + object[1].second);
-    newPage();
-    divider(40);
     printIllegalOption(object[2].first + ": " + object[2].second);
 
     //
     // 2. Binding opitons which selects a dicipline
     // 
     newLine();
-    printIllegalOption("#Øvelser" + (": " + object[3].second));
+    printIllegalOption("Øvelser" + (": " + object[3].second));
     
     size_t optionIt = 2;
     for (size_t i = 4; i < (4 + (std::stoi(object[3].second)*3)); i+=3 )

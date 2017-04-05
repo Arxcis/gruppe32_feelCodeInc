@@ -97,6 +97,10 @@ namespace menu
     protected:
       const std::string type_;
       const std::vector<int> nextState_;
+
+      // Columne widths
+      size_t column1 = 40;
+      size_t column2 = 40;
   };
 
 

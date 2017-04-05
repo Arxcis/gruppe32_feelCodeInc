@@ -272,7 +272,7 @@ void Console::displayMenu()
         selectedResults, 
         selectedID);
 
-      api_.updateAll(selectedResults, selectedID);
+      api_.updateAll(RESULTS, selectedResults, selectedID);
       break;
 
 //  ----------- SILENT delete commands  -----------------

@@ -245,7 +245,7 @@ void API::updateMedals(const dat::Container& results)
     else
     {
       for (size_t i = 0; i < results.size(); i++)
-      { resultList.add(&dat::packing::unpackTimeResult(results[i])); }
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
       for (size_t i = 0; i < 3; i++)
       { top[i] = (Result*)resultList.removeNo(i); }
     }
@@ -287,7 +287,7 @@ void API::updatePoints(const dat::Container& results)
     else
     {
       for (size_t i = 0; i < results.size(); i++)
-      { resultList.add(&dat::packing::unpackTimeResult(results[i])); }
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
       for (size_t i = 0; i < 6; i++)
       { top[i] = (Result*)resultList.removeNo(i); }
     }
