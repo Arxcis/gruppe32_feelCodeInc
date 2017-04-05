@@ -146,10 +146,13 @@ namespace form
       { stream::readDate  (std::cin, field.second); }
 
     else if (fieldType.find("Sex")   != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Point", "Time"   }); }
+      { stream::readEnum  (std::cin, field.second, { "Male", "Female"   }); }
 
     else if (fieldType.find("ScoreType") != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Male" , "Female" }); }
+      { stream::readEnum  (std::cin, field.second, { "Point" , "Time" }); }
+
+    else 
+      { assert(false); } // Field-types should be one of the listed above.
   }
 
 

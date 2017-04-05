@@ -7,12 +7,16 @@
 
 #include <stdio.h>
 #include "user/Console.h"
+#include "user/testingUser_jonas.h"
+
 
 int main()
 { 
-  Console console;
-  console.run();
-  
+  //Console console;
+  //console.run();
+
+  testFormField();
+
   printf("Hei main.cpp\n");
   return 0;
 }

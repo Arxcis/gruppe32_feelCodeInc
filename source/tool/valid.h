@@ -23,7 +23,7 @@ namespace valid
   static std::regex regDouble ("[+-]?[0-9]{0,15}[\\.]?[0-9]{1,15}"); // @robustness - could overflow floating point
   static std::regex regPhone  ("[+][0-9]{1,3}[ ](([0-9]{8})|(([0-9]{2}[ ]){3}[0-9]{2})|([0-9]{3}[ ][0-9]{2}[ ][0-9]{3}))");
   static std::regex regTime   ("[0-9]{2}[:][0-9]{2}([:][0-9]{2}([:][0-9]{3})?)?"); // @friendlyness, demands 00:00:00:999 for milliseconds
-  static std::regex regDate   ("(([0][1-9])|([1-2][0-9])|([3][0-1]))[\\.](([0][1-9])|([1][0-2]))[\\.](([0-9]{2})|(([1][9][0-9]{2})|([2][0]([0-9]{2}))))"); // @robustness - could give wrong dates.
+  static std::regex regDate   ("(([0][1-9])|([1-2][0-9])|([3][0-1]))[\\.](([0][1-9])|([1][0-2]))[\\.](([0-9]{2})|(([1][9][0-9]{2})|([2][0]([0-9]{2}))))"); //  @robustness - Does not account for varying month-length and year-length
   static std::regex regMedals ("(([0][1-9]?)|[1-9]{1,2})([-](([0][1-9]?)|[1-9]{1,2})){2}");
 
 
