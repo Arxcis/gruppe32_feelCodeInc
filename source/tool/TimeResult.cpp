@@ -5,4 +5,4 @@ auto TimeResult::getTimeStamp() -> dat::Time
 
 
 void TimeResult::display()
-  { printf("ID: %d    Time: %d\n",ID_, timeStamp_.castToInt()); }
+  { printf("ID: %d    Time: %ds\n",ID_, timeStamp_.castToInt()); }
