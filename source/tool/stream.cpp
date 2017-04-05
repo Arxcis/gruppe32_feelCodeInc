@@ -5,200 +5,105 @@ namespace stream
  
 ////////////////////////////////////////////////////////////////
 
-            // READING FROM std::stringstream (file)
+            // READING FROM stream of Type type
   
 ////////////////////////////////////////////////////////////////
 
+  //
+  // @function eatSpaces for file-streams. Ignore white-space.
+  //
   void eatSpaces(std::stringstream& stream)
   {
     std::string spaces;
     getline(stream, spaces, '\n');
   }
 
-  void readChar3 (std::stringstream& stream, std::string& value)
+  //
+  // @function eatSpaces for keyboard-streams.
+  // Since we dont want to cause an interrupt, this is empty.
+  //
+  void eatSpaces(std::istream& stream)
+  {}
+
+  template<typename T>
+  bool readChar3 (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isChar3(value));
     eatSpaces(stream);
+    return valid::isChar3(value);
   }
 
-  void readString(std::stringstream& stream, std::string& value)
+  template<typename T>
+  bool readString(T& stream, std::string& value)
   {
     getline(stream, value, ';');
-
     eatSpaces(stream);
+    return valid::isString();
   }
 
-  void readPhone (std::stringstream& stream, std::string& value)
+  template<typename T>
+  bool readPhone (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isPhone(value));
     eatSpaces(stream);
+    return valid::isPhone(value);
   }
 
-  void readEmail (std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readEmail (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isEmail(value));
     eatSpaces(stream);
+    return valid::isEmail(value);
   }
 
-  void readInt   (std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readInt   (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isInt(value));
     eatSpaces(stream);
+    return valid::isInt(value);
   }
 
-  void readDouble(std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readDouble(T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isDouble(value));
     eatSpaces(stream);
-  }
+    return valid::isDouble(value);
+  } 
 
-  void readTime  (std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readTime  (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isTime(value));
     eatSpaces(stream);
+    return valid::isTime(value);
   }
 
-  void readDate  (std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readDate  (T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isDate(value));
     eatSpaces(stream);
+    return valid::isDate(value);
   }
 
-  void readMedals(std::stringstream& stream, std::string& value)
+  template<typename T>
+  void readMedals(T& stream, std::string& value)
   {
     getline(stream, value, ';');
-    assert(valid::isMedals(value));
     eatSpaces(stream);
+    return valid::isMedals(value);
   }
 
-  void readEnum(std::stringstream& stream, std::string& value, const std::vector<std::string>& validStrings)
+  template<typename T>
+  void readEnum(T& stream, std::string& value, const std::vector<std::string>& validStrings)
   {
     getline(stream, value, ';');
     bool oneHit = false;
     for(const auto& str: validStrings)
     {  if(value == str) oneHit = true; }
-      assert(oneHit);
     eatSpaces(stream);
+    return oneHit;
   }
-
-////////////////////////////////////////////////////////////////
-
-              // READING FROM std::istream (cin)
-
-////////////////////////////////////////////////////////////////
-
-  int  readInt(const std::string& message)
-  {
-    std::string myInt;
-    std::cout << message << ": ";
-    readInt(std::cin, myInt);
-    return std::stoi(myInt);
-  }
-
-  void readString(std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-  }
-
-
-  void readChar3 (std::istream& stream, std::string& value)
-  { 
-    getline(stream, value, '\n');
-    while(!valid::isChar3(value))
-    {
-      std::cout << "Valid code: 'NOR'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readPhone (std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isPhone(value))
-    {
-      std::cout << "Valid phone ex: '+47 45200864'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readEmail (std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isEmail(value))
-    {
-      std::cout << "Valid email ex: 'jonas.solsvik@gmail.com'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readInt   (std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isInt(value))
-    {
-      std::cout << "Valid integers:  '1' or '42'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readDouble(std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isDouble(value))
-    {
-      std::cout << "Valid numbers: '0.99' or '3.14'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readTime  (std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isTime(value))
-    {
-      std::cout << "Valid times: '13:37' or '12:22:22'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readDate  (std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isDate(value))
-    {
-      std::cout << "Valid dates: '12.03.91' or '08.06.2000'\n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readMedals(std::istream& stream, std::string& value)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isMedals(value))
-    {
-      std::cout << "Valid medals: '1-3-0' or '0-13-5' \n";
-      getline(stream, value, '\n');
-    }
-  }
-
-  void readEnum(std::istream& stream, std::string& value, const std::vector<std::string>& validStrings)
-  {
-    getline(stream, value, '\n');
-    while(!valid::isEnum(value, validStrings)) 
-    {
-      std::cout << "Valid entries:  ";
-      for(const auto& string: validStrings)
-        { std::cout << string << ", "; }
-      std::cout << "\n";
-      getline(stream, value, '\n');
-    }
-  } 
-}
-

@@ -24,30 +24,22 @@
 namespace stream
 { 
   void eatSpaces(std::stringstream& stream);
+  void eatSpaces(std::istream& stream);
+
   int  readInt(const std::string& message);
   // Reading from stringstream - File Input
-  void readChar3 (std::stringstream& stream, std::string& value);
-  void readString(std::stringstream& stream, std::string& value);
-  void readPhone (std::stringstream& stream, std::string& value);
-  void readEmail (std::stringstream& stream, std::string& value);
-  void readInt   (std::stringstream& stream, std::string& value);
-  void readDouble(std::stringstream& stream, std::string& value);
-  void readTime  (std::stringstream& stream, std::string& value);
-  void readDate  (std::stringstream& stream, std::string& value);
-  void readMedals(std::stringstream& stream, std::string& value);
-  void readEnum  (std::stringstream& stream, std::string& value, 
-                    const std::vector<std::string>& validStrings);
+  template<typename T> bool readChar3 (T& stream, std::string& value);
+  template<typename T> bool readName  (T& stream, std::string& value);
+  template<typename T> bool readPhone (T& stream, std::string& value);
+  template<typename T> bool readEmail (T& stream, std::string& value);
+  template<typename T> bool readInt   (T& stream, std::string& value);
+  template<typename T> bool readDouble(T& stream, std::string& value);
+  template<typename T> bool readTime  (T& stream, std::string& value);
+  template<typename T> bool readDate  (T& stream, std::string& value);
+  template<typename T> bool readMedals(T& stream, std::string& value);
+  template<typename T> bool readEnum  (
+                          T& stream, 
+                          std::string& value, 
+                          const std::vector<std::string>& validStrings);
 
-  // Reading from cin - Keyboard input
-  void readChar3 (std::istream& stream, std::string& value);
-  void readString(std::istream& stream, std::string& value);
-  void readPhone (std::istream& stream, std::string& value);
-  void readEmail (std::istream& stream, std::string& value);
-  void readInt   (std::istream& stream, std::string& value);
-  void readDouble(std::istream& stream, std::string& value);
-  void readTime  (std::istream& stream, std::string& value);
-  void readDate  (std::istream& stream, std::string& value);
-  void readMedals(std::istream& stream, std::string& value);
-  void readEnum  (std::istream& stream, std::string& value,
-                    const std::vector<std::string>& validStrings);
 }
