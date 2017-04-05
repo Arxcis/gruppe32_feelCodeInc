@@ -1,5 +1,10 @@
 #include "valid.h"
 
+bool valid::isDiciplineID(const std::string& value)
+{
+  return std::regex_match(value, regDiciplineID);
+}
+
 bool valid::isEnum(const std::string& value, const std::vector<std::string>& validStrings)
 {
 

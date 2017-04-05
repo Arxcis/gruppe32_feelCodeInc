@@ -156,7 +156,7 @@ namespace db
         thisProto.push_back({ "Time" + it, "" });
         thisProto.push_back({ "Date" + it, "" });
 
-        assert(stream::readName(thisProto[j].second  , ss));
+        assert(stream::readDiciplineID(thisProto[j].second  , ss));
         assert(stream::readTime  (thisProto[j+1].second, ss));
         assert(stream::readDate  (thisProto[j+2].second, ss));
         //std::cout << thisProto[j].second << std::endl;  // @debug

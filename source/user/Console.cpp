@@ -84,7 +84,7 @@ int Console::run()
     if (!silentCommand) 
     {
       // 1. Read input
-      input = stream::readInt("0-" + std::to_string(currentMap.size()-1) + "\n");
+      input = stream::readInput(("0-" + std::to_string(currentMap.size()-1)) + "\n");
 
       // 2. Make sure input is within bounds.
       clampedInput = clamp(input, (int)currentMap.size()-1);

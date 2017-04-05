@@ -24,94 +24,17 @@ namespace stream
   //
   void eatSpaces(std::istream& stream)
   {}
-
+  
 
   //
-  // @template function read-functions
-  //  currently supports 
-  //    std::istream  
-  //    std::stringstream
+  // @function readInt()
+  //  @brief sometimes you just want an int, and get it over with
   //
-  template<typename T>
-  bool readChar3 (std::string& value, T& stream)
+  int  readInput(const std::string& message)
   {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isChar3(value);
-  }
-
-  template<typename T>
-  bool readString(std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isName(value);
-  }
-
-  template<typename T>
-  bool readPhone (std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isPhone(value);
-  }
-
-  template<typename T>
-  bool readEmail (std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isEmail(value);
-  }
-
-  template<typename T>
-  bool readInt   (std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isInt(value);
-  }
-
-  template<typename T>
-  bool readDouble(std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isDouble(value);
-  } 
-
-  template<typename T>
-  bool readTime  (std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isTime(value);
-  }
-
-  template<typename T>
-  bool readDate  (std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isDate(value);
-  }
-
-  template<typename T>
-  bool readMedals(std::string& value, T& stream)
-  {
-    getline(stream, value, ';');
-    eatSpaces(stream);
-    return valid::isMedals(value);
-  }
-
-  template<typename T>
-  bool readEnum(std::string& value, T& stream, const std::vector<std::string>& validStrings)
-  {
-    getline(stream, value, ';');
-    bool oneHit = false;
-    for(const auto& str: validStrings)
-      {  if(value == str) oneHit = true; }
-    eatSpaces(stream);
-    return oneHit;
+    std::string myInt;
+    std::cout << message << ": \n";
+    readInt(myInt, std::cin, '\n');
+    return std::stoi(myInt);
   }
 }

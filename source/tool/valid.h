@@ -13,12 +13,16 @@
 
 namespace valid
 {
-  
+
   // @regex
   //   All these regular expressions har hand-made using the
   //    really helpfull tool rubuluar.com
   //
-  static std::regex regName   ("[\\s]*[A-Z]+");
+       // Special case to this system
+  static std::regex regDiciplineID("[\\s]*[[:alpha:]0-9_-]+");
+
+      // General cases
+  static std::regex regName   ("[\\s]*[#[:alpha:] ]+");
   static std::regex regChar3  ("[\\s]*[A-Z]{3}");
   static std::regex regInt    ("[\\s]*[0-9]+");
   static std::regex regDouble ("[\\s]*[+-]?[0-9]{0,15}[\\.]?[0-9]{1,15}"); // @robustness - could overflow floating point
@@ -28,6 +32,12 @@ namespace valid
   static std::regex regMedals ("[\\s]*(([0][1-9]?)|[1-9]{1,2})([-](([0][1-9]?)|[1-9]{1,2})){2}");
   static std::regex regEmail  ("[\\s]*([A-Za-z0-9\\.-_]{3,128})*[@][A-Za-z0-9\\.]{3,128}[.][a-z]{2,6}");  // @robustness - pseudo email address.
 
+
+  //
+  // @brief
+  //  @regex example siganture 'Langrenn_10km-klassisk'
+  //
+  bool isDiciplineID(const std::string& value);
 
   //
   // @brief

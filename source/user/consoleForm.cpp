@@ -151,7 +151,7 @@ namespace form
   //
   void startList(dat::Container& starts)
   {
-    int size = stream::readInt("How many participants do you want to add?\n");
+    int size = stream::readInput("How many participants do you want to add?\n");
     for (int it = 0; it < size; it++)
     {
       dat::Object startProto =
