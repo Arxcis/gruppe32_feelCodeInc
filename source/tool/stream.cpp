@@ -33,7 +33,7 @@ namespace stream
   //    std::stringstream
   //
   template<typename T>
-  bool readChar3 (T& stream, std::string& value)
+  bool readChar3 (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -41,7 +41,7 @@ namespace stream
   }
 
   template<typename T>
-  bool readString(T& stream, std::string& value)
+  bool readString(std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -49,7 +49,7 @@ namespace stream
   }
 
   template<typename T>
-  bool readPhone (T& stream, std::string& value)
+  bool readPhone (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -57,7 +57,7 @@ namespace stream
   }
 
   template<typename T>
-  void readEmail (T& stream, std::string& value)
+  void readEmail (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -65,7 +65,7 @@ namespace stream
   }
 
   template<typename T>
-  void readInt   (T& stream, std::string& value)
+  void readInt   (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -73,7 +73,7 @@ namespace stream
   }
 
   template<typename T>
-  void readDouble(T& stream, std::string& value)
+  void readDouble(std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -81,7 +81,7 @@ namespace stream
   } 
 
   template<typename T>
-  void readTime  (T& stream, std::string& value)
+  void readTime  (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -89,7 +89,7 @@ namespace stream
   }
 
   template<typename T>
-  void readDate  (T& stream, std::string& value)
+  void readDate  (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -97,7 +97,7 @@ namespace stream
   }
 
   template<typename T>
-  void readMedals(T& stream, std::string& value)
+  void readMedals(std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -105,7 +105,7 @@ namespace stream
   }
 
   template<typename T>
-  void readEnum(T& stream, std::string& value, const std::vector<std::string>& validStrings)
+  void readEnum(std::string& value, T& stream, const std::vector<std::string>& validStrings)
   {
     getline(stream, value, ';');
     bool oneHit = false;
