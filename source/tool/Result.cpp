@@ -5,3 +5,7 @@ int Result::getID()
 
 int Result::getValue()
 { return value_; }
+
+
+void Result::display()
+  { printf("ID: %d    Points: %d\n",ID_, value_); }

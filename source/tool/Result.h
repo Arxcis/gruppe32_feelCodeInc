@@ -20,11 +20,12 @@ protected:
 
 public:
   Result(const int ID, const int value)
-  :ID_(ID)
+  :NumElement(value)
+  ,ID_(ID)
   ,value_(value)
   {}
 
   int getID();
   int getValue();
-  
+  void display();
 };

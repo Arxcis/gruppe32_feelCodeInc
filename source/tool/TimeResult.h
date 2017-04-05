@@ -15,4 +15,5 @@ public:
   {}
 
   auto getTimeStamp() -> dat::Time;
+  void display() override;
 };

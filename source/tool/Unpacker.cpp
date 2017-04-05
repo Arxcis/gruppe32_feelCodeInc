@@ -35,4 +35,18 @@ namespace dat { namespace packing
       std::stoi(medals.substr(3, 2)),
       std::stoi(medals.substr(6, 2)));
   }
+
+  Result unpackPointResult (const Object& pointRes_)
+  {
+    const int ID = std::stoi(pointRes_[1].second);
+    const int points = std::stoi(pointRes_[2].second);
+    return Result(ID, points);
+  }
+    
+  TimeResult unpackTimeResult  (const Object& timeRes_)
+  {
+    const int ID = std::stoi(timeRes_[1].second);
+    Time time      = unpackTime(timeRes_[2]);
+    return TimeResult(ID, time);
+  }
 }}
