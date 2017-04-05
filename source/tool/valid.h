@@ -18,7 +18,7 @@ namespace valid
   //   All these regular expressions har hand-made using the
   //    really helpfull tool rubuluar.com
   //
-  static std::regex regString ("[\\s]*[A-Z]+");
+  static std::regex regName   ("[\\s]*[A-Z]+");
   static std::regex regChar3  ("[\\s]*[A-Z]{3}");
   static std::regex regInt    ("[\\s]*[0-9]+");
   static std::regex regDouble ("[\\s]*[+-]?[0-9]{0,15}[\\.]?[0-9]{1,15}"); // @robustness - could overflow floating point
@@ -33,7 +33,7 @@ namespace valid
   // @brief
   //  @regex validates if only characters
   //
-  bool isString(const std::string& value);
+  bool isName(const std::string& value);
 
   //
   // @brief

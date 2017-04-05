@@ -15,9 +15,9 @@ bool valid::isEnum(const std::string& value, const std::vector<std::string>& val
 //
 // @function isString
 //
-bool isString(const std::string& value)
+bool valid::isName(const std::string& value)
 { 
-  return std::regex_match(value, regString); 
+  return std::regex_match(value, regName);
 }
 //
 // @funciton isChar3

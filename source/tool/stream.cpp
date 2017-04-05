@@ -45,7 +45,7 @@ namespace stream
   {
     getline(stream, value, ';');
     eatSpaces(stream);
-    return valid::isString();
+    return valid::isName(value);
   }
 
   template<typename T>
@@ -57,7 +57,7 @@ namespace stream
   }
 
   template<typename T>
-  void readEmail (std::string& value, T& stream)
+  bool readEmail (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -65,7 +65,7 @@ namespace stream
   }
 
   template<typename T>
-  void readInt   (std::string& value, T& stream)
+  bool readInt   (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -73,7 +73,7 @@ namespace stream
   }
 
   template<typename T>
-  void readDouble(std::string& value, T& stream)
+  bool readDouble(std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -81,7 +81,7 @@ namespace stream
   } 
 
   template<typename T>
-  void readTime  (std::string& value, T& stream)
+  bool readTime  (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -89,7 +89,7 @@ namespace stream
   }
 
   template<typename T>
-  void readDate  (std::string& value, T& stream)
+  bool readDate  (std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -97,7 +97,7 @@ namespace stream
   }
 
   template<typename T>
-  void readMedals(std::string& value, T& stream)
+  bool readMedals(std::string& value, T& stream)
   {
     getline(stream, value, ';');
     eatSpaces(stream);
@@ -105,12 +105,13 @@ namespace stream
   }
 
   template<typename T>
-  void readEnum(std::string& value, T& stream, const std::vector<std::string>& validStrings)
+  bool readEnum(std::string& value, T& stream, const std::vector<std::string>& validStrings)
   {
     getline(stream, value, ';');
     bool oneHit = false;
     for(const auto& str: validStrings)
-    {  if(value == str) oneHit = true; }
+      {  if(value == str) oneHit = true; }
     eatSpaces(stream);
     return oneHit;
   }
+}

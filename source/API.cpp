@@ -68,16 +68,16 @@ bool API::add(const dat::Object& object )
   if(object[0].second == "Nation")
   { return nationBase_.add(object); }
 
-  else if(!object[0].second == "Participant")
+  else if(object[0].second == "Participant")
   { return participantBase_.add(object); }
 
-  else if(!object[0].second == "Sport")
+  else if(object[0].second == "Sport")
   { return sportBase_.add(object); }
 
-  else if(!object[0].second == "Medal")
+  else if(object[0].second == "Medal")
   { return medalBase_.add(object); }
 
-  else if(!object[0].second == "Point")
+  else if(object[0].second == "Point")
   { return pointBase_.add(object); }
 
   return false; //type was unreccognized or CANCELED; DON'T ADD.

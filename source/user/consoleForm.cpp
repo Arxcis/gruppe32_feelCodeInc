@@ -111,35 +111,35 @@ namespace form
 
     if (fieldType.find("Code")  != std::string::npos)     // 2. 
     { 
-        stream::readChar3 (std::cin, field.second);
+        stream::readChar3 (field.second, std::cin);
     }
 
     else if (fieldType.find("Name")  != std::string::npos) 
-      { stream::readName(std::cin, field.second); }
+      { stream::readName(field.second, std::cin); }
 
     else if (fieldType.find("Phone") != std::string::npos) 
-      { stream::readPhone (std::cin, field.second); }
+      { stream::readPhone (field.second, std::cin); }
 
     else if (fieldType.find("Email") != std::string::npos) 
-      { stream::readEmail (std::cin, field.second); }
+      { stream::readEmail (field.second, std::cin); }
 
     else if (fieldType.find("Time")  != std::string::npos) 
-      { stream::readTime  (std::cin, field.second); }
+      { stream::readTime  (field.second, std::cin); }
 
     else if (fieldType.find("Point") != std::string::npos) 
-      { stream::readInt (std::cin, field.second); }
+      { stream::readInt (field.second, std::cin); }
 
     else if (fieldType.find("Medal") != std::string::npos) 
-      { stream::readMedals (std::cin, field.second); }
+      { stream::readMedals (field.second, std::cin); }
 
     else if (fieldType.find("Date")  != std::string::npos) 
-      { stream::readDate  (std::cin, field.second); }
+      { stream::readDate  (field.second, std::cin); }
 
     else if (fieldType.find("Sex")   != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Male", "Female"   }); }
+      { stream::readEnum  (field.second, std::cin, { "Male", "Female"   }); }
 
     else if (fieldType.find("ScoreType") != std::string::npos) 
-      { stream::readEnum  (std::cin, field.second, { "Point" , "Time" }); }
+      { stream::readEnum  (field.second, std::cin, { "Point" , "Time" }); }
 
     else 
       { assert(false); } // Field-types should be one of the listed above.
@@ -160,7 +160,7 @@ namespace form
         {"ID",      ""},        // PPK
         {"StartNR", ""},
       };
-      printKey(startProto[1].first);   stream::readInt(std::cin, startProto[1].second);
+    printKey(startProto[1].first);   stream::readInt(startProto[1].second, std::cin);
       // printKey(startProto[2].first);   stream::readString(std::cin, startProto[2].second);
 
       starts.push_back(startProto);

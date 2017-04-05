@@ -81,11 +81,11 @@ namespace db
     {
       std::cout << "Nation " << i+1 << " of " << objectCount << "\n";      // @debug
 
-      assert(stream::readString(prototype[0].second, ss));
+      assert(stream::readName  (prototype[0].second, ss));
       assert(stream::readChar3 (prototype[1].second, ss));
-      assert(stream::readString(prototype[2].second, ss));
+      assert(stream::readName  (prototype[2].second, ss));
       assert(stream::readInt   (prototype[3].second, ss));
-      assert(stream::readString(prototype[4].second, ss));
+      assert(stream::readName  (prototype[4].second, ss));
       assert(stream::readPhone (prototype[5].second, ss));
       assert(stream::readEmail (prototype[6].second, ss));
 

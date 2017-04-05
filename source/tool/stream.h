@@ -37,9 +37,7 @@ namespace stream
   template<typename T> bool readTime  (std::string& value, T& stream);
   template<typename T> bool readDate  (std::string& value, T& stream);
   template<typename T> bool readMedals(std::string& value, T& stream);
-  template<typename T> bool readEnum  (
-                          T& stream, 
-                          std::string& value, 
-                          const std::vector<std::string>& validStrings);
+  template<typename T> bool readEnum  (std::string& value, T& stream,
+                                        const std::vector<std::string>& validStrings);
 
 }

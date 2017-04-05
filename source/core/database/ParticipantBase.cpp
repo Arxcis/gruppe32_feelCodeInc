@@ -87,9 +87,9 @@ namespace db
     {
       std::cout << "Participant " << i+1 << " of " << objectCount << "\n";
 
-      assert(stream::readString (prototype[0].second, ss));
+      assert(stream::readName (prototype[0].second, ss));
       assert(stream::readInt    (prototype[1].second, ss));
-      assert(stream::readString (prototype[2].second, ss));
+      assert(stream::readName (prototype[2].second, ss));
       assert(stream::readPhone  (prototype[3].second, ss));
       assert(stream::readEmail  (prototype[4].second, ss));
       assert(stream::readChar3  (prototype[5].second, ss));
