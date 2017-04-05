@@ -10,7 +10,7 @@
 
 #include <string>
 #include "../tool/typedef.h"
-#include "ListTool2B.h"
+#include "../core/ListTool2B.h"
 
 class Result : public NumElement 
 {
