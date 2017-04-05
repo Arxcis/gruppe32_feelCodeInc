@@ -4,7 +4,6 @@
 
 #include "Rank.h"
 #include "../tool/Medals.h"
-#include <cassert>
 #include "../enum.h"
 
 class MedalRank : public Rank
@@ -27,6 +26,7 @@ public:
   //   2 = Silver
   //   3 = Bronze
   //
-    void addMedal(int valor);
+  void takeMedal(int valor);
+  void giveMedal(int valor);
 };
 
