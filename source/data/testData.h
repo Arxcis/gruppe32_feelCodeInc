@@ -72,7 +72,7 @@ namespace test
   {
     { "Type", "Point"},
     { "Code",  "NOR" },
-    { "#Points", "80"  },
+    { "Points", "80"  },
   };
 
   dat::Object* nulldata = nullptr;
