@@ -11,6 +11,14 @@ bool valid::isEnum(const std::string& value, const std::vector<std::string>& val
   return false;
 }
 
+
+//
+// @function isString
+//
+bool isString(const std::string& value)
+{ 
+  return std::regex_match(value, regString); 
+}
 //
 // @funciton isChar3
 //  @robustness We should also check that all letters are indeed letters and nothing else

@@ -25,6 +25,13 @@ namespace stream
   void eatSpaces(std::istream& stream)
   {}
 
+
+  //
+  // @template function read-functions
+  //  currently supports 
+  //    std::istream  
+  //    std::stringstream
+  //
   template<typename T>
   bool readChar3 (T& stream, std::string& value)
   {

@@ -111,12 +111,11 @@ namespace form
 
     if (fieldType.find("Code")  != std::string::npos)     // 2. 
     { 
-      if(!stream::readChar3 (std::cin, field.second)) 
-        { return 0; }
+        stream::readChar3 (std::cin, field.second);
     }
 
     else if (fieldType.find("Name")  != std::string::npos) 
-      { stream::readString(std::cin, field.second); }
+      { stream::readName(std::cin, field.second); }
 
     else if (fieldType.find("Phone") != std::string::npos) 
       { stream::readPhone (std::cin, field.second); }
