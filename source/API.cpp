@@ -134,7 +134,7 @@ void API::updateAll(const Entity entity, const dat::Container& list, const std::
   {
     switch (entity)
     {
-      case STARTS:  sportBase_.writeStarts(id, list);   break;
+      case STARTS:  sportBase_.writeStarts(id, list);  break;
       case RESULTS: sportBase_.writeResults(id, list); updateMedals(list); updatePoints(list); break;
     }
   }
