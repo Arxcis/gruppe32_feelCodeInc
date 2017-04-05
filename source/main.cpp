@@ -12,8 +12,8 @@
 
 int main()
 { 
-  //Console console;
-  //console.run();
+  Console console;
+  console.run();
 
   testFormField();
 
