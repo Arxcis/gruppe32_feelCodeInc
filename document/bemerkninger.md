@@ -28,3 +28,9 @@
      som private medlemmer i klassen API. Resten av programmet bruker API, for å snakke med databasen.
 
 7. Vi bruker altså ikke 'extern' en eneste plass, men bruker heller et API-objekt for å 'interface' med databasen.
+
+8. Desverre fant vi ingen måte å feilskjekke UTF-8 - unicode letters. Derfor vil ikke systemet vårt takle nasjonsspesifikke bokstaver.
+     Tar gjerne i mot lærdom og visdom på dette området.
+
+9. Testdata vi fikk tildelt hadde navn med tall i seg. Vi kjører en ganske streng skjekk på at navn er på riktig format når de leses inn. Det
+    gir ingen mening å tillate navn med tall i seg. Derfor måtte vi endre på testdata.
