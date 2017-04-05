@@ -11,8 +11,8 @@ namespace db
     auto rankObj = dat::Object
     {
       { "Type",    "Medal" },    
-      { "Nation",  (char*)rank->getNation() },                      // NationCode  
-      { "Medal",   dat::packing::packMedals( medals ) }, // Medal values [GOLD-SILVER-BRONZE]
+      { "Code",    (char*)rank->getNation() },           // NationCode  
+      { "Medal",   dat::packing::packMedals( medals ) } // Medal values [GOLD-SILVER-BRONZE]
     };
     return rankObj;
   }

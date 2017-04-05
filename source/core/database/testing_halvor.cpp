@@ -113,13 +113,31 @@
     { "1002", "1002" },
   };
 
-  dat::Object
-    resultList
+  const dat::Container resultList
   {
-    { "Type", "ResultList" },
-    { "#Entries", "2" },
-    { "1001", "00:48:01" },
-    { "1002", "00:28:55" },
+    { {"Type",  "Time"    },
+      {"ID",    "101"     },  //participant ID
+      {"Value", "12:23:12"} },
+
+    { { "Type",  "Time"    },
+      { "ID",    "102"     }, //participant ID
+      { "Value", "11:34:12"} },
+
+    { { "Type",  "Time"    },
+      { "ID",    "203"     }, //participant ID
+      { "Value", "09:03:37"} },
+
+     { { "Type",  "Time"    },
+      { "ID",    "104"     }, //participant ID
+      { "Value", "02:03:37"} },
+
+   { { "Type",  "Time"    },
+      { "ID",    "202"     }, //participant ID
+      { "Value", "19:53:34"} },
+
+    { { "Type",  "Time"    },
+      { "ID",    "302"     }, //participant ID
+      { "Value", "08:23:37"} }
   };
 
 
@@ -162,5 +180,28 @@ int main()
 {
   API api;
 
+  dat::Container participants = api.getAll(PARTICIPANT);
+  for (size_t i = 0; i < participants.size(); i++)
+  {
+    for (size_t j = 0; j < participants[i].size(); j++)
+    { 
+      printf("%s\t\t\t%s\n",
+      participants[i][j].first.c_str(),
+      participants[i][j].second.c_str());
+    }
+  }
+  std::cout << "\n\n\n\n";
+  api.updateAll(RESULTS, resultList, "test");
+  std::cout << "\n\n\n\n";
+  dat::Container medals = api.getAll(MEDAL);
+  for (size_t i = 0; i < medals.size(); i++)
+  {
+    for (size_t j = 0; j < medals[i].size(); j++)
+    {
+      printf("%s\t\t\t%s\n",
+        medals[i][j].first.c_str(),
+        medals[i][j].second.c_str());
+    }
+  }
   return 0;
 }

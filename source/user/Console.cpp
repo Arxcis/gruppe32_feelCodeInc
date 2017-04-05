@@ -11,7 +11,6 @@ Console::Console()
   //
   // Registring basic menus
   //
-  allMenus_[ERROR]         = new menu::Error           ("Wrong input...\n", {});
   allMenus_[START_MENU]    = new menu::StartMenu       ("Start",            { EXIT,  NATION_BASE, PART_BASE, SPORT_BASE, POINT_STATS, MEDAL_STATS}), 
   allMenus_[NATION_BASE]   = new menu::BaseMenu        ("Nasjon Base",      { START_MENU, NATION_NEW, NATION_SELECT});     
   allMenus_[PART_BASE]     = new menu::BaseMenu        ("Deltaker Base", { START_MENU, PART_NEW,   PART_SELECT});     

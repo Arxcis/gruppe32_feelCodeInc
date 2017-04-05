@@ -9,16 +9,20 @@
 #include "user/Console.h"
 #include "user/testingUser_jonas.h"
 
+void MacSleep(size_t time)
+{
+#ifndef WIN32
+  sleep(time);
+#endif
+}
 
 int main()
-{
- 
-  std::cout << "Booting system......\n"; sleep(1);
+{ 
+  
+  std::cout << "Booting system......\n"; 
+  MacSleep(1);
   Console console;
   console.run();
 
-  testFormField();
-
-  printf("Hei main.cpp\n");
   return 0;
 }

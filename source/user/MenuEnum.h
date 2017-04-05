@@ -29,8 +29,6 @@ enum MenuState : int
   SPORT_EDIT   = 11,
   SPORT_NEW    = 12,
 
-  ERROR = 13,
-
   POINT_STATS = 14,
   MEDAL_STATS = 15,
 

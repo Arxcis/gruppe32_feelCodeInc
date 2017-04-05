@@ -44,7 +44,7 @@ namespace db
     bool findID(const int id)
     { return elements->inList(id); }
 
-    bool getID(dat::Object& object, const std::string& id)
+    bool getSortID(dat::Object& object, const std::string& id)
     {
       T* e = (T*)elements->remove(id.c_str());
       if (e)
@@ -55,7 +55,7 @@ namespace db
       return e != nullptr;
     }
 
-    bool getID(dat::Object& object, const int id)
+    bool getSortID(dat::Object& object, const int id)
     {
       T* e = (T*)elements->remove(id);
       if (e)
@@ -64,6 +64,30 @@ namespace db
         elements->add(e);
       }
       return e != nullptr;
+    }
+    //Very expensive compared to the getSortID
+    bool getWithMatchingField(dat::Object& object, const dat::Field id)
+    {
+      dat::Container objects = getContainer();
+      if (objects.size() > 0)
+      {
+        assert(objects[0][0].second == object[0].second); //no typematch
+        size_t fieldIndex = -1;
+        for (size_t i = 0; i < object.size() && fieldIndex != i; i++)
+        {
+          if (object[i].first == id.first) //if it's the field type we're looking for
+          {
+            fieldIndex = i;
+          }
+        }
+        assert(fieldIndex > 0); // if the objects are the same type the field should exist -> its index should too!
+        for (size_t i = 0; i < objects.size(); i++)
+        {
+          if (objects[i][fieldIndex].second == id.second)
+          { return true; }
+        }
+      }
+      return false;
     }
 
     //
@@ -84,15 +108,10 @@ namespace db
     //
     bool update(const int id, const dat::Object& object)
     {
-      if (findID(id))
-      {
-        elements->destroy(id);
-        T* e = unpack(object);
-        elements->add(e);
-        return true;
-      }
-      else
-        { return false; }
+       T* e = (T*)elements->remove(id);
+      if (e) //object[1] is PK
+      { elements->add(unpack(object)); }
+      return e != nullptr;
     }  
 
     //

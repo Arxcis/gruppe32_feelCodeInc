@@ -60,10 +60,11 @@ namespace db
   bool SportBase::removeDicipline(const std::string& fullID )
   {
     const std::string sportID = fullID.substr(0, (fullID.find("_")));
-
+ 
+    bool removed = false;
     if (Sport* sport = (Sport*)sports->remove(sportID.c_str()))
-    { return sport->removeDicipline(fullID); }
-    return false;
+    { removed = sport->removeDicipline(fullID); sports->add(sport); }
+    return removed;
   }
 
 
