@@ -113,7 +113,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isChar3(value))
     {
-      std::cout << "Not a char3! ex: 'NOR'\n";
+      std::cout << "Valid code: 'NOR'\n";
       getline(stream, value, '\n');
     }
   }
@@ -123,7 +123,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isPhone(value))
     {
-      std::cout << "Not a phone number! ex: '+4745200864'\n";
+      std::cout << "Valid phone ex: '+47 45200864'\n";
       getline(stream, value, '\n');
     }
   }
@@ -133,7 +133,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isEmail(value))
     {
-      std::cout << "Not an email! ex: 'jonas.solsvik@gmail.com'\n";
+      std::cout << "Valid email ex: 'jonas.solsvik@gmail.com'\n";
       getline(stream, value, '\n');
     }
   }
@@ -143,7 +143,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isInt(value))
     {
-      std::cout << "Not an int! ex: '1' or '42'\n";
+      std::cout << "Valid integers:  '1' or '42'\n";
       getline(stream, value, '\n');
     }
   }
@@ -153,7 +153,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isDouble(value))
     {
-      std::cout << "Not a double! ex: '0.99' or '3.14'\n";
+      std::cout << "Valid numbers: '0.99' or '3.14'\n";
       getline(stream, value, '\n');
     }
   }
@@ -163,7 +163,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isTime(value))
     {
-      std::cout << "Not a Time! ex: '13:37' or '12:22:22'\n";
+      std::cout << "Valid times: '13:37' or '12:22:22'\n";
       getline(stream, value, '\n');
     }
   }
@@ -173,7 +173,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isDate(value))
     {
-      std::cout << "Not a Date! ex: '12.03.1991' or '08.06.2000'\n";
+      std::cout << "Valid dates: '12.03.91' or '08.06.2000'\n";
       getline(stream, value, '\n');
     }
   }
@@ -183,7 +183,7 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isMedals(value))
     {
-      std::cout << "Not a Medals! ex: '1-3-0'\n";
+      std::cout << "Valid medals: '1-3-0' or '0-13-5' \n";
       getline(stream, value, '\n');
     }
   }
@@ -193,49 +193,12 @@ namespace stream
     getline(stream, value, '\n');
     while(!valid::isEnum(value, validStrings)) 
     {
-      std::cout << "Not a valid Enum! ex: ";
+      std::cout << "Valid entries:  ";
       for(const auto& string: validStrings)
         { std::cout << string << ", "; }
       std::cout << "\n";
       getline(stream, value, '\n');
     }
-  }
-
-////////////////////////////////////////////////////////////////
-
-              // WRITING TO FILE
-
-////////////////////////////////////////////////////////////////
-
-
-  void writeString(std::istream& stream, const std::string& value)
-  {
-
-  }
-
-  void writeInt(std::istream& stream, const std::string& value)
-  {
-
-  }
-
-  void writeDouble(std::istream& stream, const std::string& value)
-  {
-
-  }
-
-  void writeTime(std::istream& stream, const std::string& value)
-  {
-
-  }
-
-  void writeDate(std::istream& stream, const std::string& value)
-  {
-
-  }
-
-  void writeMedals(std::istream& stream, const dat::Medals& value)
-  {
-
-  }
+  } 
 }
 

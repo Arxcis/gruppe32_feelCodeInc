@@ -45,19 +45,7 @@ bool valid::isInt(const std::string& value)
 //
 bool valid::isDouble(const std::string& value)
 {
-  try
-  {
-    float test = stof(value); // @warning - unused var. Used to provoke exception if the convert to float fails.
-    return true;
-  }
-  catch (const std::invalid_argument& e)
-  {
-    return false;
-  }
-  catch (const std::out_of_range& e)
-  {
-    return false;
-  }
+  return std::regex_match(value, regDouble);
 }
 
 //
@@ -73,7 +61,8 @@ bool valid::isEmail(const std::string& value)
 //
 bool valid::isPhone(const std::string& value)
 {
-  return (value.find("+") != std::string::npos);
+  return std::regex_match(value, regPhone);
+  //return (value.find("+") != std::string::npos);
 }
 
 //
@@ -81,8 +70,7 @@ bool valid::isPhone(const std::string& value)
 //
 bool valid::isTime(const std::string& value)
 {
-  return (value.find(":",2) != std::string::npos) && 
-         (value.find(":",4) != std::string::npos);
+  return (value.find(":",2) != std::string::npos);
 }
 
 //
