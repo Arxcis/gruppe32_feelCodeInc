@@ -3,6 +3,7 @@
 #include "ListTool2B.h"
 #include <string>
 #include "../tool/char3.h"
+#include <cassert>
 
 class Rank : public NumElement
 {
@@ -21,4 +22,7 @@ public:
   auto getNation() const -> dat::char3;
 
   virtual void display() override;
+
+  void givePoint(size_t point);
+  void takePoint(size_t point);
 };

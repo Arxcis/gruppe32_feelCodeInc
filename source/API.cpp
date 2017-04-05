@@ -238,7 +238,9 @@ void API::updateMedals(const dat::Container& results)
     if(results[0][2].first.compare("Point"))
     {
       for (size_t i = 0; i < results.size(); i++)
-      { resultList.add(&dat::packing::unpackPointResult(results[i])); }
+      {
+          resultList.add(&dat::packing::unpackPointResult(results[i]));
+      }
       for (size_t i = listSize-1; i > listSize-4; i--)
       {  top[i] = (Result*)resultList.removeNo(i); }
     }
@@ -259,7 +261,7 @@ void API::updateMedals(const dat::Container& results)
         if (!medals[j][1].second.compare(temp[5].second)) //the CODE matches
         {
           MedalRank* m = (MedalRank*)medalBase_.unpack(medals[j]);
-          m->addMedal(i+1);
+          m->giveMedal(i+1);
           medalBase_.update(medalBase_.pack(m));
         }
       }
