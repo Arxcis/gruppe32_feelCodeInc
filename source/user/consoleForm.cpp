@@ -110,10 +110,7 @@ namespace form
     std::cout << fieldType << ":  " << std::endl;         // 1. 
 
     if (fieldType.find("Code")  != std::string::npos)     // 2. 
-    { 
-      if(!stream::readChar3 (std::cin, field.second)) 
-        { return 0; }
-    }
+    { stream::readChar3(std::cin, field.second); }
 
     else if (fieldType.find("Name")  != std::string::npos) 
       { stream::readString(std::cin, field.second); }
