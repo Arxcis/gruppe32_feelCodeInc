@@ -17,3 +17,10 @@ enum Entity
   STARTS,
   RESULTS,
 };
+
+enum Valor : int
+{
+  GOLD = 1,
+  SILVER = 2,
+  BRONZE = 3,
+};

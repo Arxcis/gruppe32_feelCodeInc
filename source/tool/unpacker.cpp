@@ -8,7 +8,7 @@ namespace dat { namespace packing
               name_.second, 
               phone_.second, 
               mailAddress_.second); 
-}
+  }
 
   Time unpackTime(const Field& time_)
   {
