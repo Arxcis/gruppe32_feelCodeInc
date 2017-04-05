@@ -55,14 +55,14 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    stream::readInt(ss,objectCount);
+    assert(stream::readInt(objectCount, ss));
 
       // Loop through all objects
     for(int i=0; i < std::stoi(objectCount); i++)
     {
-      stream::readEnum(ss, prototype[0].second, {"Medal", "Point"});
-      stream::readChar3(ss, prototype[1].second);
-      stream::readInt(ss,    prototype[2].second); 
+      assert(stream::readEnum  (prototype[0].second, ss, {"Medal", "Point"}));
+      assert(stream::readChar3 (prototype[1].second, ss, ));
+      assert(stream::readInt   (prototype[2].second, ss, ));
       std::cout << "Points" << i+1 << " of " << objectCount << "\n";
       
 
