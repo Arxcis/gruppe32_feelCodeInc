@@ -4,6 +4,8 @@
 
 #include "Rank.h"
 #include "../tool/Medals.h"
+#include <cassert>
+#include "../enum.h"
 
 class MedalRank : public Rank
 {
@@ -17,5 +19,14 @@ public:
   {}
   
   auto getMedals() -> dat::Medals;
+
+  // 
+  // @function updateMedals()
+  //   @param valor
+  //   1 = Gold
+  //   2 = Silver
+  //   3 = Bronze
+  //
+    void addMedal(int valor);
 };
 
