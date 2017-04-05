@@ -25,7 +25,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto NationBase::unpack(dat::Object& object) -> Nation*
+  auto NationBase::unpack(const dat::Object& object) -> Nation*
   {
     dat::char3 shortName = object[1].second.c_str();
     std::string name = object[2].second;
@@ -34,7 +34,7 @@ namespace db
     return new Nation(shortName, name, contact, participants);
   }
 
-  bool NationBase::add(dat::Object & nationObj)
+  bool NationBase::add(const dat::Object & nationObj)
   {
     if (nations->noOfElements() >= maxNations)
     { return false; }

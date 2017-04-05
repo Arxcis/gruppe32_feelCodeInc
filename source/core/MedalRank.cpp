@@ -10,7 +10,7 @@ auto MedalRank::getMedals() -> dat::Medals
   //   @param valor
   //   1 = Gold  2 = Silver 3 = Bronze
   //
-  void MedalRank::giveMedal(int valor)
+  void MedalRank::giveMedal(size_t valor)
   { 
     assert(valor > 0 && valor < 4);
 
@@ -33,7 +33,7 @@ auto MedalRank::getMedals() -> dat::Medals
   //   @param valor
   //   1 = Gold, 2 = silver, 3 = bronze
   //
-  void MedalRank::takeMedal(int valor)
+  void MedalRank::takeMedal(size_t valor)
   { 
     assert(valor > 0 && valor < 4);
 

@@ -258,7 +258,7 @@ void Console::displayMenu()
       selectedStarts = api_.getAll(STARTS, selectedID);
       
       allMenus_[SLIST_SELECT]->view(currentMap, selectedStarts, selectedID);
-      api_.updateAll(selectedStarts, selectedID);
+      api_.updateAll(STARTS, selectedStarts, selectedID);
       break;
 
     case RLIST_SELECT:

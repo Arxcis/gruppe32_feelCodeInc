@@ -20,7 +20,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto MedalBase::unpack(dat::Object& object) -> Rank*
+  auto MedalBase::unpack(const dat::Object& object) -> Rank*
   {
     dat::char3 nationCode = object[1].second.c_str();
     dat::Medals medals = dat::packing::unpackMedals(object[2]);

@@ -26,7 +26,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto ParticipantBase::unpack(dat::Object& object) -> Participant*
+  auto ParticipantBase::unpack(const dat::Object& object) -> Participant*
   {
     int ID               = ++participantCount;
     dat::Contact contact = dat::packing::unpackContact(object[2], object[3], object[4]);

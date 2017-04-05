@@ -30,6 +30,8 @@ bool Sport::removeDicipline(const std::string& id)
       return true;
     }
   }
+  std::remove((diciplinePath + id + ".res").c_str());
+  std::remove((diciplinePath + id + ".sta").c_str());
   return false;
 }
 

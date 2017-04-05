@@ -13,16 +13,14 @@ void Rank::display()
     printf("\n\nRankValue:\t%d\nNation:\t%s\n", value_, (char*)nation_);
 }
 
-void Rank::givePoint(int point)
+void Rank::givePoint(size_t point)
 { 
   assert(point > 0 && point < 8);
   value_ += point; 
-  assert(value_ >= 0);
 }
 
-void Rank::takePoint(int point)
+void Rank::takePoint(size_t point)
 { 
   assert(point > 0 && point < 8);
   value_ -= point; 
-  assert(value_ >= 0);
 }

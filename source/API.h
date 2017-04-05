@@ -16,6 +16,7 @@
 #include "core/database/SportBase.h"
 #include "core/database/MedalBase.h"
 #include "core/database/PointBase.h"
+#include "tool/Unpacker.h"
 
 //
 // @class API - Application Layer Interface
@@ -25,12 +26,28 @@
 class API 
 { 
 public:
-  bool add       (const dat::Object& object);
-  bool remove    (const Entity entity, const std::string& id);
+  bool add       (const dat::Object& object); //Add object to the base of objects type
+  void remove    (const Entity entity, const std::string& id); //Remove the Object with the given ID of type entity
   void update    (const dat::Object& object);
-  void updateAll (const dat::Container& list, const std::string& id="");
+  
+  /*
+  @params:
+    list: the new data to fill into file.
+    id: the id of the file. defaults to empty, as it's not used by most databases
+  */
+  void updateAll (const Entity entity, const dat::Container& list, const std::string& id="");
+
   auto get       (const Entity entity, const std::string& id)     -> const dat::Object;
+  
+  /*
+  @params:
+  entity: The type of data you want to extract.
+  id: the id of the file. defaults to empty, as it's not used by most databases
+  */
   auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
+
+  void updateMedals(const dat::Container& results);
+  void updatePoints(const dat::Container& resulretList);
 
   void quit();
 
@@ -40,14 +57,18 @@ public:
 private:
   void loadAllBases();
 
+  int parseToEntityType(const std::string& id);
+
   //
   // All the bases
   //
+
   db::NationBase       nationBase_;
   db::ParticipantBase  participantBase_;
   db::SportBase        sportBase_;
   db::PointBase        pointBase_;
   db::MedalBase        medalBase_;
+
   dat::Container       dbContainerCache[6];
 
 };

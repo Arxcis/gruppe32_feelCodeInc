@@ -33,7 +33,7 @@ namespace db
   //
   // @class function unpack()
   //
-  auto SportBase::unpack(dat::Object& object) -> Sport*
+  auto SportBase::unpack(const dat::Object& object) -> Sport*
   {
     std::string name = object[1].second;                        // Sport name
     std::string scoreType = object[2].second;                   // Sport scoreType
@@ -55,6 +55,15 @@ namespace db
     }
 
     return protoSport;
+  }
+
+  bool SportBase::removeDicipline(const std::string& fullID )
+  {
+    const std::string sportID = fullID.substr(0, (fullID.find("_")));
+
+    if (Sport* sport = (Sport*)sports->remove(sportID.c_str()))
+    { return sport->removeDicipline(fullID); }
+    return false;
   }
 
 

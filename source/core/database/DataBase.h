@@ -35,14 +35,14 @@ namespace db
     // Virtual abstract (not-implemented) functions
     //
     virtual dat::Object    pack(const T*     object) = 0;
-    virtual T*             unpack(dat::Object& object) = 0;
+    virtual T*             unpack(const dat::Object& object) = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
 
     bool findID(const std::string& id)
-      { return elements->inList(id.c_str()); }
+    { return elements->inList(id.c_str()); }
 
     bool findID(const int id)
-      { return elements->inList(id); }
+    { return elements->inList(id); }
 
     bool getID(dat::Object& object, const std::string& id)
     {
@@ -70,17 +70,12 @@ namespace db
     // @class function update with string id
     //  @brief updating by removing existing object, and replacing by updated one.
     //
-    bool update(const std::string& id, const dat::Object& object)
+    bool update(const dat::Object& object)
     {
-      if (findID(id))
-      { 
-        elements->destroy(id.c_str());
-        T* e = unpack(object);
-        elements->add(e);
-        return true;
-      }
-      else
-        { return false; }
+      T* e = (T*)elements->remove(object[1].second.c_str());
+      if (e) //object[1] is PK
+      { elements->add(unpack(object)); }
+      return e != nullptr;
     }
 
     //
@@ -99,12 +94,11 @@ namespace db
       else
         { return false; }
     }  
-      
 
     //
     // @class function add
     //
-    virtual bool add(dat::Object& object)
+    virtual bool add(const dat::Object& object)
     {
       T* unpackedObject = unpack(object);
       if (elements->add(unpackedObject)) //if added

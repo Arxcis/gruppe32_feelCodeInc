@@ -14,7 +14,7 @@ namespace db
 
     virtual ~ParticipantBase(){}
     virtual auto pack  (const Participant* participant) -> dat::Object  override;
-    virtual auto unpack(dat::Object& object)      -> Participant* override;
+    virtual auto unpack(const dat::Object& object)      -> Participant* override;
 
   private:
     virtual auto readFile(const std::string& filepath) -> dat::Container override;
