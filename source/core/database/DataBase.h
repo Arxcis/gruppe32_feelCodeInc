@@ -64,6 +64,28 @@ namespace db
       }
       return e != nullptr;
     }
+
+    size_t countMatchingFields(const dat::Field id)
+    {
+      size_t count = 0;
+      size_t fieldIndex = -1;
+      dat::Container objects = getContainer();
+      if (objects.size() > 0)
+      {
+        for (size_t i = 0; i < objects[0].size() && fieldIndex < 0; i++)
+        {
+          if (objects[0][i].first == id.first) //if it's the field type we're looking for
+          { fieldIndex = i; }
+        }
+        for (size_t i = 0; i < objects.size(); i++)
+        {
+          if(objects[i][fieldIndex].second == id.second)
+          { count++; }
+        }
+      }
+      return count;
+    }
+
     //Very expensive compared to the getSortID
     int getWithMatchingField(dat::Object& object, const dat::Field id)
     {
@@ -165,10 +187,7 @@ namespace db
     virtual bool add(const dat::Object& object)
     {
       T* unpackedObject = unpack(object);
-      if (elements->add(unpackedObject)) //if added
-        { return true; }
-      else
-        { return false; }
+      return (elements->add(unpackedObject)); //if added
     }
 
     //
@@ -198,7 +217,7 @@ namespace db
       dat::Container container;
       T* e;
       int i = 0;
-      while((e = (T*)elements->removeNo(0)))// Sorry men den nydelige for-loopen her funka ikkje hos meg --> for (int i = 0; elements->noOfElements(); i++)
+      while((e = (T*)elements->removeNo(0)))
         { container.push_back(pack(e)); }
 
       for (auto& obj: container)

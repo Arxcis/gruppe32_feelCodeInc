@@ -220,7 +220,7 @@ void Console::displayMenu()
 
     case PART_EDIT:
       allMenus_[PART_EDIT]->view(currentMap, selectedObject, selectedID); 
-      api_.update(selectedObject); 
+      api_.update(selectedObject);
       break;
 
     case SPORT_EDIT:
