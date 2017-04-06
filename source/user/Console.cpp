@@ -23,21 +23,22 @@ Console::Console()
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Deltaker",        { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Gren"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_NEW, DICI_SELECT });
 
-  allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE , NATION_NEW });
-  allMenus_[PART_NEW]      = new menu::NewObject       ("Participant",      { PART_BASE   , PART_NEW   });
-  allMenus_[SPORT_NEW]     = new menu::NewObject       ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
-
+  //
+  // Registering 'boomerang menus' - silent return
+  //
+  allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE});
+  allMenus_[PART_NEW]      = new menu::NewObject       ("Participant",      { PART_BASE  });
+  allMenus_[SPORT_NEW]     = new menu::NewObject       ("Sport"      ,      { SPORT_BASE });
   allMenus_[NATION_EDIT]   = new menu::EditField       ("Nasjon"     ,      { NATION_SELECT});
-  allMenus_[PART_EDIT]     = new menu::EditField       ("Deltaker",      { PART_SELECT});
-  allMenus_[SPORT_EDIT]    = new menu::EditField       ("Gren"      ,      { SPORT_SELECT});
+  allMenus_[PART_EDIT]     = new menu::EditField       ("Deltaker",         { PART_SELECT});
+  allMenus_[SPORT_EDIT]    = new menu::EditField       ("Gren"      ,       { SPORT_SELECT});
+  allMenus_[DICI_EDIT]     = new menu::EditField       ("Øvelse"  ,         { DICI_SELECT });
+  allMenus_[DICI_NEW]      = new menu::NewDicipline    ("Øvelse"  ,         { SPORT_SELECT });
 
   //
   // Registring Advanced menus
   //
-  allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Øvelse"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT, DICI_DELETE});
-  allMenus_[DICI_EDIT]    = new menu::EditField       ("Øvelse"  ,  { DICI_SELECT });
-  allMenus_[DICI_NEW]     = new menu::NewDicipline    ("Øvelse"  ,  { SPORT_SELECT });
-
+  allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Øvelse"  ,     { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT, DICI_DELETE});
   allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT, SLIST_DELETE });
   allMenus_[RLIST_SELECT] = new menu::ResultList      ("Results"    ,  { DICI_SELECT, RLIST_DELETE });
 }
@@ -106,7 +107,11 @@ int Console::run()
 
     }
     else 
-      { silentCommand = false; }
+    { 
+      silentCommand = false; 
+      selectedMenu = currentMap[0].first;
+      selectedID   = currentMap[0].second;
+    }
     // 5. Display next menu
     displayMenu();
   }
@@ -196,32 +201,17 @@ void Console::displayMenu()
 //  ----------- NEW  -----------------
     //
     // @case *_NEW
-    //  1. Create an empty object.
-    //  2. Pass the empty object to the menu, so that the user can fill it up with data.
-    //  3. Pass the object to the API.
-    //
+    // 
     case NATION_NEW:
-      silentCommand = true;
-      allMenus_[selectedMenu]->view(currentMap);
-      selectedMenu = NATION_BASE;
-      break;
-
     case PART_NEW:
-      silentCommand = true;
-      allMenus_[selectedMenu]->view(currentMap);
-      selectedMenu = PART_BASE;
-      break;
-
     case SPORT_NEW:
       silentCommand = true;
       allMenus_[selectedMenu]->view(currentMap);
-      selectedMenu = SPORT_BASE;
       break;
 
     case DICI_NEW:
       silentCommand = true;
       allMenus_[DICI_NEW]->view(currentMap, selectedObject, selectedID);
-      selectedMenu = SPORT_SELECT;
       break;
 
 
@@ -232,22 +222,11 @@ void Console::displayMenu()
     //  2. Tell the API to update the database, with the added information.
     // 
     case NATION_EDIT:
-      allMenus_[NATION_EDIT]->view(currentMap, selectedObject, selectedID);
-      api_.update(selectedObject); 
-      break;
-
     case PART_EDIT:
-      allMenus_[PART_EDIT]->view(currentMap, selectedObject, selectedID); 
-      api_.update(selectedObject);
-      break;
-
     case SPORT_EDIT:
-      allMenus_[SPORT_EDIT]->view(currentMap, selectedObject, selectedID);
-      api_.update(selectedObject); 
-      break;
-
     case DICI_EDIT:
-      allMenus_[DICI_EDIT]->view(currentMap, selectedObject, selectedID);
+      silentCommand = true;
+      allMenus_[selectedMenu]->view(currentMap, selectedObject, selectedID);
       api_.update(selectedObject); 
       break;
 
@@ -290,24 +269,24 @@ void Console::displayMenu()
     // 3. Print debug info
     case SLIST_DELETE:
       silentCommand = true;
-      api_.remove(STARTS, selectedID);
-      std::cout << "Starts " + selectedID + " deleted...\n";  // @debug
-      selectedMenu = DICI_SELECT;
+      api_.remove(STARTS, selectedDiciplineID);
+      std::cout << "Starts " + selectedDiciplineID + " deleted...\n";  // @debug
+      currentMap[0] = { DICI_SELECT, selectedID };
       break;
 
     case RLIST_DELETE:
       silentCommand = true;
-      api_.remove(RESULTS, selectedID);
-      std::cout << "Reults " + selectedID + " deleted...\n";  // @debug
-      selectedMenu = DICI_SELECT;
+      api_.remove(RESULTS, selectedDiciplineID);
+      std::cout << "Reults " + selectedDiciplineID + " deleted...\n";  // @debug
+      currentMap[0] = { DICI_SELECT, selectedID };
       break;
 
     case DICI_DELETE:
       silentCommand = true;
-      api_.remove(DICIPLINE, selectedID);
-      std::cout << "Dicipline " + selectedID + " deleted...\n";  // @debug
-      selectedMenu = SPORT_SELECT;
-      selectedID = selectedID.substr(0, (selectedID.find("_")));   // picking out the ID of the sport from the sport_dicipline ID
+      api_.remove(DICIPLINE, selectedDiciplineID);
+      std::cout << "Dicipline " + selectedDiciplineID + " deleted...\n";  // @debug
+      selectedID = selectedDiciplineID.substr(0, (selectedDiciplineID.find("_")));   // picking out the ID of the sport from the sport_dicipline ID
+      currentMap[0] = { SPORT_SELECT, selectedID };
       break;
 
 

@@ -358,9 +358,8 @@ namespace menu
    // 2. Form a new object
    form::object(type_);
 
-   // 3. Utility options -  { new, back } 
-   staticOption(map, 1, nextState_[1], "New  " + type_);
-   staticOption(map, 0, nextState_[0], "Back");
+   // 3. Silent return to TYPE_BASE
+   map[0] = { nextState_[0], "" };
   }
 
   ////////////////////////////////////////////////////////////////
@@ -381,10 +380,8 @@ namespace menu
     // 2. Form a new dicipline and append to existing sport object.
     form::appendDicipline(sport);
 
-    // 3. Utility options back
-    dynamicOption(map, 0, nextState_[0], sportID, "Back");
-    footer();
-    footer();
+    // 3. Silent return to SPORT_SELECT
+    map[0] = { nextState_[0], sportID };
   }
   
   
@@ -411,9 +408,8 @@ namespace menu
       { form::thisField(field); break; }
     }
 
-    // 3. utility options - back
-    dynamicOption(map, 0, nextState_[0], objectID, "Back");
-    footer();
+    // 3. Silent return
+    map[0] = { nextState_[0], objectID };
   }
 
 
