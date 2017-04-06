@@ -97,6 +97,32 @@ bool API::add(const dat::Object object )
   return false; //type was unreccognized or CANCELED; DON'T ADD.
 }
 
+
+//
+// @class function add()
+//  @param object
+//      example {   
+//                  {"Type", "Sport"}, 
+//                  {"Name", "Fotball"},
+//                  {...},
+//               }
+bool API::count(const Entity entity, const dat::Field& field)
+{
+  size_t count;
+  switch (entity)
+  {
+    case NATION:      count = nationBase_.countMatchingFields(field);      break;
+    case PARTICIPANT: count = participantBase_.countMatchingFields(field); break;
+    case SPORT:       count = sportBase_.countMatchingFields(field);       break;
+    case POINT:       count = pointBase_.countMatchingFields(field);       break;
+    case MEDAL:       count = medalBase_.countMatchingFields(field);       break;
+
+    default: assert(false);     //Not a valid command... abort mission
+  }
+  return false; //type was unreccognized or CANCELED; DON'T ADD.
+}
+
+
 //
 // @class function update()
 //  @param dat::Object object

@@ -42,6 +42,7 @@ public:
     }
 
   bool add       (const dat::Object object); //Add object to the base of objects type
+  bool count     (const Entity entity, const dat::Field& field);
   void remove    (const Entity entity, const std::string& id); //Remove the Object with the given ID of type entity
   void update    (const dat::Object& object);
   
