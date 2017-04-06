@@ -205,7 +205,7 @@ namespace menu
   public:
     NewObject(const std::string& type, const std::vector<int>& nextState);
     virtual ~NewObject(){}
-    virtual void view(dat::TransitionMap& map, dat::Object& newObject) override;
+    virtual void view(dat::TransitionMap& map) override;
   };
 
   //////////////////////////////////////////////////////////////////

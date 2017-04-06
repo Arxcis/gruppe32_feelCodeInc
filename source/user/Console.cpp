@@ -23,9 +23,9 @@ Console::Console()
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Deltaker",      { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Gren"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_NEW, DICI_SELECT });
 
-  allMenus_[NATION_NEW]    = new menu::NewObject       ("Nasjon"     ,      { NATION_BASE , NATION_NEW });
-  allMenus_[PART_NEW]      = new menu::NewObject       ("Deltaker",      { PART_BASE   , PART_NEW   });
-  allMenus_[SPORT_NEW]     = new menu::NewObject       ("Gren"      ,      { SPORT_BASE  , SPORT_NEW  });
+  allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE , NATION_NEW });
+  allMenus_[PART_NEW]      = new menu::NewObject       ("Participant",      { PART_BASE   , PART_NEW   });
+  allMenus_[SPORT_NEW]     = new menu::NewObject       ("Sport"      ,      { SPORT_BASE  , SPORT_NEW  });
 
   allMenus_[NATION_EDIT]   = new menu::EditField       ("Nasjon"     ,      { NATION_SELECT});
   allMenus_[PART_EDIT]     = new menu::EditField       ("Deltaker",      { PART_SELECT});
@@ -195,23 +195,13 @@ void Console::displayMenu()
     //  3. Pass the object to the API.
     //
     case NATION_NEW:
-      selectedObject = {{"Type", "Nation"}};
-      allMenus_[NATION_NEW]->view(currentMap, selectedObject);
-      break;
-
     case PART_NEW:
-      selectedObject = {{"Type", "Participant"}};
-      allMenus_[PART_NEW]->view(currentMap, selectedObject);
-      break;
-
     case SPORT_NEW:
-      selectedObject = {{"Type", "Sport"}};
-      allMenus_[SPORT_NEW]->view(currentMap, selectedObject);
+      allMenus_[selectedMenu]->view(currentMap);
       break;
 
     case DICI_NEW:
       allMenus_[DICI_NEW]->view(currentMap, selectedObject, selectedID);
-      api_.add(selectedObject);
       break;
 
 

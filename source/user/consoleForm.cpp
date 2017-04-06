@@ -13,7 +13,7 @@ enum ProtoForms
 namespace form
 {
   dat::Object cancelObject = {{ "Type", "Cancel" }};
-  API& formAPI = API::getInstance();
+  API& database = API::getInstance();
 
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };
@@ -24,7 +24,7 @@ namespace form
   // @function form::object - Based on type information, this function queries for a object-prototype.
   //             It then loops through this prototype, and fills in the blanks.
   //
-  auto object(const std::string type) ->dat::Object
+  void object(const std::string type)
   {
     bool submit = true;
     dat::Object proto;
@@ -47,6 +47,7 @@ namespace form
       submit = thisField(proto[4], submit);
       submit = thisField(proto[5], submit);
       submit = thisField(proto[6], submit);
+      
     }
     else if (type == "Participant")
     {
@@ -65,6 +66,7 @@ namespace form
       submit = thisField(proto[3], submit);  
       submit = thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
       submit = thisField(proto[5], submit);
+
     }
     else if (type == "Sport")      
     {
@@ -80,9 +82,7 @@ namespace form
     }
 
     if (submit)
-    { return proto; }
-    else 
-    { return cancelObject; }
+    { database.add(proto); }
   }
 
   //

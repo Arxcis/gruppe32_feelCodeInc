@@ -17,7 +17,7 @@
 namespace form
 { 
 
-  auto object(const std::string type) ->dat::Object;
+  void object(const std::string type);
   bool thisField(dat::Field& field, bool submit=true);
   
   bool askAgain(bool valid, const std::string& value, const std::string& errorMessage);

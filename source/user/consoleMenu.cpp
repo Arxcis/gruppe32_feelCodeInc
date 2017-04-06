@@ -303,14 +303,14 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {}
 
-  void NewObject::view(dat::TransitionMap& map, dat::Object& newObject)
+  void NewObject::view(dat::TransitionMap& map)
   {
    newPage();
    header(type_ + " ny");
    newLine();
    printIllegalOption("Avbryt == 0");
    newLine();
-   newObject = form::object(newObject[0].second);
+   form::object(type_);
    bindStaticOption(map, 1, nextState_[1], "New  " + type_);
    bindStaticOption(map, 0, nextState_[0], "Back");
   }
