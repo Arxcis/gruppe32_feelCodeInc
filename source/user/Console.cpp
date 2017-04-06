@@ -81,9 +81,11 @@ int Console::run()
   while (running) 
   {
     if (!silentCommand) 
-    {
+    { 
+      std::string strInput;
       // 1. Read input
-      input = stream::readInput(("0-" + std::to_string(currentMap.size()-1)) + "\n");
+      while(!(stream::readInt(strInput, std::cin))) {  "Not an int...\n"; }
+      input = std::stoi(strInput);
 
       // 2. Make sure input is within bounds.
       clampedInput = clamp(input, (int)currentMap.size()-1);

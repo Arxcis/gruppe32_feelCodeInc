@@ -68,13 +68,25 @@ void API::loadAllBases()
 bool API::add(const dat::Object object )
 {
   if(object[0].second == "Nation")
-  { return nationBase_.add(object); }
+  { 
+    bool response = nationBase_.add(object); 
+    nationBase_.flush();
+    return response;
+  }
 
   else if(object[0].second == "Participant")
-  { return participantBase_.add(object); }
+  { 
+    bool response = participantBase_.add(object);
+    participantBase_.flush();
+    return response;
+  }
 
   else if(object[0].second == "Sport")
-  { return sportBase_.add(object); }
+  { 
+    bool response = sportBase_.add(object);
+    sportBase_.flush();
+    return response;
+  }
 
   else if(object[0].second == "Medal")
   { return medalBase_.add(object); }
@@ -97,13 +109,22 @@ bool API::add(const dat::Object object )
 void API::update (const dat::Object& object)
 { 
    if(!object[0].second.compare("Nation"))
-  { nationBase_.update(object); }
+  { 
+    nationBase_.update(object); 
+    nationBase_.flush();
+  }
 
   else if(!object[0].second.compare("Participant"))
-  { participantBase_.update(object); }
+  { 
+    participantBase_.update(object); 
+    participantBase_.flush();
+  }
 
   else if(!object[0].second.compare("Sport"))
-  { sportBase_.update(object); }
+  { 
+    sportBase_.update(object); 
+    sportBase_.flush();
+  }
 
   else if(!object[0].second.compare("Medal"))
   { medalBase_.update(object); }

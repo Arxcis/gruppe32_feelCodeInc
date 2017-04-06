@@ -82,7 +82,8 @@ namespace form
       { 
         std::cout << "Ingen nasjon med koden " << proto[5].second << " finnes.....\n"; 
         submit = form::thisField(proto[5], submit);
-      } 
+      }
+      submit = form::thisField(proto[6], submit);
     }
 
     else if (type == "Sport")      

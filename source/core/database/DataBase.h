@@ -211,7 +211,10 @@ namespace db
     // @funciton flush() // Only implemented in base class
     //
     void flush()
-    { writeFile(baseFile); }
+    { 
+      const dat::Container flushContainer = getContainer();
+      writeFile(baseFile, flushContainer); 
+    }
 
 protected:
     // 
@@ -220,7 +223,7 @@ protected:
     void writeFile(const std::string& filepath, const dat::Container& container)
     {
       std::cout << "Writing to " << filepath << "\n";  // @debug
-      std::ofstream outFile(filepath + "_out");
+      std::ofstream outFile(filepath);
 
       outFile << container.size() << ";\n";
       assert(outFile);
