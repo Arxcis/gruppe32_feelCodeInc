@@ -45,17 +45,19 @@ for (int i = 0; i < 20; ++i)
 Alternative for one-liners
 ```cpp
 for (int i = 0; i < 20; ++i)
-  {  /* Do some fancy stuff */ }
+{  /* Do some fancy stuff */ }
 ```
 
 #### 4. [TBD]Space between control statements and expression
 ```cpp
 for (ever)
-  { /* loop */ }
+{ /* loop */ }
+
 if (2 < 3)
-  { /* if and only if */ }
+{ /* if and only if */ }
+
 while (true)
-  {  /* just do it */ }
+{  /* just do it */ }
 ```
 
 #### 5. [TBD]File headings follows this format
@@ -79,5 +81,5 @@ while (true)
 //  @return : float   - result of squaring
 //
 float square(int num)
-  { return (num*num); }
+{ return (num*num); }
 ```
