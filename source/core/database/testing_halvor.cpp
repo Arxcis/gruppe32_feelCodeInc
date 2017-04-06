@@ -194,6 +194,7 @@ int main()
   std::cout << "\n\n\n\n";
   api.updateAll(RESULTS, resultList, "test");
   std::cout << "\n\n\n\n";
+
   dat::Container medals = api.getAll(MEDAL);
   for (size_t i = 0; i < medals.size(); i++)
   {
