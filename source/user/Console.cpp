@@ -20,7 +20,7 @@ Console::Console()
   allMenus_[MEDAL_STATS]   = new menu::RankMenu        ("Medals"     ,      { START_MENU} ); 
 
   allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nasjon"     ,      { NATION_BASE , NATION_EDIT });
-  allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Deltaker",      { PART_BASE   , PART_EDIT   });
+  allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Deltaker",        { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Gren"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_NEW, DICI_SELECT });
 
   allMenus_[NATION_NEW]    = new menu::NewObject       ("Nation"     ,      { NATION_BASE , NATION_NEW });
@@ -95,7 +95,10 @@ int Console::run()
       selectedID   = currentMap[clampedInput].second;
 
       if (selectedID.find("_") != std::string::npos) // @hack
-        { selectedDiciplineID = selectedID; }
+      { 
+        selectedDiciplineID = selectedID;
+        selectedID = selectedID.substr(0, selectedID.find("_"));
+      }
                                                             std::cout << "Selected ID: " << selectedID << std::endl; // @debug
                                                             std::cout << "Dicipline ID: " << selectedDiciplineID << std::endl; // @debug
       // 4. Reset current map
@@ -186,6 +189,7 @@ void Console::displayMenu()
       break;
 
     case DICI_SELECT:
+      selectedObject = api_.get(SPORT, selectedID);
       allMenus_[DICI_SELECT]->view(currentMap, selectedObject, selectedDiciplineID);  // @hack
       break;
 
@@ -197,13 +201,27 @@ void Console::displayMenu()
     //  3. Pass the object to the API.
     //
     case NATION_NEW:
-    case PART_NEW:
-    case SPORT_NEW:
+      silentCommand = true;
       allMenus_[selectedMenu]->view(currentMap);
+      selectedMenu = NATION_BASE;
+      break;
+
+    case PART_NEW:
+      silentCommand = true;
+      allMenus_[selectedMenu]->view(currentMap);
+      selectedMenu = PART_BASE;
+      break;
+
+    case SPORT_NEW:
+      silentCommand = true;
+      allMenus_[selectedMenu]->view(currentMap);
+      selectedMenu = SPORT_BASE;
       break;
 
     case DICI_NEW:
+      silentCommand = true;
       allMenus_[DICI_NEW]->view(currentMap, selectedObject, selectedID);
+      selectedMenu = SPORT_SELECT;
       break;
 
 

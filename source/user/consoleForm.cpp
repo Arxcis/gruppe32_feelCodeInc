@@ -263,35 +263,39 @@ namespace form
     {  
       do 
       { valid = stream::readInt(field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type poeng..."));
+      while (askAgain(valid, field.second, " Feil type poeng..."));
     }
 
     else if (fieldType.find("Medal") != std::string::npos) 
     { 
       do 
       { valid = stream::readMedals (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type medaljer..."));
+      while (askAgain(valid, field.second, " Feil type medaljer..."));
     }
 
     else if (fieldType.find("Date")  != std::string::npos) 
     { 
       do 
       { valid = stream::readDate (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type dato..."));
+      while (askAgain(valid, field.second, " Feil type dato..."));
     }
 
     else if (fieldType.find("Sex")   != std::string::npos) 
     { 
       do 
       { valid = stream::readEnum (field.second, std::cin, { "Male", "Female" }); }
-      while (askAgain(valid, field.second, "Feil type kjonn..."));
+      while (askAgain(valid, field.second, 
+                              " Feil type kjonn...    \n"
+                              "  'Male' eller 'Female'\n"));
     }
 
     else if (fieldType.find("ScoreType") != std::string::npos) 
     { 
       do 
       { valid = stream::readEnum(field.second, std::cin, { "Point" , "Time" }); }
-      while (askAgain(valid, field.second, "Feil type score type..."));
+      while (askAgain(valid, field.second, 
+                            " Feil score type...   \n"
+                            "  'Point' eller 'Time'\n"));
     }
 
     else 
