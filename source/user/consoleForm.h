@@ -11,19 +11,21 @@
 
 #include "../tool/stream.h"
 #include "../tool/typedef.h"
+#include "../API.h"
 
 
 namespace form
-{
-  auto object(const std::string type) ->dat::Object&;
-  void field(dat::Field& field);
-  void appendDicipline(dat::Object sport); 
+{ 
 
+  void object(const std::string type);
+  bool thisField(dat::Field& field, bool submit=true);
+  
+  void appendDicipline(dat::Object sport); 
   void startList(dat::Container& starts);
   void resultList(
-    dat::Object&       sport, 
-    dat::Container&    starts, 
-    dat::Container&    results);
+    dat::Object&    sport, 
+    dat::Container& starts, 
+    dat::Container& results);
 
 }
 

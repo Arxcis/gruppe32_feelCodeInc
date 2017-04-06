@@ -26,7 +26,23 @@
 class API 
 { 
 public:
-  bool add       (const dat::Object& object); //Add object to the base of objects type
+    // C++ 11         // @url http://stackoverflow.com/questions/1008019/c-singleton-design-pattern
+    // =======
+
+    // We can use the better technique of deleting the methods
+    // we don't want. We do this because we dont want more than 1 copy of our class.
+    // The getInstance() method as implemented here with static API, does not work earlier than C++11
+public:
+    API(API const&)             = delete; // Assign by () ->  delete
+    void operator=(API const&)  = delete; // Assign by = ->  delete
+
+    static API& getInstance()
+    {
+        static API instance; // Guaranteed to be destroyed. Instantiated on first use.
+        return instance;
+    }
+
+  bool add       (const dat::Object object); //Add object to the base of objects type
   void remove    (const Entity entity, const std::string& id); //Remove the Object with the given ID of type entity
   void update    (const dat::Object& object);
   
@@ -52,10 +68,10 @@ public:
 
   void quit();
 
-  API();
   ~API(){}
 
 private:
+  API();
   void loadAllBases();
 
   int parseToEntityType(const std::string& id);

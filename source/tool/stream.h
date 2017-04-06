@@ -24,30 +24,112 @@
 namespace stream
 { 
   void eatSpaces(std::stringstream& stream);
-  int  readInt(const std::string& message);
-  // Reading from stringstream - File Input
-  void readChar3 (std::stringstream& stream, std::string& value);
-  void readString(std::stringstream& stream, std::string& value);
-  void readPhone (std::stringstream& stream, std::string& value);
-  void readEmail (std::stringstream& stream, std::string& value);
-  void readInt   (std::stringstream& stream, std::string& value);
-  void readDouble(std::stringstream& stream, std::string& value);
-  void readTime  (std::stringstream& stream, std::string& value);
-  void readDate  (std::stringstream& stream, std::string& value);
-  void readMedals(std::stringstream& stream, std::string& value);
-  void readEnum  (std::stringstream& stream, std::string& value, 
-                    const std::vector<std::string>& validStrings);
+  void eatSpaces(std::istream& stream);
 
-  // Reading from cin - Keyboard input
-  void readChar3 (std::istream& stream, std::string& value);
-  void readString(std::istream& stream, std::string& value);
-  void readPhone (std::istream& stream, std::string& value);
-  void readEmail (std::istream& stream, std::string& value);
-  void readInt   (std::istream& stream, std::string& value);
-  void readDouble(std::istream& stream, std::string& value);
-  void readTime  (std::istream& stream, std::string& value);
-  void readDate  (std::istream& stream, std::string& value);
-  void readMedals(std::istream& stream, std::string& value);
-  void readEnum  (std::istream& stream, std::string& value,
-                    const std::vector<std::string>& validStrings);
+  int readInput(const std::string& message);
+  // Reading from stringstream - File Input
+
+  //
+  // @template function read-functions
+  //  currently supports 
+  //    std::istream  
+  //    std::stringstream
+  //
+
+  // Special function to this system
+  template<typename T>
+  bool readDiciplineID(std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isDiciplineID(value);
+  }
+
+  // General functions
+  template<typename T>
+  bool readChar3 (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isChar3(value);
+  }
+
+  template<typename T>
+  bool readName(std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isName(value);
+  }
+
+  template<typename T>
+  bool readPhone (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isPhone(value);
+  }
+
+  template<typename T>
+  bool readEmail (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isEmail(value);
+  }
+
+  template<typename T>
+  bool readInt   (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isInt(value);
+  }
+
+  template<typename T>
+  bool readDouble(std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isDouble(value);
+  } 
+
+  template<typename T>
+  bool readTime  (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isTime(value);
+  }
+
+  template<typename T>
+  bool readDate  (std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isDate(value);
+  }
+
+  template<typename T>
+  bool readMedals(std::string& value, T& stream, const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    eatSpaces(stream);
+    return valid::isMedals(value);
+  }
+
+  template<typename T>
+  bool readEnum(
+    std::string& value, 
+    T& stream, 
+    const std::vector<std::string>& validStrings, 
+    const char delimiter='\n')
+  {
+    getline(stream, value, delimiter);
+    bool oneHit = false;
+    for(const auto& str: validStrings)
+      {  if(value == str) oneHit = true; }
+    eatSpaces(stream);
+    return oneHit;
+  }
 }

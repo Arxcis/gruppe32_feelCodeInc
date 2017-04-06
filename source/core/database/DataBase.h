@@ -207,8 +207,16 @@ namespace db
       return container;
     }
 
+
     // 
-    // @funciton // Only implemented in base class
+    // @funciton flush() // Only implemented in base class
+    //
+    void flush()
+    { writeFile(baseFile); }
+
+protected:
+    // 
+    // @funciton            // Only implemented in base class
     //
     void writeFile(const std::string& filepath, const dat::Container& container)
     {

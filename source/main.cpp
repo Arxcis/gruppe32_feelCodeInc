@@ -19,7 +19,8 @@ void MacSleep(size_t time)
 int main()
 { 
   
-  std::cout << "Booting system......\n"; MacSleep(10);
+  std::cout << "Booting system......\n"; 
+  MacSleep(1);
   Console console;
   console.run();
 

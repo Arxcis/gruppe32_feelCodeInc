@@ -48,9 +48,9 @@ namespace db
       dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // { Dicipline+i, time }
       dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // { Dicipline+i, date }
 
+      // Logic for adding a new dicipline to existing sport object.
       Dicipline newDicipline{ dname, dtime, ddate }; 
       protoSport->addDicipline( newDicipline );
-
       createFilesIfNotExist(object[j].second);
     }
 
@@ -133,7 +133,7 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    stream::readInt(ss, objectCount);
+    assert(stream::readInt(objectCount, ss, ';'));
 
     size_t protoSize = prototype.size();
     size_t diciplineSize = 3;
@@ -143,10 +143,10 @@ namespace db
       auto thisProto = prototype;
       std::cout << "Sport " << i+1 << " of " << objectCount << "\n";
 
-      stream::readString (ss, thisProto[0].second);
-      stream::readString (ss, thisProto[1].second);
-      stream::readEnum   (ss, thisProto[2].second, {"Point", "Time"});
-      stream::readInt    (ss, thisProto[3].second);
+      assert(stream::readName (thisProto[0].second, ss, ';'));
+      assert(stream::readName (thisProto[1].second, ss, ';'));
+      assert(stream::readEnum   (thisProto[2].second, ss, {"Point", "Time"}, ';'));
+      assert(stream::readInt    (thisProto[3].second, ss, ';'));
 
       int numberOfDiciplines = std::stoi(thisProto[3].second);
       
@@ -157,9 +157,9 @@ namespace db
         thisProto.push_back({ "Time" + it, "" });
         thisProto.push_back({ "Date" + it, "" });
 
-        stream::readString(ss, thisProto[j].second);
-        stream::readTime  (ss, thisProto[j+1].second); 
-        stream::readDate  (ss, thisProto[j+2].second); 
+        assert(stream::readDiciplineID(thisProto[j].second  , ss, ';'));
+        assert(stream::readTime       (thisProto[j+1].second, ss, ';'));
+        assert(stream::readDate       (thisProto[j+2].second, ss, ';'));
         //std::cout << thisProto[j].second << std::endl;  // @debug
       }
 
@@ -173,7 +173,7 @@ namespace db
   { 
     const auto protoObj = dat::Object
     {
-      { "Type",         "" },  // Start
+      { "Type",    "Start" },
       { "ID",           "" },
       { "StartNR",      "" },
     };
@@ -193,14 +193,14 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    stream::readInt(ss, objectCount);
+    assert(stream::readInt(objectCount, ss, ';'));
     if (std::stoi(objectCount) < 1) //if no starts are registered
     { return false; }
     for (size_t i = 0; i < std::stoi(objectCount); i++)
     {
       auto tempObj = protoObj;
       for (size_t j = 0; j < protoObj.size(); j++)
-      { stream::readString(ss, tempObj[j].second); }
+      { assert(stream::readName(tempObj[j].second, ss, ';')); }
       starts.push_back(tempObj);
     }
     return true; 
@@ -220,9 +220,9 @@ namespace db
 
     const auto protoObj = dat::Object
     {
-      { "Type",    ""  },  // Result
-      { "ID",      ""  },
-      { scoreType, ""  },
+      { "Type",    "Result" },
+      { "ID",      ""       },
+      { scoreType, ""       },
     };
     std::string path = diciplinePath + diciplineID + ".res";
 
@@ -240,7 +240,7 @@ namespace db
 
     // Reading number of objects.
     auto objectCount = std::string{};
-    stream::readInt(ss, objectCount);
+    assert(stream::readInt(objectCount, ss, ';'));
     if (std::stoi(objectCount) < 1) //if no starts are registered
     {
       return false;
@@ -249,9 +249,8 @@ namespace db
     {
       auto tempObj = protoObj;
       for (size_t j = 0; j < protoObj.size(); j++)
-      {
-        stream::readString(ss, tempObj[j].second);
-      }
+        { assert(stream::readName(tempObj[j].second, ss, ';')); }
+      
       results.push_back(tempObj);
     }
     return true; 

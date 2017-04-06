@@ -1,5 +1,10 @@
 #include "valid.h"
 
+bool valid::isDiciplineID(const std::string& value)
+{
+  return std::regex_match(value, regDiciplineID);
+}
+
 bool valid::isEnum(const std::string& value, const std::vector<std::string>& validStrings)
 {
 
@@ -11,6 +16,14 @@ bool valid::isEnum(const std::string& value, const std::vector<std::string>& val
   return false;
 }
 
+
+//
+// @function isString
+//
+bool valid::isName(const std::string& value)
+{ 
+  return std::regex_match(value, regName);
+}
 //
 // @funciton isChar3
 //  @robustness We should also check that all letters are indeed letters and nothing else

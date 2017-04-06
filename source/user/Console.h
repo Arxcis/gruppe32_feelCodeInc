@@ -39,14 +39,13 @@ public:
   inline int  clamp(const int input, const int max) const;
 
 private:
-  
+  API& api_ = API::getInstance();
   static bool instantiated_;
   static const int maxMenus_ = 23;
 
   //
   // Static state variables
   //
-  API api_;
   menu::ConsoleMenu* allMenus_[maxMenus_]; 
 
   //
