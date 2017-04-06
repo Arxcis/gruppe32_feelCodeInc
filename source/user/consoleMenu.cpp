@@ -428,19 +428,19 @@ namespace menu
   {
     newPage();
     
-     // 1. Start list header
-     header(type_);
+    // 1. Start list header
+    header(type_);
 
-     // 2. Form a new start list if start list is empty
-     if (starts.empty())
+    // 2. Form a new start list if start list is empty
+    if (starts.empty())
     { form::startList(starts); } 
 
-     // 3. List entire start menu - Start menu is un-chanceable once made
-     for (const auto& entry: starts)
+    // 3. List entire start menu - Start menu is un-chanceable once made
+    for (const auto& entry: starts)
     { illegalOption(entry[1].second + ": " + entry[2].second); }
 
-     // 4. Utility options - { delete, back }
-     dynamicOption(map, 1, nextState_[1], key, "Slett ");
+    // 4. Utility options - { delete, back }
+    dynamicOption(map, 1, nextState_[1], key, "Slett ");
     dynamicOption(map, 0, nextState_[0], key, "Back     ");
     footer();
   }
@@ -462,20 +462,20 @@ namespace menu
   {
     newPage();
 
-     // 1. Header of result menu
-     header(type_);
+    // 1. Header of result menu
+    header(type_);
 
     if (!(starts.empty()))  
     {  
       std::cout << "SCORETYPE : " <<  sport[2].second << std::endl; // @debug
       divider(40);
 
-         // 2. If start menu is not empty, and result menu is empty, then fill result-list
-         if(results.empty()) 
+      // 2. If start menu is not empty, and result menu is empty, then fill result-list
+      if(results.empty()) 
       { form::resultList(sport, starts, results); }
 
-         // 3. List result-list - once results have been made, they are un-changeable
-         for (int it=0; it < starts.size(); it++)
+      // 3. List result-list - once results have been made, they are un-changeable
+      for (int it=0; it < starts.size(); it++)
       { illegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second); }
 
       dynamicOption(map, 1, nextState_[1], key, "Delete results");
@@ -483,8 +483,8 @@ namespace menu
     else
       { std::cout << "ERROR: You have to create a start-list first\n"; }
 
-     // 4. Utility options
-     dynamicOption(map, 0, nextState_[0], key, "Back      ");
+    // 4. Utility options
+    dynamicOption(map, 0, nextState_[0], key, "Back      ");
     footer();
   }
 }
