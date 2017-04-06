@@ -19,6 +19,23 @@ namespace form
                   { std::cout << key << ": " << std::endl; };
 
   //
+  // @function form::singleField
+  //
+  void singleField(dat::Object& object, const std::string& fieldKey)
+  {
+    bool submit = true;
+
+    for (auto& field: object)              // @logic Finding the chosen field to edit
+    { 
+      if (field.first == fieldKey)
+      { submit = form::thisField(field, submit); break; }
+    }
+    if (submit)
+    { api.update(object); }
+  }
+
+
+  //
   // @function form::object - Based on type information, this function queries for a object-prototype.
   //             It then loops through this prototype, and fills in the blanks.
   //

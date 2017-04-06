@@ -17,6 +17,7 @@
 namespace form
 { 
 
+  void singleField(dat::Object& object, const std::string& fieldKey);
   void object(const std::string type);
   bool thisField(dat::Field& field, bool submit=true);
   

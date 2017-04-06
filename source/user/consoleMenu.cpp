@@ -402,11 +402,7 @@ namespace menu
     header(type_ + " edit");
 
     // 2. Form selected field
-    for (auto& field: object)              // @logic Finding the chosen field to edit
-    { 
-      if (field.first == fieldKey)
-      { form::thisField(field); break; }
-    }
+    form::singleField(object, fieldKey);
 
     // 3. Silent return
     map[0] = { nextState_[0], objectID };

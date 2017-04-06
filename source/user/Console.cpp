@@ -227,7 +227,6 @@ void Console::displayMenu()
     case DICI_EDIT:
       silentCommand = true;
       allMenus_[selectedMenu]->view(currentMap, selectedObject, selectedID);
-      api_.update(selectedObject); 
       break;
 
 
