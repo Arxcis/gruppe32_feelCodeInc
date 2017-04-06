@@ -41,6 +41,9 @@ namespace form
 
       submit = thisField(proto[1], submit); 
 
+      //
+      // @Integrity check NATION CODE
+      //
       while(DB.find(NATION, proto[1].second) && submit)
       { 
         std::cout << "Nasjon med koden " << proto[1].second << " finnes allerede.....\n";
@@ -67,15 +70,18 @@ namespace form
         {"Sex",          ""},
       };
 
-      submit = thisField(proto[2], submit);  
-      submit = thisField(proto[3], submit);  
-      submit = thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
-      submit = thisField(proto[5], submit);
+      submit = form::thisField(proto[2], submit);  
+      submit = form::thisField(proto[3], submit);  
+      submit = form::thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
+      submit = form::thisField(proto[5], submit);
 
+      //
+      // @Integrity check NATION CODE
+      //
       while(!DB.find(NATION, proto[5].second) && submit)
       { 
         std::cout << "Ingen nasjon med koden " << proto[5].second << " finnes.....\n"; 
-        submit = thisField(proto[5], submit);
+        submit = form::thisField(proto[5], submit);
       } 
     }
 
@@ -88,12 +94,15 @@ namespace form
         {"ScoreType",   ""},
         {"#Diciplines", "0"},
       };
-      submit = thisField(proto[1], submit);  // @robustness - PK should be checked if exst
+      submit = form::thisField(proto[1], submit);  // @robustness - PK should be checked if exst
 
+      //
+      // @Integrity check SPORT NAME
+      //
       while(DB.find(SPORT, proto[1].second) && submit)
       { 
         std::cout << "Sporten " << proto[1].second << " finnes allerede.....\n"; 
-        submit = thisField(proto[1], submit);
+        submit = form::thisField(proto[1], submit);
       } 
 
       submit = thisField(proto[2], submit); 
@@ -110,15 +119,50 @@ namespace form
   void appendDicipline(dat::Object sport)
   {
 
-    size_t suffixNumber = (std::stoi(sport[3].second)+1);
+    // Unique number of new dicipline in the given sport
+    const std::string newNumber = std::to_string(std::stoi(sport[3].second) + 1);
+    bool submit = true;
+
+    // @pseudo
+    //   
 
     dat::Object proto = 
     {
-      {"Type", "Dicipline"},
-      {"Name",  ""},
-      {"Time",  ""},
-      {"Date",  ""},
+      {"Type",     "Dicipline"},
+      {"DiciplineID",     ""},
+      {"Time",            ""},
+      {"Date",            ""},
     };
+
+    submit = form::thisField(proto[1], submit);
+    
+    //
+    // @integrity - checking if diciplineID already exists..
+    //
+    bool correct = false;
+    while (!correct && submit) {
+      correct = true;
+      for (const auto& field: sport)
+      {
+        if (field.second.substr(
+               field.second.find("_")+1) == proto[1].second)
+        { 
+          correct = false;
+          break;
+        } 
+      }
+      if(!correct)
+      { 
+        std::cout << "Dicipline already exist....\n";
+        submit = form::thisField(proto[1], submit); 
+      }
+    }
+    
+    submit = form::thisField(proto[2], submit);
+    submit = form::thisField(proto[3], submit);
+
+    if (submit)
+    { DB.add(proto); }
   }
 
   //
@@ -169,6 +213,13 @@ namespace form
     { 
       do 
       { valid = stream::readName (field.second, std::cin); }
+      while (askAgain(valid, field.second, "Feil type navn..."));
+    }
+
+    else if (fieldType.find("DiciplineID")  != std::string::npos) 
+    { 
+      do 
+      { valid = stream::readDiciplineID(field.second, std::cin); }
       while (askAgain(valid, field.second, "Feil type navn..."));
     }
 

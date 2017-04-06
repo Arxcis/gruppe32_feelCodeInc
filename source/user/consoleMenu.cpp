@@ -323,13 +323,13 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {}
 
-  void NewDicipline::view(dat::TransitionMap& map, dat::Object& sport, const std::string& key)
+  void NewDicipline::view(dat::TransitionMap& map, dat::Object& sport, const std::string& sportID)
   { 
     newPage();
     header(type_ + " append");
     form::appendDicipline(sport);
     footer();
-    bindDynamicOption(map, 0, nextState_[0], key, "Back");
+    bindDynamicOption(map, 0, nextState_[0], sportID, "Back");
     footer();
   }
   
