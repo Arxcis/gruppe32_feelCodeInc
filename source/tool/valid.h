@@ -19,7 +19,7 @@ namespace valid
   //    really helpfull tool rubuluar.com
   //
        // Special case to this system
-  static std::regex regDiciplineID(R"([\s]*[[:alpha:]0-9_-]+)");
+  static std::regex regDiciplineID(R"([\s]*[[:alpha:]0-9_- ]+)");
 
       // General cases
   static std::regex regName   (R"([\s]*[#[:alpha:] ]+)");

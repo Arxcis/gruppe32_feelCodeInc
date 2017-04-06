@@ -26,12 +26,15 @@ bool Sport::removeDicipline(const std::string& id)
   {
     if (diciplines_[i].name == id) 
     { 
-      diciplines_.erase(it); 
+      diciplines_.erase(it);
+      std::cout << "DOES THY EVEN RUN.... ===????? \n";
+      std::remove((diciplinePath + id + ".res").c_str());
+      std::remove((diciplinePath + id + ".sta").c_str());
       return true;
     }
   }
-  std::remove((diciplinePath + id + ".res").c_str());
-  std::remove((diciplinePath + id + ".sta").c_str());
+
+
   return false;
 }
 

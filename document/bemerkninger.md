@@ -34,3 +34,6 @@
 
 9. Testdata vi fikk tildelt hadde navn med tall i seg. Vi kjører en ganske streng skjekk på at navn er på riktig format når de leses inn. Det
     gir ingen mening å tillate navn med tall i seg. Derfor måtte vi endre på testdata.
+
+10. Testdata hadde også ',' og ' ' på dicipline ID. Vi tillater ikke dette i vårt filsystem, da
+    å ha filnavn som har ',' og ' ' i seg er veldig dårlig filnavngivingspraksis.

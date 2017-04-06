@@ -165,11 +165,14 @@ namespace form
     proto[2].first += newNumber;
     proto[3].first += newNumber;
 
-    if (submit)
-    { 
       sport.push_back(proto[1]);
       sport.push_back(proto[2]);
       sport.push_back(proto[3]);
+
+    for(auto& field: sport){  std::cout << ""} // debug
+
+    if (submit)
+    { 
       DB.add(sport); }
   }
 
