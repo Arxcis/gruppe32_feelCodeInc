@@ -260,17 +260,17 @@ void API::updateMedals(const dat::Container& results)
   if(results.size() > 0)
   { 
     Result* top[3];
-    size_t listSize = resultList.noOfElements();
-    if(results[0][2].first == ("Point"))
+    size_t listSize = results.size();
+    if(results[0][0].second == "Point")
     {
-      for (size_t i = 0; i < results.size(); i++)
+      for (size_t i = 0; i < listSize; i++)
       { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
-      for (size_t i = listSize-1; i >= listSize-3; i--)
-      {  top[i] = (Result*)resultList.removeNo(i); }
+      for (size_t i = listSize; i > listSize-3; i--)
+      {  top[listSize-i] = (Result*)resultList.removeNo(i); }
     }
     else
     {
-      for (size_t i = 0; i < results.size(); i++)
+      for (size_t i = 0; i < listSize; i++)
       { resultList.add(new Result(dat::packing::unpackTimeResult(results[i]))); }
       for (size_t i = 0; i < 3; i++)
       { top[i] = (Result*)resultList.removeNo(0); }
@@ -284,7 +284,7 @@ void API::updateMedals(const dat::Container& results)
       dat::Object protoMedal{ 
         { "Type",                       "Medal" }, 
         { "Code",   protoParticipant[5].second  },
-        { "Medals",                  "00-00-00" } 
+        { "Value",                  "00-00-00" } 
       }; 
       
       if (0 > medalBase_.getWithMatchingField(protoMedal, protoMedal[1])) //look for matching nations and assign if found to protoMedal
@@ -319,17 +319,17 @@ void API::updatePoints(const dat::Container& results)
   if (results.size() > 0)
   {
     Result* top[6];
-    size_t listSize = resultList.noOfElements();
-    if (results[0][2].first == ("Point"))
+    size_t listSize = results.size();
+    if (results[0][0].second == "Point")
     {
-      for (size_t i = 0; i < results.size(); i++)
+      for (size_t i = 0; i < listSize; i++)
       { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
-      for (size_t i = listSize - 1; i >= listSize - 6; i--)
-      { top[i] = (Result*)resultList.removeNo(i); }
+      for (size_t i = listSize; i > listSize - 6; i--)
+      { top[listSize - i] = (Result*)resultList.removeNo(i); }
     }
     else
     {
-      for (size_t i = 0; i < results.size(); i++)
+      for (size_t i = 0; i < listSize; i++)
       {resultList.add(new Result(dat::packing::unpackTimeResult(results[i]))); }
       for (size_t i = 0; i < 6; i++)
       { top[i] = (Result*)resultList.removeNo(0); }
@@ -343,14 +343,11 @@ void API::updatePoints(const dat::Container& results)
       dat::Object protoPoint{
         { "Type",                       "Point" },
         { "Code",    protoParticipant[5].second },
-        { "Points",                         "0" }
+        { "Value",                         "0" }
       };
 
       if (0 > pointBase_.getWithMatchingField(protoPoint, protoPoint[1])) //look for matching nations and assign if found to protoMedal
       { pointBase_.add(protoPoint); } 
-      //if a pointobject with the code was not found however, add the protoobject with the nationcode   
-
-     // pointBase_.getSortID(protoPoint, std::stoi(protoPoint[1].second));
 
       Rank* nationPoints = pointBase_.unpack(protoPoint); //obtain a copy of the actual object.
       size_t value = nationPoints->getValue();

@@ -20,7 +20,6 @@ namespace db
   {
   protected:
     List* elements;                     // Container for the databases core data
-    std::stringstream ss;                // Buffer for reading from files
     const std::string baseFile;
 
   public:

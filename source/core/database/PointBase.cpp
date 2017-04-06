@@ -32,6 +32,7 @@ namespace db
   //
   auto PointBase::readFile(const std::string& filepath) -> dat::Container
   {
+    std::stringstream ss;
     auto tempContainer = dat::Container{}; // @delete @temp @testing
 
     auto prototype = dat::Object
@@ -40,18 +41,8 @@ namespace db
       {"Nation",      ""}, // Nation char3
       {"Point",       ""},  
     };
-
-    auto fileToStream  = [filepath, this]()
-    { 
-      auto innFile = std::ifstream { filepath };
-      assert(innFile);
-      std::cout << "Opening "<< filepath << "...\n";  // @debug
-            
-      ss << innFile.rdbuf();    // Swapping buffers
-      innFile.close();
-    };
     
-    fileToStream();
+    stream::loadFile(ss, filepath);
 
     // Reading number of objects.
     auto objectCount = std::string{};
@@ -65,7 +56,6 @@ namespace db
       assert(stream::readInt   (prototype[2].second, ss, ';'));
       std::cout << "Points" << i+1 << " of " << objectCount << "\n";
       
-
       add(prototype);                       // Add to internal list
       tempContainer.push_back(prototype);   // Add to optional return container
     }
