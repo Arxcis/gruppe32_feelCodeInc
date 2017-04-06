@@ -46,7 +46,7 @@ namespace form
       if(submit) 
       {
         if (!(submit = !(DB.find(NATION, proto[1].second))))
-        { std::cout << "Nation with CODE " << proto[1].second << " already exists.....\n"; } // @robustness - PK code check if Nation-code already exists
+        { std::cout << "Nasjon med koden " << proto[1].second << " finnes allerede.....\n"; } // @robustness - PK code check if Nation-code already exists
       }
      
       submit = thisField(proto[2], submit); 
@@ -74,11 +74,12 @@ namespace form
       submit = thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
       submit = thisField(proto[5], submit);
 
-      if (submit) 
+      while(!DB.find(NATION, proto[5].second) && submit)
       { 
-        if (!(submit = DB.find(NATION, proto[5].second)))
-        { std::cout << "No nation with code " << proto[5].second << " exists.....\n"; } // @robustness - PK code check if Nation-code already exists
-      }
+        std::cout << "Ingen nasjon med koden " << proto[5].second << " eksisterer.....\n"; 
+        submit = thisField(proto[5], submit);
+      } // @robustness - PK code check if Nation-code already exists
+
      
 
     }
@@ -127,9 +128,27 @@ namespace form
   //  As long as the submit value statys 'true', program will continue to read fields.
   //
   bool thisField(dat::Field& field, bool submit)
-  {
-    if (!submit) 
+  { 
+    //
+    // @lambda function askAgain - asks again unless input was '0', or it was valid.
+    //
+    auto askAgain = [](bool valid_, const std::string& value, const std::string& errorMessage)
+    {
+      if (value == "0") 
+      { return false; }
+      else if (!valid_)
+      {
+        std::cout << errorMessage << std::endl; 
+        return true;
+      }
+      else
+      { return false; }
+    };
+
+    if (!submit)        // Early return if user has canceled
     { return false; }
+
+
     bool valid = false;
     const std::string fieldType = field.first;
     std::cout << fieldType << ":  " << std::endl;         // 1. 
@@ -215,24 +234,6 @@ namespace form
     
     else 
     { return true; } 
-  }
-
-
-  //
-  // @function askAgain - asks again unless input was '0', or it was valid.
-  //
-  bool askAgain(bool valid, const std::string& value, const std::string& errorMessage)
-  {
-    if (value == "0") 
-    { return false; }
-
-    else if (!valid)
-    {
-      std::cout << errorMessage << std::endl; 
-      return true;
-    }
-    else
-    { return false; }
   }
 
   //

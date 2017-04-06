@@ -28,16 +28,20 @@ namespace db
   //
   auto ParticipantBase::unpack(const dat::Object& object) -> Participant*
   { 
-
     //
     // If participant does not already have an ID. Generate a UNIQUE ID.
     //  the uniqeness is taken care of by a static int 
     //
     size_t ID;
+
     if (object[1].second == "")
-      { ID = ++participantCount; }
-    else
-      { ID = std::stoi(object[1].second); }
+    { ID = ++participantCount; }
+    else 
+    { 
+      ID = std::stoi(object[1].second);
+      if (ID > participantCount)         // check if new ID is MAX
+      { participantCount = ID; }
+    }
       
     dat::Contact contact = dat::packing::unpackContact(object[2], object[3], object[4]);
     dat::char3 shortName = object[5].second.c_str();

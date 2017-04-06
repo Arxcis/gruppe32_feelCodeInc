@@ -65,7 +65,7 @@ void API::loadAllBases()
 //                  {"Name", "Fotball"},
 //                  {...},
 //               }
-bool API::add(const dat::Object& object )
+bool API::add(const dat::Object object )
 {
   if(object[0].second == "Nation")
   { return nationBase_.add(object); }
@@ -255,6 +255,7 @@ void API::updateMedals(const dat::Container& results)
 
   List resultList(Sorted);
   dat::Object protoParticipant{ {"Type","Participant"} };
+  dat::Object tempObject;
 
   if(results.size() > 0)
   { 
@@ -292,8 +293,14 @@ void API::updateMedals(const dat::Container& results)
       MedalRank* nationMedals = (MedalRank*)medalBase_.unpack(protoMedal); //obtain a copy of the actual object.
       size_t value = nationMedals->getValue();
       nationMedals->giveMedal(i + 1); //add a medal per the top[i]-position
-      medalBase_.updateWithMatchingField(medalBase_.pack(nationMedals), protoMedal[1],value); //update the medalbaseObject
+
+
+      // @note cannot bind temp-value (Clang-Xcode)
+      tempObject = medalBase_.pack(nationMedals);
+      medalBase_.updateWithMatchingField(tempObject, protoMedal[1],value); //update the medalbaseObject
       
+
+
       //Add element back into list when done to let list delete all the elements from memory
       resultList.add(top[i]); 
     }
@@ -305,6 +312,7 @@ void API::updatePoints(const dat::Container& results)
   dat::Container points = pointBase_.getContainer();
   List resultList(Sorted);
   dat::Object protoParticipant{ { "Type","Participant" } };
+  dat::Object tempObject;
 
   if (results.size() > 0)
   {
@@ -343,7 +351,11 @@ void API::updatePoints(const dat::Container& results)
       Rank* nationPoints = pointBase_.unpack(protoPoint); //obtain a copy of the actual object.
       size_t value = nationPoints->getValue();
       nationPoints->givePointByPosition(i+1); //add a point per the top[i]-position
-      pointBase_.updateWithMatchingField(pointBase_.pack(nationPoints),protoPoint[1], value); //update the medalbaseObject
+
+
+            // @note cannot bind temp-value (Clang-Xcode)
+      tempObject = medalBase_.pack(nationPoints);
+      pointBase_.updateWithMatchingField(tempObject, protoPoint[1], value); //update the medalbaseObject
 
       //Add element back into list when done to let list delete all the elements from memory
       resultList.add(top[i]);
