@@ -32,7 +32,6 @@ public:
     // We can use the better technique of deleting the methods
     // we don't want. We do this because we dont want more than 1 copy of our class.
     // The getInstance() method as implemented here with static API, does not work earlier than C++11
-public:
     API(API const&)             = delete; // Assign by () ->  delete
     void operator=(API const&)  = delete; // Assign by = ->  delete
 
@@ -63,15 +62,16 @@ public:
   */
   auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
 
-  void updateMedals(const dat::Container& results);
-  void updatePoints(const dat::Container& resulretList);
-
   void quit();
 
   ~API(){}
 
 private:
   API();
+
+  void updateMedals(const dat::Container& resultList);
+  void updatePoints(const dat::Container& resultList);
+
   void loadAllBases();
 
   int parseToEntityType(const std::string& id);
