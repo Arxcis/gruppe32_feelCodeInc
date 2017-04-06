@@ -332,7 +332,7 @@ namespace menu
     // 3. Utility options - { delete, back }
     divider(40);
     dynamicOption(map, 5, nextState_[4], diciplineID, "Delete");
-    dynamicOption(map, 0, nextState_[0], sportID, "Back     ");
+    dynamicOption(map, 0, nextState_[0], sportID,     "Back     ");
     footer();
   }
 

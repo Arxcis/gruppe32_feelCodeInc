@@ -188,7 +188,7 @@ namespace db
   }
 
   bool SportBase::readResults (dat::Container& results, const std::string& diciplineID)
-  {  
+  {
     std::stringstream ss;
     // @commenting this out because 
      // Here I have to find out the ScoreType for the selected Sport 
