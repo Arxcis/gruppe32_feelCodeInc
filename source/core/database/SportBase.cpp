@@ -33,25 +33,24 @@ namespace db
   //
   // @class function unpack()
   //
-  auto SportBase::unpack(const dat::Object& object) -> Sport*
+  auto SportBase::unpack(const dat::Object& sport) -> Sport*
   {
-    std::string name = object[1].second;                        // Sport name
-    std::string scoreType = object[2].second;                   // Sport scoreType
+    std::string name = sport[1].second;                        // Sport name
+    std::string scoreType = sport[2].second;                   // Sport scoreType
     Sport* protoSport = new Sport(name, scoreType);             // new Sport element
 
-    int numberOfDiciplines = std::stoi(object[3].second);               // number of diciplines
+    int numberOfDiciplines = std::stoi(sport[3].second);               // number of diciplines
 
     for (auto j = 4, i = 0; j < (4 + numberOfDiciplines * 3); j += 3, i++ )
     { 
+      std::string dname = sport[j].second;                           // { Dicipline+i, id   }
+      dat::Time   dtime = dat::packing::unpackTime( (sport[j+1]) );  // { Dicipline+i, time }
+      dat::Date   ddate = dat::packing::unpackDate( (sport[j+2]) );  // { Dicipline+i, date }
 
-      std::string dname = object[j].second;                         // { Dicipline+i, id   }
-      dat::Time   dtime = dat::packing::unpackTime( object[j+1] );  // { Dicipline+i, time }
-      dat::Date   ddate = dat::packing::unpackDate( object[j+2] );  // { Dicipline+i, date }
-
-      // Logic for adding a new dicipline to existing sport object.
+      // Logic for adding a new dicipline to existing sport sport.
       Dicipline newDicipline{ dname, dtime, ddate }; 
       protoSport->addDicipline( newDicipline );
-      createFilesIfNotExist(object[j].second);
+      createFilesIfNotExist(sport[j].second);
     }
 
     return protoSport;
@@ -141,7 +140,7 @@ namespace db
 
       int numberOfDiciplines = std::stoi(thisProto[3].second);
       
-      for (size_t j = protoSize, i = 0; j < (protoSize + numberOfDiciplines * diciplineSize); j += diciplineSize, i++ )
+      for (size_t j = protoSize, i = 0; j < (protoSize + numberOfDiciplines * diciplineSize); j += diciplineSize, i++)
       {   
         std::string it = std::to_string(i);
         thisProto.push_back({ "Name" + it, "" });
