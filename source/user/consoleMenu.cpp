@@ -126,23 +126,18 @@ namespace menu
   void StartMenu::view(dat::TransitionMap& map)
   {
     newPage();
-    //
+
     // 1. Header of start menu
-    //
     header(type_);
 
-    //
     // 2. Start menu options - all are static.
-    //
     staticOption(map, 1, nextState_[1], "Nasjoner    ");
     staticOption(map, 2, nextState_[2], "Deltaker    ");
     staticOption(map, 3, nextState_[3], "Grener      ");
     staticOption(map, 4, nextState_[4], "Poeng       ");
     staticOption(map, 5, nextState_[5], "Medaljer    ");
 
-    //
     // 3. Exit program
-    //
     divider(15);
     staticOption(map, 0, nextState_[0], "Avslutt     ");
     footer();
@@ -160,21 +155,16 @@ namespace menu
   void BaseMenu::view(dat::TransitionMap& map, dat::Container& container)
   { 
     newPage();
-    //
+
     // 1. Header of base menu - Nation, Dicipline or sport
-    //
     header(type_);
 
-    //
     // 2. List of all objects in the given Database
-    //
     size_t it = 1;
     for(const auto& object: container)
     { dynamicOption(map, it++, nextState_[2], object[1].second, (object[1].first + ":  " + object[1].second) + "\t " + (object[2].first + ":  " + object[2].second)); }
 
-    //
     // 3. Utility options
-    //
     newLine();
     divider(40);
     staticOption(map, it, nextState_[1],"Ny " + type_.substr(0, type_.find(" ")));
@@ -194,20 +184,15 @@ namespace menu
   void RankMenu::view(dat::TransitionMap& map, dat::Container& container)
   {
     newPage();
-    //
+
     // 1. Header of RankMenu - Stats or Points
-    //
     header(type_ + " stats");
 
-    //
     // 2. List of all ranks, should be sorted highest first.
-    //
     for(const auto& object: container)
     { illegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
     
-    //
     // 3. Utility options
-    //
     divider(30);
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -225,25 +210,20 @@ namespace menu
   void NationMenu::view(dat::TransitionMap& map, dat::Object& nation) 
   {
     newPage();
-    //
+
     // 1. Header of nation menu
-    //
     header(type_);
     illegalOption(nation[1].first + ": " + nation[1].second);
     divider(45);
 
-    //
     // 2. All fields of the nation
-    //
     dynamicOption(map, 1, nextState_[1], nation[2]);
     illegalOption(nation[3].first + ": " + nation[3].second);
     dynamicOption(map, 2, nextState_[1], nation[4]);
     dynamicOption(map, 3, nextState_[1], nation[5]);
     dynamicOption(map, 4, nextState_[1], nation[6]);
     
-    //
     // 3. Utility options
-    //
     divider(45);
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
@@ -261,24 +241,18 @@ namespace menu
   {
     newPage();
 
-    //
     // 1. Dicipline header + participant ID
-    //
     header(type_);
     illegalOption(object[1].first + ": " + object[1].second);
     newLine();
 
-    //
     // 2. Fields to edit in participant
-    //
     dynamicOption(map, 1, nextState_[1], object[2]);
     dynamicOption(map, 2, nextState_[1], object[3]);
     dynamicOption(map, 3, nextState_[1], object[4]);
     dynamicOption(map, 4, nextState_[1], object[5]); // @robustness check if country exists
 
-    //
     // 3. Utility options
-    //
     newLine();
     divider(40);
     staticOption(map, 0, nextState_[0], "Back     ");
@@ -296,20 +270,15 @@ namespace menu
   void SportMenu::view(dat::TransitionMap& map, dat::Object& sport) 
   {
     newPage();
-    //
+
     // 1. Sport menu header
-    //
     header(type_);
 
-    //
     // 2. Binding options editing sport fields.
-    //
     dynamicOption(map, 1, nextState_[1], sport[1]);
     illegalOption(sport[2].first + ": " + sport[2].second);
 
-    //
     // 3. Binding opitons which selects a dicipline
-    // 
     newLine();
     illegalOption("Øvelser" + (": " + sport[3].second));
 
@@ -317,9 +286,7 @@ namespace menu
     for (size_t i = 4; i < (4 + (std::stoi(sport[3].second)*3)); i+=3 )
     { dynamicOption(map, optionIt++, nextState_[3], sport[i].second, sport[i].second); }
 
-    //
     // 4. Utility options
-    //
     newLine();
     divider(40);
     newLine();
@@ -343,9 +310,8 @@ namespace menu
   void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& sport, const std::string& key) 
   {
     newPage();
-    //
+
     // 1. Header of dicipline menu
-    //
     header(type_);
 
     // @logic + advances @iterator in the sport sport until we get to the desired dicipline.
@@ -353,9 +319,7 @@ namespace menu
     while (sport[it].second != key)
     { it++; }
 
-    //
     // 2. Dicipline menu options - { name, time, date, start, results }
-    //
     illegalOption(sport[it].second);
     divider(40);
     dynamicOption(map, 1, nextState_[1], sport[(it+1)]);
@@ -365,9 +329,7 @@ namespace menu
 
     std::string sportKey = key.substr(0, (key.find("_")));  // @hack
 
-    //
     // 3. Utility options - { delete, back }
-    //
     divider(40);
     dynamicOption(map, 5, nextState_[4], key, "Delete");
     dynamicOption(map, 0, nextState_[0], sportKey, "Back     ");
@@ -386,22 +348,17 @@ namespace menu
   void NewObject::view(dat::TransitionMap& map)
   {
    newPage();
-   //
+
    // 1. Header new object menu + cancel option
-   //
    header(type_ + " ny");
    newLine();
    illegalOption("Avbryt == 0");
    newLine();
 
-   //
    // 2. Form a new object
-   //
    form::object(type_);
 
-   //
    // 3. Utility options -  { new, back } 
-   //
    staticOption(map, 1, nextState_[1], "New  " + type_);
    staticOption(map, 0, nextState_[0], "Back");
   }
@@ -417,19 +374,14 @@ namespace menu
   void NewDicipline::view(dat::TransitionMap& map, dat::Object& sport, const std::string& sportID)
   { 
     newPage();
-    //
+
     // 1. New dicipline header
-    //
     header(type_ + " append");
 
-    //
     // 2. Form a new dicipline and append to existing sport object.
-    //
     form::appendDicipline(sport);
 
-    //
     // 3. Utility options back
-    //
     dynamicOption(map, 0, nextState_[0], sportID, "Back");
     footer();
     footer();
@@ -447,23 +399,18 @@ namespace menu
   void EditField::view(dat::TransitionMap& map, dat::Object& object, const std::string& key) 
   { 
     newPage();
-    //
+
     // 1. Edit field header
-    //
     header(type_ + " edit");
 
-    //
     // 2. Form selected field
-    //
     for(auto& field: object)              // @logic Finding the chosen field to edit
     { 
       if (field.first == key)
       { form::thisField(field); break; }
     }
 
-    //
     // 3. utility options - back
-    //
     dynamicOption(map, 0, nextState_[0], key, "Back");
     footer();
   }
@@ -480,27 +427,20 @@ namespace menu
   void StartList::view(dat::TransitionMap& map, dat::Container& starts, const std::string& key)
   {
     newPage();
-    //
-    // 1. Start list header
-    //
-    header(type_);
+    
+     // 1. Start list header
+     header(type_);
 
-    //
-    // 2. Form a new start list if start list is empty
-    //
-    if (starts.empty())
+     // 2. Form a new start list if start list is empty
+     if (starts.empty())
     { form::startList(starts); } 
 
-    //
-    // 3. List entire start menu - Start menu is un-chanceable once made
-    //
-    for (const auto& entry: starts)
+     // 3. List entire start menu - Start menu is un-chanceable once made
+     for (const auto& entry: starts)
     { illegalOption(entry[1].second + ": " + entry[2].second); }
 
-    //
-    // 4. Utility options - { delete, back }
-    //
-    dynamicOption(map, 1, nextState_[1], key, "Slett ");
+     // 4. Utility options - { delete, back }
+     dynamicOption(map, 1, nextState_[1], key, "Slett ");
     dynamicOption(map, 0, nextState_[0], key, "Back     ");
     footer();
   }
@@ -521,25 +461,21 @@ namespace menu
     const std::string&  key)
   {
     newPage();
-    //
-    // 1. Header of result menu
-    //
-    header(type_);
 
+     // 1. Header of result menu
+     header(type_);
 
     if (!(starts.empty()))  
     {  
       std::cout << "SCORETYPE : " <<  sport[2].second << std::endl; // @debug
       divider(40);
-      //
-      // 2. If start menu is not empty, and result menu is empty, then fill result-list
-      //
-      if(results.empty()) 
+
+         // 2. If start menu is not empty, and result menu is empty, then fill result-list
+         if(results.empty()) 
       { form::resultList(sport, starts, results); }
-      //
-      // 3. List result-list - once results have been made, they are un-changeable
-      //
-      for (int it=0; it < starts.size(); it++)
+
+         // 3. List result-list - once results have been made, they are un-changeable
+         for (int it=0; it < starts.size(); it++)
       { illegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second); }
 
       dynamicOption(map, 1, nextState_[1], key, "Delete results");
@@ -547,10 +483,8 @@ namespace menu
     else
       { std::cout << "ERROR: You have to create a start-list first\n"; }
 
-    //
-    // 4. Utility options
-    //
-    dynamicOption(map, 0, nextState_[0], key, "Back      ");
+     // 4. Utility options
+     dynamicOption(map, 0, nextState_[0], key, "Back      ");
     footer();
   }
 }
