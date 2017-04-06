@@ -203,5 +203,16 @@ int main()
         medals[i][j].second.c_str());
     }
   }
+  std::cout << "\n\n\n\n";
+  dat::Container points = api.getAll(POINT);
+  for (size_t i = 0; i < points.size(); i++)
+  {
+    for (size_t j = 0; j < points[i].size(); j++)
+    {
+      printf("%s\t\t\t%s\n",
+             points[i][j].first.c_str(),
+             points[i][j].second.c_str());
+    }
+  }
   return 0;
 }

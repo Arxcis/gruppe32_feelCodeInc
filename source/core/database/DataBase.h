@@ -38,10 +38,10 @@ namespace db
     virtual T*             unpack(const dat::Object& object) = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
 
-    bool findID(const std::string& id)
+    bool findSortID(const std::string& id)
     { return elements->inList(id.c_str()); }
 
-    bool findID(const int id)
+    bool findSortID(const int id)
     { return elements->inList(id); }
 
     bool getSortID(dat::Object& object, const std::string& id)
@@ -66,7 +66,7 @@ namespace db
       return e != nullptr;
     }
     //Very expensive compared to the getSortID
-    bool getWithMatchingField(dat::Object& object, const dat::Field id)
+    int getWithMatchingField(dat::Object& object, const dat::Field id)
     {
       dat::Container objects = getContainer();
       if (objects.size() > 0)
@@ -76,19 +76,65 @@ namespace db
         for (size_t i = 0; i < object.size() && fieldIndex != i; i++)
         {
           if (object[i].first == id.first) //if it's the field type we're looking for
-          {
-            fieldIndex = i;
-          }
+          { fieldIndex = i; }
         }
         assert(fieldIndex > 0); // if the objects are the same type the field should exist -> its index should too!
         for (size_t i = 0; i < objects.size(); i++)
         {
           if (objects[i][fieldIndex].second == id.second)
-          { return true; }
+          { return fieldIndex; }
         }
       }
-      return false;
+      return -1;
     }
+    //send in object, and search for field an object with the matching field will 
+    bool updateWithMatchingField(dat::Object& object, const dat::Field field, const int i=-1)
+    {
+      bool updated = false;
+      List removedItems(FIFO);
+      size_t fieldIndex = 0;
+      while (object[fieldIndex].first != field.first && fieldIndex < object.size()) //if the type does not match
+      { fieldIndex++; }                                                          // try the next one
+      if (i < 0)
+      {
+        while (T* e = (T*)elements->remove(object[1].second.c_str()))
+        {
+          if (pack(e)[fieldIndex].second != field.second) //Then find the actual wanted object with the matching foreign field
+          {  //this is not the one we're looking for, add it in a tempList,
+             //as we don't want it to stay in our current search
+            removedItems.add(e);
+          }
+          else
+          { //The matching element was found!
+            //discard the one that matches and add the object instead
+            elements->add(unpack(object));
+            updated = true;
+          }
+        }
+      }
+      else //numerical list
+      {
+        //since I've got to remove from list with the SORTON-value I have to filter through them all
+        while (T* e = (T*)elements->remove(i))
+        {
+          if (pack(e)[fieldIndex].second != field.second) //Then find the actual wanted object with the matching foreign field
+          {  //this is not the one we're looking for, add it in a tempList,
+             //as we don't want it to stay in our current search
+            removedItems.add(e);
+          }
+          else
+          { //The matching element was found!
+            //discard the one that matches and add the object instead
+            elements->add(unpack(object));
+            updated = true;
+          }
+        }
+      }
+      while (removedItems.noOfElements() > 0)
+      { elements->add(removedItems.removeNo(0)); } //dequeue everything back into elements
+      return updated;
+    }
+
 
     //
     // @class function update with string id

@@ -37,6 +37,7 @@ public:
   */
   void updateAll (const Entity entity, const dat::Container& list, const std::string& id="");
 
+  bool find (const Entity entity, const std::string& id);
   auto get       (const Entity entity, const std::string& id)     -> const dat::Object;
   
   /*

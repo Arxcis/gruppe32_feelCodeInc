@@ -14,9 +14,15 @@ void Rank::display()
 }
 
 void Rank::givePoint(size_t point)
-{ 
+{
   assert(point > 0 && point < 8);
-  value_ += point; 
+  value_ += point;
+}
+
+void Rank::givePointByPosition(size_t position)
+{ 
+  assert(position > 0 && position < 8);
+  value_ += ((position > 1) ? 7 - position : 7); //7 if pos is 1, 5-1 otherwise
 }
 
 void Rank::takePoint(size_t point)

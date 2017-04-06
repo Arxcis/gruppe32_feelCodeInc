@@ -186,6 +186,30 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 }
 
 //
+// @class function find()
+//  @param entity valid values:
+//      : NATION       
+//      : PARTICIPANT
+//      : SPORT
+//  @param std::string id
+//        example   "NOR"  or "Petter Northug"  or "Soccer"
+//
+bool API::find(const Entity entity, const std::string& id)
+{
+switch (entity)
+{
+  case NATION:      return nationBase_.findSortID(id);                 //   ID TextElement
+  case PARTICIPANT: return participantBase_.findSortID(std::stoi(id)); //      Numelement
+  case SPORT:       return sportBase_.findSortID(id);                  //      textElement
+  case POINT:       return pointBase_.findSortID(std::stoi(id));       //      Numelement
+  case MEDAL:       return medalBase_.findSortID(std::stoi(id));       //      Numelement
+
+  default: assert(false);// Not a valid command.. abort mission
+}
+return false;
+}
+
+//
 // @class function getAll()
 //  @param entity - valid values
 //       : NATION
@@ -251,7 +275,7 @@ void API::updateMedals(const dat::Container& results)
     for (size_t i = 0; i < 3; i++)
     {
       assert(participantBase_.getSortID(protoParticipant, top[i]->getID())); //pull the participant in the resultlist at top[i] -> dat:Object 
-      assert(nationBase_.findID(protoParticipant[5].second.c_str())); //@PRIMARY FOR TESTING, make sure the naiton exists.
+      assert(nationBase_.findSortID(protoParticipant[5].second.c_str())); //@PRIMARY FOR TESTING, make sure the naiton exists.
      
       //create a proto object with the nationcode
       dat::Object protoMedal{ 
@@ -260,12 +284,13 @@ void API::updateMedals(const dat::Container& results)
         { "Medals",                  "00-00-00" } 
       }; 
       
-      if (!medalBase_.getWithMatchingField(protoMedal, protoMedal[1])) //look for matching nations and assign if found to protoMedal
+      if (0 > medalBase_.getWithMatchingField(protoMedal, protoMedal[1])) //look for matching nations and assign if found to protoMedal
       { medalBase_.add(protoMedal); } //if a medalobject with the code was not found however, add the protoobject with the nationcode   
 
       MedalRank* nationMedals = (MedalRank*)medalBase_.unpack(protoMedal); //obtain a copy of the actual object.
+      size_t value = nationMedals->getValue();
       nationMedals->giveMedal(i + 1); //add a medal per the top[i]-position
-      medalBase_.update(nationMedals->getValue(),medalBase_.pack(nationMedals)); //update the medalbaseObject
+      medalBase_.updateWithMatchingField(medalBase_.pack(nationMedals), protoMedal[1],value); //update the medalbaseObject
       
       //Add element back into list when done to let list delete all the elements from memory
       resultList.add(top[i]); 
@@ -286,13 +311,9 @@ void API::updatePoints(const dat::Container& results)
     if (results[0][2].first == ("Point"))
     {
       for (size_t i = 0; i < results.size(); i++)
-      {
-        resultList.add(new Result(dat::packing::unpackPointResult(results[i])));
-      }
+      { resultList.add(new Result(dat::packing::unpackPointResult(results[i]))); }
       for (size_t i = listSize - 1; i >= listSize - 6; i--)
-      {
-        top[i] = (Result*)resultList.removeNo(i);
-      }
+      { top[i] = (Result*)resultList.removeNo(i); }
     }
     else
     {
@@ -304,7 +325,7 @@ void API::updatePoints(const dat::Container& results)
     for (size_t i = 0; i < 6; i++)
     {
       assert(participantBase_.getSortID(protoParticipant, top[i]->getID())); //pull the participant in the resultlist at top[i] -> dat:Object 
-      assert(nationBase_.findID(protoParticipant[5].second.c_str())); //@PRIMARY FOR TESTING, make sure the naiton exists.
+      assert(nationBase_.findSortID(protoParticipant[5].second.c_str())); //@PRIMARY FOR TESTING, make sure the naiton exists.
 
       //create a proto object with the nationcode
       dat::Object protoPoint{
@@ -313,13 +334,14 @@ void API::updatePoints(const dat::Container& results)
         { "Points",                         "0" }
       };
 
-      if (!pointBase_.getWithMatchingField(protoPoint, protoPoint[1])) //look for matching nations and assign if found to protoMedal
+      if (0 > pointBase_.getWithMatchingField(protoPoint, protoPoint[1])) //look for matching nations and assign if found to protoMedal
       { pointBase_.add(protoPoint); } 
       //if a pointobject with the code was not found however, add the protoobject with the nationcode   
 
       Rank* nationPoints = pointBase_.unpack(protoPoint); //obtain a copy of the actual object.
-      nationPoints->givePoint(i + 1); //add a medal per the top[i]-position
-      pointBase_.update(nationPoints->getValue(), pointBase_.pack(nationPoints)); //update the medalbaseObject
+      size_t value = nationPoints->getValue();
+      nationPoints->givePointByPosition(i+1); //add a point per the top[i]-position
+      pointBase_.updateWithMatchingField(pointBase_.pack(nationPoints),protoPoint[1], value); //update the medalbaseObject
 
       //Add element back into list when done to let list delete all the elements from memory
       resultList.add(top[i]);
