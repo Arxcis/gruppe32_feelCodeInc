@@ -109,6 +109,7 @@ namespace db
   //
   auto SportBase::readFile(const std::string& filepath) -> dat::Container
   {
+    std::stringstream ss;
     auto tempContainer = dat::Container{}; // @delete @temp @testing
 
     const auto prototype = dat::Object
@@ -119,17 +120,7 @@ namespace db
       {"#Diciplines",  ""}
     };
 
-    auto fileToStream  = [filepath, this]()
-    { 
-      auto innFile = std::ifstream { filepath };
-      assert(innFile);
-      std::cout << "Opening "<< filepath << "...\n";  // @debug
-            
-      ss << innFile.rdbuf();    // Swapping buffers
-      innFile.close();
-    };
-    
-    fileToStream();
+    stream::loadFile(ss, filepath);
 
     // Reading number of objects.
     auto objectCount = std::string{};
@@ -171,6 +162,7 @@ namespace db
 
   bool SportBase::readStarts  (dat::Container& starts,  const std::string& diciplineID)
   { 
+    std::stringstream ss;
     const auto protoObj = dat::Object
     {
       { "Type",    "Start" },
@@ -179,17 +171,7 @@ namespace db
     };
     std::string path = diciplinePath + diciplineID + ".sta";
 
-    auto fileToStream = [path, this]()
-    {
-      auto innFile = std::ifstream{ path };
-      assert(innFile);
-      std::cout << "Opening " << path << "...\n";  // @debug
-      ss.clear();
-      ss << innFile.rdbuf();    // Swapping buffers
-      innFile.close();
-    };
-
-    fileToStream();
+    stream::loadFile(ss, path);
 
     // Reading number of objects.
     auto objectCount = std::string{};
@@ -208,7 +190,7 @@ namespace db
 
   bool SportBase::readResults (dat::Container& results, const std::string& diciplineID)
   {  
-
+    std::stringstream ss;
     // @commenting this out because 
      // Here I have to find out the ScoreType for the selected Sport 
     const std::string sportID = diciplineID.substr(0, (diciplineID.find("_")));
@@ -226,17 +208,7 @@ namespace db
     };
     std::string path = diciplinePath + diciplineID + ".res";
 
-    auto fileToStream = [path, this]()
-    {
-      auto innFile = std::ifstream{ path };
-      assert(innFile);
-      std::cout << "Opening " << path << "...\n";  // @debug
-      ss.clear();
-      ss << innFile.rdbuf();    // Swapping buffers
-      innFile.close();
-    };
-
-    fileToStream();
+    stream::loadFile(ss, path);
 
     // Reading number of objects.
     auto objectCount = std::string{};

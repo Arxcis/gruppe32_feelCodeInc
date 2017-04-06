@@ -33,6 +33,7 @@ namespace db
   //
   auto MedalBase::readFile(const std::string& filepath) -> dat::Container
   {
+    std::stringstream ss;                // Buffer for reading from files
     auto tempContainer = dat::Container{}; // @delete @temp @testing
     auto prototype = dat::Object
     {
@@ -41,17 +42,7 @@ namespace db
       {"Medal",    ""},  
     };
 
-    auto fileToStream  = [filepath, this]()
-    { 
-      auto innFile = std::ifstream { filepath };
-      assert(innFile);
-      std::cout << "Opening "<< filepath << "...\n";  // @debug
-            
-      ss << innFile.rdbuf();    // Swapping buffers
-      innFile.close();
-    };
-    
-    fileToStream();
+    stream::loadFile(ss, filepath);
 
     // Reading number of objects.
     auto objectCount = std::string{};

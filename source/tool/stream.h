@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <cassert>
 
@@ -25,6 +26,8 @@ namespace stream
 { 
   void eatSpaces(std::stringstream& stream);
   void eatSpaces(std::istream& stream);
+  void loadFile(std::stringstream& ss, const std::string& filePath);
+  void skipBOM(std::ifstream& stream);
 
   int readInput(const std::string& message);
   // Reading from stringstream - File Input

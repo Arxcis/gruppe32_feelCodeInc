@@ -115,29 +115,29 @@
 
   const dat::Container resultList
   {
-    { {"Type",  "Time"    },
+    { {"Type",  "Point"    },
       {"ID",    "101"     },  //participant ID
-      {"Value", "12:23:12"} },
+      {"Value", "1203"} },
 
-    { { "Type",  "Time"    },
+    { { "Type",  "Point"    },
       { "ID",    "102"     }, //participant ID
-      { "Value", "11:34:12"} },
+      { "Value", "1121"} },
 
-    { { "Type",  "Time"    },
+    { { "Type",  "Point"    },
       { "ID",    "203"     }, //participant ID
-      { "Value", "09:03:37"} },
+      { "Value", "9203"} },
 
-     { { "Type",  "Time"    },
+     { { "Type",  "Point"    },
       { "ID",    "104"     }, //participant ID
-      { "Value", "02:03:37"} },
+      { "Value", "1243"} },
 
-   { { "Type",  "Time"    },
+   { { "Type",  "Point"    },
       { "ID",    "202"     }, //participant ID
-      { "Value", "19:53:34"} },
+      { "Value", "9240"} },
 
-    { { "Type",  "Time"    },
+    { { "Type",  "Point"    },
       { "ID",    "302"     }, //participant ID
-      { "Value", "08:23:37"} }
+      { "Value", "9202"} }
   };
 
 
@@ -178,7 +178,7 @@
 
 int main() 
 {
-  API api;
+  API& api = API::getInstance();
 
   dat::Container participants = api.getAll(PARTICIPANT);
   for (size_t i = 0; i < participants.size(); i++)
@@ -190,6 +190,7 @@ int main()
       participants[i][j].second.c_str());
     }
   }
+  
   std::cout << "\n\n\n\n";
   api.updateAll(RESULTS, resultList, "test");
   std::cout << "\n\n\n\n";
