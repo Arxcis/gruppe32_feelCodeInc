@@ -11,7 +11,7 @@ namespace db
     auto prototype = dat::Object
     {
       {"Type",   "Point"  },                        // Medal/Point
-      {"Nation", (char*)(rank->getNation()) },      // Nation char3
+      {"Code", (char*)rank->getNation()},      // Nation char3
       {"Point",  std::to_string(rank->getValue())}, 
     };
     return prototype;
