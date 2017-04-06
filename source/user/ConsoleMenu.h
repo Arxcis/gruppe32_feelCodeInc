@@ -43,19 +43,25 @@ namespace menu
     virtual void view(){};
     virtual void view(dat::TransitionMap& map){}
     virtual void view(dat::TransitionMap& map, dat::Container& container){}
-    virtual void view(dat::TransitionMap& map, dat::Container& starts, const std::string& key){}
-    virtual void view(dat::TransitionMap& map, dat::Container& starts, dat::Container& results, const std::string& key){}
+    
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
     virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) {}
-    virtual void 
-    view(
-      dat::TransitionMap& map,
-      dat::Object&  sport, 
-      dat::Container&     starts, 
-      dat::Container&     results, 
-      const std::string&  key)
-    {}
+    
+    virtual void view(
+      dat::TransitionMap&   map, 
+      const dat::Object&    sport, 
+      const dat::Container& starts, 
+      const std::string&    diciplineID)
+      {}
+
+    virtual void view(
+      dat::TransitionMap&   map,
+      const dat::Object&    sport, 
+      const dat::Container& starts, 
+      const dat::Container& results, 
+      const std::string&    diciplineID)
+      {}
 
     //
     // @class funciton - small helper functions
@@ -258,7 +264,11 @@ namespace menu
   public:
     StartList(const std::string& type, const std::vector<int>& nextState);
     virtual ~StartList(){}
-    virtual void view(dat::TransitionMap& map, dat::Container& starts, const std::string& key) override;
+    virtual void view(
+    dat::TransitionMap&   map, 
+    const dat::Object&    sport, 
+    const dat::Container& starts, 
+    const std::string&    diciplineID) override;
   };
 
   //////////////////////////////////////////////////////////////////
@@ -270,11 +280,12 @@ namespace menu
   public:
     ResultList(const std::string& type, const std::vector<int>& nextState);
     virtual ~ResultList(){}
-    virtual void view(
-      dat::TransitionMap& map,
-      dat::Object&  sport, 
-      dat::Container&     starts, 
-      dat::Container&     results, 
-      const std::string&  key) override;
+
+  virtual void view(
+    dat::TransitionMap&   map,
+    const dat::Object&    sport, 
+    const dat::Container& starts, 
+    const dat::Container& results, 
+    const std::string&    diciplineID) override;
   };
 }

@@ -21,11 +21,16 @@ namespace form
   bool thisField(dat::Field& field, bool submit=true);
   
   void appendDicipline(dat::Object sport); 
-  void startList(dat::Container& starts);
-  void resultList(
-    dat::Object&    sport, 
-    dat::Container& starts, 
-    dat::Container& results);
 
+  void startList(
+    const std::string& diciplineID,
+    const dat::Object& sport);
+
+  void resultList(
+    const std::string&    diciplineID,
+    const dat::Object&    sport, 
+    const dat::Container& starts);
+
+  bool askAgain (bool valid_, const std::string& value, const std::string& errorMessage);
 }
 

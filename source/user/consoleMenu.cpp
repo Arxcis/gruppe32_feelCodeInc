@@ -425,7 +425,11 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void StartList::view(dat::TransitionMap& map, dat::Container& starts, const std::string& diciplineID)
+  void StartList::view(
+    dat::TransitionMap&   map, 
+    const dat::Object&    sport, 
+    const dat::Container& starts, 
+    const std::string&    diciplineID)
   {
     newPage();
     
@@ -434,9 +438,9 @@ namespace menu
 
     // 2. Form a new start list if start list is empty
     if (starts.empty())
-    { form::startList(starts); } 
+    { form::startList(diciplineID, sport); } 
 
-    // 3. List entire start menu - Start menu is un-chanceable once made
+    // 3. List entire start list - Start list is immutable once made
     for (const auto& entry: starts)
     { illegalOption(entry[1].second + ": " + entry[2].second); }
 
@@ -455,11 +459,11 @@ namespace menu
   {} 
 
   void ResultList::view(
-    dat::TransitionMap& map,
-    dat::Object&        sport, 
-    dat::Container&     starts, 
-    dat::Container&     results, 
-    const std::string&  diciplineID)
+    dat::TransitionMap&   map,
+    const dat::Object&    sport, 
+    const dat::Container& starts, 
+    const dat::Container& results, 
+    const std::string&    diciplineID)
   {
     newPage();
 
@@ -473,7 +477,7 @@ namespace menu
 
       // 2. If start menu is not empty, and result menu is empty, then fill result-list
       if(results.empty()) 
-      { form::resultList(sport, starts, results); }
+      { form::resultList(diciplineID, sport, starts); }
 
       // 3. List result-list - once results have been made, they are un-changeable
       for (int it=0; it < starts.size(); it++)

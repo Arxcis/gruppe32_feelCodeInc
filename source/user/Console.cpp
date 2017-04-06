@@ -245,8 +245,11 @@ void Console::displayMenu()
     case SLIST_SELECT:
       selectedStarts = api_.getAll(STARTS, selectedID);
       
-      allMenus_[SLIST_SELECT]->view(currentMap, selectedStarts, selectedID);
-      api_.updateAll(STARTS, selectedStarts, selectedID);
+      allMenus_[SLIST_SELECT]->view(
+                                currentMap, 
+                                selectedObject,
+                                selectedStarts, 
+                                selectedID);
       break;
 
     case RLIST_SELECT:
@@ -254,13 +257,11 @@ void Console::displayMenu()
       selectedResults = api_.getAll(RESULTS, selectedID);
 
       allMenus_[RLIST_SELECT]->view(
-        currentMap, 
-        selectedObject,
-        selectedStarts, 
-        selectedResults, 
-        selectedID);
-
-      api_.updateAll(RESULTS, selectedResults, selectedID);
+                                currentMap, 
+                                selectedObject,
+                                selectedStarts, 
+                                selectedResults, 
+                                selectedID);
       break;
 
 //  ----------- SILENT delete commands  -----------------

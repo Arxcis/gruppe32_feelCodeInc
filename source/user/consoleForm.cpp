@@ -13,7 +13,7 @@ enum ProtoForms
 namespace form
 {
   dat::Object cancelObject = {{ "Type", "Cancel" }};
-  API& DB = API::getInstance();
+  API& api = API::getInstance();
 
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };
@@ -44,7 +44,7 @@ namespace form
       //
       // @Integrity check NATION CODE
       //
-      while(DB.find(NATION, proto[1].second) && submit)
+      while(api.find(NATION, proto[1].second) && submit)
       { 
         std::cout << "Nasjon med koden " << proto[1].second << " finnes allerede.....\n";
         submit = thisField(proto[1], submit); 
@@ -78,7 +78,7 @@ namespace form
       //
       // @Integrity check NATION CODE
       //
-      while(!DB.find(NATION, proto[5].second) && submit)
+      while(!api.find(NATION, proto[5].second) && submit)
       { 
         std::cout << "Ingen nasjon med koden " << proto[5].second << " finnes.....\n"; 
         submit = form::thisField(proto[5], submit);
@@ -100,7 +100,7 @@ namespace form
       //
       // @Integrity check SPORT NAME
       //
-      while(DB.find(SPORT, proto[1].second) && submit)
+      while(api.find(SPORT, proto[1].second) && submit)
       { 
         std::cout << "Sporten " << proto[1].second << " finnes allerede.....\n"; 
         submit = form::thisField(proto[1], submit);
@@ -110,7 +110,7 @@ namespace form
     }
 
     if (submit)
-    { DB.add(proto); }
+    { api.add(proto); }
   }
 
   //
@@ -174,7 +174,7 @@ namespace form
     //for(auto& field: sport){  std::cout << field.first << ": " << field.second << "\n"; } // @debug
 
     if (submit)
-    { DB.add(sport); }
+    { api.add(sport); }
   }
 
   //
@@ -190,25 +190,6 @@ namespace form
   { 
     if (!submit)        // Early return if user has canceled
     { return false; }
-
-
-    //
-    // @lambda function askAgain - asks again unless input was '0', or it was valid.
-    //
-    auto askAgain = [](bool valid_, const std::string& value, const std::string& errorMessage)
-    {
-      if (value == "0") 
-      { return false; }
-      else if (!valid_)
-      {
-        std::cout << errorMessage << std::endl; 
-        return true;
-      }
-      else
-      { return false; }
-    };
-
-
 
     bool valid = false;
     const std::string fieldType = field.first;
@@ -327,46 +308,89 @@ namespace form
   }
 
   //
-  // Add to list @functions
+  // @function startList()
+  //  @api-call updateAll(STARTS)
   //
-  void startList(dat::Container& starts)
+  void startList(
+    const std::string& diciplineID,
+    const dat::Object& sport)
   {
-    int size = stream::readInput("How many participants do you want to add?\n");
-    for (int it = 0; it < size; it++)
+    bool submit = true;
+    bool valid  = true;
+    dat::Container starts;
+    std::string numberOfParticipants;
+
+    do 
     {
+      std::cout << "How many participants do you want to add?\n";
+      valid = stream::readInt(numberOfParticipants, std::cin);
+    }
+    while (askAgain(valid, numberOfParticipants, "Not an int...\n" ));
+
+    size_t it = 0;
+    while (it < std::stoi(numberOfParticipants) && submit)
+    {
+      it++;
       dat::Object startProto =
       {
         {"Type",    "Start"},
         {"ID",      ""},        // PPK
         {"StartNR", ""},
       };
-    printKey(startProto[1].first);   stream::readInt(startProto[1].second, std::cin);
-      // printKey(startProto[2].first);   stream::readString(std::cin, startProto[2].second);
-
+      submit = form::thisField(startProto[1], submit);
       starts.push_back(startProto);
     }
+    if (submit) 
+    { api.updateAll(STARTS, starts, diciplineID); }
   }
 
+  //
+  // @function resultList()
+  //  @api-call updateAll(RESULTS)
+  //
   void resultList(
-    dat::Object&       sport, 
-    dat::Container&    starts, 
-    dat::Container&    results)
+    const std::string&    diciplineID,
+    const dat::Object&    sport, 
+    const dat::Container& starts)
   { 
-    const std::string& scoreType = sport[2].second;
-    const size_t size = starts.size();
+    bool submit = true;
+    dat::Container    results;
+    const std::string scoreType = sport[2].second;
+    const size_t      size      = starts.size();
 
-    for (size_t it=0; it < size; it++)
-    {
+    size_t it = 0;
+    while (it < size && submit)
+    { 
+      it++;
       dat::Object resultProto = 
       {
-        {"Type",  "Result"},
-        {"ID",    ""},        // PPK
+        {"Type",    "Result"},
+        {"ID",      ""},        // PPK
         {scoreType, ""},     // @TODO , here we need either Time-result or Point-result
       };
 
       printKey(starts[it][1].first + " - " + starts[it][1].second + "      " + starts[it][2].first + " - " +  starts[it][2].second); 
-      thisField(resultProto[2]);
+      submit = form::thisField(resultProto[2], submit);
       results.push_back(resultProto);
     }
+
+    if (submit) 
+    { api.updateAll(RESULTS, results, diciplineID); }
   }
+
+  //
+  // @function askAgain() - asks again unless input was '0', or it was valid.
+  //
+  bool askAgain (bool valid_, const std::string& value, const std::string& errorMessage)
+  {
+    if (value == "0") 
+    { return false; }
+    else if (!valid_)
+    {
+      std::cout << errorMessage << std::endl; 
+      return true;
+    }
+    else
+    { return false; }
+  };
 }
