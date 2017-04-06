@@ -237,10 +237,10 @@ namespace form
     { 
       do 
       { valid = stream::readDiciplineID(field.second, std::cin); }
-      while (askAgain(valid, field.second, 
-                    " Feil type øvelsenavn...\n"
-                    "   Ex1: 50km-klassisk\n",
-                    "   Ex2: Hockey-Finale-Menn\n"));
+      while (askAgain(valid, field.second, R"(
+                                           " Feil type øvelsenavn...\n"
+                                           "   Ex1: 50km-klassisk\n",
+                                           "   Ex2: Hockey-Finale-Menn\n)"));
     }
 
     else if (fieldType.find("Phone") != std::string::npos) 
