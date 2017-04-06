@@ -36,4 +36,4 @@
     gir ingen mening å tillate navn med tall i seg. Derfor måtte vi endre på testdata.
 
 10. Testdata hadde også ',' og ' ' på dicipline ID. Vi tillater ikke dette i vårt filsystem, da
-    å ha filnavn som har ',' og ' ' i seg er veldig dårlig filnavngivingspraksis.
+    det å ha filnavn som har ',' og ' ' i seg, er veldig dårlig filnavngivingspraksis.
