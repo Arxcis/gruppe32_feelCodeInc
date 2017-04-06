@@ -82,7 +82,7 @@ namespace db
         for (size_t i = 0; i < objects.size(); i++)
         {
           if (objects[i][fieldIndex].second == id.second)
-          { return fieldIndex; }
+          { object = objects[i]; return fieldIndex; }
         }
       }
       return -1;

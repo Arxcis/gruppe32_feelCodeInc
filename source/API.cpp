@@ -196,16 +196,16 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 //
 bool API::find(const Entity entity, const std::string& id)
 {
-switch (entity)
-{
-  case NATION:      return nationBase_.findSortID(id);                 //   ID TextElement
-  case PARTICIPANT: return participantBase_.findSortID(std::stoi(id)); //      Numelement
-  case SPORT:       return sportBase_.findSortID(id);                  //      textElement
-  case POINT:       return pointBase_.findSortID(std::stoi(id));       //      Numelement
-  case MEDAL:       return medalBase_.findSortID(std::stoi(id));       //      Numelement
+  switch (entity)
+  {
+    case NATION:      return nationBase_.findSortID(id);                 //   ID TextElement
+    case PARTICIPANT: return participantBase_.findSortID(std::stoi(id)); //      Numelement
+    case SPORT:       return sportBase_.findSortID(id);                  //      textElement
+    case POINT:       return pointBase_.findSortID(std::stoi(id));       //      Numelement
+    case MEDAL:       return medalBase_.findSortID(std::stoi(id));       //      Numelement
 
-  default: assert(false);// Not a valid command.. abort mission
-}
+    default: assert(false);// Not a valid command.. abort mission
+  }
 return false;
 }
 
@@ -242,7 +242,7 @@ auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Cont
       if (!sportBase_.readResults(tempContainer, id))
       { assert(false); }
 
-    default: assert(false);  // Not a valid command.. abort mission
+    default: assert(false);     //Not a valid command... abort mission
   }
   return tempContainer;
 }
@@ -286,6 +286,8 @@ void API::updateMedals(const dat::Container& results)
       
       if (0 > medalBase_.getWithMatchingField(protoMedal, protoMedal[1])) //look for matching nations and assign if found to protoMedal
       { medalBase_.add(protoMedal); } //if a medalobject with the code was not found however, add the protoobject with the nationcode   
+
+
 
       MedalRank* nationMedals = (MedalRank*)medalBase_.unpack(protoMedal); //obtain a copy of the actual object.
       size_t value = nationMedals->getValue();
@@ -337,6 +339,8 @@ void API::updatePoints(const dat::Container& results)
       if (0 > pointBase_.getWithMatchingField(protoPoint, protoPoint[1])) //look for matching nations and assign if found to protoMedal
       { pointBase_.add(protoPoint); } 
       //if a pointobject with the code was not found however, add the protoobject with the nationcode   
+
+     // pointBase_.getSortID(protoPoint, std::stoi(protoPoint[1].second));
 
       Rank* nationPoints = pointBase_.unpack(protoPoint); //obtain a copy of the actual object.
       size_t value = nationPoints->getValue();
