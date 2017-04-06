@@ -404,14 +404,15 @@ namespace menu
     header(type_ + " edit");
 
     // 2. Form selected field
-    for(auto& field: object)              // @logic Finding the chosen field to edit
+    for (auto& field: object)              // @logic Finding the chosen field to edit
     { 
       if (field.first == key)
       { form::thisField(field); break; }
     }
 
     // 3. utility options - back
-    dynamicOption(map, 0, nextState_[0], key, "Back");
+      
+    dynamicOption(map, 0, nextState_[0], object[1].second, "Back");
     footer();
   }
 
