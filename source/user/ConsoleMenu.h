@@ -48,12 +48,14 @@ namespace menu
     virtual void view(dat::TransitionMap& map, dat::Object& object){}
     virtual void view(dat::TransitionMap& map, dat::Field&  field){}
     virtual void view(dat::TransitionMap& map, dat::Object& object, const std::string& key) {}
-    virtual void view(
+    virtual void 
+    view(
       dat::TransitionMap& map,
       dat::Object&  sport, 
       dat::Container&     starts, 
       dat::Container&     results, 
-      const std::string&  key){}
+      const std::string&  key)
+    {}
 
     //
     // @class funciton - small helper functions
@@ -64,35 +66,48 @@ namespace menu
     inline void header(const std::string) const;
     inline void newLine();
     
+    //
+    // @class function illegalOption
+    //
+    inline void 
+    illegalOption(
+      const std::string& text) const;
 
     //
-    // @class funciton bindStaticOption() menu-option
+    // @class funciton staticOption() menu-option
     //    1. Prints an option. Registeres
     // 
-    inline void bindStaticOption(
+    inline void 
+    staticOption(
       dat::TransitionMap& map,
       const int select, 
       const int menuPointer,
       const std::string& text) const;
 
     //
-    // @class function bindDynamicOption()
+    // @class function dynamicOption()
     //    Should map user input to a dynamic object-id
     //    Dynamic - meaning that the same option might lead to different results
     //              each time the menu is shown.
     //
-    inline void bindDynamicOption(
+    inline void 
+    dynamicOption(
       dat::TransitionMap& map,
       const int select, 
-      const int menuPointer,
+      const int nextMenu,
       const std::string& id, 
       const std::string& text) const;
 
     //
-    // @class function immutableOption
+    // @class function dynamicOption() overload
     //
-    inline void printIllegalOption(
-      const std::string& text) const;
+    inline void 
+    dynamicOption(
+      dat::TransitionMap& map,
+      const int           select,
+      const int           nextMenu, 
+      const dat::Field&   field) const;
+
 
     protected:
       const std::string type_;
@@ -261,18 +276,5 @@ namespace menu
       dat::Container&     starts, 
       dat::Container&     results, 
       const std::string&  key) override;
-  };
-
-
-  /////////////////////////////////////////////////////////////////
-  //
-  //  @class menu::Error
-  //
-  class Error : public ConsoleMenu
-  {
-  public:
-    Error(const std::string& type, const std::vector<int>& nextState);
-    virtual ~Error(){}
-    virtual void view() override;
   };
 }

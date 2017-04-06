@@ -2,7 +2,7 @@
 //
 // @file    config.h
 // @repo    gruppe32
-// @created 04.04.17 by Halvor
+// @created 04.04.17 by Jonas
 // @brief   We will try to keep constants here which have a big impact on the 
 //          CONFIGURATION of the system.
 //
