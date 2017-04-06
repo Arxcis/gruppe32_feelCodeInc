@@ -376,7 +376,7 @@ void API::updatePoints(const dat::Container& results)
 
 
             // @note cannot bind temp-value (Clang-Xcode)
-      tempObject = medalBase_.pack(nationPoints);
+      tempObject = pointBase_.pack(nationPoints);
       pointBase_.updateWithMatchingField(tempObject, protoPoint[1], value); //update the medalbaseObject
 
       //Add element back into list when done to let list delete all the elements from memory

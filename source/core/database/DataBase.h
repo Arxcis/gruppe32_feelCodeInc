@@ -198,7 +198,7 @@ namespace db
       dat::Container container;
       T* e;
       int i = 0;
-      while((e = (T*)elements->removeNo(0)))// Sorry men den nydelige for-loopen her funka ikkje hos meg --> for (int i = 0; elements->noOfElements(); i++)
+      while((e = (T*)elements->removeNo(0)))
         { container.push_back(pack(e)); }
 
       for (auto& obj: container)

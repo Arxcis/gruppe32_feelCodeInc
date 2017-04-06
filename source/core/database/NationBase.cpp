@@ -1,6 +1,6 @@
 #include "NationBase.h"
 
-namespace db 
+namespace db
 {
 
   //
@@ -13,10 +13,10 @@ namespace db
     {
       {"Type",           "Nation"},   // Nation
       {"Code",           (char*)nation->getShortName()},   //PK              
-      {"Name",           nation->getName()},                    
+      {"Name",           nation->getName()},
       {"#Participants",  std::to_string(nation->getParticipantCount())},
-      {"ContactName",    contact.name},                    
-      {"ContactPhone",   contact.phone},             
+      {"ContactName",    contact.name},
+      {"ContactPhone",   contact.phone},
       {"ContactEmail",   contact.mailAddress},
     };
     return nationObj;
@@ -49,15 +49,15 @@ namespace db
   auto NationBase::readFile(const std::string& filepath) -> dat::Container
   {
     std::stringstream ss;                // Buffer for reading from files
-    auto tempContainer = dat::Container {}; // @delete @temp @testing
-    auto prototype = dat::Object 
+    auto tempContainer = dat::Container{}; // @delete @temp @testing
+    auto prototype = dat::Object
     {
       {"Type",           ""},   // Nation
       {"Code",           ""},   //PK              
-      {"Name",           ""},                    
+      {"Name",           ""},
       {"#Participants",  ""},
-      {"ContactName",    ""},                    
-      {"ContactPhone",   ""},             
+      {"ContactName",    ""},
+      {"ContactPhone",   ""},
       {"ContactEmail",   ""},
     };
 
@@ -68,21 +68,21 @@ namespace db
     assert(stream::readInt(objectCount, ss, ';'));
 
     // Loop through all objects
-    for(int i=0; i < std::stoi(objectCount); i++)
+    for (int i = 0; i < std::stoi(objectCount); i++)
     {
-      std::cout << "Nation " << i+1 << " of " << objectCount << "\n";      // @debug
+      std::cout << "Nation " << i + 1 << " of " << objectCount << "\n";      // @debug
 
-      assert(stream::readName  (prototype[0].second, ss, ';'));
-      assert(stream::readChar3 (prototype[1].second, ss, ';'));
-      assert(stream::readName  (prototype[2].second, ss, ';'));
-      assert(stream::readInt   (prototype[3].second, ss, ';'));
-      assert(stream::readName  (prototype[4].second, ss, ';'));
-      assert(stream::readPhone (prototype[5].second, ss, ';'));
-      assert(stream::readEmail (prototype[6].second, ss, ';'));
+      assert(stream::readName(prototype[0].second, ss, ';'));
+      assert(stream::readChar3(prototype[1].second, ss, ';'));
+      assert(stream::readName(prototype[2].second, ss, ';'));
+      assert(stream::readInt(prototype[3].second, ss, ';'));
+      assert(stream::readName(prototype[4].second, ss, ';'));
+      assert(stream::readPhone(prototype[5].second, ss, ';'));
+      assert(stream::readEmail(prototype[6].second, ss, ';'));
 
       add(prototype);                       // Add to internal list
       tempContainer.push_back(prototype);   // Add to optional return container
-    } 
+    }
     return tempContainer;
   }
 }
