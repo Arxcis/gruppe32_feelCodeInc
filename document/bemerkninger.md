@@ -1,3 +1,4 @@
+## Bemerkninger
 
 1.  !!!  Vi har ikke inkludert/implementert Ant.sifre og Ant.desimaler som en del av datastrukturen og funksjonalitet, 
      da vi oppdaget dette kravet ganske sent i prosessen. Det førte til at det ble såpass omfattende å gjøre dette om, 

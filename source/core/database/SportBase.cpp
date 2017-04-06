@@ -136,7 +136,7 @@ namespace db
     assert(stream::readInt(objectCount, ss, ';'));
 
     size_t protoSize = prototype.size();
-    size_t diciplineSize = 3;
+    const size_t diciplineSize = 3;
       // Loop through all objects
     for (auto i=0; i < std::stoi(objectCount); i++)
     {

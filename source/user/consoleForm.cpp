@@ -169,11 +169,10 @@ namespace form
       sport.push_back(proto[2]);
       sport.push_back(proto[3]);
 
-    for(auto& field: sport){  std::cout << ""} // debug
+    for(auto& field: sport){  std::cout << field.first << ": " << field.second << "\n"; } // debug
 
     if (submit)
-    { 
-      DB.add(sport); }
+    { DB.add(sport); }
   }
 
   //
@@ -217,48 +216,70 @@ namespace form
     { 
       do 
       { valid = stream::readChar3 (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type Code..."));
+      while (askAgain(valid, field.second, 
+                  " Feil type landskode (3 karakterer)...\n"
+                  "   Ex1:  NOR  \n"
+                  "   Ex2:  SWE  \n"));
     }
 
     else if (fieldType.find("Name")  != std::string::npos) 
     { 
       do 
       { valid = stream::readName (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type navn..."));
+      while (askAgain(valid, field.second, 
+                  " Feil type navn...\n"
+                  "   Ex1: Jonas Hanson\n"
+                  "   Ex2: Henrik J. Johnson\n"
+                  "   Ex3: U.S.S.R.\n"));
     }
 
     else if (fieldType.find("DiciplineID")  != std::string::npos) 
     { 
       do 
       { valid = stream::readDiciplineID(field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type navn..."));
+      while (askAgain(valid, field.second, 
+                    " Feil type øvelsenavn...\n"
+                    "   Ex1: 50km-klassisk\n",
+                    "   Ex2: Hockey-Finale-Menn\n"));
     }
 
     else if (fieldType.find("Phone") != std::string::npos) 
     { 
       do 
       { valid = stream::readPhone (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type telefon..."));
+      while (askAgain(valid, field.second, 
+                    " Feil type telefon...\n"
+                    "   Ex1: +4712345678\n"
+                    "   Ex2: +47 12345678\n"
+                    "   Ex3: +47 123 45 678\n"
+                    "   Ex4: +45 12 34 56 78\n"));
     }
 
     else if (fieldType.find("Email") != std::string::npos) 
     { 
       do 
       { valid = stream::readEmail (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type email..."));
+      while (askAgain(valid, field.second, 
+                    " Feil type email...\n"
+                    "   Ex1: jon.sol@gma.co\n"
+                    "   Ex2: jonassur_golfurson@fjatt.foobar"));
     }
 
     else if (fieldType.find("Time")  != std::string::npos) 
     { 
       do 
       { valid = stream::readTime (field.second, std::cin); }
-      while (askAgain(valid, field.second, "Feil type tid..."));
+      while (askAgain(valid, field.second, 
+                    " Feil type tid...\n"
+                    "   Ex1: 12:00\n"
+                    "   Ex2: 00:37:55"
+                    "   Ex3: 00:00:55:678"));
     }
 
     else if (fieldType.find("Point") != std::string::npos) 
     {  
       do 
-      { valid = stream::readInt (field.second, std::cin); }
+      { valid = stream::readInt(field.second, std::cin); }
       while (askAgain(valid, field.second, "Feil type poeng..."));
     }
 
