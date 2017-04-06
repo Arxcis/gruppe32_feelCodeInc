@@ -13,7 +13,7 @@ enum ProtoForms
 namespace form
 {
   dat::Object cancelObject = {{ "Type", "Cancel" }};
-  API& database = API::getInstance();
+  API& DB = API::getInstance();
 
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };
@@ -41,13 +41,20 @@ namespace form
         {"ContactEmail",   ""},
       };
 
-      submit = thisField(proto[1], submit);   // @robustness - PK code check if Nation-code already exists
+      submit = thisField(proto[1], submit); 
+    
+      if(submit) 
+      {
+        if (!(submit = !(DB.find(NATION, proto[1].second))))
+        { std::cout << "Nation with CODE " << proto[1].second << " already exists.....\n"; } // @robustness - PK code check if Nation-code already exists
+      }
+     
       submit = thisField(proto[2], submit); 
-      submit = // #Participants
+      // #Participants
       submit = thisField(proto[4], submit);
       submit = thisField(proto[5], submit);
       submit = thisField(proto[6], submit);
-      
+
     }
     else if (type == "Participant")
     {
@@ -62,10 +69,17 @@ namespace form
         {"Sex",          ""},
       };
 
-      submit = thisField(proto[2], submit);    
+      submit = thisField(proto[2], submit);  
       submit = thisField(proto[3], submit);  
       submit = thisField(proto[4], submit);    // @robustness - FK NationCode - check if already exist
       submit = thisField(proto[5], submit);
+
+      if (submit) 
+      { 
+        if (!(submit = DB.find(NATION, proto[5].second)))
+        { std::cout << "No nation with code " << proto[5].second << " exists.....\n"; } // @robustness - PK code check if Nation-code already exists
+      }
+     
 
     }
     else if (type == "Sport")      
@@ -82,7 +96,7 @@ namespace form
     }
 
     if (submit)
-    { database.add(proto); }
+    { DB.add(proto); }
   }
 
   //

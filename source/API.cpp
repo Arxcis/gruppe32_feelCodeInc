@@ -45,6 +45,8 @@ namespace test
 API::API()
   { loadAllBases();}
 
+
+
 void API::loadAllBases()
 {
   std::cout << "API loading all bases...\n";        // @debug
@@ -63,7 +65,7 @@ void API::loadAllBases()
 //                  {"Name", "Fotball"},
 //                  {...},
 //               }
-bool API::add(const dat::Object object )
+bool API::add(const dat::Object& object )
 {
   if(object[0].second == "Nation")
   { return nationBase_.add(object); }
