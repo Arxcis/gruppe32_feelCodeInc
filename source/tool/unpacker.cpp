@@ -13,10 +13,16 @@ namespace dat { namespace packing
   Time unpackTime(const Field& time_)
   {
     const std::string time = time_.second;
+    size_t seconds = 0;
+
+    // support for 12:00 and 12:00:00
+    if (time_.second.substr(5) != "") 
+    { seconds = std::stoi(time_.second.substr(6,2)); }
+
     return Time(
       std::stoi(time.substr(0, 2)), 
       std::stoi(time.substr(3, 2)), 
-      std::stoi(time.substr(6, 2)));
+      seconds);
   }
 
   Date unpackDate(const Field& date_)

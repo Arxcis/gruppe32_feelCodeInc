@@ -124,9 +124,6 @@ namespace form
     const std::string newNumber = std::to_string(std::stoi(sport[3].second) + 1);
     bool submit = true;
 
-    // @pseudo
-    //   
-
     dat::Object proto = 
     {
       {"Type",     "Dicipline"},
@@ -166,11 +163,15 @@ namespace form
     proto[2].first += newNumber;
     proto[3].first += newNumber;
 
-      sport.push_back(proto[1]);
-      sport.push_back(proto[2]);
-      sport.push_back(proto[3]);
+    // Pushing back new fields
+    sport.push_back(proto[1]);
+    sport.push_back(proto[2]);
+    sport.push_back(proto[3]);
 
-    for(auto& field: sport){  std::cout << field.first << ": " << field.second << "\n"; } // debug
+    // Incrementing number of diciplines
+    sport[3].second = newNumber;
+
+    //for(auto& field: sport){  std::cout << field.first << ": " << field.second << "\n"; } // @debug
 
     if (submit)
     { DB.add(sport); }

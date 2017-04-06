@@ -14,7 +14,7 @@ namespace db
       { readContainer(); }
 
     virtual ~SportBase(){}
-    virtual auto pack  (const Sport*       object) -> dat::Object override;
+    virtual auto pack  (const Sport*      object) -> dat::Object override;
     virtual auto unpack(const dat::Object& object) -> Sport*      override;
 
     bool removeDicipline(const std::string & fullID);

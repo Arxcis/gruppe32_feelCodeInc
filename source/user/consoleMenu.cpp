@@ -167,7 +167,7 @@ namespace menu
     // 3. Utility options
     newLine();
     divider(40);
-    staticOption(map, it, nextState_[1],"Ny " + type_.substr(0, type_.find(" ")));
+    staticOption(map, it, nextState_[1], "Ny " + type_.substr(0, type_.find(" ")));
     staticOption(map, 0, nextState_[0], "Back      ");
     footer();
   }
@@ -181,7 +181,7 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void RankMenu::view(dat::TransitionMap& map, dat::Container& container)
+  void RankMenu::view(dat::TransitionMap& map, dat::Container& ranks)
   {
     newPage();
 
@@ -189,8 +189,8 @@ namespace menu
     header(type_ + " stats");
 
     // 2. List of all ranks, should be sorted highest first.
-    for(const auto& object: container)
-    { illegalOption(object[1].first + ": " + object[1].second + "\t" + object[2].first + ": "+  object[2].second + "\t" + object[3].first + ": " +  object[3].second + "\t"); }
+    for(const auto& rank: ranks)
+    { illegalOption(rank[1].first + ": " + rank[1].second + "\t" + rank[2].first + ": "+  rank[2].second + "\t" + rank[3].first + ": " +  rank[3].second + "\t"); }
     
     // 3. Utility options
     divider(30);
@@ -237,20 +237,20 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void ParticipantMenu::view(dat::TransitionMap& map, dat::Object& object) 
+  void ParticipantMenu::view(dat::TransitionMap& map, dat::Object& participant) 
   {
     newPage();
 
     // 1. Dicipline header + participant ID
     header(type_);
-    illegalOption(object[1].first + ": " + object[1].second);
+    illegalOption(participant[1].first + ": " + participant[1].second);
     newLine();
 
     // 2. Fields to edit in participant
-    dynamicOption(map, 1, nextState_[1], object[2]);
-    dynamicOption(map, 2, nextState_[1], object[3]);
-    dynamicOption(map, 3, nextState_[1], object[4]);
-    dynamicOption(map, 4, nextState_[1], object[5]); // @robustness check if country exists
+    dynamicOption(map, 1, nextState_[1], participant[2]);
+    dynamicOption(map, 2, nextState_[1], participant[3]);
+    dynamicOption(map, 3, nextState_[1], participant[4]);
+    dynamicOption(map, 4, nextState_[1], participant[5]); // @robustness check if country exists
 
     // 3. Utility options
     newLine();
@@ -290,7 +290,7 @@ namespace menu
     newLine();
     divider(40);
     newLine();
-    dynamicOption(map, optionIt, nextState_[2], sport[1].second,"Ny Øvelse");
+    dynamicOption(map, optionIt, nextState_[2], sport[1].second, "Ny Øvelse");
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -307,7 +307,7 @@ namespace menu
   // @funciton menu::DiciplineMenu::view
   //  @param object - The selected sport, which also contains meta-information about selected dicipline
   //
-  void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& sport, const std::string& key) 
+  void DiciplineMenu::view(dat::TransitionMap& map, dat::Object& sport, const std::string& diciplineID) 
   {
     newPage();
 
@@ -316,7 +316,7 @@ namespace menu
 
     // @logic + advances @iterator in the sport sport until we get to the desired dicipline.
     int it = 0;
-    while (sport[it].second != key)
+    while (sport[it].second != diciplineID)
     { it++; }
 
     // 2. Dicipline menu options - { name, time, date, start, results }
@@ -327,12 +327,12 @@ namespace menu
     dynamicOption(map, 3, nextState_[2], sport[it].second, "Start list");
     dynamicOption(map, 4, nextState_[3], sport[it].second, "Result List");
 
-    std::string sportKey = key.substr(0, (key.find("_")));  // @hack
+    std::string sportID = diciplineID.substr(0, (diciplineID.find("_")));  // @hack
 
     // 3. Utility options - { delete, back }
     divider(40);
-    dynamicOption(map, 5, nextState_[4], key, "Delete");
-    dynamicOption(map, 0, nextState_[0], sportKey, "Back     ");
+    dynamicOption(map, 5, nextState_[4], diciplineID, "Delete");
+    dynamicOption(map, 0, nextState_[0], sportID, "Back     ");
     footer();
   }
 
@@ -396,8 +396,9 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {}
 
-  void EditField::view(dat::TransitionMap& map, dat::Object& object, const std::string& key) 
+  void EditField::view(dat::TransitionMap& map, dat::Object& object, const std::string& fieldKey) 
   { 
+    const std::string& objectID = object[1].second;
     newPage();
 
     // 1. Edit field header
@@ -406,13 +407,12 @@ namespace menu
     // 2. Form selected field
     for (auto& field: object)              // @logic Finding the chosen field to edit
     { 
-      if (field.first == key)
+      if (field.first == fieldKey)
       { form::thisField(field); break; }
     }
 
     // 3. utility options - back
-      
-    dynamicOption(map, 0, nextState_[0], object[1].second, "Back");
+    dynamicOption(map, 0, nextState_[0], objectID, "Back");
     footer();
   }
 
@@ -425,7 +425,7 @@ namespace menu
   :ConsoleMenu(type, nextState)
   {} 
 
-  void StartList::view(dat::TransitionMap& map, dat::Container& starts, const std::string& key)
+  void StartList::view(dat::TransitionMap& map, dat::Container& starts, const std::string& diciplineID)
   {
     newPage();
     
@@ -441,8 +441,8 @@ namespace menu
     { illegalOption(entry[1].second + ": " + entry[2].second); }
 
     // 4. Utility options - { delete, back }
-    dynamicOption(map, 1, nextState_[1], key, "Slett ");
-    dynamicOption(map, 0, nextState_[0], key, "Back     ");
+    dynamicOption(map, 1, nextState_[1], diciplineID, "Slett ");
+    dynamicOption(map, 0, nextState_[0], diciplineID, "Back     ");
     footer();
   }
 
@@ -459,7 +459,7 @@ namespace menu
     dat::Object&        sport, 
     dat::Container&     starts, 
     dat::Container&     results, 
-    const std::string&  key)
+    const std::string&  diciplineID)
   {
     newPage();
 
@@ -479,13 +479,13 @@ namespace menu
       for (int it=0; it < starts.size(); it++)
       { illegalOption( starts[it][1].second + " - " +  starts[it][2].second + " - " + results[it][2].second); }
 
-      dynamicOption(map, 1, nextState_[1], key, "Delete results");
+      dynamicOption(map, 1, nextState_[1], diciplineID, "Delete results");
     }
     else
       { std::cout << "ERROR: You have to create a start-list first\n"; }
 
     // 4. Utility options
-    dynamicOption(map, 0, nextState_[0], key, "Back      ");
+    dynamicOption(map, 0, nextState_[0], diciplineID, "Back      ");
     footer();
   }
 }
