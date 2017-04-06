@@ -157,12 +157,20 @@ namespace form
         submit = form::thisField(proto[1], submit); 
       }
     }
-    
+
     submit = form::thisField(proto[2], submit);
     submit = form::thisField(proto[3], submit);
 
+    // Making dicipline fields unique within the sport, by appending the new dicipline number.
+    proto[2].first += newNumber;
+    proto[3].first += newNumber;
+
     if (submit)
-    { DB.add(proto); }
+    { 
+      sport.push_back(proto[1]);
+      sport.push_back(proto[2]);
+      sport.push_back(proto[3]);
+      DB.add(sport); }
   }
 
   //

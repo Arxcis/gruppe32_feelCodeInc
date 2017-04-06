@@ -36,7 +36,7 @@ Console::Console()
   //
   allMenus_[DICI_SELECT]  = new menu::DiciplineMenu   ("Øvelse"  ,  { SPORT_SELECT, DICI_EDIT, SLIST_SELECT, RLIST_SELECT, DICI_DELETE});
   allMenus_[DICI_EDIT]    = new menu::EditField       ("Øvelse"  ,  { DICI_SELECT });
-  allMenus_[DICI_NEW]     = new menu::NewDicipline    ("Øvelse"  ,  { SPORT_SELECT});
+  allMenus_[DICI_NEW]     = new menu::NewDicipline    ("Øvelse"  ,  { SPORT_SELECT });
 
   allMenus_[SLIST_SELECT] = new menu::StartList       ("Starts"     ,  { DICI_SELECT, SLIST_DELETE });
   allMenus_[RLIST_SELECT] = new menu::ResultList      ("Results"    ,  { DICI_SELECT, RLIST_DELETE });
