@@ -173,7 +173,7 @@ namespace db
   { 
     const auto protoObj = dat::Object
     {
-      { "Type",         "" },  // Start
+      { "Type",    "Start" },
       { "ID",           "" },
       { "StartNR",      "" },
     };
@@ -220,9 +220,9 @@ namespace db
 
     const auto protoObj = dat::Object
     {
-      { "Type",    ""  },  // Result
-      { "ID",      ""  },
-      { scoreType, ""  },
+      { "Type",    "Result" },
+      { "ID",      ""       },
+      { scoreType, ""       },
     };
     std::string path = diciplinePath + diciplineID + ".res";
 

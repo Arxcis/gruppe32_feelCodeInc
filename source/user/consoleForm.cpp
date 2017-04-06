@@ -18,8 +18,6 @@ namespace form
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };
 
-
-
   //
   // @function form::object - Based on type information, this function queries for a object-prototype.
   //             It then loops through this prototype, and fills in the blanks.
@@ -42,15 +40,15 @@ namespace form
       };
 
       submit = thisField(proto[1], submit); 
-    
-      if(submit) 
-      {
-        if (!(submit = !(DB.find(NATION, proto[1].second))))
-        { std::cout << "Nasjon med koden " << proto[1].second << " finnes allerede.....\n"; } // @robustness - PK code check if Nation-code already exists
-      }
+
+      while(DB.find(NATION, proto[1].second) && submit)
+      { 
+        std::cout << "Nasjon med koden " << proto[1].second << " finnes allerede.....\n";
+        submit = thisField(proto[1], submit); 
+      } 
      
       submit = thisField(proto[2], submit); 
-      // #Participants
+
       submit = thisField(proto[4], submit);
       submit = thisField(proto[5], submit);
       submit = thisField(proto[6], submit);
@@ -61,8 +59,8 @@ namespace form
       proto =     
       {
         {"Type", "Participant"},
-        {"ID"  ,         ""},
-        {"Name",         ""},  // PK
+        {"ID"  ,         ""},  // PK
+        {"Name",         ""},  
         {"Phone",        ""},
         {"Email",        ""},
         {"CountryCode",  ""},  // FK
@@ -76,13 +74,11 @@ namespace form
 
       while(!DB.find(NATION, proto[5].second) && submit)
       { 
-        std::cout << "Ingen nasjon med koden " << proto[5].second << " eksisterer.....\n"; 
+        std::cout << "Ingen nasjon med koden " << proto[5].second << " finnes.....\n"; 
         submit = thisField(proto[5], submit);
-      } // @robustness - PK code check if Nation-code already exists
-
-     
-
+      } 
     }
+
     else if (type == "Sport")      
     {
       proto =
@@ -93,6 +89,13 @@ namespace form
         {"#Diciplines", "0"},
       };
       submit = thisField(proto[1], submit);  // @robustness - PK should be checked if exst
+
+      while(DB.find(SPORT, proto[1].second) && submit)
+      { 
+        std::cout << "Sporten " << proto[1].second << " finnes allerede.....\n"; 
+        submit = thisField(proto[1], submit);
+      } 
+
       submit = thisField(proto[2], submit); 
     }
 
@@ -129,6 +132,10 @@ namespace form
   //
   bool thisField(dat::Field& field, bool submit)
   { 
+    if (!submit)        // Early return if user has canceled
+    { return false; }
+
+
     //
     // @lambda function askAgain - asks again unless input was '0', or it was valid.
     //
@@ -145,8 +152,6 @@ namespace form
       { return false; }
     };
 
-    if (!submit)        // Early return if user has canceled
-    { return false; }
 
 
     bool valid = false;
