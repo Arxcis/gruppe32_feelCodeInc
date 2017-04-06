@@ -12,7 +12,8 @@ enum ProtoForms
 
 namespace form
 {
-  static dat::Object cancelObject = {{ "Type", "Cancel" }};
+  dat::Object cancelObject = {{ "Type", "Cancel" }};
+  API& formAPI = API::getInstance();
 
   auto printKey = [](const std::string key)
                   { std::cout << key << ": " << std::endl; };

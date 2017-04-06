@@ -11,6 +11,7 @@
 
 #include "../tool/stream.h"
 #include "../tool/typedef.h"
+#include "../API.h"
 
 
 namespace form
