@@ -63,6 +63,9 @@ public:
   */
   auto getAll    (const Entity entity, const std::string& id="")  -> const dat::Container;
 
+  void setParticipantCount(dat::Object & nation);
+  void setParticipantCount(dat::Container & nations);
+
   void quit();
 
   ~API(){}
@@ -75,7 +78,6 @@ private:
 
   void loadAllBases();
 
-  int parseToEntityType(const std::string& id);
 
   //
   // All the bases

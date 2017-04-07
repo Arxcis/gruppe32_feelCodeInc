@@ -21,7 +21,7 @@ namespace db
   protected:
     List* elements;                     // Container for the databases core data
     const std::string baseFile;
-
+    bool  dirty_ = false;                // flag that indicates to others that something has been changed
   public:
     DataBase(const std::string file)
       :baseFile(file)
@@ -36,6 +36,12 @@ namespace db
     virtual dat::Object    pack(const T*     object) = 0;
     virtual T*             unpack(const dat::Object& object) = 0;
     virtual dat::Container readFile(const std::string& filepath) = 0;
+
+    bool isDirty() 
+    { return dirty_; }
+
+    void setDirty(bool d) 
+    { dirty_ = d; }
 
     bool findSortID(const std::string& id)
     { return elements->inList(id.c_str()); }
@@ -68,7 +74,7 @@ namespace db
     size_t countMatchingFields(const dat::Field id)
     {
       size_t count = 0;
-      size_t fieldIndex = -1;
+      int fieldIndex = -1;
       dat::Container objects = getContainer();
       if (objects.size() > 0)
       {
@@ -111,7 +117,6 @@ namespace db
     //send in object, and search for field an object with the matching field will 
     bool updateWithMatchingField(dat::Object& object, const dat::Field field, const int i=-1)
     {
-      bool updated = false;
       List removedItems(FIFO);
       size_t fieldIndex = 0;
       while (object[fieldIndex].first != field.first && fieldIndex < object.size()) //if the type does not match
@@ -128,8 +133,7 @@ namespace db
           else
           { //The matching element was found!
             //discard the one that matches and add the object instead
-            elements->add(unpack(object));
-            updated = true;
+            dirty_ = elements->add(unpack(object));
           }
         }
       }
@@ -146,14 +150,13 @@ namespace db
           else
           { //The matching element was found!
             //discard the one that matches and add the object instead
-            elements->add(unpack(object));
-            updated = true;
+            dirty_ = elements->add(unpack(object));
           }
         }
       }
       while (removedItems.noOfElements() > 0)
       { elements->add(removedItems.removeNo(0)); } //dequeue everything back into elements
-      return updated;
+      return dirty_;
     }
 
 
@@ -165,8 +168,8 @@ namespace db
     {
       T* e = (T*)elements->remove(object[1].second.c_str());
       if (e) //object[1] is PK
-      { elements->add(unpack(object)); }
-      return e != nullptr;
+      { dirty_ = elements->add(unpack(object)); }
+      return dirty_;
     }
 
     //
@@ -177,8 +180,8 @@ namespace db
     {
        T* e = (T*)elements->remove(id);
       if (e) //object[1] is PK
-      { elements->add(unpack(object)); }
-      return e != nullptr;
+      { dirty_ = elements->add(unpack(object)); }
+      return dirty_;
     }  
 
     //
@@ -187,7 +190,8 @@ namespace db
     virtual bool add(const dat::Object& object)
     {
       T* unpackedObject = unpack(object);
-      return (elements->add(unpackedObject)); //if added
+      dirty_ = elements->add(unpackedObject);
+      return dirty_; //if added
     }
 
     //

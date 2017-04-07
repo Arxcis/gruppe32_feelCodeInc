@@ -69,7 +69,7 @@ bool API::add(const dat::Object object )
 {
   if(object[0].second == "Nation")
   { 
-    bool response = nationBase_.add(object); 
+    bool response = nationBase_.add(object);
     nationBase_.flush();
     return response;
   }
@@ -223,7 +223,7 @@ auto API::get(const Entity entity, const std::string& id) -> const dat::Object
   dat::Object tempObj;
   switch(entity)
   {
-    case NATION:      nationBase_.getSortID(tempObj, id); break;                  //   ID TextElement
+    case NATION:      nationBase_.getSortID(tempObj, id); setParticipantCount(tempObj); break;  //   ID TextElement
     case PARTICIPANT: participantBase_.getSortID(tempObj, std::stoi(id)); break;  //      Numelement
     case SPORT:       sportBase_.getSortID(tempObj, id); break;                   //      textElement
     case POINT:       pointBase_.getSortID(tempObj, std::stoi(id)); break;        //      Numelement
@@ -277,7 +277,9 @@ auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Cont
   dat::Container tempContainer;
   switch(entity)
   {
-    case NATION:      tempContainer = nationBase_.getContainer();      break;
+    case NATION:      
+      tempContainer = nationBase_.getContainer();      
+      setParticipantCount(tempContainer);                              break;
     case PARTICIPANT: tempContainer = participantBase_.getContainer(); break;
     case SPORT:       tempContainer = sportBase_.getContainer();       break;
     case POINT:       tempContainer = pointBase_.getContainer();       break;
@@ -294,6 +296,18 @@ auto API::getAll(const Entity entity, const std::string& id)  -> const dat::Cont
     default: assert(false);     //Not a valid command... abort mission
   }
   return tempContainer;
+}
+
+void API::setParticipantCount(dat::Object& nation)
+{
+  dat::Field protoField{ "CountryCode", nation[1].second };
+  nation[3].second = std::to_string(participantBase_.countMatchingFields(protoField)); //update the containers objects participantCount;
+}
+
+void API::setParticipantCount(dat::Container& nations)
+{
+  for(size_t i = 0; i < nations.size(); i++)
+  { setParticipantCount(nations[i]); }
 }
 
 void API::updateMedals(const dat::Container& results)
