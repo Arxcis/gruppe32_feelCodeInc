@@ -19,7 +19,7 @@ Console::Console()
   allMenus_[POINT_STATS]   = new menu::RankMenu        ("Points"     ,      { START_MENU} ); 
   allMenus_[MEDAL_STATS]   = new menu::RankMenu        ("Medals"     ,      { START_MENU} ); 
 
-  allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nasjon"     ,      { NATION_BASE , NATION_EDIT });
+  allMenus_[NATION_SELECT] = new menu::NationMenu      ("Nasjon"     ,      { NATION_BASE , NATION_EDIT , NATION_PART});
   allMenus_[PART_SELECT]   = new menu::ParticipantMenu ("Deltaker",        { PART_BASE   , PART_EDIT   });
   allMenus_[SPORT_SELECT]  = new menu::SportMenu       ("Gren"      ,      { SPORT_BASE  , SPORT_EDIT, DICI_NEW, DICI_SELECT });
 
@@ -34,6 +34,8 @@ Console::Console()
   allMenus_[SPORT_EDIT]    = new menu::EditField       ("Gren"      ,       { SPORT_SELECT});
   allMenus_[DICI_EDIT]     = new menu::EditField       ("Øvelse"  ,         { DICI_SELECT });
   allMenus_[DICI_NEW]      = new menu::NewDicipline    ("Øvelse"  ,         { SPORT_SELECT });
+
+  allMenus_[NATION_PART]   = new menu::ParticipantMenu ("Deltakere",        { NATION_SELECT });
 
   //
   // Registring Advanced menus
@@ -288,6 +290,9 @@ void Console::displayMenu()
       currentMap[0] = { SPORT_SELECT, selectedID };
       break;
 
+    case NATION_PART:
+      silentCommand = false;
+      allMenus_[PART_BASE]->view(currentMap, api_.getAllWithField(PARTICIPANT, dat::Field{ "CountryCode" ,selectedObject[1].second })); break;
 
     default:
       std::cout << "Not implemented yet....\n";

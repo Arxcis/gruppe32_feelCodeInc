@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "API.h"
+#include "../../API.h"
 
 // @local files
 
@@ -192,7 +192,7 @@ int main()
   }
   
   std::cout << "\n\n\n\n";
-  api.updateAll(RESULTS, resultList, "test");
+  api.updateAll(RESULTS, resultList, "Test");
   std::cout << "\n\n\n\n";
 
   dat::Container medals = api.getAll(MEDAL);

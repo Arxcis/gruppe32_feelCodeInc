@@ -268,10 +268,11 @@ namespace menu
 
     // 2. All fields of the nation
     dynamicOption(map, 1, nextState_[1], nation[2]);
-    illegalOption(nation[3].first + ": " + nation[3].second);
-    dynamicOption(map, 2, nextState_[1], nation[4]);
-    dynamicOption(map, 3, nextState_[1], nation[5]);
-    dynamicOption(map, 4, nextState_[1], nation[6]);
+    //illegalOption(nation[3].first + ": " + nation[3].second);
+    staticOption(map, 2, nextState_[2], nation[3].first + ": " + nation[3].second);
+    dynamicOption(map, 3, nextState_[1], nation[4]);
+    dynamicOption(map, 4, nextState_[1], nation[5]);
+    dynamicOption(map, 5, nextState_[1], nation[6]);
     
     // 3. Utility options
     divider(divsizeMid);

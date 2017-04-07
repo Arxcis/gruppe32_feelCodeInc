@@ -41,6 +41,7 @@ enum MenuState : int
   SLIST_DELETE = 21,
   RLIST_SELECT = 22,
   RLIST_DELETE = 23,
-
+  //============== ADDITIONS BY HALVOR==============
+  NATION_PART = 24
 
 };
