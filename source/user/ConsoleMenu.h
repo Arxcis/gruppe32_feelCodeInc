@@ -116,6 +116,13 @@ namespace menu
       const int           nextMenu, 
       const dat::Field&   field) const;
 
+    inline void 
+    dynamicOption(
+      dat::TransitionMap& map,
+      const int select,
+      const int nextMenu,
+       const std::vector<dat::Field> fields) const;
+
 
     protected:
       const std::string type_;

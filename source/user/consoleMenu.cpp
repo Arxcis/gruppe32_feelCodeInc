@@ -135,6 +135,28 @@ namespace menu
     map[select] = { nextMenu, field.first };
   }
 
+  inline void 
+  ConsoleMenu::dynamicOption(
+    dat::TransitionMap& map,
+    const int select,
+    const int nextMenu,
+    const std::vector<dat::Field> fields) const
+  {
+    std::cout  << std::setw(colsize) 
+               << (std::to_string(select) + "-> ")
+               << std::left
+               << std::setw(colsizeMini); 
+
+    for (int i=1; i < fields.size(); i++)
+    { 
+      std::cout << (fields[i].first + ": ")  
+                << std::setw(colsize) 
+                << fields[i].second;
+    }
+    std::cout << std::right << "\n";
+    map[select] = { nextMenu, fields[0].second };
+  }
+
   ////////////////////////////////////////////////////////////////
   //
   //  @class menu::Start
@@ -181,8 +203,16 @@ namespace menu
 
     // 2. List of all objects in the given Database
     size_t it = 1;
-    for(const auto& object: container)
-    { dynamicOption(map, it++, nextState_[2], object[1].second, (object[1].first + ":  " + object[1].second) + "\t " + (object[2].first + ":  " + object[2].second)); }
+    for (const auto& object: container)
+    { 
+      dynamicOption(map, it++, nextState_[2], 
+          {  
+            object[1], 
+            { "", object[1].second }, 
+            object[2], 
+            object[3],
+          }); 
+    }
 
     // 3. Utility options
     newLine();
@@ -234,7 +264,7 @@ namespace menu
     // 1. Header of nation menu
     header(type_);
     illegalOption(nation[1].first + ": " + nation[1].second);
-    divider(divsizeMid);
+
 
     // 2. All fields of the nation
     dynamicOption(map, 1, nextState_[1], nation[2]);
