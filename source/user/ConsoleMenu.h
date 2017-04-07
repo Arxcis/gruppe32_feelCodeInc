@@ -18,8 +18,10 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include <iomanip>
 
 #include "../tool/typedef.h"
+#include "../config.h"
 #include "MenuEnum.h"
 #include "consoleForm.h"
 
@@ -118,10 +120,6 @@ namespace menu
     protected:
       const std::string type_;
       const std::vector<int> nextState_;
-
-      // Columne widths
-      size_t column1 = 40;
-      size_t column2 = 40;
   };
 
 

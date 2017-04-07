@@ -20,4 +20,10 @@ const std::string diciplinePath    = "data/oblig/dici_";
 const int maxDiciplines = 20;         // Max diciplines per sport
 const int maxNations = 200;           // Max Nations registered in the system
 
+// Graphics
+const size_t colsize       = 15;
+const size_t colsizeMid    = 30;
 
+const size_t divsizeBig    = 60;
+const size_t divsizeMid    = 50;
+const size_t newpageLines  = 40;

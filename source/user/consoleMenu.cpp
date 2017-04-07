@@ -25,7 +25,7 @@ namespace menu
   ConsoleMenu::footer() const
   {
     std::cout << "\n";
-    divider(62, true);
+    divider(divsizeBig, true);
   }
 
   inline void 
@@ -43,7 +43,7 @@ namespace menu
   void 
   ConsoleMenu::newPage() const
   {
-    for(int i=0; i < 40; i++)
+    for(int i=0; i < newpageLines; i++)
     {
       std::cout << "\n";
     }
@@ -53,9 +53,9 @@ namespace menu
   ConsoleMenu::header(const std::string name) const
   {   
     std::cout << "\n";
-    divider(62, true); 
+    divider(divsizeBig, true); 
     std::cout << "|    " << name << "               \n";
-    divider(62, true); 
+    divider(divsizeBig, true); 
     std::cout << "\n";
   }
 
@@ -77,7 +77,7 @@ namespace menu
   ConsoleMenu::illegalOption(
     const std::string& text) const
   {  
-    std::cout << "  " << " --- " << text << " \n";  // 1. Write option to screen
+    std::cout << std::setw(colsize) << " --- " << text << " \n";  // 1. Write option to screen
     
   }
 
@@ -87,8 +87,14 @@ namespace menu
     const int select, 
     const int nextMenu,
     const std::string& text) const
-  {  
-    std::cout << "   " << select << "-> " << text << " \n";  // 1. Write option to screen
+  {
+    std::cout << std::setw(colsize) 
+              << (std::to_string(select) + "-> ") 
+              << std::left
+              << std::setw(colsizeMid)
+              << text  << "\n"
+              << std::right;
+
     map[select] = { nextMenu, "" };                       // 2. Bind option to next menu
   }
 
@@ -100,7 +106,13 @@ namespace menu
     const std::string& id,
     const std::string& text) const
   {
-    std::cout << "   " << select << "-> " << text << "\n"; // 1. Write option to screen
+    std::cout << std::setw(colsize) 
+              << (std::to_string(select) + "-> ") 
+              << std::left
+              << std::setw(colsizeMid) 
+              << text << " \n" 
+              << std::right;  
+
     map[select] = { nextMenu, id };                     // 2. Bind option AND object to next menu
   }
 
@@ -111,7 +123,15 @@ namespace menu
     const int nextMenu,
     const dat::Field& field) const
   {
-    std::cout << "   " << select << "-> " << (field.first + ": " + field.second) << "\n";
+    std::cout  << std::setw(colsize) 
+               << (std::to_string(select) + "-> ")
+               << std::left
+               << std::setw(colsize) 
+               << (field.first + ": ")  
+               << std::setw(colsizeMid) 
+               << field.second << "\n"
+               << std::right << "";
+
     map[select] = { nextMenu, field.first };
   }
 
@@ -138,7 +158,7 @@ namespace menu
     staticOption(map, 5, nextState_[5], "Medaljer    ");
 
     // 3. Exit program
-    divider(15);
+    divider(divsizeMid);
     staticOption(map, 0, nextState_[0], "Avslutt     ");
     footer();
   }
@@ -166,7 +186,7 @@ namespace menu
 
     // 3. Utility options
     newLine();
-    divider(40);
+    divider(divsizeMid);
     staticOption(map, it, nextState_[1], "Ny " + type_.substr(0, type_.find(" ")));
     staticOption(map, 0, nextState_[0], "Back      ");
     footer();
@@ -193,7 +213,7 @@ namespace menu
     { illegalOption(rank[1].first + ": " + rank[1].second + "\t" + rank[2].first + ": "+  rank[2].second + "\t" + rank[3].first + ": " +  rank[3].second + "\t"); }
     
     // 3. Utility options
-    divider(30);
+    divider(divsizeMid);
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -214,7 +234,7 @@ namespace menu
     // 1. Header of nation menu
     header(type_);
     illegalOption(nation[1].first + ": " + nation[1].second);
-    divider(45);
+    divider(divsizeMid);
 
     // 2. All fields of the nation
     dynamicOption(map, 1, nextState_[1], nation[2]);
@@ -224,7 +244,7 @@ namespace menu
     dynamicOption(map, 4, nextState_[1], nation[6]);
     
     // 3. Utility options
-    divider(45);
+    divider(divsizeMid);
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -254,7 +274,7 @@ namespace menu
 
     // 3. Utility options
     newLine();
-    divider(40);
+    divider(divsizeMid);
     staticOption(map, 0, nextState_[0], "Back     ");
     footer();
   }
@@ -288,7 +308,7 @@ namespace menu
 
     // 4. Utility options
     newLine();
-    divider(40);
+    divider(divsizeMid);
     newLine();
     dynamicOption(map, optionIt, nextState_[2], sport[1].second, "Ny Øvelse");
     staticOption(map, 0, nextState_[0], "Back     ");
@@ -321,7 +341,7 @@ namespace menu
 
     // 2. Dicipline menu options - { name, time, date, start, results }
     illegalOption(sport[it].second);
-    divider(40);
+    divider(divsizeMid);
     dynamicOption(map, 1, nextState_[1], sport[(it+1)]);
     dynamicOption(map, 2, nextState_[1], sport[(it+2)]);
     dynamicOption(map, 3, nextState_[2], sport[it].second, "Start list");
@@ -330,7 +350,7 @@ namespace menu
     std::string sportID = diciplineID.substr(0, (diciplineID.find("_")));  // @hack
 
     // 3. Utility options - { delete, back }
-    divider(40);
+    divider(divsizeMid);
     dynamicOption(map, 5, nextState_[4], diciplineID, "Delete");
     dynamicOption(map, 0, nextState_[0], sportID,     "Back     ");
     footer();
@@ -465,7 +485,7 @@ namespace menu
     if (!(starts.empty()))  
     {  
       std::cout << "SCORETYPE : " <<  sport[2].second << std::endl; // @debug
-      divider(40);
+      divider(divsizeMid);
 
       // 2. If start menu is not empty, and result menu is empty, then fill result-list
       if(results.empty()) 
