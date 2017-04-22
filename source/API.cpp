@@ -217,6 +217,7 @@ void API::remove(const Entity entity, const std::string& id)
 //      : SPORT
 //  @param std::string id
 //        example   "NOR"  or "Petter Northug"  or "Soccer"
+//
 auto API::get(const Entity entity, const std::string& id) -> const dat::Object
 {
   dat::Object tempObj;
@@ -307,27 +308,6 @@ void API::setParticipantCount(dat::Container& nations)
 {
   for(size_t i = 0; i < nations.size(); i++)
   { setParticipantCount(nations[i]); }
-}
-
-void API::FilterObject(dat::Object& object, int...)
-{
-
-}
-
-dat::Container API::getAllWithField(const Entity entity, const dat::Field & field)
-{
-  dat::Container tempContainer;
-  switch (entity)
-  {
-    case NATION:      tempContainer = nationBase_.getWithMatchingField(field);      break;
-    case PARTICIPANT: tempContainer = participantBase_.getWithMatchingField(field); break;
-    case SPORT:       tempContainer = sportBase_.getWithMatchingField(field);       break;
-    case POINT:       tempContainer = pointBase_.getWithMatchingField(field);       break;
-    case MEDAL:       tempContainer = medalBase_.getWithMatchingField(field);       break;
-
-    default: assert(false); break;     //Not a valid command... abort mission
-  }
-  return tempContainer;
 }
 
 void API::updateMedals(const dat::Container& results)

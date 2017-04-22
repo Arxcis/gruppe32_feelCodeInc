@@ -66,10 +66,6 @@ public:
   void setParticipantCount(dat::Object & nation);
   void setParticipantCount(dat::Container & nations);
 
-  void FilterObject(dat::Object & object, int ...);
-
-  dat::Container getAllWithField(const Entity entity, const dat::Field & field);
-
   void quit();
 
   ~API(){}

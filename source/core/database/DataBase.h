@@ -99,7 +99,7 @@ namespace db
       if (objects.size() > 0)
       {
         assert(objects[0][0].second == object[0].second); //no typematch
-        int fieldIndex = -1;
+        size_t fieldIndex = -1;
         for (size_t i = 0; i < object.size() && fieldIndex != i; i++)
         {
           if (object[i].first == id.first) //if it's the field type we're looking for
@@ -114,32 +114,6 @@ namespace db
       }
       return -1;
     }
-
-    //Very expensive compared to the getSortID
-    dat::Container getWithMatchingField(const dat::Field id)
-    {
-      dat::Container returnContainer;
-      dat::Container objects = getContainer();
-      if (objects.size() > 0)
-      {
-        int fieldIndex = -1;
-        for (size_t i = 0; i < objects[0].size() && fieldIndex != i; i++)//search for field Index first
-        {
-          if (objects[0][i].first == id.first) //if it's the field type we're looking for
-          { fieldIndex = i; }
-        }
-        assert(fieldIndex > 0); // if the objects are the same type the field should exist -> its index should too!
-        for (size_t i = 0; i < objects.size(); i++)
-        {
-          if (objects[i][fieldIndex].second == id.second)
-          {
-            returnContainer.push_back(objects[i]);
-          }
-        }
-      }
-      return returnContainer;
-    }
-
     //send in object, and search for field an object with the matching field will 
     bool updateWithMatchingField(dat::Object& object, const dat::Field field, const int i=-1)
     {
